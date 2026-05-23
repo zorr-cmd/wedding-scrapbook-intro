@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Brothers — Casting Wall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@500;700&family=Reenie+Beanie&family=Special+Elite&family=Courier+Prime:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background:#3a3128; }
+
+  :root{
+    --cork:#c8a878;
+    --cork-dark:#a98a5b;
+    --red:#c43a1f;
+    --red-deep:#8e2412;
+    --ink:#1d1812;
+    --sticky:#fbe98c;
+    --sticky2:#ffd17a;
+    --tape:rgba(232,225,160,0.55);
+    --tape-blue:rgba(170,210,225,0.55);
+  }
+
+  .page{
+    width:8.5in; height:11in;
+    position:relative; overflow:hidden;
+    page-break-after: always;
+    background:
+      radial-gradient(1.2px 1.2px at 12% 18%, rgba(70,40,15,.35) 50%, transparent 51%),
+      radial-gradient(1px 1px at 22% 64%, rgba(60,30,10,.30) 50%, transparent 51%),
+      radial-gradient(1.4px 1.4px at 38% 22%, rgba(90,55,20,.28) 50%, transparent 51%),
+      radial-gradient(1px 1px at 55% 78%, rgba(70,40,15,.30) 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 72% 12%, rgba(60,30,10,.32) 50%, transparent 51%),
+      radial-gradient(1px 1px at 84% 48%, rgba(80,45,15,.28) 50%, transparent 51%),
+      radial-gradient(1.3px 1.3px at 92% 86%, rgba(70,40,15,.30) 50%, transparent 51%),
+      radial-gradient(0.8px 0.8px at 8% 88%, rgba(50,25,10,.28) 50%, transparent 51%),
+      radial-gradient(1px 1px at 28% 36%, rgba(80,50,20,.25) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 48% 52%, rgba(60,30,10,.22) 50%, transparent 51%),
+      radial-gradient(1px 1px at 66% 66%, rgba(70,40,15,.25) 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 78% 28%, rgba(80,50,15,.25) 50%, transparent 51%),
+      radial-gradient(1px 1px at 4% 56%, rgba(60,30,10,.25) 50%, transparent 51%),
+      radial-gradient(1.4px 1.4px at 96% 4%, rgba(70,40,15,.30) 50%, transparent 51%),
+      radial-gradient(ellipse at 50% 50%, #d0b285 0%, #c8a878 60%, #b69464 100%);
+    background-color:#c8a878;
+    font-family: 'Caveat', cursive;
+  }
+
+  .page::before{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background-image:
+      repeating-linear-gradient(35deg, rgba(90,55,25,.05) 0 1px, transparent 1px 4px),
+      repeating-linear-gradient(-50deg, rgba(60,30,10,.04) 0 1px, transparent 1px 5px);
+    mix-blend-mode: multiply;
+    z-index:1;
+  }
+  .page::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    box-shadow: inset 0 0 120px rgba(40,20,5,0.35);
+    z-index:2;
+  }
+
+  /* ===== Photos ===== */
+  .photo{
+    background:#fff; padding:7px 7px 26px 7px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.35), 0 1px 2px rgba(0,0,0,.25);
+    position:absolute; z-index:5;
+  }
+  .photo .pholder{
+    width:100%; height:100%; overflow:hidden; position:relative;
+  }
+  .photo .pholder img{
+    display:block; width:100%; height:100%; object-fit:cover;
+  }
+  .photo .cap{
+    position:absolute; left:0; right:0; bottom:5px;
+    text-align:center;
+    font-family:'Permanent Marker', cursive;
+    font-size:10.5px; color:#1d1812; letter-spacing:.5px;
+  }
+
+  /* pushpin */
+  .pin{
+    position:absolute; width:14px; height:14px; border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, #ff8a7a 0%, #e8412a 45%, #8e2412 100%);
+    box-shadow: 0 3px 4px rgba(0,0,0,.45), inset -1px -1px 2px rgba(0,0,0,.4);
+    z-index:12;
+  }
+  .pin.blue{ background: radial-gradient(circle at 35% 30%, #8fbcff 0%, #2f6ed8 45%, #143d8a 100%); }
+  .pin.yellow{ background: radial-gradient(circle at 35% 30%, #fff3a0 0%, #f0c93a 45%, #9c7a14 100%); }
+  .pin.green{ background: radial-gradient(circle at 35% 30%, #b6e9a0 0%, #4aa83a 45%, #1f5816 100%); }
+
+  /* washi tape */
+  .tape{
+    position:absolute; width:44px; height:12px;
+    background: var(--tape);
+    border-left:1px dashed rgba(255,255,255,.4);
+    border-right:1px dashed rgba(255,255,255,.4);
+    box-shadow: 0 1px 2px rgba(0,0,0,.18);
+    z-index:11;
+  }
+  .tape.blue{ background: var(--tape-blue); }
+  .tape.pink{ background: rgba(240,170,200,.55); }
+  .tape.stripe{
+    background:
+      repeating-linear-gradient(90deg, rgba(196,58,31,.55) 0 5px, rgba(255,255,255,.45) 5px 10px);
+  }
+
+  /* red pen scrawl text */
+  .scrawl{
+    position:absolute; color:var(--red);
+    font-family:'Reenie Beanie', cursive;
+    font-weight:700; text-transform:uppercase;
+    text-shadow: 0 0 1px rgba(196,58,31,.35);
+    z-index:13; pointer-events:none;
+    letter-spacing:.5px;
+  }
+  .scrawl.deep{ color:var(--red-deep); }
+
+  /* sticky note */
+  .sticky{
+    position:absolute; width:120px; min-height:80px;
+    background:var(--sticky);
+    padding:9px 11px;
+    font-family:'Caveat', cursive; font-weight:700; font-size:14px;
+    color:#3a2f10;
+    box-shadow: 2px 4px 8px rgba(0,0,0,.28), inset 0 0 18px rgba(0,0,0,.04);
+    z-index:14;
+    line-height:1.1;
+  }
+  .sticky.orange{ background:var(--sticky2); }
+
+  /* circle drawn around faces */
+  .circle{
+    position:absolute; border:3px solid var(--red);
+    border-radius:50%; pointer-events:none; z-index:13;
+    box-shadow: inset 0 0 0 1px rgba(196,58,31,.5);
+    opacity:.92;
+  }
+
+  /* group label */
+  .group-label{
+    position:absolute; z-index:6;
+    font-family:'Permanent Marker', cursive;
+    color:var(--ink);
+    text-transform:uppercase;
+  }
+  .group-label .underline{
+    display:block; height:5px; background:var(--red);
+    margin-top:2px; width:90%;
+    transform: skewX(-8deg);
+  }
+
+  /* clipboard */
+  .clipboard{
+    position:absolute; width:165px; height:130px;
+    background:#3a2a14;
+    border-radius:3px;
+    padding:7px;
+    box-shadow: 0 6px 12px rgba(0,0,0,.45);
+    z-index:15;
+  }
+  .clipboard::before{
+    content:""; position:absolute; top:-10px; left:50%; transform:translateX(-50%);
+    width:44px; height:14px; background:#5c4423;
+    border-radius:3px 3px 2px 2px;
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,.3);
+  }
+  .clipboard::after{
+    content:""; position:absolute; top:-5px; left:50%; transform:translateX(-50%);
+    width:20px; height:6px; background:#a08560;
+    border-radius:2px;
+  }
+  .clipboard .paper{
+    background:#fafaf4; height:100%; padding:10px 9px;
+    font-family:'Caveat',cursive; font-size:13px;
+    color:#1d1812; line-height:1.15;
+    box-shadow: inset 0 0 6px rgba(0,0,0,.08);
+  }
+  .clipboard .paper .ttl{
+    font-family:'Permanent Marker',cursive;
+    font-size:9.5px; color:var(--red); letter-spacing:.4px;
+    text-transform:uppercase; margin-bottom:3px;
+    border-bottom:1px dashed #aaa; padding-bottom:2px;
+  }
+
+  /* torn shortlist */
+  .shortlist{
+    position:absolute; background:#f4ecd8;
+    padding:10px 12px;
+    box-shadow: 2px 4px 8px rgba(0,0,0,.3);
+    font-family:'Special Elite', monospace;
+    font-size:9px; color:#1d1812;
+    line-height:1.4;
+    z-index:9;
+  }
+  .shortlist .h{
+    font-family:'Permanent Marker',cursive; font-size:11px;
+    color:var(--red); margin-bottom:4px; letter-spacing:.5px;
+  }
+  .shortlist .row{ display:flex; justify-content:space-between; padding:1px 0; border-bottom:1px dotted #b9a37a;}
+  .shortlist .strike{ text-decoration:line-through; color:#7a6a4a; }
+  .shortlist .chk{ color:var(--red); font-weight:700; }
+
+  .marquee{
+    position:absolute; left:0; right:0;
+    text-align:center;
+    font-family:'Permanent Marker', cursive;
+    color:var(--ink);
+    letter-spacing:1.2px;
+    z-index:6;
+  }
+
+  /* ============= PAGE 1 ============= */
+  .p1-marquee{ top:22px; font-size:22px; padding: 0 200px 0 30px; }
+  .p1-sub{
+    position:absolute; top:54px; left:30px; right:200px;
+    text-align:center;
+    font-family:'Reenie Beanie',cursive; color:var(--red);
+    font-size:17px; letter-spacing:2px; z-index:6;
+  }
+  .p1-day{
+    position:absolute; top:78px; left:30px; right:200px;
+    text-align:center;
+    font-family:'Caveat',cursive; color:#3a2f10; font-size:13px; z-index:6;
+  }
+
+  .divider{
+    position:absolute; background:
+      repeating-linear-gradient(90deg, rgba(60,30,10,.55) 0 8px, transparent 8px 14px);
+    height:2px; z-index:4;
+  }
+  .divider.v{ width:2px; background:
+      repeating-linear-gradient(180deg, rgba(60,30,10,.55) 0 8px, transparent 8px 14px); }
+
+  /* group labels */
+  .lbl-aud{ left:36px; top:120px; font-size:18px; }
+  .lbl-call{ left:270px; top:120px; font-size:18px; color:var(--red); }
+  .lbl-chem{ left:36px; top:548px; font-size:18px; }
+
+  /* HEADSHOT — uses src-img absolutely positioned within a fixed-size clipped frame */
+  .head{
+    position:absolute; width:80px; height:100px;
+    background:#fff; padding:4px 4px 18px 4px;
+    box-shadow: 0 3px 6px rgba(0,0,0,.3);
+    z-index:5;
+  }
+  .head .crop{
+    position:relative; width:100%; height:78px; overflow:hidden;
+    background:#222;
+  }
+  .head .crop img{
+    position:absolute; display:block;
+    /* width/height/top/left set inline per-headshot */
+  }
+  .head .n{
+    position:absolute; bottom:3px; left:0; right:0; text-align:center;
+    font-family:'Caveat',cursive; font-size:10.5px; font-weight:700; color:#1d1812;
+  }
+
+  /* layout positions */
+  /* Use 6 headshots cropped from photo-01-beach-brown-tees.jpg
+     Photo dims approx 2564x1704 → 7 guys evenly spaced
+     For 80px-wide × 78px-tall crop frame:
+       - we'll scale src image to width ~520px and shift left to show each face
+     Each guy is roughly at x ≈ 7%, 22%, 35%, 49%, 64%, 78%, 92% of full width
+  */
+  .p1-h1{ left:36px; top:160px; transform:rotate(-3deg);}
+  .p1-h2{ left:130px; top:158px; transform:rotate(3deg);}
+  .p1-h3{ left:36px; top:285px; transform:rotate(2deg);}
+  .p1-h4{ left:130px; top:288px; transform:rotate(-3deg);}
+  .p1-h5{ left:36px; top:410px; transform:rotate(-2deg);}
+  .p1-h6{ left:130px; top:413px; transform:rotate(4deg);}
+
+  /* CALLBACKS — bigger photos right side */
+  .p1-cb1{ left:265px; top:152px; width:225px; height:165px; transform:rotate(-2deg);}
+  .p1-cb2{ left:510px; top:160px; width:200px; height:155px; transform:rotate(3deg);}
+  .p1-cb3{ left:280px; top:345px; width:215px; height:160px; transform:rotate(2deg);}
+  .p1-cb4{ left:510px; top:340px; width:210px; height:170px; transform:rotate(-3deg);}
+
+  /* CHEMISTRY READ row (bottom) */
+  .p1-ch1{ left:36px; top:585px; width:235px; height:175px; transform:rotate(-1.5deg);}
+  .p1-ch2{ left:285px; top:592px; width:215px; height:170px; transform:rotate(2deg);}
+  .p1-ch3{ left:515px; top:585px; width:220px; height:175px; transform:rotate(-2deg);}
+
+  /* stickies/shortlist positions */
+  /* stickies + shortlist all live in bottom strip below chem photos */
+  .p1-sticky1{ left:32px; top:800px; transform:rotate(-4deg); width:128px; font-size:12.5px;}
+  .p1-sticky2{ left:200px; top:805px; transform:rotate(3deg); width:118px; font-size:12px;}
+  .p1-shortlist{ left:362px; top:798px; transform:rotate(-1.5deg); width:175px; }
+
+  .p1-clip{ right:18px; top:22px; transform:rotate(4deg); }
+
+  /* stamps */
+  .corner-stamp{
+    position:absolute; transform:rotate(-12deg);
+    border:3px double var(--red); color:var(--red);
+    padding:3px 9px;
+    font-family:'Special Elite',monospace;
+    letter-spacing:2px; font-size:10px;
+    background: rgba(255,255,255,.4);
+    z-index:16;
+  }
+
+  /* ============= PAGE 2 ============= */
+  .p2-marquee{
+    top:30px; font-size:28px; color:var(--red);
+    text-shadow: 1px 1px 0 rgba(0,0,0,.15);
+    padding: 0 170px;
+  }
+  .p2-sub{
+    position:absolute; top:68px; left:0; right:0; text-align:center;
+    font-family:'Caveat',cursive; color:#1d1812; font-size:17px; letter-spacing:2px; z-index:6;
+  }
+  .p2-divider{
+    position:absolute; left:50px; right:50px; top:104px;
+    height:3px; background: repeating-linear-gradient(90deg,var(--red) 0 12px, transparent 12px 20px);
+    z-index:4;
+  }
+
+  /* HERO */
+  .p2-hero{
+    position:absolute; left:50%; transform:translateX(-50%) rotate(-1deg);
+    top:124px; width:520px; height:300px;
+    z-index:6;
+  }
+  .p2-hero .label{
+    position:absolute; left:50%; transform:translateX(-50%) rotate(-3deg);
+    bottom:-18px;
+    background:var(--red); color:#fff;
+    font-family:'Bebas Neue',sans-serif; font-size:12px;
+    padding:3px 14px; letter-spacing:2px;
+    box-shadow: 1px 2px 4px rgba(0,0,0,.4);
+    white-space:nowrap;
+  }
+
+  /* SIGNED ROW of 8 headshots */
+  .signed-section-label{
+    position:absolute; left:30px; right:30px; top:455px;
+    text-align:center; font-family:'Permanent Marker',cursive;
+    font-size:14px; color:var(--ink); letter-spacing:2px;
+    z-index:6;
+  }
+  .signed-row{
+    position:absolute; left:30px; right:30px;
+    top:480px;
+    display:grid; grid-template-columns: repeat(8, 1fr); gap:6px;
+    z-index:5;
+  }
+  .sgn{
+    position:relative; background:#fff;
+    padding:4px 4px 32px 4px;
+    box-shadow: 0 3px 7px rgba(0,0,0,.35);
+    overflow:hidden;
+  }
+  .sgn .crop{
+    position:relative; width:100%; aspect-ratio: 1/1.15;
+    overflow:hidden; background:#222;
+  }
+  .sgn .crop img{
+    position:absolute; display:block;
+  }
+  .sgn .nm{
+    position:absolute; bottom:16px; left:0; right:0; text-align:center;
+    font-family:'Caveat',cursive; font-weight:700; font-size:11px; color:#1d1812;
+    line-height:1;
+  }
+  .sgn .rl{
+    position:absolute; bottom:3px; left:0; right:0; text-align:center;
+    font-family:'Bebas Neue',sans-serif; font-size:7.5px; color:var(--red);
+    letter-spacing:.5px;
+    white-space:nowrap;
+  }
+  .sgn .stamp{
+    position:absolute; right:-4px; top:6px;
+    transform: rotate(14deg);
+    border:1.5px solid var(--red);
+    color:var(--red);
+    font-family:'Special Elite', monospace;
+    font-size:7px; padding:1px 3px;
+    background: rgba(255,255,255,.55);
+    letter-spacing:1px;
+    opacity:.92;
+    z-index:3;
+  }
+
+  /* memo */
+  .memo{
+    position:absolute; left:50px; right:50px; top:690px;
+    background:#fafaf0;
+    padding:16px 22px;
+    box-shadow: 0 6px 14px rgba(0,0,0,.35);
+    font-family:'Special Elite', monospace;
+    font-size:10.5px; color:#1d1812; line-height:1.45;
+    transform: rotate(-.5deg);
+    z-index:7;
+  }
+  .memo .head-row{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    border-bottom:1.5px solid #1d1812; padding-bottom:6px; margin-bottom:8px;
+  }
+  .memo .h1{
+    font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:2px;
+  }
+  .memo .meta{ font-size:9px; color:#5a4a30; }
+  .memo .sig{
+    margin-top:8px; display:flex; justify-content:space-between; align-items:center;
+    font-size:9.5px;
+  }
+  .memo .sig .signed{
+    font-family:'Permanent Marker',cursive; color:#1d1812; font-size:16px;
+  }
+
+  /* chemistry evidence row */
+  .evidence-label{
+    position:absolute; left:30px; right:30px; bottom:172px;
+    text-align:center; font-family:'Permanent Marker',cursive;
+    font-size:11px; color:var(--ink); letter-spacing:2px;
+    z-index:6;
+  }
+  .evidence{
+    position:absolute; left:30px; right:30px; bottom:24px;
+    display:flex; gap:12px; justify-content:center;
+    z-index:5;
+  }
+  .ev{
+    width:160px; height:120px; background:#fff; padding:4px 4px 22px 4px;
+    box-shadow: 0 3px 7px rgba(0,0,0,.35); position:relative; overflow:hidden;
+  }
+  .ev .crop{ position:relative; width:100%; height:100%; overflow:hidden;}
+  .ev .crop img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .ev .ec{
+    position:absolute; left:0; right:0; bottom:3px; text-align:center;
+    font-family:'Caveat',cursive; font-size:10.5px; color:#1d1812; font-weight:700;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================ PAGE 1 — WORKING WALL ============================ -->
+<section class="page" id="p1">
+  <!-- dividers between zones -->
+  <div class="divider" style="left:24px; right:24px; top:113px;"></div>
+  <div class="divider v" style="top:113px; bottom:243px; left:258px;"></div>
+  <div class="divider" style="left:24px; right:24px; top:543px;"></div>
+
+  <!-- header -->
+  <div class="marquee p1-marquee">★ THE BROTHERS — CASTING SESSION ★</div>
+  <div class="p1-sub">— DAY 47 —</div>
+  <div class="p1-day">CASTING DIR: [GROOM] · PROD: WEDDING PRODUCTIONS LLC</div>
+
+  <!-- clipboard top-right -->
+  <div class="clipboard p1-clip">
+    <div class="paper">
+      <div class="ttl">CASTING NOTES — [GROOM]'s WALL</div>
+      We've seen ~600 candidates.<br>
+      None of them are them.<br>
+      <span style="color:var(--red); font-family:'Permanent Marker',cursive; font-size:11px;">→ Stick with the 8.</span><br>
+      <span style="font-size:11.5px;">They're irreplaceable.</span>
+    </div>
+  </div>
+
+  <!-- ====== AUDITIONS column ====== -->
+  <div class="group-label lbl-aud">
+    AUDITIONS<span class="underline"></span>
+  </div>
+
+  <!-- 6 headshot crops from photo-01 — full image is ~2564x1704 with 7 guys across.
+       We render src at width:560px height:auto so each face is ~80px wide.
+       Vertical offset puts faces in frame. -->
+  <div class="head p1-h1">
+    <div class="pin" style="top:-6px; left:50%; transform:translateX(-50%);"></div>
+    <div class="crop">
+      <img src="../photos/photo-01-beach-brown-tees.jpg" style="width:580px; height:386px; top:-200px; left:-24px;">
+    </div>
+    <div class="n">[NAME 1]</div>
+  </div>
+  <div class="head p1-h2">
+    <div class="pin blue" style="top:-6px; left:50%; transform:translateX(-50%);"></div>
+    <div class="crop">
+      <img src="../photos/photo-01-beach-brown-tees.jpg" style="width:580px; height:386px; top:-205px; left:-93px;">
+    </div>
+    <div class="n">[NAME 2]</div>
+  </div>
+  <div class="head p1-h3">
+    <div class="pin yellow" style="top:-6px; left:50%; transform:translateX(-50%);"></div>
+    <div class="crop">
+      <img src="../photos/photo-01-beach-brown-tees.jpg" style="width:580px; height:386px; top:-200px; left:-163px;">
+    </div>
+    <div class="n">[NAME 3]</div>
+  </div>
+  <div class="head p1-h4">
+    <div class="pin" style="top:-6px; left:50%; transform:translateX(-50%);"></div>
+    <div class="crop">
+      <img src="../photos/photo-01-beach-brown-tees.jpg" style="width:580px; height:386px; top:-200px; left:-233px;">
+    </div>
+    <div class="n">[NAME 4]</div>
+  </div>
+  <div class="head p1-h5">
+    <div class="pin green" style="top:-6px; left:50%; transform:translateX(-50%);"></div>
+    <div class="crop">
+      <img src="../photos/photo-01-beach-brown-tees.jpg" style="width:580px; height:386px; top:-200px; left:-358px;">
+    </div>
+    <div class="n">[NAME 5]</div>
+  </div>
+  <div class="head p1-h6">
+    <div class="pin blue" style="top:-6px; left:50%; transform:translateX(-50%);"></div>
+    <div class="crop">
+      <img src="../photos/photo-01-beach-brown-tees.jpg" style="width:580px; height:386px; top:-200px; left:-440px;">
+    </div>
+    <div class="n">[NAME 6]</div>
+  </div>
+
+  <!-- audition zone scrawl -->
+  <div class="scrawl" style="left:42px; top:524px; font-size:18px; transform:rotate(-5deg);">GREAT ENERGY ↑</div>
+
+  <!-- ====== CALLBACKS ====== -->
+  <div class="group-label lbl-call">
+    ★ CALLBACKS ★<span class="underline" style="background:var(--red);"></span>
+  </div>
+
+  <!-- Callback 1: Egypt pyramid -->
+  <div class="photo p1-cb1">
+    <div class="pholder">
+      <img src="../photos/photo-02-egypt-pyramid.jpg" style="object-position: center 60%;">
+    </div>
+    <div class="cap">EGYPT — HUMAN PYRAMID READ</div>
+  </div>
+  <div class="tape stripe" style="top:144px; left:295px; transform:rotate(-12deg);"></div>
+  <div class="tape" style="top:146px; left:430px; transform:rotate(10deg);"></div>
+  <div class="circle" style="left:343px; top:215px; width:54px; height:54px; transform:rotate(8deg);"></div>
+  <div class="scrawl" style="left:395px; top:200px; font-size:17px; transform:rotate(-6deg);">★ FIRST CHOICE</div>
+
+  <!-- Callback 2: Cabo -->
+  <div class="photo p1-cb2">
+    <div class="pholder">
+      <img src="../photos/photo-04-cabo-boat.jpg" style="object-position: center 38%;">
+    </div>
+    <div class="cap">CABO — WATER SCENE</div>
+  </div>
+  <div class="pin" style="top:153px; left:524px;"></div>
+  <div class="pin yellow" style="top:153px; left:692px;"></div>
+  <div class="scrawl deep" style="left:548px; top:140px; font-size:15px; transform:rotate(5deg);">CHEMISTRY ✓</div>
+
+  <!-- Callback 3: Sedona spires - faces are mid-frame -->
+  <div class="photo p1-cb3">
+    <div class="pholder">
+      <img src="../photos/photo-05-sedona-spires.jpg" style="object-position: center 75%;">
+    </div>
+    <div class="cap">SEDONA — RED ROCK SCENE</div>
+  </div>
+  <div class="tape blue" style="top:335px; left:312px; transform:rotate(-8deg);"></div>
+  <div class="pin" style="top:335px; left:466px;"></div>
+  <div class="scrawl" style="left:400px; top:510px; font-size:15px; transform:rotate(-4deg);">MAYBE → YES</div>
+
+  <!-- Callback 4: Times Square -->
+  <div class="photo p1-cb4">
+    <div class="pholder">
+      <img src="../photos/photo-06-times-square.jpg" style="object-position: center 65%;">
+    </div>
+    <div class="cap">NYC — URBAN ENSEMBLE</div>
+  </div>
+  <div class="pin blue" style="top:330px; left:528px;"></div>
+  <div class="tape pink" style="top:332px; left:670px; transform:rotate(14deg);"></div>
+  <div class="scrawl deep" style="left:525px; top:510px; font-size:14px; transform:rotate(3deg);">BRINGS ROOM TOGETHER</div>
+
+  <!-- ====== CHEMISTRY READ ====== -->
+  <div class="group-label lbl-chem">
+    GROUP CHEMISTRY READ<span class="underline"></span>
+  </div>
+
+  <div class="photo p1-ch1">
+    <div class="pholder">
+      <img src="../photos/photo-07-zion-narrows.jpg" style="object-position: center 60%;">
+    </div>
+    <div class="cap">ZION NARROWS — TAKE 01</div>
+  </div>
+  <div class="tape stripe" style="top:578px; left:74px; transform:rotate(-10deg);"></div>
+  <div class="tape" style="top:578px; left:215px; transform:rotate(8deg);"></div>
+  <div class="scrawl" style="left:165px; top:558px; font-size:14px; transform:rotate(-3deg);">ALL 7 IN SYNC ✓</div>
+
+  <div class="photo p1-ch2">
+    <div class="pholder">
+      <img src="../photos/photo-10-sedona-spiral.jpg" style="object-position: center 75%;">
+    </div>
+    <div class="cap">SEDONA SPIRAL — TAKE 02</div>
+  </div>
+  <div class="pin" style="top:585px; left:300px;"></div>
+  <div class="pin yellow" style="top:585px; left:490px;"></div>
+
+  <div class="photo p1-ch3">
+    <div class="pholder">
+      <img src="../photos/photo-09-neon-dorm.jpg" style="object-position: center 50%;">
+    </div>
+    <div class="cap">DORM — ORIGIN STORY</div>
+  </div>
+  <div class="tape blue" style="top:578px; left:552px; transform:rotate(-12deg);"></div>
+  <div class="pin" style="top:580px; left:710px;"></div>
+  <div class="scrawl deep" style="left:590px; top:565px; font-size:13px; transform:rotate(-4deg);">WHERE IT STARTED</div>
+
+  <!-- stickies + shortlist -->
+  <div class="sticky p1-sticky1">
+    <div style="font-family:'Permanent Marker',cursive; color:var(--red); font-size:10px; margin-bottom:3px;">REMINDER:</div>
+    Check availability for [WEDDING DATE]. Confirm all 8 still in.
+  </div>
+
+  <div class="sticky orange p1-sticky2">
+    <div style="font-family:'Permanent Marker',cursive; color:var(--red-deep); font-size:10px; margin-bottom:3px;">★ NOTE:</div>
+    Group sees everything you can't.
+  </div>
+
+  <div class="shortlist p1-shortlist">
+    <div class="h">SHORTLIST — REV. 12</div>
+    <div class="row"><span class="strike">Recast Role 4</span><span class="chk">✗ NO</span></div>
+    <div class="row"><span class="strike">Add new face?</span><span class="chk">✗ NO</span></div>
+    <div class="row"><span class="strike">Swap [NAME 5]?</span><span class="chk">✗ NEVER</span></div>
+    <div class="row"><span class="strike">Audition more?</span><span class="chk">✗ NO</span></div>
+    <div class="row"><span>Lock all 8</span><span class="chk">✓ YES</span></div>
+    <div style="margin-top:4px; font-family:'Permanent Marker',cursive; color:var(--red); font-size:10px;">— [GROOM]</div>
+  </div>
+
+  <div class="corner-stamp" style="right:24px; bottom:24px;">DAY 47 / DRAFT</div>
+
+</section>
+
+
+<!-- ============================ PAGE 2 — FINAL CAST ============================ -->
+<section class="page" id="p2">
+  <div class="marquee p2-marquee">★ FINAL CAST — CONFIRMED ★</div>
+  <div class="p2-sub">[BRIDE] &amp; [GROOM] — A WEDDING IN ONE ACT</div>
+  <div class="p2-divider"></div>
+
+  <!-- HERO -->
+  <div class="photo p2-hero">
+    <div class="pholder">
+      <img src="../photos/photo-08-mt-shasta.jpg" style="object-position: center 60%;">
+    </div>
+    <div class="label">★ THE ENSEMBLE — MT SHASTA, GOLDEN HOUR ★</div>
+  </div>
+  <div class="tape stripe" style="top:118px; left:240px; transform:rotate(-8deg); width:62px;"></div>
+  <div class="tape" style="top:118px; left:550px; transform:rotate(7deg); width:62px;"></div>
+  <div class="pin" style="top:116px; left:50%; transform:translateX(-50%);"></div>
+
+  <!-- SIGNED row label -->
+  <div class="signed-section-label">★ THE CONFIRMED CAST ★</div>
+
+  <!-- 8 headshots cropped from photo-03 beach-sunset-pile.jpg 
+       Photo dims ~1456x1952 portrait, 8 guys clustered.
+       Render src at width:340px height:auto, shift to expose each face. -->
+  <div class="signed-row">
+    <!-- Top row of beach pile (4 standing guys): faces ~y=100-140 in 340-wide render -->
+    <div class="sgn">
+      <div class="pin" style="top:-5px; left:50%; transform:translateX(-50%); z-index:13;"></div>
+      <div class="crop">
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" style="width:340px; height:456px; top:-100px; left:-65px;">
+      </div>
+      <div class="stamp">SIGNED</div>
+      <div class="nm">[NAME 1]</div>
+      <div class="rl">INSTIGATOR</div>
+    </div>
+    <div class="sgn">
+      <div class="pin blue" style="top:-5px; left:50%; transform:translateX(-50%); z-index:13;"></div>
+      <div class="crop">
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" style="width:340px; height:456px; top:-100px; left:-100px;">
+      </div>
+      <div class="stamp">SIGNED</div>
+      <div class="nm">[NAME 2]</div>
+      <div class="rl">CARTOGRAPHER</div>
+    </div>
+    <div class="sgn">
+      <div class="pin yellow" style="top:-5px; left:50%; transform:translateX(-50%); z-index:13;"></div>
+      <div class="crop">
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" style="width:340px; height:456px; top:-100px; left:-150px;">
+      </div>
+      <div class="stamp">SIGNED</div>
+      <div class="nm">[NAME 3]</div>
+      <div class="rl">ANCHOR</div>
+    </div>
+    <div class="sgn">
+      <div class="pin" style="top:-5px; left:50%; transform:translateX(-50%); z-index:13;"></div>
+      <div class="crop">
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" style="width:340px; height:456px; top:-100px; left:-220px;">
+      </div>
+      <div class="stamp">SIGNED</div>
+      <div class="nm">[NAME 4]</div>
+      <div class="rl">STRATEGIST</div>
+    </div>
+    <!-- Bottom row of beach pile (4 sitting guys): faces ~y=230-280 -->
+    <div class="sgn">
+      <div class="pin green" style="top:-5px; left:50%; transform:translateX(-50%); z-index:13;"></div>
+      <div class="crop">
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" style="width:340px; height:456px; top:-220px; left:-15px;">
+      </div>
+      <div class="stamp">SIGNED</div>
+      <div class="nm">[NAME 5]</div>
+      <div class="rl">WILDCARD</div>
+    </div>
+    <div class="sgn">
+      <div class="pin blue" style="top:-5px; left:50%; transform:translateX(-50%); z-index:13;"></div>
+      <div class="crop">
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" style="width:340px; height:456px; top:-220px; left:-80px;">
+      </div>
+      <div class="stamp">SIGNED</div>
+      <div class="nm">[NAME 6]</div>
+      <div class="rl">HEART</div>
+    </div>
+    <div class="sgn">
+      <div class="pin" style="top:-5px; left:50%; transform:translateX(-50%); z-index:13;"></div>
+      <div class="crop">
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" style="width:340px; height:456px; top:-220px; left:-150px;">
+      </div>
+      <div class="stamp">SIGNED</div>
+      <div class="nm">[NAME 7]</div>
+      <div class="rl">SHOWMAN</div>
+    </div>
+    <div class="sgn">
+      <div class="pin yellow" style="top:-5px; left:50%; transform:translateX(-50%); z-index:13;"></div>
+      <div class="crop">
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" style="width:340px; height:456px; top:-220px; left:-240px;">
+      </div>
+      <div class="stamp">SIGNED</div>
+      <div class="nm">[NAME 8]</div>
+      <div class="rl">COMPASS</div>
+    </div>
+  </div>
+
+  <!-- MEMO -->
+  <div class="memo">
+    <div class="head-row">
+      <div class="h1">MEMO TO PRODUCTION</div>
+      <div class="meta">RE: THE BROTHERS · FROM: [GROOM], DIR. · CC: [BRIDE]</div>
+    </div>
+    <div>
+      Final cast locked. Ensemble chemistry confirmed across <strong>11 prior shoots</strong> (Egypt, Cabo, Zion, Sedona, NYC, Shasta, La Jolla, La Jolla Pile, Sedona Spiral, Zion Warriors, Origin Dorm). Principal photography begins <strong>[WEDDING DATE]</strong>. No backups needed. We never had a backup.
+    </div>
+    <div class="sig">
+      <span>— Filed from the editing bay, in the company of every reel that brought us here.</span>
+      <span class="signed">[GROOM], DIR.</span>
+    </div>
+  </div>
+
+  <!-- CHEMISTRY EVIDENCE -->
+  <div class="evidence-label">— CHEMISTRY EVIDENCE —</div>
+  <div class="evidence">
+    <div class="ev">
+      <div class="pin" style="top:-5px; left:50%; transform:translateX(-50%);"></div>
+      <div class="crop"><img src="../photos/photo-11-zion-warriors.jpg" style="object-position:center 55%;"></div>
+      <div class="ec">RIVER WARRIORS</div>
+    </div>
+    <div class="ev">
+      <div class="pin blue" style="top:-5px; left:50%; transform:translateX(-50%);"></div>
+      <div class="crop"><img src="../photos/photo-02-egypt-pyramid.jpg" style="object-position:center 60%;"></div>
+      <div class="ec">PYRAMID</div>
+    </div>
+    <div class="ev">
+      <div class="pin yellow" style="top:-5px; left:50%; transform:translateX(-50%);"></div>
+      <div class="crop"><img src="../photos/photo-01-beach-brown-tees.jpg" style="object-position:center 60%;"></div>
+      <div class="ec">THE LINE-UP</div>
+    </div>
+  </div>
+
+  <div class="corner-stamp" style="left:24px; top:30px; transform:rotate(-9deg);">PROD: APPROVED</div>
+  <div class="corner-stamp" style="right:24px; top:30px; transform:rotate(8deg);">CAST: LOCKED</div>
+
+</section>
+
+</body>
+</html>

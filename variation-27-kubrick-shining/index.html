@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Brothers — A Film by Kubrick</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Bebas+Neue&family=Anton&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Permanent+Marker&family=Reenie+Beanie&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #1a0a0a; font-family: 'Oswald', sans-serif; }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    margin: 0 auto;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ============================================================
+     PAGE 1 — THE SHINING TITLE CARD + OVERLOOK CARPET
+     ============================================================ */
+  .page-shining {
+    background-color: #421510;
+    background-image:
+      /* Hex/octagon carpet pattern emulated via repeating gradients */
+      repeating-linear-gradient(60deg,
+        transparent 0 22px,
+        rgba(236, 94, 44, 0.18) 22px 24px,
+        transparent 24px 46px),
+      repeating-linear-gradient(-60deg,
+        transparent 0 22px,
+        rgba(236, 94, 44, 0.18) 22px 24px,
+        transparent 24px 46px),
+      repeating-linear-gradient(0deg,
+        transparent 0 22px,
+        rgba(90, 44, 18, 0.55) 22px 24px,
+        transparent 24px 46px);
+  }
+
+  /* Octagonal carpet overlay - SVG pattern */
+  .carpet-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center,
+      transparent 30%,
+      rgba(0,0,0,0.55) 90%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* Title card */
+  .title-card {
+    position: absolute;
+    top: 0.65in;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6.6in;
+    background: #a93720;
+    padding: 0.55in 0.4in 0.5in;
+    text-align: center;
+    z-index: 5;
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,0.4),
+      0 14px 40px rgba(0,0,0,0.75);
+  }
+
+  .title-card .top-strip {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.55em;
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 0.35in;
+    text-transform: uppercase;
+  }
+
+  .title-main {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-stretch: condensed;
+    font-size: 58px;
+    letter-spacing: 0.22em;
+    color: #ffffff;
+    line-height: 0.95;
+    text-indent: 0.22em; /* compensate trailing letter-spacing */
+    white-space: nowrap;
+  }
+
+  .title-sub {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.55em;
+    color: #ffffff;
+    margin-top: 0.3in;
+    text-indent: 0.55em;
+  }
+
+  .title-year {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: 0.45em;
+    color: #ffffff;
+    margin-top: 0.22in;
+    text-indent: 0.45em;
+  }
+
+  .title-afilm {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.6em;
+    color: rgba(255,255,255,0.85);
+    margin-top: 0.32in;
+    text-indent: 0.6em;
+  }
+
+  /* Hero photo below title card */
+  .hero-wrap {
+    position: absolute;
+    bottom: 1.35in;
+    left: 0.55in;
+    right: 0.55in;
+    height: 3.5in;
+    z-index: 4;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.7);
+  }
+  .hero-wrap::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(169, 55, 32, 0.18);
+    mix-blend-mode: multiply;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .hero-wrap::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.55) 100%);
+    z-index: 3;
+    pointer-events: none;
+  }
+  .hero-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: contrast(1.18) saturate(0.82) brightness(0.92);
+    display: block;
+  }
+  .hero-caption {
+    position: absolute;
+    bottom: 0.18in;
+    left: 0.25in;
+    z-index: 4;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.45em;
+    color: rgba(255,255,255,0.88);
+    text-transform: uppercase;
+  }
+
+  /* Bottom footer area */
+  .typewriter-footer {
+    position: absolute;
+    bottom: 0.42in;
+    left: 0.5in;
+    right: 0.5in;
+    height: 0.78in;
+    overflow: hidden;
+    z-index: 4;
+    font-family: 'Special Elite', 'Courier New', monospace;
+    font-size: 5.8px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
+    text-align: justify;
+    column-count: 2;
+    column-gap: 0.3in;
+    column-rule: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .room-tag {
+    position: absolute;
+    top: 0.35in;
+    left: 0.35in;
+    z-index: 6;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 6px 10px;
+  }
+
+  .room-tag-right {
+    position: absolute;
+    top: 0.35in;
+    right: 0.35in;
+    z-index: 6;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 6px 10px;
+  }
+
+  .redrum {
+    position: absolute;
+    bottom: 1.55in;
+    right: 0.7in;
+    z-index: 7;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 38px;
+    color: #c8281a;
+    transform: rotate(-8deg);
+    text-shadow: 0 0 12px rgba(200, 40, 26, 0.7), 1px 1px 0 rgba(0,0,0,0.4);
+    letter-spacing: 0.05em;
+  }
+  .redrum-sub {
+    position: absolute;
+    bottom: 1.4in;
+    right: 0.75in;
+    z-index: 7;
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 13px;
+    color: rgba(200, 40, 26, 0.85);
+    transform: rotate(-6deg);
+  }
+
+  /* ============================================================
+     PAGE 2 — EYES WIDE SHUT MASQUERADE
+     ============================================================ */
+  .page-eyes {
+    background:
+      radial-gradient(ellipse at 20% 15%, rgba(200,168,90,0.08) 0%, transparent 35%),
+      radial-gradient(ellipse at 85% 80%, rgba(160,30,42,0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, #2a0510 0%, #0d0408 100%);
+    position: relative;
+    color: #e8d9b8;
+  }
+
+  /* Christmas-light bokeh */
+  .bokeh {
+    position: absolute; inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .bokeh-dot {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,225,160,0.85) 0%, rgba(255,200,100,0.2) 60%, transparent 100%);
+    filter: blur(2px);
+  }
+
+  .eyes-header {
+    position: absolute;
+    top: 0.45in;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 5;
+  }
+  .eyes-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: #e8d9b8;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .eyes-header .sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13px;
+    color: rgba(232, 217, 184, 0.75);
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+  .eyes-header .rule {
+    width: 1.2in;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #c8a85a, transparent);
+    margin: 14px auto 0;
+  }
+
+  /* Mask portrait ring */
+  .ring {
+    position: absolute;
+    top: 1.35in;
+    left: 0;
+    right: 0;
+    height: 7.8in;
+    z-index: 4;
+  }
+
+  .portrait {
+    position: absolute;
+    width: 1.35in;
+    height: 1.35in;
+    transform: translate(-50%, -50%);
+  }
+  .portrait .frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #0a0a0a;
+    box-shadow:
+      0 0 0 2px #c8a85a,
+      0 0 0 4px #2a0510,
+      0 0 0 5px rgba(200,168,90,0.55),
+      0 12px 30px rgba(0,0,0,0.7);
+  }
+  .portrait .frame::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.55) 100%);
+    z-index: 2;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .portrait .frame::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(160,30,42,0.18) 0%, rgba(0,0,0,0.12) 100%);
+    mix-blend-mode: multiply;
+    z-index: 1;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .portrait img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: contrast(1.18) brightness(0.88) saturate(0.92) sepia(0.08);
+    display: block;
+  }
+  .portrait .name {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 1.6in;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 9.5px;
+    color: #c8a85a;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+  }
+  .portrait .name .role {
+    display: block;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 6.8px;
+    color: rgba(232, 217, 184, 0.78);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .portrait.name-above .name {
+    top: auto;
+    bottom: calc(100% + 4px);
+  }
+
+  /* Center mask - positioned to the ring center (3.7in vertical of ring) */
+  .center-mask {
+    position: absolute;
+    top: 3.7in;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2.1in;
+    height: 2.1in;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .center-mask svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  .center-mask .text {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: #e8d9b8;
+    padding: 0 0.3in;
+  }
+  .center-mask .text .ttl {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .center-mask .text .yrs {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 10.5px;
+    color: #c8a85a;
+    margin-top: 4px;
+    letter-spacing: 0.15em;
+  }
+  .center-mask .text .motto {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 7px;
+    color: rgba(232, 217, 184, 0.85);
+    margin-top: 6px;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+  }
+
+  /* Dedication footer */
+  .dedication {
+    position: absolute;
+    bottom: 0.45in;
+    left: 0.7in;
+    right: 0.7in;
+    text-align: center;
+    z-index: 5;
+  }
+  .dedication .quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: rgba(232, 217, 184, 0.88);
+    letter-spacing: 0.02em;
+  }
+  .dedication .quote .em {
+    color: #c8a85a;
+    font-weight: 600;
+  }
+  .dedication .stamp {
+    margin-top: 12px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    color: #c8a85a;
+    text-indent: 0.5em;
+    text-transform: uppercase;
+  }
+  .dedication .rule {
+    width: 0.8in;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #c8a85a, transparent);
+    margin: 10px auto;
+  }
+
+  /* Eyes Wide Shut top-left page tag */
+  .reel-tag {
+    position: absolute;
+    top: 0.35in;
+    left: 0.35in;
+    z-index: 6;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: rgba(200, 168, 90, 0.75);
+    border: 1px solid rgba(200, 168, 90, 0.4);
+    padding: 5px 9px;
+  }
+  .reel-tag-right {
+    position: absolute;
+    top: 0.35in;
+    right: 0.35in;
+    z-index: 6;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: rgba(200, 168, 90, 0.75);
+    border: 1px solid rgba(200, 168, 90, 0.4);
+    padding: 5px 9px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 1 — THE SHINING
+     ============================================================ -->
+<div class="page page-shining">
+
+  <!-- Overlook hexagonal carpet SVG pattern -->
+  <svg class="carpet-svg" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="overlook" x="0" y="0" width="120" height="104" patternUnits="userSpaceOnUse">
+        <!-- Burgundy ground -->
+        <rect width="120" height="104" fill="#421510"/>
+        <!-- Orange octagons -->
+        <polygon points="60,8 80,20 80,44 60,56 40,44 40,20" fill="#ec5e2c" opacity="0.85"/>
+        <polygon points="0,60 20,72 20,96 0,108 -20,96 -20,72" fill="#ec5e2c" opacity="0.85"/>
+        <polygon points="120,60 140,72 140,96 120,108 100,96 100,72" fill="#ec5e2c" opacity="0.85"/>
+        <!-- Brown inner hexagons -->
+        <polygon points="60,16 73,24 73,40 60,48 47,40 47,24" fill="#5a2c12"/>
+        <polygon points="0,68 13,76 13,92 0,100 -13,92 -13,76" fill="#5a2c12"/>
+        <polygon points="120,68 133,76 133,92 120,100 107,92 107,76" fill="#5a2c12"/>
+        <!-- Center dots -->
+        <circle cx="60" cy="32" r="3" fill="#ec5e2c"/>
+        <circle cx="0" cy="84" r="3" fill="#ec5e2c"/>
+        <circle cx="120" cy="84" r="3" fill="#ec5e2c"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#overlook)"/>
+  </svg>
+
+  <div class="vignette"></div>
+
+  <div class="room-tag">ROOM · 237</div>
+  <div class="room-tag-right">REEL · 01</div>
+
+  <div class="title-card">
+    <div class="top-strip">A Stanley Kubrick Production · Warner Bros.</div>
+    <div class="title-main">THE&nbsp;&nbsp;BROTHERS</div>
+    <div class="title-sub">[GROOM] · [BRIDE]</div>
+    <div class="title-year">MMXXVI</div>
+    <div class="title-afilm">— A Film —</div>
+  </div>
+
+  <div class="hero-wrap">
+    <img src="../photos/photo-08-mt-shasta.jpg" alt="Mt. Shasta">
+    <div class="hero-caption">Ext. Mt. Shasta — Magic Hour · Eight Figures, One Throne</div>
+  </div>
+
+  <div class="redrum">REUNION</div>
+  <div class="redrum-sub">(REDRUM spelled backwards)</div>
+
+  <div class="typewriter-footer">
+all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy. all work and no play makes [GROOM] a dull boy.
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 2 — EYES WIDE SHUT MASQUERADE
+     ============================================================ -->
+<div class="page page-eyes">
+
+  <!-- Christmas light bokeh -->
+  <div class="bokeh">
+    <div class="bokeh-dot" style="width:14px;height:14px;top:6%;left:8%;"></div>
+    <div class="bokeh-dot" style="width:10px;height:10px;top:12%;left:88%;"></div>
+    <div class="bokeh-dot" style="width:22px;height:22px;top:22%;left:3%;opacity:0.7;"></div>
+    <div class="bokeh-dot" style="width:8px;height:8px;top:18%;left:60%;"></div>
+    <div class="bokeh-dot" style="width:16px;height:16px;top:35%;left:92%;"></div>
+    <div class="bokeh-dot" style="width:12px;height:12px;top:48%;left:6%;"></div>
+    <div class="bokeh-dot" style="width:20px;height:20px;top:55%;left:95%;opacity:0.55;"></div>
+    <div class="bokeh-dot" style="width:9px;height:9px;top:68%;left:4%;"></div>
+    <div class="bokeh-dot" style="width:14px;height:14px;top:72%;left:88%;"></div>
+    <div class="bokeh-dot" style="width:18px;height:18px;top:82%;left:12%;opacity:0.6;"></div>
+    <div class="bokeh-dot" style="width:10px;height:10px;top:88%;left:78%;"></div>
+    <div class="bokeh-dot" style="width:11px;height:11px;top:42%;left:50%;opacity:0.3;"></div>
+    <div class="bokeh-dot" style="width:7px;height:7px;top:28%;left:25%;"></div>
+    <div class="bokeh-dot" style="width:7px;height:7px;top:62%;left:72%;"></div>
+    <div class="bokeh-dot" style="width:13px;height:13px;top:92%;left:45%;opacity:0.5;"></div>
+  </div>
+
+  <div class="reel-tag">REEL · 02</div>
+  <div class="reel-tag-right">FIDELIO</div>
+
+  <div class="eyes-header">
+    <h1>The Brothers — Eyes Wide Open</h1>
+    <div class="sub">every face he ever loved, every face that brought him here</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="ring">
+
+    <!-- Ring center: vertical 3.7in, horizontal 50%. Radius ~2.85in horiz, ~2.7in vert -->
+
+    <!-- 12 o'clock - TOP -->
+    <div class="portrait" style="top: 1.0in; left: 50%;">
+      <div class="frame"><img src="../photos/photo-02-egypt-pyramid.jpg" alt=""></div>
+      <div class="name">[NAME 1]<span class="role">Mask of the Instigator</span></div>
+    </div>
+
+    <!-- 1:30 - TOP RIGHT -->
+    <div class="portrait" style="top: 2.0in; left: 80%;">
+      <div class="frame"><img src="../photos/photo-04-cabo-boat.jpg" alt=""></div>
+      <div class="name">[NAME 2]<span class="role">Mask of the Navigator</span></div>
+    </div>
+
+    <!-- 3 o'clock - RIGHT -->
+    <div class="portrait" style="top: 3.7in; left: 87%;">
+      <div class="frame"><img src="../photos/photo-05-sedona-spires.jpg" alt=""></div>
+      <div class="name">[NAME 3]<span class="role">Mask of the Stoic</span></div>
+    </div>
+
+    <!-- 4:30 - BOTTOM RIGHT -->
+    <div class="portrait" style="top: 5.4in; left: 80%;">
+      <div class="frame"><img src="../photos/photo-06-times-square.jpg" alt=""></div>
+      <div class="name">[NAME 4]<span class="role">Mask of the Showman</span></div>
+    </div>
+
+    <!-- 6 o'clock - BOTTOM -->
+    <div class="portrait" style="top: 6.4in; left: 50%;">
+      <div class="frame"><img src="../photos/photo-07-zion-narrows.jpg" alt=""></div>
+      <div class="name">[NAME 5]<span class="role">Mask of the Wanderer</span></div>
+    </div>
+
+    <!-- 7:30 - BOTTOM LEFT -->
+    <div class="portrait" style="top: 5.4in; left: 20%;">
+      <div class="frame"><img src="../photos/photo-09-neon-dorm.jpg" alt=""></div>
+      <div class="name">[NAME 6]<span class="role">Mask of the Origin</span></div>
+    </div>
+
+    <!-- 9 o'clock - LEFT -->
+    <div class="portrait" style="top: 3.7in; left: 13%;">
+      <div class="frame"><img src="../photos/photo-10-sedona-spiral.jpg" alt=""></div>
+      <div class="name">[NAME 7]<span class="role">Mask of the Mystic</span></div>
+    </div>
+
+    <!-- 10:30 - TOP LEFT -->
+    <div class="portrait" style="top: 2.0in; left: 20%;">
+      <div class="frame"><img src="../photos/photo-11-zion-warriors.jpg" alt=""></div>
+      <div class="name">[NAME 8]<span class="role">Mask of the Warrior</span></div>
+    </div>
+
+    <!-- Two ENSEMBLE portraits flanking the center mask, smaller, with name label ABOVE so it doesn't conflict with center mask text -->
+    <div class="portrait name-above" style="top: 3.0in; left: 36%; width: 0.78in; height: 0.78in;">
+      <div class="frame"><img src="../photos/photo-01-beach-brown-tees.jpg" alt=""></div>
+      <div class="name">THE SEVEN<span class="role">Brown Cloth Coast</span></div>
+    </div>
+
+    <div class="portrait name-above" style="top: 3.0in; left: 64%; width: 0.78in; height: 0.78in;">
+      <div class="frame"><img src="../photos/photo-03-beach-sunset-pile.jpg" alt=""></div>
+      <div class="name">THE PILE<span class="role">Golden Hour Laughter</span></div>
+    </div>
+
+    <!-- Center mask -->
+    <div class="center-mask">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="maskGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#3a0a14" stop-opacity="0.95"/>
+            <stop offset="70%" stop-color="#1a0408" stop-opacity="0.92"/>
+            <stop offset="100%" stop-color="#000" stop-opacity="0.85"/>
+          </radialGradient>
+        </defs>
+        <!-- Venetian mask outline shape -->
+        <path d="M100,40
+                 C 60,40  30,70  30,105
+                 C 30,135  55,160  100,160
+                 C 145,160 170,135 170,105
+                 C 170,70  140,40  100,40 Z"
+              fill="url(#maskGlow)"
+              stroke="#c8a85a"
+              stroke-width="1.5"/>
+        <!-- Inner border -->
+        <path d="M100,48
+                 C 65,48  38,75  38,105
+                 C 38,132  60,153  100,153
+                 C 140,153 162,132 162,105
+                 C 162,75  135,48  100,48 Z"
+              fill="none"
+              stroke="#c8a85a"
+              stroke-width="0.5"
+              opacity="0.6"/>
+        <!-- Eye holes (subtle) -->
+        <ellipse cx="72" cy="92" rx="9" ry="5" fill="#000" opacity="0.6"/>
+        <ellipse cx="128" cy="92" rx="9" ry="5" fill="#000" opacity="0.6"/>
+        <!-- Eyebrow ornament -->
+        <path d="M58,82 Q72,72 86,82" stroke="#c8a85a" stroke-width="0.8" fill="none"/>
+        <path d="M114,82 Q128,72 142,82" stroke="#c8a85a" stroke-width="0.8" fill="none"/>
+        <!-- Forehead jewel -->
+        <circle cx="100" cy="65" r="2.5" fill="#c8a85a"/>
+        <!-- Side flourishes -->
+        <path d="M30,105 Q15,95 8,100 Q15,108 30,112" stroke="#c8a85a" stroke-width="0.7" fill="none" opacity="0.7"/>
+        <path d="M170,105 Q185,95 192,100 Q185,108 170,112" stroke="#c8a85a" stroke-width="0.7" fill="none" opacity="0.7"/>
+      </svg>
+      <div class="text">
+        <div class="ttl">The Brotherhood<br>Circle</div>
+        <div class="yrs">MMXVII — MMXXVI</div>
+        <div class="motto">All faces known.<br>All faces trusted.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dedication">
+    <div class="rule"></div>
+    <div class="quote">
+      Dr. Bill Harford spent a film looking for a face he had lost.
+      <span class="em">[GROOM]</span> knows every face here. Lucky man.
+      <br>— Your brothers.
+    </div>
+    <div class="stamp">Masks Removed · [Wedding Date]</div>
+  </div>
+</div>
+
+</body>
+</html>

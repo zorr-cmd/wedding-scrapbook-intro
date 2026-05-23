@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>THE BROTHERS — a treatment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=Cutive+Mono&family=Reenie+Beanie&family=Permanent+Marker&family=Caveat:wght@400;700&family=Indie+Flower&family=Rock+Salt&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2826; }
+  body { font-family: 'Courier Prime', monospace; }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    position: relative;
+    overflow: hidden;
+    background: #f1ebdb;
+    margin: 0 auto;
+    page-break-after: always;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* Xerox / photocopy paper texture */
+  .paper-tex {
+    position: absolute; inset: 0;
+    background:
+      /* warm beige base */
+      linear-gradient(180deg, #f5efde 0%, #efe7d2 50%, #ece4cd 100%);
+    z-index: 0;
+  }
+  .xerox-noise {
+    position: absolute; inset: 0;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .scanner-bands {
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.0) 0px,
+      rgba(0,0,0,0.0) 6px,
+      rgba(80,60,40,0.025) 6px,
+      rgba(80,60,40,0.025) 7px
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+  .dust {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 12% 18%, rgba(0,0,0,0.4) 50%, transparent 51%),
+      radial-gradient(1px 1px at 78% 9%, rgba(0,0,0,0.35) 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 33% 87%, rgba(0,0,0,0.3) 50%, transparent 51%),
+      radial-gradient(0.8px 0.8px at 91% 64%, rgba(0,0,0,0.3) 50%, transparent 51%),
+      radial-gradient(0.8px 0.8px at 5% 55%, rgba(0,0,0,0.35) 50%, transparent 51%),
+      radial-gradient(1px 1px at 60% 40%, rgba(0,0,0,0.25) 50%, transparent 51%),
+      radial-gradient(1.4px 1.4px at 22% 70%, rgba(0,0,0,0.3) 50%, transparent 51%);
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0.7;
+  }
+  .vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(60,40,20,0.18) 100%);
+    pointer-events: none;
+    z-index: 4;
+  }
+  .edge-darken {
+    position: absolute; inset: 0;
+    box-shadow: inset 0 0 80px rgba(70,50,30,0.25);
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    padding: 0.55in 0.55in 0.55in 0.55in;
+  }
+
+  /* Staple */
+  .staple {
+    position: absolute;
+    top: 0.35in; left: 0.35in;
+    z-index: 30;
+    transform: rotate(-12deg);
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.35));
+  }
+
+  /* Coffee ring */
+  .coffee-ring {
+    position: absolute;
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    border: 7px solid rgba(120,70,30,0.22);
+    box-shadow:
+      inset 0 0 18px rgba(140,90,40,0.12),
+      0 0 4px rgba(120,70,30,0.1);
+    background:
+      radial-gradient(circle at 30% 30%, rgba(160,100,50,0.08), transparent 60%);
+    pointer-events: none;
+    z-index: 20;
+    transform: rotate(-8deg);
+  }
+  .coffee-ring::after {
+    content: '';
+    position: absolute;
+    inset: -7px;
+    border-radius: 50%;
+    border: 2px solid rgba(120,70,30,0.18);
+    clip-path: polygon(60% 0, 100% 0, 100% 70%, 80% 90%, 50% 100%, 0 80%);
+  }
+
+  /* PAGE 1 — COVER */
+
+  .cover-header {
+    position: relative;
+    margin-top: 0.05in;
+    text-align: left;
+  }
+  .zine-meta {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9pt;
+    letter-spacing: 0.05em;
+    color: #3a3530;
+    text-transform: uppercase;
+    margin-bottom: 0.1in;
+    padding-left: 0.65in;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .zine-meta .left { line-height: 1.4; }
+  .zine-meta .right {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 16pt;
+    color: #c43a1f;
+    transform: rotate(-3deg);
+    letter-spacing: 0;
+  }
+
+  .title {
+    font-family: 'Special Elite', 'Courier Prime', monospace;
+    font-weight: 400;
+    font-size: 52pt;
+    line-height: 0.95;
+    color: #1a1815;
+    letter-spacing: -0.02em;
+    margin: 0.18in 0 0.08in 0;
+    transform: translateX(-4px) rotate(-0.6deg);
+    text-shadow: 1.2px 0 0 #1a1815, -0.8px 0.4px 0 rgba(0,0,0,0.4);
+  }
+  .title .ampline {
+    display: block;
+    font-size: 28pt;
+    margin-top: 6pt;
+    font-family: 'Reenie Beanie', cursive;
+    color: #1a1815;
+    text-shadow: none;
+    letter-spacing: 0;
+    transform: rotate(-1deg);
+  }
+  .title .ampline em {
+    font-style: normal;
+    color: #c43a1f;
+  }
+
+  .byline {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11pt;
+    color: #2a2520;
+    margin-bottom: 0.04in;
+    border-top: 1px solid #2a2520;
+    border-bottom: 1px solid #2a2520;
+    padding: 4pt 0;
+    letter-spacing: 0.04em;
+  }
+  .byline .strike {
+    text-decoration: line-through;
+    text-decoration-color: #c43a1f;
+    text-decoration-thickness: 2px;
+    color: #5a5550;
+  }
+  .version-strip {
+    font-family: 'Cutive Mono', monospace;
+    font-size: 9pt;
+    color: #4a4540;
+    margin-top: 4pt;
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.03em;
+  }
+
+  /* Cover photo collage */
+  .cover-collage {
+    position: relative;
+    margin-top: 0.2in;
+    height: 3.0in;
+  }
+  .polaroid {
+    position: absolute;
+    background: #faf6ec;
+    padding: 8px 8px 22px 8px;
+    box-shadow:
+      0 1px 1px rgba(0,0,0,0.15),
+      0 6px 14px rgba(0,0,0,0.35),
+      0 1px 0 rgba(255,255,255,0.6) inset;
+  }
+  .polaroid img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.15) contrast(1.05) brightness(0.98);
+  }
+  .pol-cap {
+    position: absolute;
+    bottom: 3px;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 12pt;
+    color: #2a2520;
+  }
+  /* Masking tape */
+  .tape {
+    position: absolute;
+    background: rgba(220,210,160,0.55);
+    border-left: 1px dashed rgba(180,160,100,0.5);
+    border-right: 1px dashed rgba(180,160,100,0.5);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+    z-index: 5;
+  }
+
+  .cover-pol-1 {
+    width: 2.4in; height: 2.7in;
+    top: 0.05in; left: 0.2in;
+    transform: rotate(-5deg);
+  }
+  .cover-pol-1 img { height: 2.0in; }
+  .cover-pol-2 {
+    width: 2.6in; height: 2.5in;
+    top: 0.25in; right: 0.1in;
+    transform: rotate(3.5deg);
+  }
+  .cover-pol-2 img { height: 1.8in; }
+
+  /* Director's statement */
+  .director-statement {
+    position: relative;
+    margin-top: 0.18in;
+    background: rgba(255,250,235,0.45);
+    padding: 0.2in 0.25in 0.18in 0.25in;
+    border: 1px dashed rgba(60,40,20,0.35);
+  }
+  .ds-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 10pt;
+    letter-spacing: 0.25em;
+    color: #1a1815;
+    text-transform: uppercase;
+    margin-bottom: 6pt;
+    border-bottom: 2px solid #1a1815;
+    padding-bottom: 2pt;
+    display: inline-block;
+  }
+  .ds-body {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9.2pt;
+    line-height: 1.32;
+    color: #1f1c18;
+    text-align: justify;
+    text-justify: inter-word;
+    column-count: 2;
+    column-gap: 18px;
+    column-rule: 1px dotted rgba(60,40,20,0.25);
+  }
+  .ds-body p {
+    margin: 0 0 7pt 0;
+    text-indent: 0;
+  }
+  .ds-body p:first-child::first-letter {
+    font-family: 'Special Elite', monospace;
+    font-size: 18pt;
+    line-height: 1;
+    float: left;
+    padding: 0 4px 0 0;
+    color: #c43a1f;
+  }
+  .ds-body .crossed {
+    text-decoration: line-through;
+    text-decoration-color: #c43a1f;
+    text-decoration-thickness: 1.5px;
+    color: #5a5550;
+  }
+  .ds-sign {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 16pt;
+    color: #c43a1f;
+    text-align: right;
+    margin-top: 4pt;
+    transform: rotate(-2deg);
+  }
+
+  /* Margin annotations (red pen) */
+  .pen {
+    position: absolute;
+    font-family: 'Reenie Beanie', cursive;
+    color: #c43a1f;
+    font-size: 14pt;
+    line-height: 1.05;
+    z-index: 25;
+    pointer-events: none;
+    text-shadow: 0 0 0.5px rgba(196,58,31,0.4);
+  }
+  .pen.heart {
+    top: 4.85in; right: 0.1in;
+    transform: rotate(8deg);
+    text-align: left;
+    width: 1.3in;
+  }
+  .pen.rewrite {
+    top: 7.5in; left: 0.05in;
+    transform: rotate(-6deg);
+    width: 1.3in;
+  }
+  .pen.arrow-svg { display: inline-block; }
+
+  /* PAGE 2 — TREATMENT */
+
+  .p2-header {
+    position: relative;
+    padding-left: 0.6in;
+    margin-bottom: 0.1in;
+  }
+  .p2-meta {
+    font-family: 'Courier Prime', monospace;
+    font-size: 8.5pt;
+    color: #3a3530;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4pt;
+    display: flex;
+    justify-content: space-between;
+  }
+  .p2-title {
+    font-family: 'Special Elite', monospace;
+    font-size: 38pt;
+    line-height: 0.95;
+    color: #1a1815;
+    letter-spacing: 0.06em;
+    margin: 0;
+    transform: rotate(-0.3deg);
+    text-shadow: 1px 0 0 #1a1815, -0.5px 0.3px 0 rgba(0,0,0,0.35);
+  }
+  .p2-sub {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 16pt;
+    color: #c43a1f;
+    transform: rotate(-1.5deg);
+    margin-top: -2pt;
+  }
+
+  .p2-grid {
+    position: relative;
+    margin-top: 0.1in;
+    height: 9.0in;
+  }
+
+  .tx-block {
+    position: absolute;
+    font-family: 'Courier Prime', monospace;
+    font-size: 8.6pt;
+    line-height: 1.32;
+    color: #1f1c18;
+    background: rgba(252,247,232,0.92);
+    padding: 6pt 8pt;
+    border: 1px dashed rgba(60,40,20,0.4);
+    z-index: 12;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .tx-block .label {
+    font-family: 'Special Elite', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c43a1f;
+    display: block;
+    margin-bottom: 3pt;
+    border-bottom: 1px solid #c43a1f;
+    padding-bottom: 2pt;
+  }
+  .tx-block p { margin: 0 0 4pt 0; }
+  .tx-block .crossed {
+    text-decoration: line-through;
+    text-decoration-color: #c43a1f;
+    color: #5a5550;
+  }
+
+  .p2-pol {
+    position: absolute;
+    z-index: 10;
+  }
+  .p2-pol img {
+    filter: grayscale(0.18) contrast(1.06) brightness(0.97);
+  }
+  .p2-cap {
+    font-family: 'Caveat', cursive;
+    font-size: 11pt;
+    color: #1f1c18;
+    line-height: 1.1;
+    text-align: left;
+    padding: 4pt 6pt 0 6pt;
+  }
+  .p2-cap.red {
+    font-family: 'Reenie Beanie', cursive;
+    color: #c43a1f;
+    font-size: 12pt;
+  }
+
+  /* Specific page-2 positions */
+  .pos-1 { top: 0.0in; left: 0.0in; width: 2.55in; transform: rotate(-3.5deg); }
+  .pos-1 img { width: 100%; height: 1.45in; object-fit: cover; }
+  .pos-2 { top: 0.05in; left: 2.8in; width: 2.05in; transform: rotate(2deg); }
+  .pos-2 img { width: 100%; height: 2.0in; object-fit: cover; }
+  .pos-3 { top: 0.1in; right: 0.0in; width: 2.2in; transform: rotate(-2.5deg); }
+  .pos-3 img { width: 100%; height: 1.6in; object-fit: cover; }
+
+  .pos-tx-1 { top: 2.2in; left: 0.0in; width: 2.7in; transform: rotate(-0.7deg); }
+
+  .pos-4 { top: 2.4in; left: 2.85in; width: 2.0in; transform: rotate(1.5deg); }
+  .pos-4 img { width: 100%; height: 1.5in; object-fit: cover; }
+  .pos-5 { top: 2.5in; right: 0.05in; width: 2.1in; transform: rotate(-1.5deg); }
+  .pos-5 img { width: 100%; height: 1.55in; object-fit: cover; }
+
+  .pos-tx-2 { top: 4.4in; left: 2.6in; width: 2.5in; transform: rotate(0.8deg); }
+
+  .pos-6 { top: 4.3in; left: 0.0in; width: 2.4in; transform: rotate(2.5deg); }
+  .pos-6 img { width: 100%; height: 1.45in; object-fit: cover; }
+  .pos-7 { top: 4.35in; right: 0.0in; width: 1.95in; transform: rotate(2deg); }
+  .pos-7 img { width: 100%; height: 1.4in; object-fit: cover; }
+
+  .pos-8 { top: 6.05in; left: 0.0in; width: 1.95in; transform: rotate(-2deg); }
+  .pos-8 img { width: 100%; height: 1.25in; object-fit: cover; }
+  .pos-9 { top: 6.1in; left: 2.15in; width: 1.95in; transform: rotate(1.5deg); }
+  .pos-9 img { width: 100%; height: 1.25in; object-fit: cover; }
+
+  .pos-tx-3 { top: 6.5in; right: 0.05in; width: 2.0in; height: 1.75in; transform: rotate(-1.2deg); font-size: 7.8pt; line-height: 1.22; z-index: 14;}
+
+  .pos-ps {
+    position: absolute;
+    bottom: 0.1in;
+    left: 0.0in;
+    right: 1.9in;
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 12pt;
+    color: #c43a1f;
+    line-height: 1.15;
+    text-align: left;
+    transform: rotate(-0.8deg);
+    z-index: 18;
+    padding: 6pt 8pt 4pt 8pt;
+    border-top: 2px dashed rgba(196,58,31,0.4);
+    border-bottom: 1px dotted rgba(196,58,31,0.3);
+    background: rgba(252,247,232,0.85);
+  }
+  .pos-ps .sign {
+    display: block;
+    text-align: right;
+    font-size: 16pt;
+    margin-top: 2pt;
+  }
+
+  /* Hand-drawn arrows */
+  .arrow {
+    position: absolute;
+    z-index: 22;
+    pointer-events: none;
+  }
+
+  /* Stamp */
+  .stamp {
+    position: absolute;
+    bottom: 0.3in;
+    right: 0.5in;
+    border: 2.5px solid #c43a1f;
+    color: #c43a1f;
+    font-family: 'Special Elite', monospace;
+    font-size: 8.5pt;
+    letter-spacing: 0.1em;
+    padding: 3pt 7pt;
+    transform: rotate(-7deg);
+    opacity: 0.85;
+    z-index: 28;
+    background: rgba(255,250,235,0.15);
+    line-height: 1.1;
+    text-align: center;
+    max-width: 1.4in;
+  }
+
+  .torn-edge {
+    position: absolute;
+    left: 0; right: 0;
+    height: 6px;
+    z-index: 6;
+    pointer-events: none;
+  }
+  .torn-top { top: 0; background-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.15) 50%, transparent 100%); }
+
+  /* Folio numbers */
+  .folio {
+    position: absolute;
+    bottom: 0.25in;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cutive Mono', monospace;
+    font-size: 9pt;
+    color: #3a3530;
+    letter-spacing: 0.2em;
+    z-index: 20;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============== PAGE 1 — COVER ============== -->
+<div class="page">
+  <div class="paper-tex"></div>
+
+  <!-- Xerox noise SVG -->
+  <svg class="xerox-noise" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 850 1100">
+    <filter id="xerox">
+      <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="3"/>
+      <feColorMatrix values="0 0 0 0 0.25  0 0 0 0 0.15  0 0 0 0 0.05  0 0 0 0.7 0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#xerox)"/>
+  </svg>
+
+  <div class="scanner-bands"></div>
+  <div class="dust"></div>
+  <div class="vignette"></div>
+  <div class="edge-darken"></div>
+
+  <!-- Staple -->
+  <svg class="staple" width="34" height="14" viewBox="0 0 34 14" xmlns="http://www.w3.org/2000/svg">
+    <rect x="1" y="2" width="32" height="3" fill="#8a8580" stroke="#4a4540" stroke-width="0.5"/>
+    <rect x="1" y="2" width="3" height="10" fill="#8a8580" stroke="#4a4540" stroke-width="0.5"/>
+    <rect x="30" y="2" width="3" height="10" fill="#8a8580" stroke="#4a4540" stroke-width="0.5"/>
+  </svg>
+
+  <!-- Coffee ring -->
+  <div class="coffee-ring" style="top: 0.5in; right: 0.4in;"></div>
+
+  <div class="content">
+
+    <div class="zine-meta">
+      <div class="left">
+        ISSUE 01 &nbsp;/&nbsp; FOR INTERNAL CIRCULATION<br>
+        DO NOT FORWARD &nbsp;//&nbsp; DO NOT QUOTE
+      </div>
+      <div class="right">PROOF</div>
+    </div>
+
+    <div class="cover-header" style="padding-left: 0.65in;">
+      <h1 class="title">
+        THE BROTHERS
+        <span class="ampline">— a treatment / a confession /<br>a <em>love letter</em> / a film —</span>
+      </h1>
+
+      <div class="byline" style="margin-right: 0.5in;">
+        BY [GROOM] &nbsp;&nbsp;&middot;&nbsp;&nbsp; <span class="strike">FIRST DRAFT</span> EARLY DRAFT. HANDLE WITH CARE.
+      </div>
+      <div class="version-strip" style="margin-right: 0.5in;">
+        <span>v. 0.7 — PRINTED ON THE OFFICE XEROX</span>
+        <span>RUNTIME: TBD &nbsp;//&nbsp; FORMAT: 16MM / SUPER 8 / DIGITAL</span>
+      </div>
+      <div class="version-strip" style="margin-right: 0.5in; margin-top:1pt;">
+        <span>PLEASE RETURN TO [GROOM].</span>
+        <span>COPY <span style="font-family:'Reenie Beanie',cursive;color:#c43a1f;font-size:14pt;">#003</span> OF 9</span>
+      </div>
+    </div>
+
+    <!-- COVER COLLAGE -->
+    <div class="cover-collage">
+      <div class="polaroid cover-pol-1">
+        <div class="tape" style="top:-10px; left:30px; width:60px; height:18px; transform:rotate(-8deg);"></div>
+        <img src="../photos/photo-08-mt-shasta.jpg" alt="">
+        <div class="pol-cap">opening image?</div>
+      </div>
+      <div class="polaroid cover-pol-2">
+        <div class="tape" style="top:-10px; right:20px; width:70px; height:18px; transform:rotate(6deg);"></div>
+        <div class="tape" style="bottom:35px; left:-12px; width:50px; height:16px; transform:rotate(-78deg);"></div>
+        <img src="../photos/photo-02-egypt-pyramid.jpg" alt="">
+        <div class="pol-cap">closing? / midpoint?</div>
+      </div>
+    </div>
+
+    <!-- DIRECTOR'S STATEMENT -->
+    <div class="director-statement">
+      <div class="ds-label">director's statement</div>
+      <div class="ds-body">
+        <p>i don't really know what this is yet. i started filming the boys in 2017 because i had a camera and they were funny. i thought it was a documentary. now i think it's something else.</p>
+        <p>we've been to egypt. we've been to the bottom of a canyon. we've been to times square at 3am. we've been to a mountain at sunset where the light got so good none of us spoke for ten minutes.</p>
+        <p>i don't know what genre this is. <span class="crossed">it's a documentary.</span> it's not a documentary. it's not a fiction. it's not a home movie. it's about eight men who keep showing up and a camera that keeps watching.</p>
+        <p>i'm pitching this to you now because [GROOM] is getting married and the film needs an ending. or maybe a new beginning. i'll know when we shoot it.</p>
+        <p>thank you for reading.</p>
+      </div>
+      <div class="ds-sign">— [GROOM]</div>
+    </div>
+
+    <!-- Margin red-pen notes -->
+    <div class="pen heart">
+      ↑ this is<br>the heart<br>of it &nbsp;❤
+    </div>
+    <div class="pen rewrite">
+      ← rewrite this<br>paragraph?<br>too soft.
+    </div>
+
+    <!-- Arrow SVG over coffee area / cover -->
+    <svg class="arrow" style="top: 4.4in; right: 0.6in; width: 90px; height: 70px;" viewBox="0 0 90 70" xmlns="http://www.w3.org/2000/svg">
+      <path d="M85 10 Q 55 30, 35 55" stroke="#c43a1f" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M40 48 L35 55 L42 58" stroke="#c43a1f" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  </div>
+
+  <div class="folio">— 1 —</div>
+</div>
+
+
+<!-- ============== PAGE 2 — TREATMENT ============== -->
+<div class="page">
+  <div class="paper-tex"></div>
+
+  <svg class="xerox-noise" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 850 1100">
+    <filter id="xerox2">
+      <feTurbulence type="fractalNoise" baseFrequency="1.3" numOctaves="2" seed="11"/>
+      <feColorMatrix values="0 0 0 0 0.25  0 0 0 0 0.15  0 0 0 0 0.05  0 0 0 0.7 0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#xerox2)"/>
+  </svg>
+
+  <div class="scanner-bands"></div>
+  <div class="dust"></div>
+  <div class="vignette"></div>
+  <div class="edge-darken"></div>
+
+  <!-- Staple -->
+  <svg class="staple" width="34" height="14" viewBox="0 0 34 14" xmlns="http://www.w3.org/2000/svg">
+    <rect x="1" y="2" width="32" height="3" fill="#8a8580" stroke="#4a4540" stroke-width="0.5"/>
+    <rect x="1" y="2" width="3" height="10" fill="#8a8580" stroke="#4a4540" stroke-width="0.5"/>
+    <rect x="30" y="2" width="3" height="10" fill="#8a8580" stroke="#4a4540" stroke-width="0.5"/>
+  </svg>
+
+  <!-- Coffee ring -->
+  <div class="coffee-ring" style="bottom: 1.3in; left: 0.6in; width: 100px; height: 100px;"></div>
+
+  <div class="content">
+    <div class="p2-header">
+      <div class="p2-meta" style="margin-right: 0.5in;">
+        <span>SECTION II &nbsp;//&nbsp; TREATMENT &amp; SYNOPSIS</span>
+        <span>[GROOM] / v.0.7 / pg.02</span>
+      </div>
+      <h2 class="p2-title">TREATMENT.</h2>
+      <div class="p2-sub">— or: what i think the movie is about, today.</div>
+    </div>
+
+    <div class="p2-grid">
+
+      <!-- TOP ROW: 3 photos -->
+      <div class="polaroid p2-pol pos-1">
+        <div class="tape" style="top:-10px; left:50%; transform:translateX(-50%) rotate(-3deg); width:60px; height:16px;"></div>
+        <img src="../photos/photo-09-neon-dorm.jpg" alt="">
+        <div class="p2-cap red">2017. the dorm. before everything.</div>
+      </div>
+
+      <div class="polaroid p2-pol pos-2">
+        <div class="tape" style="top:-10px; right:15px; width:55px; height:16px; transform:rotate(8deg);"></div>
+        <img src="../photos/photo-02-egypt-pyramid.jpg" alt="">
+        <div class="p2-cap">egypt. october. we built a<br>pyramid in front of a pyramid.<br>didn't plan it.</div>
+      </div>
+
+      <div class="polaroid p2-pol pos-3">
+        <div class="tape" style="top:-10px; left:20px; width:60px; height:16px; transform:rotate(-6deg);"></div>
+        <img src="../photos/photo-07-zion-narrows.jpg" alt="">
+        <div class="p2-cap">zion narrows. spring. waist-deep<br>in 50-degree water. nobody<br>complained.</div>
+      </div>
+
+      <!-- TEXT BLOCK 1: ACT I -->
+      <div class="tx-block pos-tx-1">
+        <span class="label">act i — the dorm (2017)</span>
+        <p>the film opens here. before the world. before the trips. before [BRIDE]. just eight idiots in a dorm with bad lighting and big dreams.</p>
+        <p>[NAME 1] hands the camera to me. <span class="crossed">i don't put it down for nine years.</span> i still haven't put it down.</p>
+        <p>we are: [NAME 1]. [NAME 2]. [NAME 3]. [NAME 4]. [NAME 5]. [NAME 6]. [NAME 7]. [NAME 8]. and me.</p>
+      </div>
+
+      <!-- MIDDLE ROW -->
+      <div class="polaroid p2-pol pos-4">
+        <div class="tape" style="top:-10px; right:20px; width:55px; height:16px; transform:rotate(5deg);"></div>
+        <img src="../photos/photo-05-sedona-spires.jpg" alt="">
+        <div class="p2-cap">sedona. red rock cathedral.<br>quietest the boys have ever been.</div>
+      </div>
+
+      <div class="polaroid p2-pol pos-5">
+        <div class="tape" style="top:-10px; left:30px; width:55px; height:16px; transform:rotate(-5deg);"></div>
+        <img src="../photos/photo-04-cabo-boat.jpg" alt="">
+        <div class="p2-cap red">cabo. land's end. seasick<br>but smiling.</div>
+      </div>
+
+      <!-- TEXT BLOCK 2: ACT II -->
+      <div class="tx-block pos-tx-2">
+        <span class="label">act ii — the years on the road</span>
+        <p>egypt → cabo → zion → sedona → nyc → mt. shasta. a montage of stamps and sunburns. somewhere in here we stop being kids.</p>
+        <p>the camera gets older with us. the lens scratches. the audio is bad. <span class="crossed">we don't care.</span> we don't notice.</p>
+      </div>
+
+      <!-- THIRD ROW -->
+      <div class="polaroid p2-pol pos-6">
+        <div class="tape" style="top:-10px; left:30%; width:55px; height:16px; transform:rotate(-7deg);"></div>
+        <img src="../photos/photo-06-times-square.jpg" alt="">
+        <div class="p2-cap">times square. 3am. the city was<br>louder than the boys for once.</div>
+      </div>
+
+      <div class="polaroid p2-pol pos-7">
+        <div class="tape" style="top:-10px; right:25px; width:55px; height:16px; transform:rotate(5deg);"></div>
+        <img src="../photos/photo-10-sedona-spiral.jpg" alt="">
+        <div class="p2-cap red">sedona ii. the spiral. someone<br>made this with rocks. nobody<br>knows who.</div>
+      </div>
+
+      <!-- BOTTOM ROW -->
+      <div class="polaroid p2-pol pos-8">
+        <div class="tape" style="top:-10px; left:40%; width:55px; height:16px; transform:rotate(4deg);"></div>
+        <img src="../photos/photo-11-zion-warriors.jpg" alt="">
+        <div class="p2-cap">the warrior cut. (the boys<br>in their mythic mode.)</div>
+      </div>
+
+      <div class="polaroid p2-pol pos-9">
+        <div class="tape" style="top:-10px; left:30px; width:55px; height:16px; transform:rotate(-6deg);"></div>
+        <div class="tape" style="bottom:30px; right:-12px; width:50px; height:14px; transform:rotate(75deg);"></div>
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" alt="">
+        <div class="p2-cap red">the pile. golden hour. closing<br>image candidate #2.</div>
+      </div>
+
+      <!-- TEXT BLOCK 3: ACT III -->
+      <div class="tx-block pos-tx-3">
+        <span class="label">act iii — wedding</span>
+        <p>and now: [GROOM] &amp; [BRIDE]. closing image. or opening of part two.</p>
+        <p>i won't know which until i'm holding the camera at the altar.</p>
+        <p>the boys, again. <span class="crossed">smaller.</span> bigger this time.</p>
+        <p style="text-align:right;margin-top:2pt;">[ END. ]</p>
+      </div>
+
+      <!-- P.S. note -->
+      <div class="pos-ps">
+        p.s. — if you're reading this, [GROOM], congratulations on the wedding. this treatment is yours now. do with it what you want.
+        <span class="sign">— the boys.</span>
+      </div>
+
+      <!-- Hand drawn arrows connecting things (in the safe gutters) -->
+      <svg class="arrow" style="top: 2.05in; left: 2.55in; width: 100px; height: 35px; z-index: 25;" viewBox="0 0 100 35" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="14" font-family="Reenie Beanie, cursive" font-size="14" fill="#c43a1f">FLASHBACK?</text>
+        <path d="M50 18 Q 55 26, 65 30" stroke="#c43a1f" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M58 27 L65 30 L62 23" stroke="#c43a1f" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+    </div>
+
+    <div class="stamp">DRAFT — NOT FOR DISTRIBUTION</div>
+
+  </div>
+
+  <div class="folio">— 2 —</div>
+</div>
+
+</body>
+</html>

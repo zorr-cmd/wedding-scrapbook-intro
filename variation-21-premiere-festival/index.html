@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Festival International du Film de la Fraternité — Opening Night</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+
+  :root {
+    --paper: #f3ecd6;
+    --paper-deep: #ebe1c4;
+    --ink: #1a1814;
+    --ink-soft: #3a342a;
+    --rule: #2a241c;
+    --accent: #b3162f;          /* Cannes festival red */
+    --accent-deep: #8e0d22;
+    --muted: #6a5f4d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #d9cfb5;
+    font-family: 'EB Garamond', serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 28px 0;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+    page-break-after: always;
+    /* subtle paper grain */
+    background-image:
+      radial-gradient(rgba(60,40,15,0.04) 1px, transparent 1px),
+      radial-gradient(rgba(60,40,15,0.03) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(40,30,10,0.02), transparent 30%, transparent 70%, rgba(40,30,10,0.03));
+    background-size: 4px 4px, 7px 7px, 100% 100%;
+    background-position: 0 0, 2px 3px, 0 0;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ---------- shared typographic helpers ---------- */
+  .sans { font-family: 'Inter Tight', 'Space Grotesk', sans-serif; }
+  .serif { font-family: 'Cormorant Garamond', 'EB Garamond', serif; }
+  .track-wide { letter-spacing: 0.28em; text-transform: uppercase; }
+  .track-mid { letter-spacing: 0.18em; text-transform: uppercase; }
+  .track-tight { letter-spacing: 0.05em; }
+
+  /* ---------- PAGE 1: INVITATION ---------- */
+  .invitation {
+    padding: 0.55in 0.65in 0.55in;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .frame {
+    border: 1px solid var(--rule);
+    padding: 0.32in 0.36in 0.38in;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .frame::before, .frame::after {
+    content: "";
+    position: absolute;
+    left: 0.12in; right: 0.12in;
+    height: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .frame::before { top: 0.06in; }
+  .frame::after  { bottom: 0.06in; }
+
+  .corner {
+    position: absolute;
+    width: 14px; height: 14px;
+    border: 1px solid var(--accent);
+  }
+  .corner.tl { top: -7px; left: -7px; border-right: none; border-bottom: none; }
+  .corner.tr { top: -7px; right: -7px; border-left: none; border-bottom: none; }
+  .corner.bl { bottom: -7px; left: -7px; border-right: none; border-top: none; }
+  .corner.br { bottom: -7px; right: -7px; border-left: none; border-top: none; }
+
+  .masthead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .masthead .roman {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 38px;
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+
+  .masthead .titles {
+    flex: 1;
+    text-align: center;
+  }
+  .masthead .titles .fr {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .masthead .titles .en {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  .mark-logo {
+    width: 58px; height: 58px;
+    flex-shrink: 0;
+  }
+
+  .sub-band {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 2px 0;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .sub-band .accent-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin: 0 8px;
+    vertical-align: middle;
+  }
+
+  /* hero photo */
+  .hero-wrap {
+    margin: 26px auto 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .hero {
+    width: 5.2in;
+    height: 3.4in;
+    border: 1px solid var(--rule);
+    padding: 6px;
+    background: var(--paper);
+    position: relative;
+  }
+  .hero-img {
+    width: 100%; height: 100%;
+    background-image: url('../photos/photo-08-mt-shasta.jpg');
+    background-size: cover;
+    background-position: center 35%;
+    position: relative;
+    filter: contrast(1.02) saturate(0.9);
+  }
+  /* single bold color wash */
+  .hero-img::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(180,22,47,0.18), rgba(40,10,15,0.32));
+    mix-blend-mode: multiply;
+  }
+  .hero-tag {
+    position: absolute;
+    bottom: -22px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--paper);
+    padding: 0 14px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* invitation body */
+  .invite-body {
+    margin-top: 38px;
+    text-align: center;
+  }
+  .invite-body .ouverture {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .invite-body .ouverture .sep {
+    display: inline-block;
+    width: 18px; height: 1px;
+    background: var(--accent);
+    vertical-align: middle;
+    margin: 0 12px;
+    transform: translateY(-2px);
+  }
+
+  .bilingual {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 5in;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .bilingual .fr { font-style: italic; }
+  .bilingual .en { color: var(--ink); }
+
+  .film-title {
+    margin-top: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 34px;
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+  }
+  .film-by {
+    margin-top: 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+  }
+  .film-by em { font-style: italic; }
+  .director {
+    display: block;
+    margin-top: 3px;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .reception {
+    margin-top: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    max-width: 4.4in;
+    margin-left: auto; margin-right: auto;
+  }
+  .reception .fr { font-style: italic; }
+
+  .date-line {
+    margin-top: 14px;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .dress {
+    margin-top: 12px;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: inline-block;
+    padding: 6px 18px;
+    border: 1px solid var(--accent);
+  }
+
+  /* bottom selection band */
+  .selection {
+    margin-top: auto;
+    padding-top: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    border-top: 1px solid var(--rule);
+  }
+  .selection .laurel { width: 46px; height: 46px; flex-shrink: 0; }
+  .selection .competition {
+    flex: 1;
+    text-align: center;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .selection .competition .sub {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    letter-spacing: 0.3em;
+    font-size: 8.5px;
+  }
+  .selection .admit {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.6;
+  }
+  .selection .admit .ticket-no {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ---------- PAGE 2: PROGRAMME INSERT ---------- */
+  .programme {
+    padding: 0.45in 0.55in 0.45in;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .prg-frame {
+    border: 1px solid var(--rule);
+    padding: 0.24in 0.3in 0.28in;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .prg-head {
+    text-align: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .prg-head .eyebrow {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .prg-head h1 {
+    margin-top: 6px;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .prg-head .subtitle {
+    margin-top: 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .prg-head .subtitle .sep { color: var(--accent); margin: 0 6px; }
+
+  /* films grid */
+  .films-grid {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px 10px;
+  }
+  .film {
+    display: flex;
+    flex-direction: column;
+  }
+  .film-img {
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid var(--rule);
+    padding: 3px;
+    background-clip: content-box;
+    background-color: var(--paper);
+    filter: grayscale(0.15) contrast(1.02);
+    position: relative;
+  }
+  .film-img::after {
+    content: "";
+    position: absolute; inset: 3px;
+    background: linear-gradient(180deg, rgba(180,22,47,0.10), rgba(20,10,5,0.10));
+    mix-blend-mode: multiply;
+  }
+  .film-meta {
+    margin-top: 5px;
+  }
+  .film-num-title {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    line-height: 1.15;
+  }
+  .film-num {
+    color: var(--accent);
+    font-weight: 800;
+  }
+  .film-loc {
+    margin-top: 2px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 6.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .film-syn {
+    margin-top: 3px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 8.5px;
+    line-height: 1.3;
+    color: var(--ink-soft);
+  }
+
+  /* divider laurel between rows is just gap; we'll add a center laurel above jury */
+
+  .jury-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 12px 0 8px;
+  }
+  .jury-divider .line {
+    flex: 1; height: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .jury-divider .laurel-small { width: 28px; height: 28px; }
+
+  .jury-block {
+    text-align: center;
+  }
+  .jury-block .label {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .jury-president {
+    margin-top: 6px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .jury-president strong {
+    font-style: normal;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-size: 11px;
+    margin-left: 4px;
+  }
+
+  .jury-members {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px 14px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 8.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    max-width: 6in;
+    margin-left: auto; margin-right: auto;
+  }
+  .jury-members .m {
+    text-align: center;
+  }
+  .jury-members .m .name { font-weight: 700; }
+  .jury-members .m .country {
+    display: block;
+    margin-top: 2px;
+    color: var(--muted);
+    font-size: 7.5px;
+    letter-spacing: 0.22em;
+  }
+
+  .palme {
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    padding: 8px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .palme .fr { display: block; }
+  .palme .en { display: block; color: var(--ink); font-style: normal; font-family: 'Cormorant Garamond', serif; margin-top: 2px;}
+  .palme strong {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-size: 11px;
+    font-style: normal;
+  }
+
+  .gala-line {
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .gala-line .dot {
+    display: inline-block;
+    width: 5px; height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    vertical-align: middle;
+    margin: 0 10px;
+    transform: translateY(-1px);
+  }
+
+  .sponsors {
+    margin-top: 6px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 9.5px;
+    color: var(--muted);
+    line-height: 1.35;
+  }
+  .sponsors .label {
+    font-family: 'Inter Tight', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .final-laurel {
+    margin: 8px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .final-laurel svg { width: 34px; height: 34px; }
+  .final-laurel .stamp {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 7.5px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 1 — THE FESTIVAL INVITATION
+     ============================================================ -->
+<section class="page invitation">
+  <div class="frame">
+    <span class="corner tl"></span>
+    <span class="corner tr"></span>
+    <span class="corner bl"></span>
+    <span class="corner br"></span>
+
+    <!-- masthead -->
+    <header class="masthead">
+      <div class="roman">XLVI</div>
+      <div class="titles">
+        <div class="fr">Festival International du Film de la Fraternité</div>
+        <div class="en">46th International Brotherhood Film Festival</div>
+      </div>
+      <!-- festival mark: stylized film-reel / palm monogram -->
+      <svg class="mark-logo" viewBox="0 0 100 100" aria-hidden="true">
+        <!-- outer ring -->
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#1a1814" stroke-width="1.4"/>
+        <!-- inner film-reel + palm cross -->
+        <g transform="translate(50 50)">
+          <!-- palm fronds -->
+          <path d="M0 -32 C -10 -22 -14 -12 -16 0 C -10 -6 -4 -8 0 -8 Z" fill="#b3162f"/>
+          <path d="M0 -32 C 10 -22 14 -12 16 0 C 10 -6 4 -8 0 -8 Z" fill="#b3162f"/>
+          <path d="M0 -8 L 0 24" stroke="#1a1814" stroke-width="2" stroke-linecap="round"/>
+          <!-- reel holes -->
+          <circle cx="-22" cy="14" r="3" fill="#1a1814"/>
+          <circle cx="22" cy="14" r="3" fill="#1a1814"/>
+          <circle cx="0" cy="28" r="3" fill="#1a1814"/>
+        </g>
+      </svg>
+    </header>
+
+    <div class="sub-band">
+      <span>[CITY] <span class="accent-dot"></span> MMXXVI</span>
+      <span>Édition Officielle</span>
+      <span>N<sup>o</sup> 0001</span>
+    </div>
+
+    <!-- hero photo -->
+    <div class="hero-wrap">
+      <div class="hero">
+        <div class="hero-img"></div>
+        <div class="hero-tag">Image officielle · Official Image · MT. SHASTA, MMXXIV</div>
+      </div>
+    </div>
+
+    <!-- invitation body -->
+    <div class="invite-body">
+      <div class="ouverture">
+        Ouverture <span class="sep"></span> Opening Night
+      </div>
+
+      <div class="bilingual">
+        <div class="fr">Le comité du Festival a l'honneur de vous inviter à la projection en première mondiale de</div>
+        <div class="en">The Festival Committee is honoured to invite you to the world premiere screening of</div>
+      </div>
+
+      <div class="film-title">&laquo;&nbsp;The Brothers&nbsp;&raquo;</div>
+
+      <div class="film-by">
+        <em>un film de</em> <span style="margin: 0 6px; color:var(--accent);">·</span> <em>a film by</em>
+        <span class="director">[GROOM]</span>
+      </div>
+
+      <div class="reception">
+        <span class="fr"><em>Suivie d'une réception au Pavillon des Frères</em></span><br>
+        Followed by a reception at the Brothers' Pavilion
+      </div>
+
+      <div class="date-line">[WEDDING&nbsp;DATE]</div>
+
+      <div style="margin-top: 12px;">
+        <span class="dress">Tenue de Gala &nbsp;·&nbsp; Black Tie</span>
+      </div>
+    </div>
+
+    <!-- selection band -->
+    <footer class="selection">
+      <!-- left laurel -->
+      <svg class="laurel" viewBox="0 0 100 100" aria-hidden="true">
+        <g fill="none" stroke="#b3162f" stroke-width="1.6" stroke-linecap="round">
+          <path d="M50 92 C 30 80 18 60 18 38"/>
+          <path d="M50 92 C 70 80 82 60 82 38"/>
+          <!-- leaves left -->
+          <ellipse cx="22" cy="44" rx="5" ry="2.4" transform="rotate(-30 22 44)" fill="#b3162f"/>
+          <ellipse cx="20" cy="56" rx="5" ry="2.4" transform="rotate(-20 20 56)" fill="#b3162f"/>
+          <ellipse cx="22" cy="68" rx="5" ry="2.4" transform="rotate(-10 22 68)" fill="#b3162f"/>
+          <ellipse cx="28" cy="78" rx="5" ry="2.4" transform="rotate(0 28 78)" fill="#b3162f"/>
+          <!-- leaves right -->
+          <ellipse cx="78" cy="44" rx="5" ry="2.4" transform="rotate(30 78 44)" fill="#b3162f"/>
+          <ellipse cx="80" cy="56" rx="5" ry="2.4" transform="rotate(20 80 56)" fill="#b3162f"/>
+          <ellipse cx="78" cy="68" rx="5" ry="2.4" transform="rotate(10 78 68)" fill="#b3162f"/>
+          <ellipse cx="72" cy="78" rx="5" ry="2.4" transform="rotate(0 72 78)" fill="#b3162f"/>
+        </g>
+        <text x="50" y="32" text-anchor="middle"
+              font-family="Inter Tight, sans-serif"
+              font-size="9" font-weight="700"
+              letter-spacing="2" fill="#1a1814">SÉLECTION</text>
+        <text x="50" y="44" text-anchor="middle"
+              font-family="Inter Tight, sans-serif"
+              font-size="9" font-weight="700"
+              letter-spacing="2" fill="#1a1814">OFFICIELLE</text>
+      </svg>
+
+      <div class="competition">
+        En Compétition Officielle <span style="color:var(--accent); margin:0 6px;">·</span> Official Selection
+        <span class="sub">Hors-séance · Out of Competition · Grand Prix du Cœur</span>
+      </div>
+
+      <div class="admit">
+        Admet une personne<br>
+        Admits one<br>
+        <span class="ticket-no">N<sup>o</sup> XLVI · 0001</span>
+      </div>
+    </footer>
+  </div>
+</section>
+
+<!-- ============================================================
+     PAGE 2 — PROGRAMME INSERT
+     ============================================================ -->
+<section class="page programme">
+  <div class="prg-frame">
+
+    <!-- header -->
+    <div class="prg-head">
+      <div class="eyebrow">Programme &nbsp;·&nbsp; Official Selection</div>
+      <h1>Films de [GROOM]</h1>
+      <div class="subtitle">
+        <em>Rétrospective complète</em>
+        <span class="sep">·</span>
+        Complete Retrospective
+      </div>
+    </div>
+
+    <!-- films grid: 11 photos in 3 columns, ~4 rows -->
+    <div class="films-grid">
+
+      <article class="film">
+        <div class="film-img" style="background-image:url('../photos/photo-02-egypt-pyramid.jpg');"></div>
+        <div class="film-meta">
+          <div class="film-num-title"><span class="film-num">01.</span>The Pyramid</div>
+          <div class="film-loc">Égypte · MMXXII · 12 min.</div>
+          <div class="film-syn">Six frères, une seule pierre angulaire. / Six brothers, one cornerstone.</div>
+        </div>
+      </article>
+
+      <article class="film">
+        <div class="film-img" style="background-image:url('../photos/photo-07-zion-narrows.jpg');"></div>
+        <div class="film-meta">
+          <div class="film-num-title"><span class="film-num">02.</span>The Narrows</div>
+          <div class="film-loc">Utah · MMXXIII · 18 min.</div>
+          <div class="film-syn">Une rivière, sept bâtons, aucune carte. / A river, seven staves, no map.</div>
+        </div>
+      </article>
+
+      <article class="film">
+        <div class="film-img" style="background-image:url('../photos/photo-08-mt-shasta.jpg');"></div>
+        <div class="film-meta">
+          <div class="film-num-title"><span class="film-num">03.</span>The Alpenglow</div>
+          <div class="film-loc">Californie · MMXXIV · 9 min.</div>
+          <div class="film-syn">Un trône, une montagne, le silence rose. / A throne, a mountain, pink silence.</div>
+        </div>
+      </article>
+
+      <article class="film">
+        <div class="film-img" style="background-image:url('../photos/photo-04-cabo-boat.jpg');"></div>
+        <div class="film-meta">
+          <div class="film-num-title"><span class="film-num">04.</span>El Arco</div>
+          <div class="film-loc">Mexique · MMXXIII · 14 min.</div>
+          <div class="film-syn">Le sel, le soleil, et les frères en mer. / Salt, sun, and brothers at sea.</div>
+        </div>
+      </article>
+
+      <article class="film">
+        <div class="film-img" style="background-image:url('../photos/photo-05-sedona-spires.jpg');"></div>
+        <div class="film-meta">
+          <div class="film-num-title"><span class="film-num">05.</span>The Spires</div>
+          <div class="film-loc">Arizona · MMXXIII · 11 min.</div>
+          <div class="film-syn">Cinq silhouettes contre la pierre rouge. / Five silhouettes against red stone.</div>
+        </div>
+      </article>
+
+      <article class="film">
+        <div class="film-img" style="background-image:url('../photos/photo-06-times-square.jpg');"></div>
+        <div class="film-meta">
+          <div class="film-num-title"><span class="film-num">06.</span>L'Escalier Rouge</div>
+          <div class="film-loc">New York · MMXXII · 7 min.</div>
+          <div class="film-syn">Le néon comme cathédrale. / Neon as cathedral.</div>
+        </div>
+      </article>
+
+      <article class="film">
+        <div class="film-img" style="background-image:url('../photos/photo-01-beach-brown-tees.jpg');"></div>
+        <div class="film-meta">
+          <div class="film-num-title"><span class="film-num">07.</span>Les Sept</div>
+          <div class="film-loc">Pacifique · MMXXIV · 6 min.</div>
+          <div class="film-syn">Sept hommes, un seul uniforme. / Seven men, one uniform.</div>
+        </div>
+      </article>
+
+      <article class="film">
+        <div class="film-img" style="background-image:url('../photos/photo-10-sedona-spiral.jpg');"></div>
+        <div class="film-meta">
+          <div class="film-num-title"><span class="film-num">08.</span>La Spirale</div>
+          <div class="film-loc">Arizona · MMXXIV · 10 min.</div>
+          <div class="film-syn">La géométrie du retour. / The geometry of return.</div>
+        </div>
+      </article>
+
+      <article class="film">
+        <div class="film-img" style="background-image:url('../photos/photo-03-beach-sunset-pile.jpg');"></div>
+        <div class="film-meta">
+          <div class="film-num-title"><span class="film-num">09.</span>L'Heure Dorée</div>
+          <div class="film-loc">Californie · MMXXIV · 8 min.</div>
+          <div class="film-syn">Huit corps, une seule lumière. / Eight bodies, one light.</div>
+        </div>
+      </article>
+
+      <article class="film">
+        <div class="film-img" style="background-image:url('../photos/photo-09-neon-dorm.jpg');"></div>
+        <div class="film-meta">
+          <div class="film-num-title"><span class="film-num">10.</span>Genèse</div>
+          <div class="film-loc">Campus · MMXX · 5 min.</div>
+          <div class="film-syn">Avant le voyage, le néon. / Before the journey, the neon.</div>
+        </div>
+      </article>
+
+      <article class="film">
+        <div class="film-img" style="background-image:url('../photos/photo-11-zion-warriors.jpg');"></div>
+        <div class="film-meta">
+          <div class="film-num-title"><span class="film-num">11.</span>Les Guerriers</div>
+          <div class="film-loc">Utah · MMXXV · 22 min.</div>
+          <div class="film-syn">Court métrage final — la palme du jury. / Final short — jury's palm.</div>
+        </div>
+      </article>
+    </div>
+
+    <!-- jury -->
+    <div class="jury-divider">
+      <span class="line"></span>
+      <svg class="laurel-small" viewBox="0 0 100 100" aria-hidden="true">
+        <g fill="#b3162f">
+          <ellipse cx="30" cy="50" rx="6" ry="2.8" transform="rotate(-20 30 50)"/>
+          <ellipse cx="32" cy="62" rx="6" ry="2.8" transform="rotate(-10 32 62)"/>
+          <ellipse cx="70" cy="50" rx="6" ry="2.8" transform="rotate(20 70 50)"/>
+          <ellipse cx="68" cy="62" rx="6" ry="2.8" transform="rotate(10 68 62)"/>
+          <circle cx="50" cy="40" r="4" fill="#1a1814"/>
+        </g>
+      </svg>
+      <span class="line"></span>
+    </div>
+
+    <div class="jury-block">
+      <div class="label">Le Jury &nbsp;·&nbsp; The Jury</div>
+      <div class="jury-president">
+        <em>Présidente du jury / Jury President</em><strong>[BRIDE]</strong>
+      </div>
+
+      <div class="jury-members">
+        <div class="m"><span class="name">[NAME 1]</span><span class="country">États-Unis</span></div>
+        <div class="m"><span class="name">[NAME 2]</span><span class="country">France</span></div>
+        <div class="m"><span class="name">[NAME 3]</span><span class="country">Italia</span></div>
+        <div class="m"><span class="name">[NAME 4]</span><span class="country">España</span></div>
+        <div class="m"><span class="name">[NAME 5]</span><span class="country">Misr</span></div>
+        <div class="m"><span class="name">[NAME 6]</span><span class="country">日本</span></div>
+        <div class="m"><span class="name">[NAME 7]</span><span class="country">India</span></div>
+        <div class="m"><span class="name">[NAME 8]</span><span class="country">México</span></div>
+      </div>
+    </div>
+
+    <div class="palme">
+      <span class="fr"><em>Le jury décerne la Palme du Cœur à</em> <strong>[GROOM]</strong>.</span>
+      <span class="en">The jury awards the Heart of Palme to <strong>[GROOM]</strong>.</span>
+    </div>
+
+    <div class="gala-line">
+      Projection de Gala <span class="dot"></span> Gala Screening <span class="dot"></span> [WEDDING&nbsp;DATE]
+    </div>
+
+    <div class="sponsors">
+      <span class="label">Parrains &nbsp;·&nbsp; Sponsors</span>
+      La Famille &nbsp;·&nbsp; Le Groupe de Discussion &nbsp;·&nbsp; Le Soleil &nbsp;·&nbsp; La Lumière du Crépuscule<br>
+      <em>The Family · The Group Chat · The Sun · The Golden Hour</em>
+    </div>
+
+    <div class="final-laurel">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <g fill="none" stroke="#1a1814" stroke-width="1.2" stroke-linecap="round">
+          <path d="M50 90 C 32 78 22 60 22 40"/>
+          <path d="M50 90 C 68 78 78 60 78 40"/>
+        </g>
+        <g fill="#b3162f">
+          <ellipse cx="26" cy="46" rx="4.5" ry="2.2" transform="rotate(-30 26 46)"/>
+          <ellipse cx="24" cy="58" rx="4.5" ry="2.2" transform="rotate(-20 24 58)"/>
+          <ellipse cx="26" cy="70" rx="4.5" ry="2.2" transform="rotate(-10 26 70)"/>
+          <ellipse cx="32" cy="80" rx="4.5" ry="2.2" transform="rotate(0 32 80)"/>
+          <ellipse cx="74" cy="46" rx="4.5" ry="2.2" transform="rotate(30 74 46)"/>
+          <ellipse cx="76" cy="58" rx="4.5" ry="2.2" transform="rotate(20 76 58)"/>
+          <ellipse cx="74" cy="70" rx="4.5" ry="2.2" transform="rotate(10 74 70)"/>
+          <ellipse cx="68" cy="80" rx="4.5" ry="2.2" transform="rotate(0 68 80)"/>
+        </g>
+        <text x="50" y="36" text-anchor="middle"
+              font-family="Inter Tight, sans-serif"
+              font-size="9" font-weight="800"
+              letter-spacing="2" fill="#1a1814">XLVI</text>
+      </svg>
+      <div class="stamp">Festival International du Film de la Fraternité &nbsp;·&nbsp; MMXXVI</div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

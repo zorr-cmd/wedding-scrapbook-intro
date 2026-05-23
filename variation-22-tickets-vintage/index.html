@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ticket Stubs — A Filmmaker's Collection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Bebas+Neue&family=Oswald:wght@500;700&family=Special+Elite&family=Caveat:wght@500;700&family=Homemade+Apple&family=IBM+Plex+Mono:wght@400;500;700&family=Limelight&family=Abril+Fatface&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #2a2520; font-family: 'IBM Plex Mono', monospace; }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    /* Cream aged paper background */
+    background:
+      radial-gradient(ellipse at 20% 15%, rgba(160,120,80,0.12) 0%, transparent 45%),
+      radial-gradient(ellipse at 85% 80%, rgba(120,80,40,0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(200,170,130,0.08) 0%, transparent 60%),
+      #f0e8d2;
+    background-color: #f0e8d2;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    margin: 0 auto;
+  }
+
+  /* Paper grain noise overlay */
+  .page::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(120,80,40,0.025) 0px, transparent 1px, transparent 2px, rgba(120,80,40,0.02) 3px),
+      repeating-linear-gradient(90deg, rgba(80,50,20,0.02) 0px, transparent 1px, transparent 3px);
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    z-index: 1;
+  }
+  /* Foxing spots */
+  .page::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 12% 88%, rgba(140,90,40,0.18) 0%, transparent 2%),
+      radial-gradient(circle at 78% 12%, rgba(140,90,40,0.15) 0%, transparent 1.5%),
+      radial-gradient(circle at 92% 55%, rgba(140,90,40,0.12) 0%, transparent 1.2%),
+      radial-gradient(circle at 5% 45%, rgba(140,90,40,0.14) 0%, transparent 1.8%),
+      radial-gradient(circle at 45% 5%, rgba(140,90,40,0.1) 0%, transparent 1%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* HEADER */
+  .header {
+    position: absolute;
+    top: 0.35in;
+    left: 0.5in;
+    right: 0.5in;
+    text-align: center;
+    z-index: 5;
+  }
+  .header .title {
+    font-family: 'Limelight', serif;
+    font-size: 26pt;
+    letter-spacing: 0.18em;
+    color: #2a1810;
+    line-height: 1;
+  }
+  .header .ornament {
+    font-family: 'Cinzel', serif;
+    font-size: 8pt;
+    letter-spacing: 0.4em;
+    color: #6a4a30;
+    margin-top: 6px;
+  }
+  .header .subtitle {
+    font-family: 'Caveat', cursive;
+    font-size: 14pt;
+    color: #4a2f1a;
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  .header.cont .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22pt;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+  }
+
+  /* TICKET STUB */
+  .stub {
+    position: absolute;
+    z-index: 10;
+    filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.25)) drop-shadow(0 1px 1px rgba(0,0,0,0.15));
+  }
+
+  .stub-inner {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    /* Perforated dashed left edge of tear-off */
+    background: var(--stub-bg, #f5e8c8);
+    color: var(--stub-ink, #2a1810);
+    position: relative;
+    border: 1px solid rgba(60,40,20,0.25);
+    overflow: hidden;
+  }
+
+  /* Slight paper texture on each stub */
+  .stub-inner::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(45deg, rgba(120,80,40,0.04) 0, transparent 1px, transparent 4px);
+    pointer-events: none;
+  }
+
+  .stub-main {
+    flex: 1 1 auto;
+    padding: 6px 8px 5px 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+  }
+
+  .stub-tear {
+    flex: 0 0 70px;
+    padding: 6px 4px;
+    background: var(--stub-tear-bg, rgba(0,0,0,0.06));
+    border-left: 2px dashed rgba(60,40,20,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+  /* perforation dots on tear edge */
+  .stub-tear::before {
+    content: '';
+    position: absolute;
+    left: -4px; top: 0; bottom: 0;
+    width: 8px;
+    background-image: radial-gradient(circle, var(--stub-bg, #f5e8c8) 2px, transparent 2.5px);
+    background-size: 8px 8px;
+    background-repeat: repeat-y;
+  }
+
+  .theater {
+    font-family: var(--theater-font, 'Cinzel');
+    font-weight: 900;
+    font-size: 9pt;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    text-align: center;
+    color: var(--stub-ink, #2a1810);
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 3px;
+    margin-bottom: 4px;
+  }
+  .theater .sub {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 5.5pt;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    margin-top: 2px;
+    opacity: 0.75;
+  }
+
+  .stub-body {
+    display: flex;
+    gap: 6px;
+    align-items: stretch;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .stub-photo {
+    flex: 0 0 auto;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border: 2px solid var(--photo-border, #2a1810);
+    filter: sepia(0.4) saturate(0.7) contrast(1.05) brightness(0.95);
+  }
+
+  .stub-photo.wide { width: 85px; }
+
+  .stub-meta {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .film-title {
+    font-family: var(--film-font, 'Playfair Display'), serif;
+    font-weight: 900;
+    font-size: 11pt;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--stub-ink, #2a1810);
+    text-transform: uppercase;
+  }
+  .film-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 7pt;
+    margin-top: 2px;
+    color: var(--stub-ink, #2a1810);
+    opacity: 0.85;
+  }
+
+  .meta-bottom {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 5.5pt;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    color: var(--stub-ink, #2a1810);
+  }
+  .meta-bottom .row { display: flex; justify-content: space-between; gap: 4px; }
+
+  .admit {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 10pt;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    color: var(--stub-ink, #2a1810);
+  }
+  .seat {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--stub-ink, #2a1810);
+  }
+  .seat-num {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 13pt;
+    letter-spacing: 0.02em;
+  }
+  .price {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 6.5pt;
+    font-weight: 700;
+    border: 1px solid currentColor;
+    padding: 1px 3px;
+  }
+  .serial {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 5pt;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+  }
+
+  /* Stamps */
+  .stamp {
+    position: absolute;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 9pt;
+    letter-spacing: 0.1em;
+    color: #b03020;
+    border: 2px solid #b03020;
+    padding: 2px 6px;
+    transform: rotate(-15deg);
+    opacity: 0.7;
+    border-radius: 2px;
+    text-transform: uppercase;
+    z-index: 5;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+  .stamp.red { color: #a02818; border-color: #a02818; }
+  .stamp.blue { color: #1a3868; border-color: #1a3868; }
+  .stamp.round {
+    border-radius: 50%;
+    width: 50px; height: 50px;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; line-height: 1;
+    font-size: 7pt;
+    padding: 4px;
+  }
+
+  /* Postage stamps - SVG style */
+  .postage {
+    position: absolute;
+    width: 50px; height: 60px;
+    background: var(--p-bg, #d8a878);
+    z-index: 6;
+    filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.3));
+    /* perforated edge via radial gradients - 4 sides */
+    -webkit-mask:
+      radial-gradient(circle 3px at 3px 3px, transparent 98%, #000) -3px -3px;
+    mask:
+      radial-gradient(circle 3px at 3px 3px, transparent 98%, #000) -3px -3px;
+    -webkit-mask-size: 6px 6px;
+    mask-size: 6px 6px;
+    padding: 5px;
+    color: #2a1810;
+    font-family: 'Cinzel', serif;
+    font-size: 6pt;
+    text-align: center;
+    line-height: 1.05;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid rgba(0,0,0,0.15);
+  }
+
+  /* Masking tape */
+  .tape {
+    position: absolute;
+    background: rgba(245, 230, 180, 0.7);
+    border-left: 1px dashed rgba(0,0,0,0.1);
+    border-right: 1px dashed rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    z-index: 20;
+    pointer-events: none;
+  }
+  .tape::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(135deg, transparent 0, transparent 6px, rgba(0,0,0,0.04) 6px, rgba(0,0,0,0.04) 7px);
+  }
+
+  /* Coffee ring */
+  .coffee-ring {
+    position: absolute;
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    border: 6px solid rgba(120,70,30,0.25);
+    box-shadow: inset 0 0 4px rgba(120,70,30,0.15), 0 0 2px rgba(120,70,30,0.2);
+    z-index: 4;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+
+  /* Handwriting overlays */
+  .handwrite {
+    position: absolute;
+    font-family: 'Caveat', cursive;
+    color: #1a1810;
+    z-index: 25;
+    transform: rotate(-3deg);
+    pointer-events: none;
+  }
+  .handwrite.red { color: #a01818; font-family: 'Homemade Apple', cursive; }
+
+  /* COLOPHON */
+  .colophon {
+    position: absolute;
+    bottom: 0.55in;
+    left: 0.6in;
+    right: 0.6in;
+    background: rgba(245, 232, 200, 0.85);
+    border: 1px solid #5a3a20;
+    border-top: 3px double #5a3a20;
+    border-bottom: 3px double #5a3a20;
+    padding: 10px 14px 8px 14px;
+    font-family: 'Special Elite', monospace;
+    font-size: 7pt;
+    line-height: 1.45;
+    color: #1f140a;
+    z-index: 15;
+    box-shadow: 1px 2px 4px rgba(0,0,0,0.15);
+  }
+  .colophon .ch {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 9pt;
+    letter-spacing: 0.3em;
+    text-align: center;
+    display: block;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #5a3a20;
+    padding-bottom: 4px;
+  }
+  .colophon p { margin-bottom: 4px; }
+
+  .ps-note {
+    position: absolute;
+    bottom: 0.18in;
+    right: 0.6in;
+    font-family: 'Homemade Apple', cursive;
+    color: #a01818;
+    font-size: 11pt;
+    transform: rotate(-4deg);
+    z-index: 30;
+  }
+
+  /* SPECIAL WEDDING STUB - bigger, newer */
+  .stub.wedding .stub-inner {
+    background: #faf3dc;
+    border: 2px solid #1a1810;
+    box-shadow: inset 0 0 0 4px #faf3dc, inset 0 0 0 5px #1a1810;
+  }
+  .stub.wedding {
+    filter: drop-shadow(3px 6px 6px rgba(0,0,0,0.3));
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- PAGE 1 — THE COLLECTION -->
+<!-- ============================================================ -->
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+    <div class="title">TICKET STUBS</div>
+    <div class="ornament">A FILMMAKER'S COLLECTION &nbsp;·&nbsp; MMXVII &mdash; MMXXVI</div>
+    <div class="subtitle">every screening i ever attended with the boys, in order — [GROOM]</div>
+  </div>
+
+  <!-- Decorative: postage stamps -->
+  <div class="postage" style="top: 0.45in; left: 0.4in; transform: rotate(-12deg); --p-bg: #c8a878;">
+    <div style="font-weight:900;font-size:7pt;">U.S.</div>
+    <div style="font-size:14pt;line-height:1;">★</div>
+    <div style="font-size:5pt;">POSTAGE</div>
+    <div style="font-weight:900;font-size:8pt;">10¢</div>
+  </div>
+  <div class="postage" style="top: 9.7in; left: 0.5in; transform: rotate(8deg); --p-bg: #b8c8d8;">
+    <div style="font-weight:900;font-size:6pt;">AIRMAIL</div>
+    <div style="font-size:14pt;line-height:1;">✈</div>
+    <div style="font-size:5pt;">PAR AVION</div>
+    <div style="font-weight:900;font-size:8pt;">25¢</div>
+  </div>
+
+  <!-- Coffee ring -->
+  <div class="coffee-ring" style="bottom: 1.4in; right: 0.7in;"></div>
+
+  <!-- Masking tape -->
+  <div class="tape" style="top: 2.2in; left: 0.3in; width: 80px; height: 22px; transform: rotate(-50deg);"></div>
+  <div class="tape" style="top: 6.6in; right: 0.2in; width: 70px; height: 20px; transform: rotate(35deg);"></div>
+
+  <!-- ============================================ -->
+  <!-- STUB 1 - PHOTO 02 EGYPT PYRAMID -->
+  <!-- The Pyramid Incident - cream -->
+  <!-- ============================================ -->
+  <div class="stub" style="top: 1.95in; left: 0.55in; width: 3.35in; height: 1.45in; transform: rotate(-5deg); --stub-bg:#f5e8c8; --stub-tear-bg:#e8d8b0;">
+    <div class="stub-inner">
+      <div class="stub-main">
+        <div class="theater" style="--theater-font:'Cinzel';">
+          THE PYRAMID PALACE
+          <span class="sub">CAIRO · EGYPT EST. 1922</span>
+        </div>
+        <div class="stub-body">
+          <img class="stub-photo" src="../photos/photo-02-egypt-pyramid.jpg" alt="">
+          <div class="stub-meta">
+            <div>
+              <div class="film-title">THE PYRAMID<br>INCIDENT</div>
+              <div class="film-sub">a desert epic in six parts</div>
+            </div>
+            <div class="meta-bottom">
+              <div class="row"><span>DEC 28, 2022</span><span class="price">$0.75</span></div>
+              <div class="row"><span>EVENING · 8:00 PM</span><span>HALL II</span></div>
+              <div class="row"><span class="serial">№ 002·087·2022</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stub-tear">
+        <div class="admit">ADMIT<br>ONE</div>
+        <div class="seat">SEAT<br><span class="seat-num">G4</span></div>
+        <div class="serial">02</div>
+      </div>
+    </div>
+    <div class="stamp red" style="top: -8px; right: 30px; transform: rotate(12deg);">REDEEMED</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- STUB 2 - PHOTO 07 ZION NARROWS -->
+  <!-- Walking in Water - mint -->
+  <!-- ============================================ -->
+  <div class="stub" style="top: 1.85in; right: 0.4in; width: 3.2in; height: 1.4in; transform: rotate(6deg); --stub-bg:#cce0c8; --stub-tear-bg:#b8d0b0;">
+    <div class="stub-inner">
+      <div class="stub-main">
+        <div class="theater" style="--theater-font:'Abril Fatface';font-weight:400;">
+          CANYON CINEMA
+          <span class="sub">SPRINGDALE · UTAH</span>
+        </div>
+        <div class="stub-body">
+          <img class="stub-photo" src="../photos/photo-07-zion-narrows.jpg" alt="">
+          <div class="stub-meta">
+            <div>
+              <div class="film-title" style="--film-font:'Abril Fatface';font-weight:400;font-size:10pt;">WALKING<br>IN WATER</div>
+              <div class="film-sub">a hike between the walls</div>
+            </div>
+            <div class="meta-bottom">
+              <div class="row"><span>JUN 14, 2023</span><span class="price">$1.25</span></div>
+              <div class="row"><span>MATINEE · 11AM</span><span>ROW C</span></div>
+              <div class="row"><span class="serial">№ 007·314·2023</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stub-tear">
+        <div class="admit">ADMIT<br>ONE</div>
+        <div class="seat">SEAT<br><span class="seat-num">C7</span></div>
+        <div class="serial">07</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- STUB 3 - PHOTO 04 CABO BOAT -->
+  <!-- El Arco at Dawn - pale blue -->
+  <!-- ============================================ -->
+  <div class="stub" style="top: 3.7in; left: 0.35in; width: 3.3in; height: 1.4in; transform: rotate(-7deg); --stub-bg:#c8d8e0; --stub-tear-bg:#a8c0d0;">
+    <div class="stub-inner">
+      <div class="stub-main">
+        <div class="theater" style="--theater-font:'Limelight';font-weight:400;">
+          EL ARCO DRIVE-IN
+          <span class="sub">CABO SAN LUCAS · MEX</span>
+        </div>
+        <div class="stub-body">
+          <img class="stub-photo" src="../photos/photo-04-cabo-boat.jpg" alt="">
+          <div class="stub-meta">
+            <div>
+              <div class="film-title" style="--film-font:'Limelight';font-weight:400;font-size:10pt;">EL ARCO<br>AT DAWN</div>
+              <div class="film-sub">an aquatic odyssey</div>
+            </div>
+            <div class="meta-bottom">
+              <div class="row"><span>MAR 11, 2024</span><span class="price">$1.00</span></div>
+              <div class="row"><span>SUNRISE · 6AM</span><span>SCREEN 4</span></div>
+              <div class="row"><span class="serial">№ 004·062·2024</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stub-tear">
+        <div class="admit">ADMIT<br>ONE</div>
+        <div class="seat">SEAT<br><span class="seat-num">B12</span></div>
+        <div class="serial">04</div>
+      </div>
+    </div>
+    <div class="stamp blue round" style="top: -15px; right: -10px; transform: rotate(-10deg);">VIA<br>AIR</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- STUB 4 - PHOTO 06 TIMES SQUARE -->
+  <!-- Times Sq Night Show - navy -->
+  <!-- ============================================ -->
+  <div class="stub" style="top: 3.85in; right: 0.55in; width: 3.15in; height: 1.4in; transform: rotate(4deg); --stub-bg:#1a2a4a; --stub-tear-bg:#0f1a30; --stub-ink:#f0e4c0; --photo-border:#d8b878;">
+    <div class="stub-inner">
+      <div class="stub-main">
+        <div class="theater" style="--theater-font:'Limelight';font-weight:400;color:#d8b878;">
+          TIMES SQ PALACE
+          <span class="sub" style="color:#d8b878;">42ND ST · NEW YORK</span>
+        </div>
+        <div class="stub-body">
+          <img class="stub-photo" src="../photos/photo-06-times-square.jpg" alt="">
+          <div class="stub-meta">
+            <div>
+              <div class="film-title" style="color:#f0e4c0;font-size:10pt;">TIMES SQ.<br>NIGHT SHOW</div>
+              <div class="film-sub" style="color:#d8b878;">a midnight feature in neon</div>
+            </div>
+            <div class="meta-bottom" style="color:#d8b878;">
+              <div class="row"><span>OCT 24, 2023</span><span class="price" style="border-color:#d8b878;">$1.50</span></div>
+              <div class="row"><span>LATE · 10:30 PM</span><span>BALCONY</span></div>
+              <div class="row"><span class="serial">№ 006·298·2023</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stub-tear" style="border-left-color:#d8b878;">
+        <div class="admit" style="color:#f0e4c0;">ADMIT<br>ONE</div>
+        <div class="seat" style="color:#f0e4c0;">SEAT<br><span class="seat-num">M9</span></div>
+        <div class="serial" style="color:#d8b878;">06</div>
+      </div>
+    </div>
+    <div class="stamp" style="bottom: -10px; left: 40px; transform: rotate(8deg); color:#a01818; border-color:#a01818;">SOLD OUT</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- STUB 5 - PHOTO 05 SEDONA SPIRES -->
+  <!-- Red Rock Sunset - pale pink -->
+  <!-- ============================================ -->
+  <div class="stub" style="top: 5.55in; left: 0.6in; width: 3.2in; height: 1.4in; transform: rotate(3deg); --stub-bg:#e8c8c0; --stub-tear-bg:#d8b0a8;">
+    <div class="stub-inner">
+      <div class="stub-main">
+        <div class="theater" style="--theater-font:'Playfair Display';font-weight:900;">
+          REDROCK THEATRE
+          <span class="sub">SEDONA · ARIZONA</span>
+        </div>
+        <div class="stub-body">
+          <img class="stub-photo" src="../photos/photo-05-sedona-spires.jpg" alt="">
+          <div class="stub-meta">
+            <div>
+              <div class="film-title" style="font-size:10pt;">RED ROCK<br>SUNSET</div>
+              <div class="film-sub">vol. I — the spires</div>
+            </div>
+            <div class="meta-bottom">
+              <div class="row"><span>FEB 18, 2024</span><span class="price">$1.10</span></div>
+              <div class="row"><span>GOLDEN HR · 5PM</span><span>MAIN FL.</span></div>
+              <div class="row"><span class="serial">№ 005·049·2024</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stub-tear">
+        <div class="admit">ADMIT<br>ONE</div>
+        <div class="seat">SEAT<br><span class="seat-num">F3</span></div>
+        <div class="serial">05</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- STUB 6 - PHOTO 08 MT SHASTA -->
+  <!-- The Alpenglow - kraft brown -->
+  <!-- ============================================ -->
+  <div class="stub" style="top: 5.45in; right: 0.4in; width: 3.3in; height: 1.45in; transform: rotate(-4deg); --stub-bg:#d8b878; --stub-tear-bg:#c8a05c;">
+    <div class="stub-inner">
+      <div class="stub-main">
+        <div class="theater" style="--theater-font:'Cinzel';font-weight:900;">
+          ALPENGLOW DRIVE-IN
+          <span class="sub">MT. SHASTA · CALIF.</span>
+        </div>
+        <div class="stub-body">
+          <img class="stub-photo" src="../photos/photo-08-mt-shasta.jpg" alt="">
+          <div class="stub-meta">
+            <div>
+              <div class="film-title" style="font-size:11pt;">THE<br>ALPENGLOW</div>
+              <div class="film-sub">a sunset in technicolor</div>
+            </div>
+            <div class="meta-bottom">
+              <div class="row"><span>SEP 22, 2023</span><span class="price">$0.85</span></div>
+              <div class="row"><span>DUSK · 7:30 PM</span><span>LOT B</span></div>
+              <div class="row"><span class="serial">№ 008·265·2023</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stub-tear">
+        <div class="admit">ADMIT<br>ONE</div>
+        <div class="seat">SEAT<br><span class="seat-num">A1</span></div>
+        <div class="serial">08</div>
+      </div>
+    </div>
+    <div class="stamp red" style="top: 8px; left: -18px; transform: rotate(-25deg);">EXPIRED</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- STUB 7 - PHOTO 01 PACIFIC BEACH -->
+  <!-- The Pacific - cream -->
+  <!-- ============================================ -->
+  <div class="stub" style="top: 7.35in; left: 0.45in; width: 3.4in; height: 1.4in; transform: rotate(-2deg); --stub-bg:#f0e0b8; --stub-tear-bg:#e0c898;">
+    <div class="stub-inner">
+      <div class="stub-main">
+        <div class="theater" style="--theater-font:'Cormorant Garamond';font-weight:700;font-style:italic;font-size:11pt;">
+          PACIFIC COAST PICTURES
+          <span class="sub">LA JOLLA · CALIFORNIA</span>
+        </div>
+        <div class="stub-body">
+          <img class="stub-photo wide" src="../photos/photo-01-beach-brown-tees.jpg" alt="">
+          <div class="stub-meta">
+            <div>
+              <div class="film-title" style="font-size:11pt;">THE<br>PACIFIC</div>
+              <div class="film-sub">the boys assemble · uniform reqd.</div>
+            </div>
+            <div class="meta-bottom">
+              <div class="row"><span>JUL 02, 2025</span><span class="price">$1.50</span></div>
+              <div class="row"><span>MIDDAY · 1PM</span><span>BLUFFTOP</span></div>
+              <div class="row"><span class="serial">№ 001·183·2025</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stub-tear">
+        <div class="admit">ADMIT<br>ONE</div>
+        <div class="seat">SEAT<br><span class="seat-num">B7</span></div>
+        <div class="serial">01</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- handwritten note STARRING THE BOYS spanning multiple stubs -->
+  <div class="handwrite" style="top: 9in; left: 4in; font-size: 16pt; font-weight: 700; transform: rotate(-7deg);">starring: the boys ★</div>
+
+  <!-- Decorative bottom corner stamp -->
+  <div class="postage" style="bottom: 0.35in; right: 0.5in; transform: rotate(15deg); --p-bg: #e8c8d0;">
+    <div style="font-weight:900;font-size:6pt;">CINE</div>
+    <div style="font-size:14pt;line-height:1;">⌬</div>
+    <div style="font-size:5pt;">EST. '17</div>
+    <div style="font-weight:900;font-size:8pt;">5¢</div>
+  </div>
+
+  <div class="handwrite" style="bottom: 0.4in; left: 0.5in; font-size: 11pt; transform: rotate(-2deg); font-family: 'Caveat', cursive;">page 1 of 2 →</div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 2 — REST OF COLLECTION + COLOPHON -->
+<!-- ============================================================ -->
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header cont">
+    <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+    <div class="title">...continued</div>
+    <div class="ornament" style="margin-top:4px;">THE SCREENINGS THAT MATTERED MOST</div>
+  </div>
+
+  <!-- Coffee ring -->
+  <div class="coffee-ring" style="top: 1in; left: 0.4in; width: 70px; height: 70px;"></div>
+
+  <!-- Masking tape -->
+  <div class="tape" style="top: 1.2in; right: 0.4in; width: 80px; height: 22px; transform: rotate(28deg);"></div>
+  <div class="tape" style="top: 4.4in; left: 0.2in; width: 75px; height: 20px; transform: rotate(-40deg);"></div>
+
+  <!-- Postage stamps -->
+  <div class="postage" style="top: 0.5in; right: 0.5in; transform: rotate(-8deg); --p-bg: #c8e0c8;">
+    <div style="font-weight:900;font-size:6pt;">CINEMA</div>
+    <div style="font-size:14pt;line-height:1;">♥</div>
+    <div style="font-size:5pt;">FOREVER</div>
+    <div style="font-weight:900;font-size:8pt;">15¢</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- STUB 8 - PHOTO 09 NEON DORM -->
+  <!-- The Origin Story - dark/neon vibe -->
+  <!-- ============================================ -->
+  <div class="stub" style="top: 1.55in; left: 0.5in; width: 3.5in; height: 1.5in; transform: rotate(-3deg); --stub-bg:#2a1f3a; --stub-tear-bg:#1a1228; --stub-ink:#e0d8f0; --photo-border:#c0a0e0;">
+    <div class="stub-inner">
+      <div class="stub-main">
+        <div class="theater" style="--theater-font:'Limelight';color:#e0c8ff;font-weight:400;">
+          DORMITORY DRIVE-IN
+          <span class="sub" style="color:#c0a0e0;">THE ORIGIN HALL · MMXX</span>
+        </div>
+        <div class="stub-body">
+          <img class="stub-photo wide" src="../photos/photo-09-neon-dorm.jpg" alt="">
+          <div class="stub-meta">
+            <div>
+              <div class="film-title" style="color:#e0d8f0;font-size:11pt;">THE ORIGIN<br>STORY</div>
+              <div class="film-sub" style="color:#c0a0e0;">prequel — where it all began</div>
+            </div>
+            <div class="meta-bottom" style="color:#c0a0e0;">
+              <div class="row"><span>APR 04, 2020</span><span class="price" style="border-color:#c0a0e0;">$0.50</span></div>
+              <div class="row"><span>LATE-LATE · 1AM</span><span>STUDIO A</span></div>
+              <div class="row"><span class="serial">№ 009·095·2020</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stub-tear" style="border-left-color:#c0a0e0;">
+        <div class="admit" style="color:#e0d8f0;">ADMIT<br>ONE</div>
+        <div class="seat" style="color:#e0d8f0;">SEAT<br><span class="seat-num">N1</span></div>
+        <div class="serial" style="color:#c0a0e0;">09</div>
+      </div>
+    </div>
+    <div class="stamp" style="top: -8px; left: 30px; transform: rotate(-12deg); color:#1a3868; border-color:#1a3868;">ORIGINAL</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- STUB 9 - PHOTO 03 BEACH SUNSET PILE -->
+  <!-- The Golden Hour - pale pink -->
+  <!-- ============================================ -->
+  <div class="stub" style="top: 1.7in; right: 0.55in; width: 3.0in; height: 1.4in; transform: rotate(5deg); --stub-bg:#f0d8c8; --stub-tear-bg:#e0c0a8;">
+    <div class="stub-inner">
+      <div class="stub-main">
+        <div class="theater" style="--theater-font:'Abril Fatface';font-weight:400;font-size:9pt;">
+          SUNSET CINEMA HOUSE
+          <span class="sub">VENTURA · CALIFORNIA</span>
+        </div>
+        <div class="stub-body">
+          <img class="stub-photo" src="../photos/photo-03-beach-sunset-pile.jpg" alt="">
+          <div class="stub-meta">
+            <div>
+              <div class="film-title" style="--film-font:'Abril Fatface';font-weight:400;font-size:10pt;">THE GOLDEN<br>HOUR</div>
+              <div class="film-sub">a comedy in the sand</div>
+            </div>
+            <div class="meta-bottom">
+              <div class="row"><span>AUG 09, 2024</span><span class="price">$0.95</span></div>
+              <div class="row"><span>DUSK · 7PM</span><span>BEACHFRONT</span></div>
+              <div class="row"><span class="serial">№ 003·222·2024</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stub-tear">
+        <div class="admit">ADMIT<br>ONE</div>
+        <div class="seat">SEAT<br><span class="seat-num">S8</span></div>
+        <div class="serial">03</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- STUB 10 - PHOTO 10 SEDONA SPIRAL -->
+  <!-- Red Rock Vol II - pale blue -->
+  <!-- ============================================ -->
+  <div class="stub" style="top: 3.45in; left: 0.6in; width: 3.1in; height: 1.4in; transform: rotate(-6deg); --stub-bg:#c8dde0; --stub-tear-bg:#a8c8d0;">
+    <div class="stub-inner">
+      <div class="stub-main">
+        <div class="theater" style="--theater-font:'Cinzel';font-weight:900;font-size:8pt;">
+          BOYNTON CANYON SCREEN
+          <span class="sub">SEDONA · ARIZONA · 1928</span>
+        </div>
+        <div class="stub-body">
+          <img class="stub-photo" src="../photos/photo-10-sedona-spiral.jpg" alt="">
+          <div class="stub-meta">
+            <div>
+              <div class="film-title" style="font-size:10pt;">RED ROCK<br>VOL. II</div>
+              <div class="film-sub">return to the desert</div>
+            </div>
+            <div class="meta-bottom">
+              <div class="row"><span>FEB 19, 2024</span><span class="price">$1.10</span></div>
+              <div class="row"><span>SUNRISE · 7AM</span><span>OPEN AIR</span></div>
+              <div class="row"><span class="serial">№ 010·050·2024</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stub-tear">
+        <div class="admit">ADMIT<br>ONE</div>
+        <div class="seat">SEAT<br><span class="seat-num">D5</span></div>
+        <div class="serial">10</div>
+      </div>
+    </div>
+    <div class="stamp blue" style="bottom: -8px; right: 20px; transform: rotate(8deg);">REISSUE</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- STUB 11 - PHOTO 11 ZION WARRIORS -->
+  <!-- The Warriors - mint/kraft -->
+  <!-- ============================================ -->
+  <div class="stub" style="top: 3.6in; right: 0.45in; width: 3.2in; height: 1.45in; transform: rotate(4deg); --stub-bg:#1f2a1a; --stub-tear-bg:#121810; --stub-ink:#e8e0c0; --photo-border:#b0a070;">
+    <div class="stub-inner">
+      <div class="stub-main">
+        <div class="theater" style="--theater-font:'Abril Fatface';font-weight:400;color:#e8d878;">
+          NARROWS GRAND THEATRE
+          <span class="sub" style="color:#b0a070;">LIMITED ENGAGEMENT</span>
+        </div>
+        <div class="stub-body">
+          <img class="stub-photo" src="../photos/photo-11-zion-warriors.jpg" alt="">
+          <div class="stub-meta">
+            <div>
+              <div class="film-title" style="--film-font:'Abril Fatface';font-weight:400;color:#e8d878;font-size:11pt;">THE<br>WARRIORS</div>
+              <div class="film-sub" style="color:#b0a070;">director's cut — heroes edition</div>
+            </div>
+            <div class="meta-bottom" style="color:#b0a070;">
+              <div class="row"><span>JUN 15, 2023</span><span class="price" style="border-color:#b0a070;">$2.00</span></div>
+              <div class="row"><span>SPECIAL · 8PM</span><span>IMAX HALL</span></div>
+              <div class="row"><span class="serial">№ 011·166·2023</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stub-tear" style="border-left-color:#b0a070;">
+        <div class="admit" style="color:#e8d878;">ADMIT<br>ONE</div>
+        <div class="seat" style="color:#e8e0c0;">SEAT<br><span class="seat-num">X1</span></div>
+        <div class="serial" style="color:#b0a070;">11</div>
+      </div>
+    </div>
+    <div class="stamp red" style="top: -8px; right: 50px; transform: rotate(-14deg);">PREMIERE</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SPECIAL WEDDING STUB - bigger, newer, ornate -->
+  <!-- ============================================ -->
+  <div class="stub wedding" style="top: 5.45in; left: 0.6in; width: 7.3in; height: 1.8in; transform: rotate(-1.5deg); --stub-bg:#faf3dc; --stub-tear-bg:#f0e2b8;">
+    <div class="stub-inner" style="border:2px solid #1a1810;">
+      <div class="stub-main" style="padding: 9px 14px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #1a1810;padding-bottom:4px;margin-bottom:6px;">
+          <div style="text-align:left;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:6pt;letter-spacing:0.3em;color:#5a3a20;">★ WORLD PREMIERE ★</div>
+            <div style="font-family:'Cinzel',serif;font-weight:900;font-size:11pt;letter-spacing:0.15em;color:#1a1810;">THE GRAND PICTURE PALACE</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:6pt;letter-spacing:0.2em;color:#5a3a20;">[VENUE]</div>
+            <div style="font-family:'Cinzel',serif;font-size:6.5pt;letter-spacing:0.25em;color:#1a1810;">EST. 2026 · ONE NIGHT ONLY</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:stretch;">
+          <div style="flex:0 0 90px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid #1a1810;padding:6px;background:#1a1810;color:#faf3dc;text-align:center;">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:9pt;letter-spacing:0.1em;line-height:1;">TICKET<br>FOR ONE</div>
+            <div style="font-family:'Cinzel',serif;font-size:18pt;font-weight:900;margin:6px 0;line-height:1;">★</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:5pt;letter-spacing:0.15em;">FUTURE<br>SCREENING</div>
+          </div>
+
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;min-width:0;">
+            <div>
+              <div style="font-family:'Abril Fatface',serif;font-size:22pt;line-height:0.9;letter-spacing:0.01em;color:#1a1810;">THE WEDDING</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:9pt;color:#3a2810;margin-top:2px;">
+                directed by <b>[GROOM]</b> &nbsp;·&nbsp; starring <b>[BRIDE]</b>
+              </div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:6.5pt;color:#3a2810;letter-spacing:0.08em;margin-top:4px;">
+                <span style="background:#1a1810;color:#faf3dc;padding:1px 4px;margin-right:6px;">FEATURING</span> THE BOYS &nbsp;·&nbsp; ADMIT THE WHOLE BROTHERHOOD
+              </div>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;align-items:flex-end;font-family:'IBM Plex Mono',monospace;font-size:6pt;line-height:1.3;color:#1a1810;margin-top:6px;border-top:1px dashed #5a3a20;padding-top:4px;">
+              <div>
+                <div><b>DATE:</b> [WEDDING DATE]</div>
+                <div><b>SEAT:</b> WHEREVER YOU SHOWED UP</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="font-family:'Bebas Neue',sans-serif;font-size:9pt;letter-spacing:0.1em;">PRICE</div>
+                <div style="font-family:'Cinzel',serif;font-weight:900;font-size:7pt;border:1px solid #1a1810;padding:2px 5px;margin-top:2px;">A LIFETIME OF FRIENDSHIP</div>
+                <div style="font-size:5pt;font-style:italic;margin-top:2px;">— non-refundable —</div>
+              </div>
+              <div style="text-align:right;">
+                <div><b>SERIAL:</b> № 012·∞·2026</div>
+                <div><b>STATUS:</b> NEVER EXPIRES</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stub-tear" style="flex:0 0 90px;background:#1a1810;color:#faf3dc;border-left-color:#faf3dc;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:11pt;letter-spacing:0.1em;line-height:1;text-align:center;">ADMIT<br>EVERYONE</div>
+        <div style="font-family:'Cinzel',serif;font-size:24pt;font-weight:900;line-height:1;">∞</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:5pt;letter-spacing:0.2em;text-align:center;line-height:1.2;">FUTURE<br>SCREENING<br>№ 12</div>
+      </div>
+    </div>
+    <div class="stamp" style="top: -10px; right: 130px; transform: rotate(-8deg); color:#a01818; border-color:#a01818; font-size:11pt; padding:4px 10px;">★ PREMIERE ★</div>
+  </div>
+
+  <!-- COLOPHON -->
+  <div class="colophon">
+    <span class="ch">— COLOPHON —</span>
+    <p>This collection represents <b>11 screenings across 9 years</b>. All tickets were earned, never purchased. Starring <b>[NAME 1]</b>, <b>[NAME 2]</b>, <b>[NAME 3]</b>, <b>[NAME 4]</b>, <b>[NAME 5]</b>, <b>[NAME 6]</b>, <b>[NAME 7]</b>, and <b>[NAME 8]</b>. Directed, assembled, and treasured by <b>[GROOM]</b>.</p>
+    <p style="text-align:center;margin-top:6px;border-top:1px solid #5a3a20;padding-top:6px;letter-spacing:0.1em;">⟡ &nbsp; NEW MATERIAL CONTINUES &nbsp; · &nbsp; NEXT SCREENING: [WEDDING DATE] &nbsp; ⟡</p>
+  </div>
+
+  <!-- p.s. note in red pen -->
+  <div class="ps-note">p.s. — keep your stubs. — the boys</div>
+
+</div>
+
+</body>
+</html>

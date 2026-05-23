@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>THE BROTHERS — A Feature Film Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Space+Grotesk:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e0e0e;
+    --paper:#ffffff;
+    --paper-2:#fafafa;
+    --rule:#1a1a1a;
+    --mute:#6b6b6b;
+    --hair:#e6e6e6;
+    --accent:#c95824;       /* burnt orange */
+    --accent-deep:#8d3a13;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#d9d9d9;color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  @page{ size:8.5in 11in; margin:0; }
+
+  .page{
+    width:8.5in; height:11in;
+    background:var(--paper);
+    margin:24px auto;
+    padding:0.5in 0.55in 0.5in;
+    position:relative;
+    page-break-after:always;
+    overflow:hidden;
+    box-shadow:0 18px 40px rgba(0,0,0,.18);
+  }
+  .page:last-child{page-break-after:auto}
+
+  /* --- top deck bar --- */
+  .deckbar{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:7.5px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--mute);
+    border-bottom:1px solid var(--rule);
+    padding-bottom:8px; margin-bottom:18px;
+  }
+  .deckbar .brand{ color:var(--ink); font-weight:700 }
+  .deckbar .brand .dot{display:inline-block;width:6px;height:6px;background:var(--accent);
+    border-radius:50%;margin-right:6px;vertical-align:1px}
+
+  .footbar{
+    position:absolute; left:0.55in; right:0.55in; bottom:0.22in;
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:6.8px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--mute);
+    border-top:1px solid var(--hair);
+    padding-top:5px;
+  }
+
+  /* --- slide frame --- */
+  .slide{
+    border:1px solid var(--hair);
+    border-radius:3px;
+    padding:10px 14px 10px;
+    position:relative;
+    background:var(--paper);
+    margin-bottom:8px;
+  }
+  .slide .num{
+    position:absolute; top:10px; right:14px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:7.5px; letter-spacing:.14em; color:var(--mute);
+  }
+  .slide .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:7.5px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:8px;
+  }
+  .slide h2{
+    font-family:'Inter',sans-serif;
+    font-weight:900; font-size:13.5px; letter-spacing:-.01em;
+    margin:0 0 6px;
+    text-transform:uppercase;
+  }
+
+  /* ==================== SLIDE 1 — COVER ==================== */
+  .cover{
+    padding:26px 28px 24px;
+    background:#fafafa;
+    border:1px solid var(--hair);
+    border-top:6px solid var(--accent);
+    position:relative;
+    overflow:hidden;
+  }
+  .cover .num{color:#999}
+  .cover .meta-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    font-family:'JetBrains Mono',monospace;
+    font-size:8px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--mute);
+  }
+  .cover .meta-top .acc{color:var(--accent)}
+  .cover h1{
+    font-family:'Inter',sans-serif;
+    font-weight:900;
+    font-size:78px; line-height:.86; letter-spacing:-.045em;
+    margin:18px 0 0;
+    text-transform:uppercase;
+  }
+  .cover h1 .amp{ color:var(--accent); font-style:italic; font-weight:800;}
+  .cover .sub{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic; font-size:18px;
+    color:#222;
+    margin-top:6px;
+  }
+  .cover .credit{
+    margin-top:14px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:8.5px; letter-spacing:.22em; text-transform:uppercase;
+    color:#222;
+  }
+  .cover .credit b{color:var(--ink)}
+  .cover .conf{
+    margin-top:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:6.8px; letter-spacing:.32em; text-transform:uppercase;
+    color:var(--mute);
+  }
+  .cover .hero-thumb{
+    position:absolute; right:24px; bottom:22px;
+    width:140px; height:88px; overflow:hidden;
+    border:1px solid #ddd; background:#000;
+  }
+  .cover .hero-thumb img{width:100%;height:100%;object-fit:cover; filter:saturate(.95)}
+  .cover .hero-thumb .cap{
+    position:absolute; left:0; right:0; bottom:0;
+    background:rgba(0,0,0,.55); color:#fff;
+    font-family:'JetBrains Mono',monospace;
+    font-size:6.5px; letter-spacing:.2em; text-transform:uppercase;
+    padding:3px 5px; text-align:center;
+  }
+  .cover .leftspine{
+    position:absolute; left:10px; top:90px;
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    font-family:'JetBrains Mono',monospace;
+    font-size:7px; letter-spacing:.4em; color:#bbb; text-transform:uppercase;
+  }
+
+  /* ==================== SLIDE 2 — LOGLINE ==================== */
+  .logline-row{
+    display:grid; grid-template-columns: 92px 1fr; gap:18px; align-items:start;
+  }
+  .logline-row .sideTag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:7.5px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--mute); padding-top:6px;
+    border-right:1px solid var(--hair);
+  }
+  .logline{
+    font-family:'Cormorant Garamond',serif;
+    font-size:18.5px; line-height:1.32; color:#161616;
+    font-weight:500;
+  }
+  .logline .pull{
+    color:var(--accent); font-style:italic; font-weight:600;
+  }
+  .logline-meta{
+    margin-top:14px;
+    display:flex; gap:18px; flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;
+    font-size:7.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:#333;
+  }
+  .logline-meta span b{color:var(--accent); font-weight:700; margin-right:6px}
+
+  /* ==================== SLIDE 3 — THE WORLD ==================== */
+  .world-strip{
+    display:grid; grid-template-columns: repeat(5,1fr); gap:6px;
+    margin-top:4px;
+  }
+  .world-strip .cell{
+    position:relative; aspect-ratio: 4/5; overflow:hidden;
+    border:1px solid var(--hair); background:#000;
+  }
+  .world-strip .cell img{width:100%;height:100%;object-fit:cover}
+  .world-strip .cell .lbl{
+    position:absolute; left:0; right:0; bottom:0;
+    background:linear-gradient(transparent, rgba(0,0,0,.78));
+    color:#fff;
+    font-family:'JetBrains Mono',monospace;
+    font-size:6.5px; letter-spacing:.16em; text-transform:uppercase;
+    padding:10px 5px 4px;
+  }
+  .world-strip .cell .lbl b{display:block;color:var(--accent);font-size:6.2px;letter-spacing:.18em}
+  .world-blurb{
+    margin-top:10px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:13.5px; font-style:italic; color:#222; line-height:1.4;
+    border-left:2px solid var(--accent); padding-left:10px;
+  }
+
+  /* ==================== PAGE 2 — CHARACTERS ==================== */
+  .char-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:5px;
+  }
+  .char-card{
+    border:1px solid var(--hair);
+    background:var(--paper);
+    padding:6px;
+    display:flex; flex-direction:column;
+  }
+  .char-card .shot{
+    width:100%; height:46px; overflow:hidden;
+    background:#111; position:relative;
+    border-bottom:2px solid var(--accent);
+  }
+  .char-card .shot img{
+    width:200%; height:200%; object-fit:cover; object-position:center;
+    transform:scale(1); /* allow cropping via positions below */
+  }
+  /* generate variation by per-card positioning */
+  .char-card.c1 .shot img{object-position:30% 40%}
+  .char-card.c2 .shot img{object-position:55% 35%}
+  .char-card.c3 .shot img{object-position:70% 45%}
+  .char-card.c4 .shot img{object-position:20% 50%}
+  .char-card.c5 .shot img{object-position:60% 60%}
+  .char-card.c6 .shot img{object-position:40% 35%}
+  .char-card.c7 .shot img{object-position:50% 55%}
+  .char-card.c8 .shot img{object-position:35% 55%}
+
+  .char-card .meta{padding:6px 4px 2px}
+  .char-card .name{
+    font-family:'Inter',sans-serif; font-weight:800; font-size:9.5px;
+    letter-spacing:.04em; text-transform:uppercase;
+  }
+  .char-card .role{
+    font-family:'JetBrains Mono',monospace;
+    font-size:6.2px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--accent); margin-top:2px;
+  }
+  .char-card .desc{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic; font-size:8.8px; line-height:1.18;
+    color:#333; margin-top:2px;
+  }
+  .char-card .id{
+    margin-top:auto;
+    font-family:'JetBrains Mono',monospace;
+    font-size:5.2px; letter-spacing:.2em; color:#aaa; padding-top:2px;
+  }
+
+  /* ==================== SLIDE 5 — COMPS ==================== */
+  .comps-wrap{display:grid; grid-template-columns: 1.05fr .95fr; gap:14px;}
+  .comps-list{display:flex; flex-direction:column; gap:4px}
+  .comp{
+    display:grid; grid-template-columns: 28px 1fr; gap:7px; align-items:stretch;
+    border:1px solid var(--hair); padding:4px;
+  }
+  .comp .poster{
+    background:linear-gradient(160deg,#1b1b1b,#3a3a3a);
+    color:#fff; display:flex; align-items:flex-end; justify-content:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:5.5px; letter-spacing:.14em;
+    padding:3px 0; text-align:center; line-height:1.1;
+  }
+  .comp.c-boyhood .poster{background:linear-gradient(180deg,#7aa6c9 0%,#d4caa3 100%); color:#1a1a1a}
+  .comp.c-trip .poster{background:linear-gradient(180deg,#2c2c2c,#7a5a3a); color:#fff}
+  .comp.c-standby .poster{background:linear-gradient(180deg,#c95824,#e9b486); color:#1a1a1a}
+  .comp.c-royal .poster{background:linear-gradient(180deg,#7a1a1a,#d39d4c); color:#fff}
+  .comp.c-magnolia .poster{background:linear-gradient(180deg,#0e1a3a,#4a2868); color:#fff}
+  .comp .info{display:flex; flex-direction:column; justify-content:center}
+  .comp .title{
+    font-family:'Cormorant Garamond',serif; font-style:italic;
+    font-size:11.5px; font-weight:600; color:#111; line-height:1.05;
+  }
+  .comp .yr{
+    font-family:'JetBrains Mono',monospace;
+    font-size:6.2px; letter-spacing:.18em; color:var(--mute);
+    text-transform:uppercase; margin-top:1px;
+  }
+  .comp .why{
+    font-family:'Inter',sans-serif; font-size:8px;
+    color:#333; margin-top:3px; letter-spacing:.02em;
+  }
+  .comp .why b{color:var(--accent); font-weight:700; letter-spacing:.14em; text-transform:uppercase; font-size:6.5px}
+
+  .mood-col h3{
+    font-family:'JetBrains Mono',monospace;
+    font-size:7.5px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--mute); margin:0 0 6px;
+  }
+  .mood-strip{display:grid; grid-template-columns:repeat(2,1fr); gap:4px;}
+  .mood-strip .m{
+    aspect-ratio: 5/3; overflow:hidden; border:1px solid var(--hair); background:#000;
+    position:relative;
+  }
+  .mood-strip .m img{width:100%; height:100%; object-fit:cover; filter:contrast(1.02) saturate(.95)}
+  .mood-strip .m .lab{
+    position:absolute; left:4px; bottom:3px;
+    background:rgba(0,0,0,.6); color:#fff;
+    font-family:'JetBrains Mono',monospace;
+    font-size:5.5px; letter-spacing:.16em; padding:1px 4px; text-transform:uppercase;
+  }
+
+  /* ==================== SLIDE 6 — TEAM ==================== */
+  .team{display:grid; grid-template-columns: 1.1fr 1fr; gap:18px}
+  .team .row{
+    display:grid; grid-template-columns: 85px 1fr; gap:8px; padding:2px 0;
+    border-bottom:1px dashed var(--hair);
+  }
+  .team .row:last-child{border-bottom:none}
+  .team .row .k{
+    font-family:'JetBrains Mono',monospace;
+    font-size:7px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--mute); padding-top:2px;
+  }
+  .team .row .v{
+    font-family:'Inter',sans-serif; font-size:9px; font-weight:700;
+    color:#111; letter-spacing:.01em;
+  }
+  .team .row .v em{
+    display:block; font-style:normal; font-weight:400; font-size:8px; color:#444;
+    margin-top:0px; font-family:'Cormorant Garamond',serif; font-style:italic;
+    line-height:1.2;
+  }
+  .team .starring{
+    margin-top:0; padding:9px 11px;
+    background:#0e0e0e; color:#fafafa;
+    align-self:start;
+  }
+  .team .starring .k{color:var(--accent); font-family:'JetBrains Mono',monospace;
+    font-size:6.5px; letter-spacing:.28em; text-transform:uppercase; display:block; margin-bottom:5px}
+  .team .starring .names{
+    font-family:'Inter',sans-serif; font-weight:900;
+    font-size:10px; line-height:1.4; letter-spacing:.02em; text-transform:uppercase;
+  }
+
+  /* ==================== SLIDE 7 — THE ASK ==================== */
+  .ask{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:8px;
+    margin-top:4px;
+  }
+  .ask .box{
+    border:1px solid var(--rule); padding:6px 9px 6px; position:relative;
+    background:#fff;
+  }
+  .ask .box .lab{
+    font-family:'JetBrains Mono',monospace;
+    font-size:6.2px; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--accent);
+  }
+  .ask .box .val{
+    font-family:'Inter',sans-serif; font-weight:900;
+    font-size:12px; line-height:1.05; margin-top:4px; color:#0e0e0e;
+    letter-spacing:-.005em;
+  }
+  .ask .box .sm{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic; font-size:8.8px; color:#444; margin-top:3px; line-height:1.2;
+  }
+  .signoff{
+    margin-top:6px; border-top:1px solid var(--rule); padding-top:4px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .signoff .thanks{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic; font-size:11px; color:#161616;
+  }
+  .signoff .thanks b{color:var(--accent); font-weight:600; font-style:italic;}
+  .signoff .sig{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic; font-size:13px; color:#0e0e0e; line-height:1;
+  }
+  .signoff .sigline{
+    font-family:'JetBrains Mono',monospace; font-size:6px; letter-spacing:.22em;
+    color:var(--mute); text-transform:uppercase; margin-top:1px; border-top:1px solid #999; padding-top:1px;
+  }
+
+  /* tiny utility */
+  .row-tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
+  .chip{
+    font-family:'JetBrains Mono',monospace;
+    font-size:6.2px; letter-spacing:.2em; text-transform:uppercase;
+    border:1px solid var(--hair); padding:2px 5px; color:#555;
+  }
+  .chip.acc{border-color:var(--accent); color:var(--accent)}
+
+</style>
+</head>
+<body>
+
+<!-- ================== PAGE 1 ================== -->
+<section class="page">
+
+  <div class="deckbar">
+    <div class="brand"><span class="dot"></span>THE BROTHERS · PITCH DECK</div>
+    <div>v.07 · CONFIDENTIAL · MMXXVI</div>
+    <div>PAGE 01 / 02</div>
+  </div>
+
+  <!-- SLIDE 1 — COVER -->
+  <div class="cover">
+    <span class="num">01 / 07</span>
+    <span class="leftspine">A FEATURE FILM — UNTITLED PROJECT [WORKING]</span>
+    <div class="meta-top">
+      <div>FEATURE FILM · ENSEMBLE</div>
+      <div class="acc">FOR REVIEW · A24 / PLAN B</div>
+    </div>
+
+    <h1>THE<br>BROTHERS<span class="amp">.</span></h1>
+    <div class="sub">a feature film pitch — written &amp; directed by [GROOM]</div>
+
+    <div class="credit">
+      DIRECTED &amp; WRITTEN BY &nbsp;<b>[GROOM]</b><br>
+      PRODUCED BY &nbsp;<b>THE GROUP CHAT</b>
+    </div>
+    <div class="conf">v.07 · CONFIDENTIAL · NOT FOR DISTRIBUTION · MMXXVI</div>
+
+    <div class="hero-thumb">
+      <img src="../photos/photo-08-mt-shasta.jpg" alt="Mt Shasta hero">
+      <div class="cap">FIG. 01 — MT SHASTA, CA · MAGIC HOUR</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 — LOGLINE -->
+  <div class="slide">
+    <span class="num">02 / 07</span>
+    <div class="tag">— LOGLINE</div>
+    <h2>The Pitch in One Breath</h2>
+    <div class="logline-row">
+      <div class="sideTag">SYNOPSIS<br>v.07</div>
+      <div>
+        <div class="logline">
+          <span class="pull">“Across a decade and four continents,</span> eight brothers chase the wide shot — and end up directing each other's lives. A coming-of-age ensemble that refuses to come of age alone.”
+        </div>
+        <div class="logline-meta">
+          <span><b>GENRE</b>ENSEMBLE COMEDY / DRAMA</span>
+          <span><b>RUNTIME</b>110 MIN</span>
+          <span><b>LANGUAGE</b>ENGLISH</span>
+          <span><b>FORMAT</b>2.39 : 1 · 35MM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 — THE WORLD -->
+  <div class="slide">
+    <span class="num">03 / 07</span>
+    <div class="tag">— THE WORLD</div>
+    <h2>Eight Locations. Four Continents. Ten Years.</h2>
+
+    <div class="world-strip">
+      <div class="cell">
+        <img src="../photos/photo-02-egypt-pyramid.jpg" alt="Giza">
+        <div class="lbl"><b>LOC 01</b>GIZA · EGYPT</div>
+      </div>
+      <div class="cell">
+        <img src="../photos/photo-04-cabo-boat.jpg" alt="Cabo">
+        <div class="lbl"><b>LOC 02</b>CABO · MX</div>
+      </div>
+      <div class="cell">
+        <img src="../photos/photo-07-zion-narrows.jpg" alt="Zion">
+        <div class="lbl"><b>LOC 03</b>ZION · UT</div>
+      </div>
+      <div class="cell">
+        <img src="../photos/photo-05-sedona-spires.jpg" alt="Sedona">
+        <div class="lbl"><b>LOC 04</b>SEDONA · AZ</div>
+      </div>
+      <div class="cell">
+        <img src="../photos/photo-06-times-square.jpg" alt="NYC">
+        <div class="lbl"><b>LOC 05</b>NYC · NY</div>
+      </div>
+    </div>
+
+    <div class="world-blurb">
+      From the pyramids of Giza to the alpenglow of Mt. Shasta. From a college dorm to the canyons of Zion. A film shot across <b style="color:var(--accent);font-style:normal;font-family:Inter;font-weight:800">8 locations · 4 continents · 10 years.</b>
+    </div>
+  </div>
+
+  <div class="footbar">
+    <div>THE BROTHERS — A FEATURE FILM PITCH</div>
+    <div>SHEET A · COVER + LOGLINE + WORLD</div>
+    <div>01 / 02</div>
+  </div>
+</section>
+
+
+<!-- ================== PAGE 2 ================== -->
+<section class="page">
+
+  <div class="deckbar">
+    <div class="brand"><span class="dot"></span>THE BROTHERS · PITCH DECK</div>
+    <div>v.07 · CONFIDENTIAL · MMXXVI</div>
+    <div>PAGE 02 / 02</div>
+  </div>
+
+  <!-- SLIDE 4 — CHARACTERS -->
+  <div class="slide">
+    <span class="num">04 / 07</span>
+    <div class="tag">— THE CHARACTERS</div>
+    <h2>The Ensemble — Eight Brothers, One Group Chat</h2>
+
+    <div class="char-grid">
+      <div class="char-card c1">
+        <div class="shot"><img src="../photos/photo-03-beach-sunset-pile.jpg" alt=""></div>
+        <div class="meta">
+          <div class="name">[NAME 1]</div>
+          <div class="role">THE INSTIGATOR</div>
+          <div class="desc">Always pitching the next trip before the last one ends.</div>
+        </div>
+        <div class="id">CHAR.01</div>
+      </div>
+      <div class="char-card c2">
+        <div class="shot"><img src="../photos/photo-01-beach-brown-tees.jpg" alt=""></div>
+        <div class="meta">
+          <div class="name">[NAME 2]</div>
+          <div class="role">THE CARTOGRAPHER</div>
+          <div class="desc">Knows every backroad in the American West.</div>
+        </div>
+        <div class="id">CHAR.02</div>
+      </div>
+      <div class="char-card c3">
+        <div class="shot"><img src="../photos/photo-02-egypt-pyramid.jpg" alt=""></div>
+        <div class="meta">
+          <div class="name">[NAME 3]</div>
+          <div class="role">THE HISTORIAN</div>
+          <div class="desc">Has photos from every trip, labeled and dated.</div>
+        </div>
+        <div class="id">CHAR.03</div>
+      </div>
+      <div class="char-card c4">
+        <div class="shot"><img src="../photos/photo-04-cabo-boat.jpg" alt=""></div>
+        <div class="meta">
+          <div class="name">[NAME 4]</div>
+          <div class="role">THE CAPTAIN</div>
+          <div class="desc">Books the boat. Always books the boat.</div>
+        </div>
+        <div class="id">CHAR.04</div>
+      </div>
+      <div class="char-card c5">
+        <div class="shot"><img src="../photos/photo-10-sedona-spiral.jpg" alt=""></div>
+        <div class="meta">
+          <div class="name">[NAME 5]</div>
+          <div class="role">THE MYSTIC</div>
+          <div class="desc">Builds rock spirals. Insists it's not woo-woo.</div>
+        </div>
+        <div class="id">CHAR.05</div>
+      </div>
+      <div class="char-card c6">
+        <div class="shot"><img src="../photos/photo-06-times-square.jpg" alt=""></div>
+        <div class="meta">
+          <div class="name">[NAME 6]</div>
+          <div class="role">THE LOCAL</div>
+          <div class="desc">Hosts everyone when the trip hits the city.</div>
+        </div>
+        <div class="id">CHAR.06</div>
+      </div>
+      <div class="char-card c7">
+        <div class="shot"><img src="../photos/photo-07-zion-narrows.jpg" alt=""></div>
+        <div class="meta">
+          <div class="name">[NAME 7]</div>
+          <div class="role">THE GUIDE</div>
+          <div class="desc">First into the river. Always carries the map.</div>
+        </div>
+        <div class="id">CHAR.07</div>
+      </div>
+      <div class="char-card c8">
+        <div class="shot"><img src="../photos/photo-09-neon-dorm.jpg" alt=""></div>
+        <div class="meta">
+          <div class="name">[NAME 8]</div>
+          <div class="role">THE ARCHIVIST</div>
+          <div class="desc">Kept the dorm photos. Started the group chat.</div>
+        </div>
+        <div class="id">CHAR.08</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5 — COMPS + MOOD -->
+  <div class="slide">
+    <span class="num">05 / 07</span>
+    <div class="tag">— TONE &amp; COMPS</div>
+    <h2>What It Feels Like in the Theater</h2>
+
+    <div class="comps-wrap">
+      <div class="comps-list">
+        <div class="comp c-boyhood">
+          <div class="poster">BOY<br>HOOD</div>
+          <div class="info">
+            <div class="title">Boyhood</div>
+            <div class="yr">LINKLATER · 2014</div>
+            <div class="why"><b>For ›</b> the long view.</div>
+          </div>
+        </div>
+        <div class="comp c-trip">
+          <div class="poster">THE<br>TRIP</div>
+          <div class="info">
+            <div class="title">The Trip</div>
+            <div class="yr">WINTERBOTTOM · 2010</div>
+            <div class="why"><b>For ›</b> the chemistry.</div>
+          </div>
+        </div>
+        <div class="comp c-standby">
+          <div class="poster">STAND<br>BY ME</div>
+          <div class="info">
+            <div class="title">Stand By Me</div>
+            <div class="yr">REINER · 1986</div>
+            <div class="why"><b>For ›</b> the warmth.</div>
+          </div>
+        </div>
+        <div class="comp c-royal">
+          <div class="poster">ROYAL<br>TENEN.</div>
+          <div class="info">
+            <div class="title">The Royal Tenenbaums</div>
+            <div class="yr">ANDERSON · 2001</div>
+            <div class="why"><b>For ›</b> the ensemble.</div>
+          </div>
+        </div>
+        <div class="comp c-magnolia">
+          <div class="poster">MAG<br>NOLIA</div>
+          <div class="info">
+            <div class="title">Magnolia</div>
+            <div class="yr">P.T. ANDERSON · 1999</div>
+            <div class="why"><b>For ›</b> the ambition.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mood-col">
+        <h3>— MOOD BOARD</h3>
+        <div class="mood-strip">
+          <div class="m"><img src="../photos/photo-11-zion-warriors.jpg" alt=""><div class="lab">HEROIC</div></div>
+          <div class="m"><img src="../photos/photo-09-neon-dorm.jpg" alt=""><div class="lab">ORIGIN</div></div>
+          <div class="m"><img src="../photos/photo-08-mt-shasta.jpg" alt=""><div class="lab">MAGIC HOUR</div></div>
+          <div class="m"><img src="../photos/photo-03-beach-sunset-pile.jpg" alt=""><div class="lab">WARMTH</div></div>
+        </div>
+        <div class="row-tags">
+          <span class="chip acc">35MM</span>
+          <span class="chip">2.39:1</span>
+          <span class="chip">NATURAL LIGHT</span>
+          <span class="chip">DIEGETIC SCORE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6 — TEAM -->
+  <div class="slide">
+    <span class="num">06 / 07</span>
+    <div class="tag">— THE TEAM</div>
+    <h2>Above the Line</h2>
+
+    <div class="team">
+      <div>
+        <div class="row">
+          <div class="k">DIRECTED BY</div>
+          <div class="v">[GROOM]
+            <em>[GROOM] is a filmmaker. His prior films include [WORK 1] and [WORK 2].</em>
+          </div>
+        </div>
+        <div class="row">
+          <div class="k">WRITTEN BY</div>
+          <div class="v">[GROOM]</div>
+        </div>
+        <div class="row">
+          <div class="k">PRODUCED BY</div>
+          <div class="v">THE GROUP CHAT
+            <em>An autonomous collective active since college; ~40 messages/day.</em>
+          </div>
+        </div>
+        <div class="row">
+          <div class="k">CINEMATOGRAPHY</div>
+          <div class="v">THE SUN
+            <em>Available golden hour through magic hour, weather permitting.</em>
+          </div>
+        </div>
+        <div class="row">
+          <div class="k">EDITED BY</div>
+          <div class="v">MEMORY (uncredited)</div>
+        </div>
+      </div>
+
+      <div class="starring">
+        <span class="k">— STARRING (IN ORDER OF APPEARANCE)</span>
+        <div class="names">
+          [NAME 1] &nbsp;·&nbsp; [NAME 2] &nbsp;·&nbsp; [NAME 3] &nbsp;·&nbsp; [NAME 4] &nbsp;·&nbsp; [NAME 5] &nbsp;·&nbsp; [NAME 6] &nbsp;·&nbsp; [NAME 7] &nbsp;·&nbsp; [NAME 8]
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7 — THE ASK -->
+  <div class="slide">
+    <span class="num">07 / 07</span>
+    <div class="tag">— THE ASK</div>
+    <h2>What We Need From You</h2>
+
+    <div class="ask">
+      <div class="box">
+        <div class="lab">BUDGET</div>
+        <div class="val">$0</div>
+        <div class="sm">Already made — distributed via wedding scrapbook.</div>
+      </div>
+      <div class="box">
+        <div class="lab">DISTRIBUTION</div>
+        <div class="val">ONE COPY</div>
+        <div class="sm">Hand-delivered on [WEDDING DATE]. No streaming rights.</div>
+      </div>
+      <div class="box">
+        <div class="lab">TARGET AUDIENCE</div>
+        <div class="val">ONE MAN</div>
+        <div class="sm">The groom. Total addressable market: 1.</div>
+      </div>
+    </div>
+
+    <div class="signoff">
+      <div class="thanks">
+        Thank you for considering this project. <b>— [GROOM]</b>
+      </div>
+      <div>
+        <div class="sig">[GROOM]</div>
+        <div class="sigline">SIGNED · DIRECTOR / WRITER · MMXXVI</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footbar">
+    <div>THE BROTHERS — A FEATURE FILM PITCH</div>
+    <div>SHEET B · CHARACTERS · COMPS · TEAM · ASK</div>
+    <div>02 / 02</div>
+  </div>
+</section>
+
+</body>
+</html>

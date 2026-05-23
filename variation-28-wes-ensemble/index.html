@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Brothers — A Film by [GROOM]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Archivo+Narrow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f5efde;          /* cream */
+    --paper-deep:#ece4cc;
+    --ink:#2c2418;
+    --ink-soft:#5b4a32;
+    --pink:#e8b8c0;
+    --mustard:#e8c878;
+    --mint:#b8d8c4;
+    --sky:#bcd4e0;
+    --cream:#efe2c4;
+    --rose:#d89aa4;
+    --olive:#b8b078;
+    --salmon:#e8a890;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#807868;}
+  body{
+    font-family:'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    color:var(--ink);
+    padding:24px 0;
+  }
+  @page{ size: 8.5in 11in; margin:0; }
+  .page{
+    width:8.5in; height:11in;
+    background:var(--paper);
+    background-image:
+      radial-gradient(ellipse at 20% 15%, rgba(180,150,90,0.08), transparent 40%),
+      radial-gradient(ellipse at 80% 85%, rgba(180,150,90,0.10), transparent 45%),
+      radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.25), transparent 60%);
+    margin:0 auto 24px;
+    box-shadow:0 6px 30px rgba(0,0,0,.35);
+    position:relative;
+    overflow:hidden;
+    padding:0.55in 0.6in;
+    page-break-after:always;
+  }
+  .page:last-child{page-break-after:auto}
+
+  /* Paper grain */
+  .page::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(120,90,40,0.025) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(120,90,40,0.020) 0 1px, transparent 1px 4px);
+    pointer-events:none; z-index:1;
+  }
+  /* Soft vignette */
+  .page::after{
+    content:"";
+    position:absolute; inset:0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(80,60,30,0.18) 100%);
+    pointer-events:none; z-index:1;
+  }
+  .content{position:relative; z-index:2; height:100%; display:flex; flex-direction:column; align-items:center}
+
+  /* ---------- Header bits ---------- */
+  .top-rule{
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    width:100%;
+  }
+  .top-rule .line{height:1px; flex:1; background:linear-gradient(to right, transparent, var(--ink-soft), transparent)}
+  .top-rule .dot{width:5px; height:5px; background:var(--ink); border-radius:50%}
+
+  .eyebrow{
+    font-family:'Archivo Narrow', 'Futura', sans-serif;
+    font-weight:600;
+    letter-spacing:0.42em;
+    font-size:9.5pt;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    margin:8pt 0 4pt;
+  }
+  .title{
+    font-family:'Playfair Display', 'Cormorant Garamond', serif;
+    font-weight:900;
+    font-style:italic;
+    font-size:54pt;
+    line-height:0.95;
+    letter-spacing:-0.005em;
+    color:var(--ink);
+    text-align:center;
+    margin-top:6pt;
+  }
+  .subtitle{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:13.5pt;
+    color:var(--ink-soft);
+    margin-top:10pt;
+    letter-spacing:0.04em;
+  }
+  .yearstamp{
+    font-family:'Archivo Narrow', sans-serif;
+    font-weight:600;
+    letter-spacing:0.32em;
+    font-size:10pt;
+    color:var(--ink);
+    margin-top:6pt;
+    padding:4pt 12pt;
+    border:1px solid var(--ink);
+    display:inline-block;
+  }
+
+  .filigree{ margin: 6pt 0 2pt; opacity:.85 }
+
+  /* ---------- Ensemble grid (page 1) ---------- */
+  .ensemble-wrap{
+    margin-top:18pt;
+    width:100%;
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .ensemble{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:12pt 10pt;
+    width:100%;
+    justify-items:center;
+  }
+  .portrait{
+    display:flex; flex-direction:column; align-items:center;
+    width:100%;
+  }
+  .oval-frame{
+    width:1.32in; height:1.62in;
+    border-radius:50%;
+    padding:5pt;
+    background:var(--paper-deep);
+    box-shadow:
+      inset 0 0 0 1px rgba(0,0,0,.18),
+      0 2px 4px rgba(60,40,10,.18);
+    position:relative;
+  }
+  .oval-frame.pink{ background:var(--pink) }
+  .oval-frame.mustard{ background:var(--mustard) }
+  .oval-frame.mint{ background:var(--mint) }
+  .oval-frame.sky{ background:var(--sky) }
+  .oval-frame.cream{ background:var(--cream) }
+  .oval-frame.rose{ background:var(--rose) }
+  .oval-frame.olive{ background:var(--olive) }
+  .oval-frame.salmon{ background:var(--salmon) }
+
+  .oval-frame .photo{
+    width:100%; height:100%;
+    border-radius:50%;
+    overflow:hidden;
+    background:#000;
+    box-shadow: inset 0 0 0 2pt var(--paper);
+    position:relative;
+  }
+  .oval-frame .photo img{
+    position:absolute;
+    height:auto;
+    max-width:none;
+    filter: contrast(0.98) saturate(0.92) hue-rotate(-3deg) brightness(1.02) sepia(0.04);
+  }
+  /* Decorative corner dots on frames */
+  .oval-frame::before, .oval-frame::after{
+    content:""; position:absolute;
+    width:5pt; height:5pt; border-radius:50%;
+    background:var(--paper);
+    box-shadow:0 0 0 1px var(--ink);
+    top:50%; transform:translateY(-50%);
+  }
+  .oval-frame::before{ left:-3pt }
+  .oval-frame::after{ right:-3pt }
+
+  .ribbon{
+    margin-top:8pt;
+    position:relative;
+    text-align:center;
+    padding:3pt 10pt 3pt;
+    min-width:1.4in;
+    color:var(--ink);
+    font-family:'Cormorant Garamond', serif;
+    line-height:1.05;
+  }
+  .ribbon::before{
+    content:""; position:absolute; inset:0;
+    background:var(--cream);
+    border-top:1px solid rgba(0,0,0,.15);
+    border-bottom:1px solid rgba(0,0,0,.15);
+    z-index:-1;
+  }
+  .ribbon.pink::before{ background:var(--pink) }
+  .ribbon.mustard::before{ background:var(--mustard) }
+  .ribbon.mint::before{ background:var(--mint) }
+  .ribbon.sky::before{ background:var(--sky) }
+  .ribbon.cream::before{ background:var(--cream) }
+  .ribbon.rose::before{ background:var(--rose) }
+  .ribbon.olive::before{ background:var(--olive) }
+  .ribbon.salmon::before{ background:var(--salmon) }
+  .ribbon .name{
+    display:block;
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-style:italic;
+    font-size:10.5pt;
+    color:var(--ink);
+    letter-spacing:0.01em;
+  }
+  .ribbon .role{
+    display:block;
+    font-family:'Archivo Narrow', sans-serif;
+    font-weight:600;
+    font-size:6.5pt;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--ink);
+    opacity:.75;
+    margin-top:2pt;
+  }
+  /* Ribbon tail shape (notched ends) */
+  .ribbon{
+    clip-path: polygon(
+      0% 0%, 96% 0%, 100% 50%, 96% 100%, 0% 100%, 4% 50%
+    );
+  }
+
+  /* ---------- chapter ---------- */
+  .chapter{
+    margin-top:20pt;
+    width:100%;
+    text-align:center;
+  }
+  .chapter .label{
+    font-family:'Archivo Narrow', sans-serif;
+    letter-spacing:0.4em;
+    font-size:8pt;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+  }
+  .chapter .h{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-weight:700;
+    font-size:22pt;
+    color:var(--ink);
+    margin-top:4pt;
+  }
+
+  .cast{
+    margin-top:14pt;
+    width:100%;
+    text-align:center;
+    font-family:'Cormorant Garamond', serif;
+    color:var(--ink);
+  }
+  .cast .starring{
+    font-family:'Archivo Narrow', sans-serif;
+    letter-spacing:0.5em;
+    font-size:8.5pt;
+    color:var(--ink);
+    text-transform:uppercase;
+  }
+  .cast .row{
+    margin-top:6pt;
+    display:flex; justify-content:center; gap:18pt; flex-wrap:wrap;
+    font-size:13pt;
+    font-style:italic;
+    font-weight:600;
+  }
+  .cast .and{
+    margin-top:8pt;
+    font-family:'Archivo Narrow', sans-serif;
+    letter-spacing:0.5em;
+    font-size:8.5pt;
+  }
+  .cast .groom-line{
+    margin-top:4pt;
+    font-size:14pt;
+    font-style:italic;
+    font-weight:700;
+  }
+
+  .tagline{
+    margin-top:14pt;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:12pt;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+
+  /* ---------- Page 2 — Artifacts ---------- */
+  .artifacts-grid{
+    margin-top:12pt;
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:14pt 9pt;
+  }
+  .artifact{
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .frame{
+    width:100%;
+    padding:5pt;
+    background:var(--cream);
+    box-shadow:
+      inset 0 0 0 1px rgba(0,0,0,.18),
+      0 2px 6px rgba(60,40,10,.20);
+    position:relative;
+  }
+  .frame.pink{ background:var(--pink) }
+  .frame.mustard{ background:var(--mustard) }
+  .frame.mint{ background:var(--mint) }
+  .frame.sky{ background:var(--sky) }
+  .frame.cream{ background:var(--cream) }
+  .frame.rose{ background:var(--rose) }
+  .frame.olive{ background:var(--olive) }
+  .frame.salmon{ background:var(--salmon) }
+  .frame .photo-box{
+    width:100%;
+    aspect-ratio: 1/1;
+    overflow:hidden;
+    background:#000;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.25);
+  }
+  .frame .photo-box img{
+    width:100%; height:100%;
+    object-fit:cover;
+    filter: contrast(0.98) saturate(0.92) hue-rotate(-3deg) brightness(1.02) sepia(0.05);
+  }
+  .frame .pin{
+    position:absolute;
+    top:-3pt; left:50%; transform:translateX(-50%);
+    width:7pt; height:7pt; border-radius:50%;
+    background:#b89860;
+    box-shadow: inset 0 -1px 2px rgba(0,0,0,.35), 0 1px 1px rgba(0,0,0,.4);
+  }
+
+  .artifact-label{
+    margin-top:5pt;
+    text-align:center;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:8pt;
+    color:var(--ink);
+    line-height:1.15;
+    padding:0 2pt;
+    max-width:100%;
+  }
+  .artifact-label .num{
+    font-family:'Archivo Narrow', sans-serif;
+    font-style:normal;
+    font-weight:700;
+    letter-spacing:0.16em;
+    font-size:6.5pt;
+    color:var(--ink-soft);
+    display:block;
+    margin-bottom:1pt;
+  }
+
+  /* ---------- Footer ---------- */
+  .footer{
+    margin-top:auto;
+    width:100%;
+    display:flex; flex-direction:column; align-items:center;
+    padding-top:6pt;
+  }
+  .curated{
+    font-family:'Archivo Narrow', sans-serif;
+    letter-spacing:0.4em;
+    font-size:8pt;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    margin-top:5pt;
+  }
+  .dedication{
+    margin-top:6pt;
+    max-width:5.6in;
+    text-align:center;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:10.5pt;
+    color:var(--ink);
+    line-height:1.3;
+  }
+  .fin{
+    margin-top:6pt;
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-weight:700;
+    font-size:13pt;
+    color:var(--ink);
+    letter-spacing:0.3em;
+    padding:2pt 12pt;
+    border-top:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============================== PAGE 1 ============================== -->
+<section class="page">
+  <div class="content">
+
+    <!-- Top rule -->
+    <div class="top-rule">
+      <span class="line"></span>
+      <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="2.2" fill="none" stroke="#2c2418" stroke-width="0.8"/><circle cx="7" cy="7" r="5" fill="none" stroke="#2c2418" stroke-width="0.5"/></svg>
+      <span class="line"></span>
+    </div>
+
+    <div class="eyebrow">A Picture · In Two Acts</div>
+
+    <h1 class="title">The Brothers</h1>
+
+    <!-- Filigree -->
+    <svg class="filigree" width="220" height="22" viewBox="0 0 220 22" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#2c2418" stroke-width="0.7" stroke-linecap="round">
+        <path d="M10 11 Q 55 -2 110 11 T 210 11"/>
+        <path d="M10 11 Q 55 24 110 11 T 210 11"/>
+        <circle cx="110" cy="11" r="2.2" fill="#2c2418"/>
+        <circle cx="60" cy="11" r="1.1" fill="#2c2418"/>
+        <circle cx="160" cy="11" r="1.1" fill="#2c2418"/>
+        <path d="M2 11 h 6 M212 11 h 6"/>
+      </g>
+    </svg>
+
+    <div class="subtitle">A Film by [GROOM]</div>
+    <div class="yearstamp">MMXVII · MMXXVI</div>
+
+    <!-- ENSEMBLE -->
+    <div class="ensemble-wrap">
+      <div class="ensemble">
+
+        <!--
+          Headshot crops: img is enlarged via width %; positioned via absolute left/top.
+          photo-01 (beach lineup, 7 faces). img width 800% → ~704pt wide, ~468pt tall.
+            container inner ≈ 88×110pt. face y ≈ 44% of image ≈ 206pt → top=55-206=-151pt
+            face x_n in image %: 8, 22, 35, 48, 61, 75, 88
+              left_n = 44 - x% × 704pt
+          photo-09 (neon dorm, 5 faces, used for [NAME 8]).
+        -->
+
+        <div class="portrait">
+          <div class="oval-frame pink">
+            <div class="photo"><img src="../photos/photo-01-beach-brown-tees.jpg" alt="" style="width:880%; top:-243pt; left:-64pt;"></div>
+          </div>
+          <div class="ribbon pink"><span class="name">[NAME 1]</span><span class="role">The Instigator</span></div>
+        </div>
+
+        <div class="portrait">
+          <div class="oval-frame mustard">
+            <div class="photo"><img src="../photos/photo-01-beach-brown-tees.jpg" alt="" style="width:880%; top:-249pt; left:-144pt;"></div>
+          </div>
+          <div class="ribbon mustard"><span class="name">[NAME 2]</span><span class="role">The Cartographer</span></div>
+        </div>
+
+        <div class="portrait">
+          <div class="oval-frame mint">
+            <div class="photo"><img src="../photos/photo-01-beach-brown-tees.jpg" alt="" style="width:880%; top:-248pt; left:-215pt;"></div>
+          </div>
+          <div class="ribbon mint"><span class="name">[NAME 3]</span><span class="role">The Diplomat</span></div>
+        </div>
+
+        <div class="portrait">
+          <div class="oval-frame sky">
+            <div class="photo"><img src="../photos/photo-01-beach-brown-tees.jpg" alt="" style="width:880%; top:-244pt; left:-300pt;"></div>
+          </div>
+          <div class="ribbon sky"><span class="name">[NAME 4]</span><span class="role">The Strategist</span></div>
+        </div>
+
+        <div class="portrait">
+          <div class="oval-frame rose">
+            <div class="photo"><img src="../photos/photo-01-beach-brown-tees.jpg" alt="" style="width:880%; top:-253pt; left:-377pt;"></div>
+          </div>
+          <div class="ribbon rose"><span class="name">[NAME 5]</span><span class="role">The Captain</span></div>
+        </div>
+
+        <div class="portrait">
+          <div class="oval-frame cream">
+            <div class="photo"><img src="../photos/photo-01-beach-brown-tees.jpg" alt="" style="width:880%; top:-235pt; left:-448pt;"></div>
+          </div>
+          <div class="ribbon cream"><span class="name">[NAME 6]</span><span class="role">The Sentimentalist</span></div>
+        </div>
+
+        <div class="portrait">
+          <div class="oval-frame olive">
+            <div class="photo"><img src="../photos/photo-01-beach-brown-tees.jpg" alt="" style="width:880%; top:-247pt; left:-518pt;"></div>
+          </div>
+          <div class="ribbon olive"><span class="name">[NAME 7]</span><span class="role">The Philosopher</span></div>
+        </div>
+
+        <div class="portrait">
+          <div class="oval-frame salmon">
+            <div class="photo"><img src="../photos/photo-01-beach-brown-tees.jpg" alt="" style="width:880%; top:-258pt; left:-600pt;"></div>
+          </div>
+          <div class="ribbon salmon"><span class="name">[NAME 8]</span><span class="role">The Comedian</span></div>
+        </div>
+
+      </div>
+
+      <!-- Hand-drawn ornate element below ensemble -->
+      <svg width="280" height="44" viewBox="0 0 280 44" style="margin-top:12pt" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#2c2418" stroke-width="0.7" stroke-linecap="round">
+          <!-- compass -->
+          <circle cx="140" cy="22" r="11" />
+          <circle cx="140" cy="22" r="6"/>
+          <path d="M140 8 L143 22 L140 36 L137 22 Z" fill="#2c2418"/>
+          <path d="M126 22 L154 22"/>
+          <path d="M140 8 V0 M140 36 V44 M126 22 H118 M154 22 H162"/>
+          <!-- scroll left -->
+          <path d="M10 22 Q 40 6 80 22 T 122 22"/>
+          <path d="M30 14 Q 50 22 70 14"/>
+          <circle cx="6" cy="22" r="2" fill="#2c2418"/>
+          <!-- scroll right -->
+          <path d="M158 22 Q 200 6 240 22 T 274 22"/>
+          <path d="M210 14 Q 230 22 250 14"/>
+          <circle cx="274" cy="22" r="2" fill="#2c2418"/>
+        </g>
+      </svg>
+
+      <!-- Chapter title -->
+      <div class="chapter">
+        <div class="label">— Chapter One —</div>
+        <div class="h">A Story in Eleven Frames</div>
+      </div>
+
+      <!-- Cast -->
+      <div class="cast">
+        <div class="starring">Starring</div>
+        <div class="row">
+          <span>[NAME 1]</span><span>[NAME 2]</span><span>[NAME 3]</span><span>[NAME 4]</span>
+        </div>
+        <div class="row">
+          <span>[NAME 5]</span><span>[NAME 6]</span><span>[NAME 7]</span><span>[NAME 8]</span>
+        </div>
+        <div class="and">— and —</div>
+        <div class="groom-line">[GROOM] as himself</div>
+      </div>
+
+      <div class="tagline">"A family is what you choose. Eight times over."</div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================== PAGE 2 ============================== -->
+<section class="page">
+  <div class="content">
+
+    <div class="top-rule">
+      <span class="line"></span>
+      <svg width="14" height="14" viewBox="0 0 14 14"><rect x="3.5" y="3.5" width="7" height="7" fill="none" stroke="#2c2418" stroke-width="0.7" transform="rotate(45 7 7)"/><circle cx="7" cy="7" r="1.4" fill="#2c2418"/></svg>
+      <span class="line"></span>
+    </div>
+
+    <div class="eyebrow">— Chapter Two —</div>
+
+    <h1 class="title" style="font-size:32pt; margin-top:2pt;">Artifacts</h1>
+    <div class="subtitle" style="margin-top:4pt;">from the Collection of The Brothers</div>
+
+    <svg class="filigree" width="220" height="18" viewBox="0 0 220 18" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#2c2418" stroke-width="0.7" stroke-linecap="round">
+        <path d="M10 9 Q 60 -3 110 9 T 210 9"/>
+        <circle cx="110" cy="9" r="1.6" fill="#2c2418"/>
+        <path d="M2 9 h 6 M212 9 h 6"/>
+      </g>
+    </svg>
+
+    <div class="subtitle" style="font-size:10pt; margin-top:4pt; opacity:.85;">
+      Items recovered from various scenes — all of which appear in the film.
+    </div>
+
+    <!-- ARTIFACTS GRID — 10 photos in 2 cols × 5 rows -->
+    <div class="artifacts-grid">
+
+      <div class="artifact">
+        <div class="frame pink">
+          <span class="pin"></span>
+          <div class="photo-box"><img src="../photos/photo-01-beach-brown-tees.jpg" alt=""></div>
+        </div>
+        <div class="artifact-label">
+          <span class="num">ITEM · 01</span>
+          the matching tees of la jolla, summer mmxxiii
+        </div>
+      </div>
+
+      <div class="artifact">
+        <div class="frame mustard">
+          <span class="pin"></span>
+          <div class="photo-box"><img src="../photos/photo-02-egypt-pyramid.jpg" alt=""></div>
+        </div>
+        <div class="artifact-label">
+          <span class="num">ITEM · 02</span>
+          the keffiyeh that survived a sandstorm, giza mmxxii
+        </div>
+      </div>
+
+      <div class="artifact">
+        <div class="frame mint">
+          <span class="pin"></span>
+          <div class="photo-box"><img src="../photos/photo-04-cabo-boat.jpg" alt=""></div>
+        </div>
+        <div class="artifact-label">
+          <span class="num">ITEM · 03</span>
+          the ferry to el arco, baja mmxxii
+        </div>
+      </div>
+
+      <div class="artifact">
+        <div class="frame sky">
+          <span class="pin"></span>
+          <div class="photo-box"><img src="../photos/photo-07-zion-narrows.jpg" alt=""></div>
+        </div>
+        <div class="artifact-label">
+          <span class="num">ITEM · 04</span>
+          the walking stick from the narrows, zion mmxxiii
+        </div>
+      </div>
+
+      <div class="artifact">
+        <div class="frame rose">
+          <span class="pin"></span>
+          <div class="photo-box"><img src="../photos/photo-08-mt-shasta.jpg" alt=""></div>
+        </div>
+        <div class="artifact-label">
+          <span class="num">ITEM · 05</span>
+          the throne at the end of the world, shasta mmxxiv
+        </div>
+      </div>
+
+      <div class="artifact">
+        <div class="frame cream">
+          <span class="pin"></span>
+          <div class="photo-box"><img src="../photos/photo-05-sedona-spires.jpg" alt=""></div>
+        </div>
+        <div class="artifact-label">
+          <span class="num">ITEM · 06</span>
+          the red rocks of arizona
+        </div>
+      </div>
+
+      <div class="artifact">
+        <div class="frame olive">
+          <span class="pin"></span>
+          <div class="photo-box"><img src="../photos/photo-10-sedona-spiral.jpg" alt=""></div>
+        </div>
+        <div class="artifact-label">
+          <span class="num">ITEM · 07</span>
+          the spiral of stones
+        </div>
+      </div>
+
+      <div class="artifact">
+        <div class="frame salmon">
+          <span class="pin"></span>
+          <div class="photo-box"><img src="../photos/photo-06-times-square.jpg" alt=""></div>
+        </div>
+        <div class="artifact-label">
+          <span class="num">ITEM · 08</span>
+          the neon of times square, midnight
+        </div>
+      </div>
+
+      <div class="artifact">
+        <div class="frame mustard">
+          <span class="pin"></span>
+          <div class="photo-box"><img src="../photos/photo-03-beach-sunset-pile.jpg" alt=""></div>
+        </div>
+        <div class="artifact-label">
+          <span class="num">ITEM · 09</span>
+          the sunset pile, an unwitnessed photograph
+        </div>
+      </div>
+
+      <div class="artifact">
+        <div class="frame mint">
+          <span class="pin"></span>
+          <div class="photo-box"><img src="../photos/photo-09-neon-dorm.jpg" alt=""></div>
+        </div>
+        <div class="artifact-label">
+          <span class="num">ITEM · 10</span>
+          the dorm, where it began &nbsp;·&nbsp; or so the legend goes
+        </div>
+      </div>
+
+    </div>
+
+    <!-- A FILM STILL — uses photo-11 as a closing cinematic banner -->
+    <div style="width:100%; display:flex; flex-direction:column; align-items:center; margin-top:10pt;">
+      <div style="font-family:'Archivo Narrow', sans-serif; letter-spacing:0.42em; font-size:7.5pt; color:var(--ink-soft); text-transform:uppercase;">— A Still From The Film —</div>
+      <div style="width:4.6in; padding:5pt; background:var(--mustard); margin-top:5pt; box-shadow: inset 0 0 0 1px rgba(0,0,0,.18), 0 3px 8px rgba(60,40,10,.22); position:relative;">
+        <span style="position:absolute; top:-3pt; left:50%; transform:translateX(-50%); width:7pt; height:7pt; border-radius:50%; background:#b89860; box-shadow: inset 0 -1px 2px rgba(0,0,0,.35), 0 1px 1px rgba(0,0,0,.4);"></span>
+        <div style="width:100%; aspect-ratio: 21/9; overflow:hidden; background:#000; box-shadow: inset 0 0 0 1px rgba(0,0,0,.25);">
+          <img src="../photos/photo-11-zion-warriors.jpg" alt="" style="width:100%; height:100%; object-fit:cover; filter: contrast(0.98) saturate(0.92) hue-rotate(-3deg) brightness(1.02) sepia(0.05);">
+        </div>
+      </div>
+      <div style="margin-top:4pt; font-family:'Cormorant Garamond', serif; font-style:italic; font-size:9.5pt; color:var(--ink); text-align:center;">
+        "The Eight Warriors of the Narrows" &nbsp;·&nbsp; final scene, mmxxiii
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+
+      <svg width="240" height="22" viewBox="0 0 240 22" style="margin-top:10pt" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#2c2418" stroke-width="0.7" stroke-linecap="round">
+          <path d="M10 11 Q 50 0 110 11 T 230 11"/>
+          <path d="M10 11 Q 50 22 110 11 T 230 11"/>
+          <circle cx="120" cy="11" r="2" fill="#2c2418"/>
+          <circle cx="60" cy="11" r="1" fill="#2c2418"/>
+          <circle cx="180" cy="11" r="1" fill="#2c2418"/>
+        </g>
+      </svg>
+
+      <div class="curated">Curated by [GROOM] · MMXXVI</div>
+
+      <div class="dedication">
+        "This collection is dedicated to [BRIDE], who is the eleventh artifact — and the most important."
+      </div>
+
+      <div class="fin">FIN.</div>
+
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

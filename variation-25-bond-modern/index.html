@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>THE BROTHERS — Mission File 011</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Manrope:wght@400;700;800&family=Oswald:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0a;
+    --bg2:#0d1316;
+    --ink:#e9ecee;
+    --ink-dim:#8a9197;
+    --ink-faint:#4a5258;
+    --accent:#0d5b6b;       /* Skyfall teal */
+    --accent-lite:#22a1b8;
+    --accent-glow:#3fc6dc;
+    --warm:#c66a2a;         /* Skyfall orange counter */
+    --red:#a01e2a;          /* classified stamp */
+    --rule:#1c2226;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#000;color:var(--ink);font-family:'Space Grotesk',sans-serif;}
+  @page{size:8.5in 11in;margin:0;}
+  .page{
+    width:8.5in;height:11in;background:var(--bg);
+    position:relative;overflow:hidden;
+    page-break-after:always;
+    color:var(--ink);
+  }
+  .page:last-child{page-break-after:auto;}
+
+  /* Shared subtle texture: carbon weave + faint teal vignette */
+  .page::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(13,91,107,0.18), transparent 55%),
+      radial-gradient(ellipse at 50% 100%, rgba(13,91,107,0.10), transparent 60%),
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px);
+    z-index:1;
+  }
+  .page::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.55) 0%, transparent 8%, transparent 92%, rgba(0,0,0,0.55) 100%),
+      linear-gradient(180deg, rgba(0,0,0,0.55) 0%, transparent 6%, transparent 94%, rgba(0,0,0,0.6) 100%);
+    z-index:2;
+  }
+
+  /* Edge data strip — coordinates */
+  .data-strip{
+    position:absolute;top:0;bottom:0;width:14px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    font-family:'Space Mono',monospace;font-size:5.5px;letter-spacing:0.08em;
+    color:var(--ink-faint);
+    writing-mode:vertical-rl;text-orientation:mixed;
+    padding:24px 0;z-index:3;
+  }
+  .data-strip.left{left:6px;}
+  .data-strip.right{right:6px;}
+  .data-strip span{white-space:nowrap;}
+
+  /* === HEADER METADATA STRIP === */
+  .meta-bar{
+    position:absolute;left:0;right:0;top:0;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:0.32in 0.45in 0.18in;
+    font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.32em;
+    color:var(--ink-dim);text-transform:uppercase;
+    z-index:5;
+  }
+  .meta-bar .accent-bar{
+    height:2px;background:var(--accent-lite);width:36px;
+    box-shadow:0 0 8px rgba(63,198,220,0.6);
+    margin:0 10px;
+  }
+  .meta-bar .left, .meta-bar .right{display:flex;align-items:center;gap:0;}
+  .meta-bar .left b, .meta-bar .right b{color:var(--ink);font-weight:700;letter-spacing:0.32em;}
+  .meta-bar .lbl{color:var(--ink-faint);}
+  .meta-bar .v{color:var(--accent-glow);}
+
+  /* === HEADER SECONDARY === */
+  .meta-bar-2{
+    position:absolute;left:0.45in;right:0.45in;top:0.52in;
+    display:flex;justify-content:space-between;
+    font-family:'Space Mono',monospace;font-size:7px;letter-spacing:0.28em;
+    color:var(--ink-faint);text-transform:uppercase;
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    padding:6px 0;z-index:5;
+  }
+
+  /* === HERO CINEMATIC STILL === */
+  .hero-wrap{
+    position:absolute;left:0.45in;right:0.45in;top:0.88in;
+    z-index:4;
+  }
+  .hero-frame{
+    position:relative;width:100%;
+    aspect-ratio:2.39 / 1;
+    overflow:hidden;
+    background:#000;
+    border:1px solid var(--rule);
+    box-shadow:0 18px 50px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(13,91,107,0.18);
+  }
+  .hero-frame img{
+    width:100%;height:100%;object-fit:cover;object-position:center 38%;
+    filter:contrast(1.12) saturate(0.78) hue-rotate(-8deg) brightness(0.92);
+  }
+  .hero-frame::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.78) 100%),
+      linear-gradient(90deg, rgba(13,91,107,0.18), transparent 35%, transparent 65%, rgba(198,106,42,0.18));
+    pointer-events:none;
+  }
+  .hero-corner{
+    position:absolute;top:8px;left:10px;
+    font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:0.22em;
+    color:rgba(233,236,238,0.78);text-transform:uppercase;
+    background:rgba(0,0,0,0.45);padding:3px 8px;
+    border-left:2px solid var(--accent-lite);
+  }
+  .hero-corner.tr{left:auto;right:10px;border-left:0;border-right:2px solid var(--accent-lite);}
+  .hero-caption{
+    position:absolute;left:10px;right:10px;bottom:8px;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:0.22em;
+    color:#cfd6d9;text-transform:uppercase;
+  }
+  .hero-caption .crosshair{
+    width:14px;height:14px;border:1px solid var(--accent-glow);
+    display:inline-flex;align-items:center;justify-content:center;
+    margin-right:6px;position:relative;
+  }
+  .hero-caption .crosshair::before, .hero-caption .crosshair::after{
+    content:"";position:absolute;background:var(--accent-glow);
+  }
+  .hero-caption .crosshair::before{width:2px;height:6px;}
+  .hero-caption .crosshair::after{width:6px;height:2px;}
+
+  /* === TITLE BLOCK === */
+  .title-block{
+    position:absolute;left:0.45in;right:0.45in;top:5.2in;
+    z-index:4;
+  }
+  .presents{
+    font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.42em;
+    color:var(--ink-dim);text-transform:uppercase;text-align:center;
+    margin-bottom:12px;
+  }
+  .title{
+    font-family:'Oswald',sans-serif;font-weight:700;
+    font-size:108px;line-height:0.92;letter-spacing:0.02em;
+    text-align:center;color:var(--ink);text-transform:uppercase;
+    margin:0;
+    text-shadow:0 2px 0 #000;
+  }
+  .title .accent{
+    color:var(--accent-glow);
+    text-shadow:0 0 18px rgba(63,198,220,0.45);
+  }
+  .tagline{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+    font-size:18px;color:var(--ink-dim);text-align:center;
+    margin-top:14px;letter-spacing:0.01em;
+  }
+  .title-rule{
+    width:60px;height:1px;background:var(--accent-lite);
+    margin:14px auto 0;
+    box-shadow:0 0 10px rgba(63,198,220,0.55);
+  }
+
+  /* === CREDITS === */
+  .credits{
+    position:absolute;left:0.45in;right:0.45in;top:7.85in;
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;
+    z-index:4;
+  }
+  .cred-block{text-align:center;}
+  .cred-lbl{
+    font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:0.4em;
+    color:var(--accent-glow);text-transform:uppercase;margin-bottom:6px;
+  }
+  .cred-val{
+    font-family:'Manrope',sans-serif;font-weight:700;
+    font-size:11.5px;letter-spacing:0.18em;
+    color:var(--ink);text-transform:uppercase;line-height:1.4;
+  }
+  .cred-val small{display:block;font-weight:400;color:var(--ink-dim);font-size:9px;letter-spacing:0.18em;margin-top:2px;}
+
+  .also-starring{
+    position:absolute;left:0.45in;right:0.45in;top:8.85in;
+    text-align:center;z-index:4;
+  }
+  .also-starring .cred-lbl{margin-bottom:8px;}
+  .also-starring .row{
+    font-family:'Manrope',sans-serif;font-weight:700;
+    font-size:10.5px;letter-spacing:0.22em;
+    color:var(--ink);text-transform:uppercase;line-height:1.65;
+  }
+  .also-starring .row span{color:var(--ink-dim);margin:0 6px;}
+
+  .directed-by{
+    position:absolute;left:0.45in;right:0.45in;top:9.55in;
+    text-align:center;z-index:4;
+  }
+  .directed-by .cred-lbl{font-size:8px;}
+  .directed-by .cred-val{font-size:15px;letter-spacing:0.28em;margin-top:4px;}
+
+  /* === FOOTER === */
+  .footer{
+    position:absolute;left:0.45in;right:0.45in;bottom:0.38in;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    z-index:5;
+  }
+  .footer .left, .footer .right, .footer .center{
+    font-family:'Space Mono',monospace;font-size:7px;letter-spacing:0.28em;
+    color:var(--ink-dim);text-transform:uppercase;
+  }
+  .footer .center{text-align:center;color:var(--ink);font-weight:700;letter-spacing:0.32em;}
+  .footer .year{
+    font-family:'Oswald',sans-serif;font-weight:600;
+    font-size:22px;letter-spacing:0.18em;color:var(--ink);
+    border-bottom:2px solid var(--accent-lite);padding-bottom:2px;
+    line-height:1;
+  }
+  .footer .tag{
+    font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.34em;
+    color:var(--accent-glow);text-transform:uppercase;
+  }
+
+  /* === PAGE 2 — DOSSIER === */
+  .dossier-head{
+    position:absolute;left:0.45in;right:0.45in;top:0.82in;
+    text-align:center;z-index:4;
+  }
+  .dossier-head .dh-title{
+    font-family:'Oswald',sans-serif;font-weight:700;
+    font-size:22px;letter-spacing:0.34em;color:var(--ink);
+    text-transform:uppercase;white-space:nowrap;
+  }
+  .dossier-head .dh-title .accent{color:var(--accent-glow);text-shadow:0 0 14px rgba(63,198,220,0.4);}
+  .dossier-head .dh-sub{
+    font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:0.32em;
+    color:var(--ink-dim);text-transform:uppercase;margin-top:6px;
+  }
+  .dossier-head .dh-rule{
+    width:90px;height:1px;background:var(--accent-lite);margin:8px auto 0;
+    box-shadow:0 0 10px rgba(63,198,220,0.55);
+  }
+
+  .grid{
+    position:absolute;left:0.42in;right:0.42in;top:1.42in;
+    display:grid;grid-template-columns:repeat(3, 1fr);
+    gap:7px;z-index:4;
+  }
+  .key-evidence{
+    position:absolute;left:0.42in;right:0.42in;top:7in;z-index:4;
+  }
+  .card.wide-full{width:100%;}
+  .card.wide-full .photo{aspect-ratio:32 / 6.5;}
+  .wide-meta{display:grid;grid-template-columns:1fr 2.2fr;gap:14px;align-items:start;}
+  .wide-meta .left-meta .row{font-size:6.5px;margin-bottom:2px;}
+  .wide-meta .right-meta .brief{margin-top:0;font-size:6.8px;line-height:1.5;}
+  .wide-meta .right-meta .agent{margin-top:4px;}
+  .grid .card{
+    position:relative;background:#08101314;
+    border:1px solid var(--rule);
+    overflow:hidden;
+    box-shadow:inset 0 0 0 1px rgba(13,91,107,0.18), 0 6px 18px rgba(0,0,0,0.5);
+  }
+  .card .photo{
+    position:relative;width:100%;aspect-ratio:5 / 2;background:#000;overflow:hidden;
+  }
+  .card .photo img{
+    width:100%;height:100%;object-fit:cover;
+    filter:contrast(1.12) saturate(0.72) hue-rotate(-8deg) brightness(0.9);
+  }
+  .card .photo::before{
+    content:"";position:absolute;left:0;right:0;top:0;height:8%;
+    background:#000;z-index:2;
+  }
+  .card .photo::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:8%;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 100%);z-index:2;
+  }
+  .file-tag{
+    position:absolute;top:6px;left:8px;z-index:3;
+    font-family:'Space Mono',monospace;font-size:6.5px;letter-spacing:0.22em;
+    color:var(--accent-glow);text-transform:uppercase;
+    background:rgba(0,0,0,0.6);padding:2px 6px;
+    border-left:2px solid var(--accent-lite);
+  }
+  .status-tag{
+    position:absolute;top:6px;right:8px;z-index:3;
+    font-family:'Space Mono',monospace;font-size:6px;letter-spacing:0.18em;
+    color:#cfd6d9;text-transform:uppercase;
+    background:rgba(0,0,0,0.55);padding:2px 6px;
+  }
+  .classified-stamp{
+    position:absolute;bottom:36%;right:8px;z-index:4;
+    font-family:'Oswald',sans-serif;font-weight:700;
+    color:rgba(160,30,42,0.78);
+    border:2px solid rgba(160,30,42,0.78);
+    padding:2px 6px;font-size:8px;letter-spacing:0.28em;
+    transform:rotate(-8deg);
+    text-transform:uppercase;
+    background:rgba(0,0,0,0.25);
+  }
+  .card .meta{
+    padding:6px 8px 7px;background:rgba(8,12,14,0.92);
+    border-top:1px solid var(--rule);
+  }
+  .card .meta .row{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-family:'Space Mono',monospace;font-size:5.8px;letter-spacing:0.16em;
+    color:var(--ink-dim);text-transform:uppercase;
+    margin-bottom:1px;
+  }
+  .card .meta .row b{color:var(--ink);font-weight:700;}
+  .card .meta .row .v{color:var(--accent-glow);}
+  .card .meta .brief{
+    font-family:'Space Mono',monospace;font-size:5.8px;line-height:1.45;
+    color:#b8bfc4;margin-top:4px;letter-spacing:0.03em;
+  }
+  .card .meta .agent{
+    margin-top:4px;padding-top:4px;border-top:1px dashed var(--rule);
+    font-family:'Space Mono',monospace;font-size:5.5px;letter-spacing:0.2em;
+    color:var(--accent-glow);text-transform:uppercase;
+  }
+
+  /* === MEMO === */
+  .memo{
+    position:absolute;left:0.45in;right:0.45in;bottom:0.7in;
+    background:rgba(8,12,14,0.96);
+    border:1px solid var(--rule);
+    border-left:3px solid var(--accent-lite);
+    padding:9px 14px 10px;z-index:5;
+    box-shadow:0 -8px 30px rgba(0,0,0,0.7), 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .memo .memo-head{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:0.32em;
+    color:var(--accent-glow);text-transform:uppercase;
+    border-bottom:1px solid var(--rule);padding-bottom:6px;margin-bottom:7px;
+  }
+  .memo .memo-head .stamp{
+    color:var(--red);border:2px solid var(--red);
+    padding:2px 8px;font-weight:700;
+    letter-spacing:0.32em;
+    transform:rotate(-3deg);
+    box-shadow:0 0 0 1px rgba(160,30,42,0.4) inset;
+  }
+  .memo .memo-body{
+    font-family:'Space Mono',monospace;font-size:7.5px;line-height:1.5;
+    color:#c8ced3;letter-spacing:0.03em;
+  }
+  .memo .memo-body em{color:var(--ink);font-style:normal;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}
+  .memo .memo-sign{
+    text-align:right;margin-top:6px;
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:11px;color:var(--ink-dim);
+  }
+  .page2-footer{
+    position:absolute;left:0.45in;right:0.45in;bottom:0.34in;
+    display:flex;justify-content:space-between;
+    font-family:'Space Mono',monospace;font-size:7px;letter-spacing:0.3em;
+    color:var(--ink-faint);text-transform:uppercase;z-index:5;
+  }
+  .page2-footer .year{
+    color:var(--ink);font-family:'Oswald',sans-serif;font-weight:600;
+    font-size:14px;letter-spacing:0.22em;
+    border-bottom:2px solid var(--accent-lite);padding-bottom:1px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1 — TITLE CARD ==================== -->
+<section class="page">
+  <div class="data-strip left">
+    <span>34.4208° N · 119.6982° W · ALT 0014M</span>
+    <span>FRAME 47/220 · ASA 800 · 2.39:1</span>
+  </div>
+  <div class="data-strip right">
+    <span>FILE 011 · MMXXVI · RUN 0:02:47:14</span>
+    <span>ENC AES-256 · CH 5.1 · DOLBY ATMOS</span>
+  </div>
+
+  <!-- top meta -->
+  <div class="meta-bar">
+    <div class="left">
+      <b>[GROOM] PICTURES</b><span class="accent-bar"></span><span>CLASSIFIED · EYES ONLY</span>
+    </div>
+    <div class="right">
+      <span>MISSION REPORT</span><span class="accent-bar"></span><b>FILE NO. 011 · MMXXVI</b>
+    </div>
+  </div>
+  <div class="meta-bar-2">
+    <span>SECTION 00 / TITLE SEQUENCE</span>
+    <span>CLEARANCE: GROUP CHAT ONLY</span>
+    <span>DURATION: A LIFETIME</span>
+  </div>
+
+  <!-- hero -->
+  <div class="hero-wrap">
+    <div class="hero-frame">
+      <img src="../photos/photo-08-mt-shasta.jpg" alt="Mt Shasta">
+      <div class="hero-corner">REC ● 47:14:02</div>
+      <div class="hero-corner tr">CAM A · ANAMORPHIC</div>
+      <div class="hero-caption">
+        <span><span class="crosshair"></span>SCENE 47 · MT. SHASTA, CA · EXTRACTION POINT</span>
+        <span>41.4099° N · 122.1949° W</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- title -->
+  <div class="title-block">
+    <div class="presents">[GROOM] PICTURES · IN ASSOCIATION WITH THE GROUP CHAT · PRESENT</div>
+    <h1 class="title">THE <span class="accent">BROTHERS</span></h1>
+    <div class="title-rule"></div>
+    <div class="tagline">a man, his brothers, and the years between.</div>
+  </div>
+
+  <!-- credits -->
+  <div class="credits">
+    <div class="cred-block">
+      <div class="cred-lbl">STARRING</div>
+      <div class="cred-val">[NAME 1]</div>
+    </div>
+    <div class="cred-block">
+      <div class="cred-lbl">INTRODUCING</div>
+      <div class="cred-val">[GROOM]<small>AS THE GROOM</small></div>
+    </div>
+    <div class="cred-block">
+      <div class="cred-lbl">WITH</div>
+      <div class="cred-val">[BRIDE]<small>AS THE BRIDE</small></div>
+    </div>
+  </div>
+
+  <div class="also-starring">
+    <div class="cred-lbl">ALSO STARRING</div>
+    <div class="row">[NAME 2]<span>·</span>[NAME 3]<span>·</span>[NAME 4]</div>
+    <div class="row">[NAME 5]<span>·</span>[NAME 6]<span>·</span>[NAME 7]<span>·</span>[NAME 8]</div>
+  </div>
+
+  <div class="directed-by">
+    <div class="cred-lbl">DIRECTED BY</div>
+    <div class="cred-val">[GROOM]</div>
+  </div>
+
+  <!-- footer -->
+  <div class="footer">
+    <div class="left">PRESENTED IN 2.39:1 SCOPE · DOLBY ATMOS<br>CGI BY THE LIGHT OF THE SUN</div>
+    <div class="center"><div class="year">MMXXVI</div></div>
+    <div class="right" style="text-align:right;"><span class="tag">THE WEDDING WILL ARRIVE [WEDDING DATE]</span><br>END SECTION 00 · CONTINUE →</div>
+  </div>
+</section>
+
+<!-- ==================== PAGE 2 — DOSSIER ==================== -->
+<section class="page">
+  <div class="data-strip left">
+    <span>DOSSIER 011 · 10 FILES · CROSS-REF: BROTHERHOOD</span>
+    <span>ENC AES-256 · NO REDISTRIBUTION · M-CLEARED</span>
+  </div>
+  <div class="data-strip right">
+    <span>SECTION 01 / SUBJECTS OF INTEREST · MMXXVI</span>
+    <span>CONFIDENCE 99.7% · STATUS NOMINAL</span>
+  </div>
+
+  <div class="meta-bar">
+    <div class="left"><b>[GROOM] PICTURES</b><span class="accent-bar"></span><span>DOSSIER · SECTION 01</span></div>
+    <div class="right"><span>SUBJECTS</span><span class="accent-bar"></span><b>10 FILES · CLEARED</b></div>
+  </div>
+
+  <div class="dossier-head">
+    <div class="dh-title">DOSSIER · SUBJECTS OF <span class="accent">INTEREST</span></div>
+    <div class="dh-sub">CROSS-REFERENCES: BROTHERHOOD · RECURRING ACTIVITIES · LIFETIME ATTACHMENT</div>
+    <div class="dh-rule"></div>
+  </div>
+
+  <div class="grid">
+
+    <!-- FILE 01 - Egypt -->
+    <div class="card">
+      <div class="photo">
+        <img src="../photos/photo-02-egypt-pyramid.jpg" alt="Egypt">
+        <div class="file-tag">FILE NO. 01</div>
+        <div class="status-tag">CONFIRMED</div>
+        <div class="classified-stamp">CLASSIFIED</div>
+      </div>
+      <div class="meta">
+        <div class="row"><b>LOCATION</b><span class="v">GIZA, EG · 29.9792° N</span></div>
+        <div class="row"><b>DATE</b><span>24 OCT MMXXII</span></div>
+        <div class="row"><b>THREAT LEVEL</b><span class="v">CINEMATIC</span></div>
+        <div class="brief">SUBJECTS OBSERVED CONSTRUCTING HUMAN PYRAMID FORMATION IN FRONT OF ANCIENT WONDER. NO LOCAL AUTHORITIES INVOLVED. RECOMMEND NO INTERVENTION.</div>
+        <div class="agent">AGENT ON FILE: [NAME 2]</div>
+      </div>
+    </div>
+
+    <!-- FILE 02 - Cabo -->
+    <div class="card">
+      <div class="photo">
+        <img src="../photos/photo-04-cabo-boat.jpg" alt="Cabo">
+        <div class="file-tag">FILE NO. 02</div>
+        <div class="status-tag">CONFIRMED</div>
+        <div class="classified-stamp">EYES ONLY</div>
+      </div>
+      <div class="meta">
+        <div class="row"><b>LOCATION</b><span class="v">CABO SAN LUCAS, MX</span></div>
+        <div class="row"><b>DATE</b><span>JUL MMXXIII</span></div>
+        <div class="row"><b>THREAT LEVEL</b><span class="v">NAUTICAL</span></div>
+        <div class="brief">VESSEL INTERCEPTED NEAR EL ARCO. SUBJECTS APPEAR FRIENDLY. CARRYING SUNSCREEN AND QUESTIONABLE PLAYLIST.</div>
+        <div class="agent">AGENT ON FILE: [NAME 3]</div>
+      </div>
+    </div>
+
+    <!-- FILE 03 - Zion Narrows -->
+    <div class="card">
+      <div class="photo">
+        <img src="../photos/photo-07-zion-narrows.jpg" alt="Zion">
+        <div class="file-tag">FILE NO. 03</div>
+        <div class="status-tag">CONFIRMED</div>
+        <div class="classified-stamp">CLASSIFIED</div>
+      </div>
+      <div class="meta">
+        <div class="row"><b>LOCATION</b><span class="v">ZION NP, UT</span></div>
+        <div class="row"><b>DATE</b><span>SEP MMXXIII</span></div>
+        <div class="row"><b>THREAT LEVEL</b><span class="v">WET</span></div>
+        <div class="brief">SEVEN SUBJECTS FORDED CANYON RIVER WITH IMPROVISED STAFFS. PROFICIENCY: SURPRISINGLY HIGH. MORALE: UNREASONABLY HIGH.</div>
+        <div class="agent">AGENT ON FILE: [NAME 4]</div>
+      </div>
+    </div>
+
+    <!-- FILE 04 - Sedona spires -->
+    <div class="card">
+      <div class="photo">
+        <img src="../photos/photo-05-sedona-spires.jpg" alt="Sedona">
+        <div class="file-tag">FILE NO. 04</div>
+        <div class="status-tag">CONFIRMED</div>
+        <div class="classified-stamp">CLASSIFIED</div>
+      </div>
+      <div class="meta">
+        <div class="row"><b>LOCATION</b><span class="v">SEDONA, AZ</span></div>
+        <div class="row"><b>DATE</b><span>MAR MMXXIV</span></div>
+        <div class="row"><b>THREAT LEVEL</b><span class="v">GEOLOGICAL</span></div>
+        <div class="brief">FIVE SUBJECTS POSITIONED BETWEEN RED SANDSTONE SPIRES. NO INTEL ON HOW THEY GOT UP THERE. ASSUME HIKING.</div>
+        <div class="agent">AGENT ON FILE: [NAME 5]</div>
+      </div>
+    </div>
+
+    <!-- FILE 05 - NYC -->
+    <div class="card">
+      <div class="photo">
+        <img src="../photos/photo-06-times-square.jpg" alt="NYC">
+        <div class="file-tag">FILE NO. 05</div>
+        <div class="status-tag">CONFIRMED</div>
+        <div class="classified-stamp">EYES ONLY</div>
+      </div>
+      <div class="meta">
+        <div class="row"><b>LOCATION</b><span class="v">TIMES SQ, NYC</span></div>
+        <div class="row"><b>DATE</b><span>NOV MMXXIII</span></div>
+        <div class="row"><b>THREAT LEVEL</b><span class="v">NEON</span></div>
+        <div class="brief">SUBJECTS SIGHTED ON RED STAIRCASE. BACKLIT BY ONE (1) DRAKE BILLBOARD. SURVEILLANCE COMPROMISED BY 14M TOURISTS.</div>
+        <div class="agent">AGENT ON FILE: [NAME 6]</div>
+      </div>
+    </div>
+
+    <!-- FILE 06 - Sedona spiral -->
+    <div class="card">
+      <div class="photo">
+        <img src="../photos/photo-10-sedona-spiral.jpg" alt="Sedona spiral">
+        <div class="file-tag">FILE NO. 06</div>
+        <div class="status-tag">CONFIRMED</div>
+        <div class="classified-stamp">CLASSIFIED</div>
+      </div>
+      <div class="meta">
+        <div class="row"><b>LOCATION</b><span class="v">SEDONA, AZ · ALT</span></div>
+        <div class="row"><b>DATE</b><span>MAR MMXXIV</span></div>
+        <div class="row"><b>THREAT LEVEL</b><span class="v">MYSTICAL</span></div>
+        <div class="brief">CIRCULAR STONE ARRANGEMENT DETECTED FOREGROUND. POSSIBLY RITUAL. POSSIBLY VORTEX. PROBABLY [NAME 7]'S IDEA.</div>
+        <div class="agent">AGENT ON FILE: [NAME 7]</div>
+      </div>
+    </div>
+
+    <!-- FILE 07 - Beach brown tees -->
+    <div class="card">
+      <div class="photo">
+        <img src="../photos/photo-01-beach-brown-tees.jpg" alt="Beach">
+        <div class="file-tag">FILE NO. 07</div>
+        <div class="status-tag">CONFIRMED</div>
+        <div class="classified-stamp">EYES ONLY</div>
+      </div>
+      <div class="meta">
+        <div class="row"><b>LOCATION</b><span class="v">PACIFIC COAST, CA</span></div>
+        <div class="row"><b>DATE</b><span>JUN MMXXV</span></div>
+        <div class="row"><b>THREAT LEVEL</b><span class="v">UNIFORMED</span></div>
+        <div class="brief">SEVEN SUBJECTS IN MATCHING DARK BROWN TACTICAL TEES. OPERATION CODENAME UNKNOWN. ASSUME BACHELOR PROTOCOL ACTIVE.</div>
+        <div class="agent">AGENT ON FILE: [NAME 8]</div>
+      </div>
+    </div>
+
+    <!-- FILE 08 - Beach pile -->
+    <div class="card">
+      <div class="photo">
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" alt="Beach pile">
+        <div class="file-tag">FILE NO. 08</div>
+        <div class="status-tag">CONFIRMED</div>
+        <div class="classified-stamp">CLASSIFIED</div>
+      </div>
+      <div class="meta">
+        <div class="row"><b>LOCATION</b><span class="v">CA COAST · GOLDEN HR</span></div>
+        <div class="row"><b>DATE</b><span>JUN MMXXV</span></div>
+        <div class="row"><b>THREAT LEVEL</b><span class="v">JOYFUL</span></div>
+        <div class="brief">EIGHT SUBJECTS COLLAPSED IN HEAP ON SAND. NO INJURIES REPORTED. LAUGHTER LEVELS EXCEED LEGAL LIMIT.</div>
+        <div class="agent">AGENT ON FILE: [NAME 1]</div>
+      </div>
+    </div>
+
+    <!-- FILE 09 - Neon dorm -->
+    <div class="card">
+      <div class="photo">
+        <img src="../photos/photo-09-neon-dorm.jpg" alt="Dorm">
+        <div class="file-tag">FILE NO. 09</div>
+        <div class="status-tag">ARCHIVE</div>
+        <div class="classified-stamp">EYES ONLY</div>
+      </div>
+      <div class="meta">
+        <div class="row"><b>LOCATION</b><span class="v">CLASSIFIED · COLLEGE</span></div>
+        <div class="row"><b>DATE</b><span>CIRCA MMXXI</span></div>
+        <div class="row"><b>THREAT LEVEL</b><span class="v">FOUNDATIONAL</span></div>
+        <div class="brief">ORIGIN INTEL. SUBJECTS LIT BY ILLEGAL NEON. ONE SUBJECT MASKED. PANDEMIC-ERA. BROTHERHOOD CONFIRMED OPERATIONAL.</div>
+        <div class="agent">AGENT ON FILE: [NAME 2]</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- KEY EVIDENCE wide row -->
+  <div class="key-evidence">
+    <div class="card wide-full">
+      <div class="photo">
+        <img src="../photos/photo-11-zion-warriors.jpg" alt="Zion warriors">
+        <div class="file-tag">FILE NO. 10 · KEY EVIDENCE</div>
+        <div class="status-tag">CLEARED FOR M</div>
+        <div class="classified-stamp" style="bottom:50%;right:18px;font-size:11px;letter-spacing:0.34em;">TOP SECRET</div>
+      </div>
+      <div class="meta wide-meta">
+        <div class="left-meta">
+          <div class="row"><b>LOCATION</b><span class="v">ZION NP, UT · ALT FRAME</span></div>
+          <div class="row"><b>DATE</b><span>SEP MMXXIII · ENHANCED</span></div>
+          <div class="row"><b>THREAT LEVEL</b><span class="v">MYTHIC</span></div>
+        </div>
+        <div class="right-meta">
+          <div class="brief">FINAL FRAME. SEVEN OPERATIVES IN COMBAT STANCE WITH WOODEN STAVES. ASSESSMENT: NOT ACTUALLY DANGEROUS — WILL DEFEND ONE ANOTHER TO THE END. RECOMMEND: PROTECT AT ALL COSTS.</div>
+          <div class="agent">AGENTS: [NAME 1] · [NAME 2] · [NAME 3] · [NAME 4] · [NAME 5] · [NAME 6] · [GROOM]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- memo -->
+  <div class="memo">
+    <div class="memo-head">
+      <span>FINAL REPORT — TO M FROM Q</span>
+      <span class="stamp">TOP SECRET</span>
+    </div>
+    <div class="memo-body">
+      All subjects confirmed alive and well-attached. Cross-referenced across <em>11 files</em>, <em>6 countries</em>, and one <em>lifetime</em>. Recommend: <em>proceed with wedding</em>. [GROOM] is to be considered <em>armed and in love</em>. Pursuit not advised.
+    </div>
+    <div class="memo-sign">— Q</div>
+  </div>
+
+  <div class="page2-footer">
+    <span>END SECTION 01 · DOSSIER COMPLETE</span>
+    <span class="year">MMXXVI</span>
+    <span>[GROOM] PICTURES · CLASSIFIED</span>
+  </div>
+</section>
+
+</body>
+</html>

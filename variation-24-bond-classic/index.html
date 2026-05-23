@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Brothers — A [GROOM] Production</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Oswald:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #000000;
+    --paper-black: #08070a;
+    --blood: #a01e2a;
+    --blood-deep: #6b0f17;
+    --gold: #c8a85a;
+    --gold-deep: #8b5a2b;
+    --navy: #102a51;
+    --bone: #f3ecd9;
+    --white: #ffffff;
+  }
+
+  html, body {
+    background: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+    color: var(--bone);
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    page-break-after: always;
+    color: var(--bone);
+  }
+
+  /* ===== Page 1 ===== */
+
+  /* Radiating concentric rings background */
+  .iris-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 32%, transparent 0, transparent 1.6in,
+        rgba(160,30,42,0.05) 1.6in, rgba(160,30,42,0.05) 1.62in, transparent 1.62in,
+        transparent 2.0in,
+        rgba(200,168,90,0.04) 2.0in, rgba(200,168,90,0.04) 2.02in, transparent 2.02in,
+        transparent 2.5in,
+        rgba(160,30,42,0.05) 2.5in, rgba(160,30,42,0.05) 2.52in, transparent 2.52in,
+        transparent 3.2in,
+        rgba(200,168,90,0.03) 3.2in, rgba(200,168,90,0.03) 3.22in, transparent 3.22in,
+        transparent 4.0in,
+        rgba(160,30,42,0.04) 4.0in, rgba(160,30,42,0.04) 4.02in, transparent 4.02in,
+        transparent 5.0in,
+        rgba(200,168,90,0.025) 5.0in, rgba(200,168,90,0.025) 5.02in, transparent 5.02in);
+    pointer-events: none;
+  }
+
+  .grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  .corner-mark {
+    position: absolute;
+    font-family: 'Oswald', sans-serif;
+    font-size: 8pt;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    opacity: 0.7;
+  }
+  .corner-tl { top: 0.35in; left: 0.4in; }
+  .corner-tr { top: 0.35in; right: 0.4in; text-align: right; }
+  .corner-bl { bottom: 0.35in; left: 0.4in; }
+  .corner-br { bottom: 0.35in; right: 0.4in; text-align: right; }
+
+  .reel-mark {
+    position: absolute;
+    top: 0.35in;
+    right: 0.4in;
+    width: 0.5in;
+    height: 0.5in;
+    opacity: 0.55;
+  }
+
+  /* The gun barrel */
+  .gun-barrel-wrap {
+    position: absolute;
+    top: 0.7in;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4.2in;
+    height: 4.2in;
+    z-index: 3;
+  }
+  .gun-barrel-outer {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #000;
+    box-shadow:
+      0 0 0 0.06in #000,
+      0 0 0 0.08in var(--gold),
+      0 0 0 0.12in #000,
+      0 0 0 0.14in var(--blood-deep),
+      0 0 0 0.30in #000,
+      0 0 60px rgba(160,30,42,0.35);
+    overflow: hidden;
+  }
+  .gun-barrel-inner {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 60%, #3a1e22 0%, #1a0a0c 55%, #000 100%);
+  }
+  .gun-barrel-inner::before {
+    /* iris vignette */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.7) 90%, #000 100%);
+    z-index: 5;
+    pointer-events: none;
+  }
+  /* Inside the iris: dramatic high-contrast lineup of the boys (duotone red/black) */
+  .iris-photo {
+    position: absolute;
+    inset: 0;
+    background-image: url('../photos/photo-01-beach-brown-tees.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    filter: contrast(1.6) brightness(0.7) saturate(0) sepia(1) hue-rotate(-40deg);
+    opacity: 0.85;
+    transform: scale(1.1);
+    mix-blend-mode: lighten;
+    z-index: 1;
+  }
+  .iris-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    background:
+      radial-gradient(ellipse at 50% 100%, rgba(160,30,42,0.4) 0%, rgba(0,0,0,0.0) 50%),
+      radial-gradient(ellipse at 50% 0%, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%);
+    pointer-events: none;
+  }
+  /* central walking figure silhouette (Bond style) */
+  .barrel-figure {
+    position: absolute;
+    left: 50%;
+    top: 0.4in;
+    transform: translateX(-50%);
+    width: 1.3in;
+    height: 2.6in;
+    z-index: 7;
+    filter: drop-shadow(0 0 12px rgba(0,0,0,0.8));
+  }
+
+  /* Blood drip from top */
+  .blood-drip {
+    position: absolute;
+    top: -0.05in;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.18in;
+    height: 1.6in;
+    background: linear-gradient(to bottom, var(--blood) 0%, var(--blood) 60%, var(--blood-deep) 100%);
+    border-radius: 0 0 50% 50% / 0 0 18% 18%;
+    z-index: 4;
+    box-shadow: 0 0 12px rgba(160,30,42,0.6);
+  }
+  .blood-drip::after {
+    content: '';
+    position: absolute;
+    bottom: -0.10in;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.18in;
+    height: 0.22in;
+    background: radial-gradient(circle at 50% 35%, var(--blood) 0%, var(--blood-deep) 80%, transparent 100%);
+    border-radius: 50%;
+  }
+
+  /* Title block below the iris */
+  .title-block {
+    position: absolute;
+    top: 5.4in;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 5;
+    padding: 0 0.5in;
+  }
+  .presents {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 9pt;
+    letter-spacing: 0.55em;
+    color: var(--bone);
+    margin-bottom: 0.18in;
+    text-transform: uppercase;
+  }
+  .title-main {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 88pt;
+    letter-spacing: 0.06em;
+    color: var(--bone);
+    line-height: 0.9;
+    text-shadow: 0 0 30px rgba(160,30,42,0.35);
+  }
+  .title-main .accent {
+    color: var(--blood);
+  }
+  .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14pt;
+    color: var(--gold);
+    margin-top: 0.06in;
+    letter-spacing: 0.05em;
+  }
+
+  .credit-roll {
+    position: absolute;
+    top: 8.55in;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 5;
+    padding: 0 0.6in;
+  }
+  .credit-line {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 8.5pt;
+    letter-spacing: 0.35em;
+    color: var(--bone);
+    text-transform: uppercase;
+    margin: 0.07in 0;
+  }
+  .credit-line .as {
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .credit-line.with {
+    color: var(--bone);
+    margin-top: 0.16in;
+  }
+  .credit-line.with .name {
+    color: var(--bone);
+  }
+
+  .tagline {
+    position: absolute;
+    bottom: 0.9in;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13pt;
+    color: var(--blood);
+    letter-spacing: 0.18em;
+    z-index: 5;
+  }
+  .directed {
+    position: absolute;
+    bottom: 0.5in;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 9pt;
+    letter-spacing: 0.45em;
+    color: var(--bone);
+    z-index: 5;
+    text-transform: uppercase;
+  }
+  .directed .name {
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* small decorative pistol/film reel */
+  .deco-svg {
+    position: absolute;
+    opacity: 0.55;
+    z-index: 2;
+  }
+
+  /* ===== Page 2 ===== */
+
+  .p2-header {
+    position: absolute;
+    top: 0.45in;
+    left: 0.5in;
+    right: 0.5in;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 6;
+  }
+  .p2-header .reel-no {
+    font-family: 'Oswald', sans-serif;
+    font-size: 8pt;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .p2-header .center-mark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14pt;
+    letter-spacing: 0.4em;
+    color: var(--bone);
+  }
+
+  .comp-grid {
+    position: absolute;
+    top: 0.95in;
+    left: 0.5in;
+    right: 0.5in;
+    bottom: 1.45in;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 2.2in 1.6in 1.4in 1.55in;
+    gap: 0.12in;
+  }
+
+  .comp {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .comp-photo {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .comp-overlay {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: multiply;
+  }
+  .comp-label {
+    position: absolute;
+    z-index: 3;
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--bone);
+    line-height: 0.95;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 18px rgba(0,0,0,0.6);
+  }
+  .comp-credit {
+    position: absolute;
+    z-index: 3;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 7pt;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--bone);
+    opacity: 0.85;
+  }
+
+  /* Composition 1: large, deep red, photo-09 neon dorm — duotone */
+  .c1 { grid-column: span 4; grid-row: span 1; background: var(--blood); }
+  .c1 .comp-photo {
+    background-image: url('../photos/photo-09-neon-dorm.jpg');
+    filter: contrast(1.6) brightness(0.65) saturate(0) sepia(1) hue-rotate(-50deg);
+    opacity: 0.7;
+    background-position: center center;
+    mix-blend-mode: lighten;
+  }
+  .c1::before {
+    /* darken from top to give title room */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(107,15,23,0.85) 0%, rgba(107,15,23,0.15) 50%, rgba(0,0,0,0.5) 100%);
+    z-index: 2;
+  }
+  .c1::after {
+    /* radial iris ripple in corner */
+    content: '';
+    position: absolute;
+    right: -1.0in;
+    bottom: -1.0in;
+    width: 2.6in;
+    height: 2.6in;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.15);
+    box-shadow:
+      0 0 0 0.15in transparent,
+      inset 0 0 0 0.2in rgba(255,255,255,0.05),
+      0 0 0 0.4in rgba(255,255,255,0.04);
+    pointer-events: none;
+  }
+  .c1 .comp-label {
+    left: 0.3in;
+    bottom: 0.35in;
+    font-size: 54pt;
+  }
+  .c1 .comp-credit {
+    left: 0.3in;
+    top: 0.3in;
+  }
+
+  /* Composition 2: tall narrow gold/sedona spires — duotone */
+  .c2 { grid-column: span 2; grid-row: span 1; background: linear-gradient(180deg, var(--gold) 0%, var(--gold-deep) 100%); }
+  .c2 .comp-photo {
+    background-image: url('../photos/photo-05-sedona-spires.jpg');
+    filter: contrast(1.5) brightness(0.55) saturate(0) sepia(1) hue-rotate(-25deg);
+    opacity: 0.85;
+    background-position: center;
+    mix-blend-mode: multiply;
+  }
+  .c2 .comp-label {
+    left: 0.2in;
+    bottom: 0.3in;
+    font-size: 28pt;
+    color: var(--bone);
+    text-shadow: 0 0 10px rgba(0,0,0,0.85), 0 1px 2px rgba(0,0,0,0.95);
+  }
+  .c2 .comp-credit {
+    left: 0.2in;
+    top: 0.25in;
+    color: var(--bone);
+    text-shadow: 0 0 8px rgba(0,0,0,0.85);
+  }
+
+  /* Composition 3: navy, zion warriors (photo-11), large — duotone */
+  .c3 { grid-column: span 3; grid-row: span 1; background: var(--navy); }
+  .c3 .comp-photo {
+    background-image: url('../photos/photo-11-zion-warriors.jpg');
+    filter: contrast(1.5) brightness(0.65) saturate(0) sepia(1) hue-rotate(180deg);
+    opacity: 0.8;
+    background-position: center 30%;
+    mix-blend-mode: lighten;
+  }
+  .c3 .comp-label {
+    left: 0.3in;
+    bottom: 0.3in;
+    font-size: 36pt;
+  }
+  .c3 .comp-credit {
+    left: 0.3in;
+    top: 0.25in;
+    color: var(--gold);
+  }
+
+  /* Composition 4: black with full color shasta */
+  .c4 { grid-column: span 3; grid-row: span 1; background: #000; }
+  .c4 .comp-photo {
+    background-image: url('../photos/photo-08-mt-shasta.jpg');
+    filter: contrast(1.4) brightness(0.7) saturate(1.2);
+    opacity: 0.85;
+    background-position: center;
+  }
+  .c4::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%);
+    z-index: 2;
+  }
+  .c4 .comp-label {
+    left: 0.3in;
+    bottom: 0.3in;
+    font-size: 30pt;
+    color: var(--gold);
+  }
+  .c4 .comp-credit {
+    left: 0.3in;
+    top: 0.25in;
+  }
+
+  /* Composition 5: deep red, Egypt — duotone */
+  .c5 { grid-column: span 2; grid-row: span 1; background: var(--blood-deep); }
+  .c5 .comp-photo {
+    background-image: url('../photos/photo-02-egypt-pyramid.jpg');
+    filter: contrast(1.4) brightness(0.7) saturate(0) sepia(1) hue-rotate(-40deg);
+    opacity: 0.85;
+    background-position: center 35%;
+    mix-blend-mode: lighten;
+  }
+  .c5 .comp-label {
+    left: 0.18in;
+    bottom: 0.22in;
+    font-size: 22pt;
+    color: var(--gold);
+  }
+  .c5 .comp-credit {
+    left: 0.18in;
+    top: 0.22in;
+    font-size: 6.5pt;
+  }
+
+  /* Composition 6: gold tinted Cabo boat — duotone */
+  .c6 { grid-column: span 2; grid-row: span 1; background: var(--gold-deep); }
+  .c6 .comp-photo {
+    background-image: url('../photos/photo-04-cabo-boat.jpg');
+    filter: contrast(1.4) brightness(0.55) saturate(0) sepia(1) hue-rotate(-15deg);
+    opacity: 0.85;
+    background-position: center 30%;
+    mix-blend-mode: multiply;
+  }
+  .c6 .comp-label {
+    left: 0.18in;
+    bottom: 0.22in;
+    font-size: 22pt;
+    color: var(--bone);
+    text-shadow: 0 0 10px rgba(0,0,0,0.85), 0 1px 2px rgba(0,0,0,0.95);
+  }
+  .c6 .comp-credit {
+    left: 0.18in;
+    top: 0.22in;
+    color: var(--gold);
+    font-size: 6.5pt;
+    text-shadow: 0 0 8px rgba(0,0,0,0.85);
+  }
+
+  /* Composition 7: black with bold red times square photo */
+  .c7 { grid-column: span 2; grid-row: span 1; background: var(--black); }
+  .c7 .comp-photo {
+    background-image: url('../photos/photo-06-times-square.jpg');
+    filter: contrast(1.6) brightness(0.7) saturate(1.6);
+    opacity: 0.9;
+    background-position: center 30%;
+  }
+  .c7::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(160,30,42,0.45) 0%, rgba(0,0,0,0.1) 60%);
+    z-index: 2;
+  }
+  .c7 .comp-label {
+    left: 0.18in;
+    bottom: 0.22in;
+    font-size: 22pt;
+    color: var(--bone);
+  }
+  .c7 .comp-credit {
+    left: 0.18in;
+    top: 0.22in;
+    font-size: 6.5pt;
+    color: var(--gold);
+  }
+
+  /* Composition 8 — duotone blood red zion narrows */
+  .c8 { grid-column: span 2; grid-row: span 1; background: var(--blood); }
+  .c8 .comp-photo {
+    background-image: url('../photos/photo-07-zion-narrows.jpg');
+    filter: contrast(1.5) brightness(0.7) saturate(0) sepia(1) hue-rotate(-40deg);
+    opacity: 0.8;
+    background-position: center 30%;
+    mix-blend-mode: lighten;
+  }
+  .c8 .comp-label {
+    left: 0.18in;
+    bottom: 0.22in;
+    font-size: 22pt;
+    text-shadow: 0 0 12px rgba(0,0,0,0.9), 0 1px 2px rgba(0,0,0,0.95);
+  }
+  .c8 .comp-credit {
+    left: 0.18in;
+    top: 0.22in;
+    font-size: 6.5pt;
+    text-shadow: 0 0 8px rgba(0,0,0,0.85);
+  }
+
+  /* Composition 9 — sedona spiral, golden sunset duotone */
+  .c9 { grid-column: span 2; grid-row: span 1; background: var(--gold); }
+  .c9 .comp-photo {
+    background-image: url('../photos/photo-10-sedona-spiral.jpg');
+    filter: contrast(1.4) brightness(0.65) saturate(0) sepia(1) hue-rotate(-20deg);
+    opacity: 0.85;
+    background-position: center 40%;
+    mix-blend-mode: multiply;
+  }
+  .c9 .comp-label {
+    left: 0.2in;
+    bottom: 0.22in;
+    font-size: 22pt;
+    color: var(--bone);
+    text-shadow: 0 0 10px rgba(0,0,0,0.85), 0 1px 2px rgba(0,0,0,0.95);
+  }
+  .c9 .comp-credit {
+    left: 0.2in;
+    top: 0.22in;
+    color: var(--bone);
+    font-size: 6.5pt;
+    text-shadow: 0 0 8px rgba(0,0,0,0.85);
+  }
+  /* iris decoration in corner */
+  .c9::after {
+    content: '';
+    position: absolute;
+    left: -0.8in;
+    top: -0.8in;
+    width: 2.0in;
+    height: 2.0in;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.2);
+    box-shadow:
+      0 0 0 0.15in transparent,
+      inset 0 0 0 0.15in rgba(0,0,0,0.08);
+  }
+
+  /* Beach finale photo - the big finale */
+  .ccover { grid-column: span 2; grid-row: span 1; background: var(--blood-deep); position: relative; }
+  .ccover .comp-photo {
+    background-image: url('../photos/photo-03-beach-sunset-pile.jpg');
+    filter: contrast(1.4) brightness(0.55) saturate(1.4) sepia(0.3);
+    opacity: 0.95;
+    background-position: center 30%;
+  }
+  .ccover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(160,30,42,0.55) 0%, rgba(0,0,0,0.85) 100%);
+    z-index: 2;
+  }
+  .ccover .comp-label {
+    left: 0.18in;
+    bottom: 0.22in;
+    font-size: 22pt;
+    color: var(--gold);
+  }
+  .ccover .comp-credit {
+    left: 0.18in;
+    top: 0.22in;
+    font-size: 6.5pt;
+  }
+
+  /* Final card at bottom */
+  .final-card {
+    position: absolute;
+    bottom: 0.45in;
+    left: 0.5in;
+    right: 0.5in;
+    height: 0.85in;
+    z-index: 6;
+    border-top: 1px solid rgba(200,168,90,0.4);
+    border-bottom: 1px solid rgba(200,168,90,0.4);
+    padding: 0.14in 0;
+    text-align: center;
+  }
+  .final-card .return {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26pt;
+    letter-spacing: 0.18em;
+    color: var(--bone);
+    line-height: 1;
+  }
+  .final-card .return .accent {
+    color: var(--blood);
+  }
+  .final-card .soundtrack {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 11pt;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    margin-top: 0.08in;
+  }
+
+  /* Small decorative iris/playing card pips floating */
+  .pip {
+    position: absolute;
+    opacity: 0.7;
+    z-index: 5;
+  }
+
+  /* Tiny "8" badge — they're 8 brothers */
+  .agent-badge {
+    position: absolute;
+    top: 0.4in;
+    left: 0.5in;
+    width: 0.7in;
+    height: 0.7in;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 7;
+  }
+  .agent-badge .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24pt;
+    color: var(--gold);
+    line-height: 0.9;
+  }
+  .agent-badge .lic {
+    font-family: 'Oswald', sans-serif;
+    font-size: 5pt;
+    letter-spacing: 0.3em;
+    color: var(--bone);
+    text-transform: uppercase;
+    margin-top: 1pt;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<div class="page page-1">
+  <div class="iris-bg"></div>
+  <div class="grain"></div>
+
+  <!-- Corner marks: opening credit reel cues -->
+  <div class="corner-mark corner-tl">REEL 01 · SCENE I</div>
+  <svg class="reel-mark" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="48" fill="none" stroke="#c8a85a" stroke-width="2"/>
+    <circle cx="50" cy="50" r="6" fill="#c8a85a"/>
+    <circle cx="50" cy="20" r="8" fill="#000" stroke="#c8a85a" stroke-width="1.5"/>
+    <circle cx="50" cy="80" r="8" fill="#000" stroke="#c8a85a" stroke-width="1.5"/>
+    <circle cx="20" cy="50" r="8" fill="#000" stroke="#c8a85a" stroke-width="1.5"/>
+    <circle cx="80" cy="50" r="8" fill="#000" stroke="#c8a85a" stroke-width="1.5"/>
+  </svg>
+  <div class="corner-mark corner-bl">SOUND · DOLBY STEREO</div>
+  <div class="corner-mark corner-br">PRINT · 35MM</div>
+
+  <!-- Gun barrel -->
+  <div class="gun-barrel-wrap">
+    <div class="gun-barrel-outer">
+      <div class="gun-barrel-inner">
+        <div class="iris-photo"></div>
+        <div class="iris-vignette"></div>
+        <!-- Central walking figure silhouette -->
+        <svg class="barrel-figure" viewBox="0 0 100 220" preserveAspectRatio="xMidYMax meet">
+          <!-- A stylized man silhouette mid-stride, suit, gun -->
+          <g fill="#000">
+            <!-- head -->
+            <ellipse cx="50" cy="22" rx="11" ry="13"/>
+            <!-- neck -->
+            <rect x="46" y="32" width="8" height="6"/>
+            <!-- torso (suit jacket) -->
+            <path d="M 30 40 L 70 40 L 76 110 L 60 116 L 50 105 L 40 116 L 24 110 Z"/>
+            <!-- shoulders lapel hint -->
+            <path d="M 42 42 L 50 60 L 58 42 Z" fill="#0a0a0a"/>
+            <!-- arms (mid-stride, one raised with pistol) -->
+            <path d="M 30 42 L 18 70 L 12 105 L 18 108 L 26 78 L 35 50 Z"/>
+            <path d="M 70 42 L 84 65 L 92 70 L 95 76 L 88 76 L 82 70 L 75 55 Z"/>
+            <!-- pistol -->
+            <rect x="92" y="68" width="6" height="3" fill="#000"/>
+            <rect x="96" y="68" width="3" height="6" fill="#000"/>
+            <!-- legs (walking) -->
+            <path d="M 40 110 L 36 175 L 30 215 L 42 215 L 50 175 L 50 115 Z"/>
+            <path d="M 60 110 L 64 170 L 70 215 L 58 215 L 50 175 L 50 115 Z"/>
+          </g>
+        </svg>
+        <!-- Lined-up silhouettes of the boys at the bottom of the barrel -->
+        <svg style="position:absolute; bottom:0; left:0; width:100%; height:1.4in; z-index:6; opacity:0.95;" viewBox="0 0 400 80" preserveAspectRatio="xMidYMax meet">
+          <g fill="#000">
+            <rect x="10"  y="35" width="20" height="45"/>
+            <circle cx="20"  cy="28" r="9"/>
+            <rect x="50"  y="30" width="22" height="50"/>
+            <circle cx="61"  cy="22" r="10"/>
+            <rect x="92"  y="33" width="20" height="47"/>
+            <circle cx="102" cy="25" r="9"/>
+            <rect x="132" y="28" width="22" height="52"/>
+            <circle cx="143" cy="20" r="10"/>
+            <rect x="174" y="32" width="20" height="48"/>
+            <circle cx="184" cy="24" r="9"/>
+            <rect x="214" y="30" width="22" height="50"/>
+            <circle cx="225" cy="22" r="10"/>
+            <rect x="256" y="33" width="20" height="47"/>
+            <circle cx="266" cy="25" r="9"/>
+            <rect x="296" y="29" width="22" height="51"/>
+            <circle cx="307" cy="21" r="10"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <!-- Blood drip outside iris -->
+    <div class="blood-drip"></div>
+  </div>
+
+  <!-- 8 brothers badge -->
+  <div class="agent-badge">
+    <div class="num">08</div>
+    <div class="lic">LIC. TO TRAVEL</div>
+  </div>
+
+  <!-- Title block -->
+  <div class="title-block">
+    <div class="presents">[GROOM] PRODUCTIONS PRESENT</div>
+    <div class="title-main">THE <span class="accent">BROTHERS</span></div>
+    <div class="subtitle">an ensemble film</div>
+  </div>
+
+  <!-- Credit roll -->
+  <div class="credit-roll">
+    <div class="credit-line">STARRING <span class="name">[NAME 1]</span> <span class="as">AS</span> THE INSTIGATOR</div>
+    <div class="credit-line">AND <span class="name">[NAME 2]</span> <span class="as">AS</span> THE CARTOGRAPHER</div>
+    <div class="credit-line with">WITH <span class="name">[NAME 3]</span> &nbsp;·&nbsp; <span class="name">[NAME 4]</span> &nbsp;·&nbsp; <span class="name">[NAME 5]</span></div>
+    <div class="credit-line with">AND <span class="name">[NAME 6]</span> &nbsp;·&nbsp; <span class="name">[NAME 7]</span> &nbsp;·&nbsp; <span class="name">[NAME 8]</span></div>
+  </div>
+
+  <div class="tagline">— EVERY DECADE NEEDS A REUNION —</div>
+  <div class="directed">DIRECTED BY &nbsp; <span class="name">[GROOM]</span></div>
+
+  <!-- Film camera silhouette decorative bottom-left -->
+  <svg class="deco-svg" style="bottom: 1.55in; left: 0.6in; width: 0.7in; height: 0.45in;" viewBox="0 0 120 80">
+    <g fill="#c8a85a" opacity="0.55">
+      <!-- film camera body -->
+      <rect x="20" y="30" width="55" height="35" rx="2"/>
+      <!-- lens -->
+      <rect x="75" y="38" width="20" height="20"/>
+      <circle cx="92" cy="48" r="7" fill="#000"/>
+      <!-- reel on top -->
+      <circle cx="35" cy="22" r="14" fill="#c8a85a"/>
+      <circle cx="35" cy="22" r="6" fill="#000"/>
+      <circle cx="60" cy="22" r="14" fill="#c8a85a"/>
+      <circle cx="60" cy="22" r="6" fill="#000"/>
+    </g>
+  </svg>
+  <!-- Playing card pip top right -->
+  <svg class="deco-svg" style="top: 1.4in; right: 0.5in; width: 0.4in; height: 0.4in;" viewBox="0 0 40 40">
+    <path d="M 20 6 C 10 -2 0 8 6 18 C 10 24 20 34 20 34 C 20 34 30 24 34 18 C 40 8 30 -2 20 6 Z" fill="#a01e2a"/>
+  </svg>
+  <!-- spade left -->
+  <svg class="deco-svg" style="top: 1.4in; left: 0.5in; width: 0.4in; height: 0.4in;" viewBox="0 0 40 40">
+    <path d="M 20 4 C 24 14 38 18 36 28 C 35 34 28 36 24 32 C 24 36 26 38 28 38 L 12 38 C 14 38 16 36 16 32 C 12 36 5 34 4 28 C 2 18 16 14 20 4 Z" fill="#c8a85a"/>
+  </svg>
+
+</div>
+
+<!-- ============ PAGE 2 ============ -->
+<div class="page page-2">
+  <div class="iris-bg"></div>
+  <div class="grain"></div>
+
+  <div class="p2-header">
+    <div class="reel-no">REEL 02 · TITLE SEQUENCE</div>
+    <div class="center-mark">— A [GROOM] FILM —</div>
+    <div class="reel-no">CAT. NO. 008</div>
+  </div>
+
+  <!-- Decorative iris top-left of page 2 -->
+  <svg style="position:absolute; top: 0.75in; right: 0.5in; width: 0.32in; height: 0.32in; z-index: 6;" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="18" fill="none" stroke="#c8a85a" stroke-width="1.5"/>
+    <circle cx="20" cy="20" r="12" fill="none" stroke="#a01e2a" stroke-width="1"/>
+    <circle cx="20" cy="20" r="3" fill="#a01e2a"/>
+  </svg>
+
+  <div class="comp-grid">
+
+    <!-- Composition 1: big red w/ neon dorm silhouette -->
+    <div class="comp c1">
+      <div class="comp-photo"></div>
+      <div class="comp-credit">CAST · IN ORDER OF APPEARANCE</div>
+      <div class="comp-label">STARRING<br><span style="color:#c8a85a;">[NAME 1]</span></div>
+    </div>
+
+    <!-- Composition 2: gold sedona spires -->
+    <div class="comp c2">
+      <div class="comp-photo"></div>
+      <div class="comp-credit">AND</div>
+      <div class="comp-label">[NAME 2]</div>
+    </div>
+
+    <!-- Composition 3: navy zion warriors -->
+    <div class="comp c3">
+      <div class="comp-photo"></div>
+      <div class="comp-credit">FEATURING</div>
+      <div class="comp-label">[NAME 3]<br><span style="font-size:18pt;color:#c8a85a;">&amp; [NAME 4]</span></div>
+    </div>
+
+    <!-- Composition 4: black shasta full color -->
+    <div class="comp c4">
+      <div class="comp-photo"></div>
+      <div class="comp-credit">CINEMATOGRAPHY</div>
+      <div class="comp-label">[NAME 5]</div>
+    </div>
+
+    <!-- Composition 5: deep red Egypt -->
+    <div class="comp c5">
+      <div class="comp-photo"></div>
+      <div class="comp-credit">LOCATION · GIZA</div>
+      <div class="comp-label">[NAME 6]</div>
+    </div>
+
+    <!-- Composition 6: gold cabo -->
+    <div class="comp c6">
+      <div class="comp-photo"></div>
+      <div class="comp-credit">LOCATION · CABO</div>
+      <div class="comp-label">[NAME 7]</div>
+    </div>
+
+    <!-- Composition 7: black/red times square -->
+    <div class="comp c7">
+      <div class="comp-photo"></div>
+      <div class="comp-credit">LOCATION · NYC</div>
+      <div class="comp-label">[NAME 8]</div>
+    </div>
+
+    <!-- Composition 8: blood red zion silhouette -->
+    <div class="comp c8">
+      <div class="comp-photo"></div>
+      <div class="comp-credit">STUNTS</div>
+      <div class="comp-label">THE NARROWS</div>
+    </div>
+
+    <!-- Composition 9 (wide bottom): sedona spiral -->
+    <div class="comp c9">
+      <div class="comp-photo"></div>
+      <div class="comp-credit">PRODUCTION DESIGN</div>
+      <div class="comp-label">RED ROCK SPIRAL</div>
+    </div>
+
+    <!-- Cover composition: beach sunset pile -->
+    <div class="comp ccover">
+      <div class="comp-photo"></div>
+      <div class="comp-credit">THE FINALE</div>
+      <div class="comp-label">GOLDEN HOUR</div>
+    </div>
+
+  </div>
+
+  <!-- Final card -->
+  <div class="final-card">
+    <div class="return">THE BROTHERS WILL RETURN — IN <span class="accent">[WEDDING DATE]</span></div>
+    <div class="soundtrack">soundtrack · original theme by THE GROUP CHAT</div>
+  </div>
+
+  <!-- Heart pip bottom-right -->
+  <svg style="position:absolute; bottom: 0.18in; right: 0.5in; width: 0.22in; height: 0.22in; z-index: 7;" viewBox="0 0 40 40">
+    <path d="M 20 6 C 10 -2 0 8 6 18 C 10 24 20 34 20 34 C 20 34 30 24 34 18 C 40 8 30 -2 20 6 Z" fill="#a01e2a"/>
+  </svg>
+  <!-- Spade pip bottom-left -->
+  <svg style="position:absolute; bottom: 0.18in; left: 0.5in; width: 0.22in; height: 0.22in; z-index: 7;" viewBox="0 0 40 40">
+    <path d="M 20 4 C 24 14 38 18 36 28 C 35 34 28 36 24 32 C 24 36 26 38 28 38 L 12 38 C 14 38 16 36 16 32 C 12 36 5 34 4 28 C 2 18 16 14 20 4 Z" fill="#c8a85a"/>
+  </svg>
+</div>
+
+</body>
+</html>

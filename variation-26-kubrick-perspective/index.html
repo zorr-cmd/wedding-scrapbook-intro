@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Brothers — A Film in One-Point Perspective</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #2a2a2a; font-family: 'Cormorant Garamond', serif; }
+  body { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 24px 0; }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    position: relative;
+    overflow: hidden;
+    background: #ecdfc8;
+    page-break-after: always;
+    color: #1a1a1a;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ========== KUBRICK PALETTE — THE SHINING (Overlook orange-yellow) ========== */
+  :root {
+    --kub-orange: #d4a05a;
+    --kub-orange-deep: #b8853f;
+    --kub-cream: #ecdfc8;
+    --kub-red: #a01e2a;
+    --kub-ink: #1a1a1a;
+    --kub-line: rgba(26,26,26,0.45);
+  }
+
+  /* ====================================================================
+     PAGE 1 — VANISHING POINT TITLE
+     ==================================================================== */
+
+  .p1 {
+    background:
+      repeating-linear-gradient(0deg, rgba(160,30,42,0.03) 0px, rgba(160,30,42,0.03) 1px, transparent 1px, transparent 24px),
+      repeating-linear-gradient(90deg, rgba(160,30,42,0.03) 0px, rgba(160,30,42,0.03) 1px, transparent 1px, transparent 24px),
+      var(--kub-cream);
+    padding: 0.5in;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Corner hexagonal Overlook-carpet motifs */
+  .hex-corner {
+    position: absolute;
+    width: 56px; height: 56px;
+    opacity: 0.55;
+  }
+  .hex-corner.tl { top: 0.28in; left: 0.28in; }
+  .hex-corner.tr { top: 0.28in; right: 0.28in; }
+  .hex-corner.bl { bottom: 0.28in; left: 0.28in; }
+  .hex-corner.br { bottom: 0.28in; right: 0.28in; }
+
+  /* Outer thin frame */
+  .p1::before {
+    content: '';
+    position: absolute;
+    top: 0.22in; left: 0.22in; right: 0.22in; bottom: 0.22in;
+    border: 0.5px solid var(--kub-ink);
+    pointer-events: none;
+  }
+  .p1::after {
+    content: '';
+    position: absolute;
+    top: 0.32in; left: 0.32in; right: 0.32in; bottom: 0.32in;
+    border: 0.5px solid var(--kub-ink);
+    pointer-events: none;
+  }
+
+  .topbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    color: var(--kub-ink);
+    text-transform: uppercase;
+    padding: 0 0.3in;
+    margin-top: 0.08in;
+    z-index: 4;
+    position: relative;
+  }
+
+  .presents {
+    margin-top: 0.55in;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.55em;
+    color: var(--kub-ink);
+    text-transform: uppercase;
+    z-index: 4;
+    position: relative;
+  }
+
+  .title {
+    margin-top: 0.18in;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 0.95;
+    letter-spacing: 0.12em;
+    color: var(--kub-ink);
+    text-transform: uppercase;
+    z-index: 4;
+    position: relative;
+    text-align: center;
+  }
+
+  .title-rule {
+    width: 1.4in;
+    height: 1px;
+    background: var(--kub-red);
+    margin: 0.14in auto 0.10in;
+    z-index: 4;
+    position: relative;
+  }
+
+  .subtitle {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--kub-red);
+    z-index: 4;
+    position: relative;
+  }
+
+  /* Hero stage = the corridor */
+  .corridor {
+    position: relative;
+    margin-top: 0.32in;
+    width: 6.2in;
+    height: 4.5in;
+    z-index: 3;
+  }
+
+  .corridor-floor {
+    position: absolute;
+    inset: 0;
+    background: var(--kub-orange);
+    /* Overlook-carpet hex pattern */
+    background-image:
+      radial-gradient(circle at 50% 50%, transparent 14px, rgba(160,30,42,0.18) 14.5px, rgba(160,30,42,0.18) 15.5px, transparent 16px),
+      linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.18)),
+      linear-gradient(180deg, var(--kub-orange), var(--kub-orange-deep));
+    background-size: 32px 32px, 100% 100%, 100% 100%;
+    /* Trapezoid: a corridor floor */
+    clip-path: polygon(0% 100%, 100% 100%, 72% 0%, 28% 0%);
+  }
+
+  /* SVG perspective lines + hero photo wrapper */
+  .corridor svg.lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .hero-wrap {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3.6in;
+    height: 2.4in;
+    z-index: 3;
+    border: 4px solid var(--kub-ink);
+    box-shadow: 0 0 0 1px var(--kub-cream), 0 0 0 2px var(--kub-ink), 0 24px 48px rgba(0,0,0,0.35);
+    background: #000;
+    overflow: hidden;
+  }
+  .hero-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    filter: contrast(1.1) saturate(0.85) brightness(0.95);
+    display: block;
+  }
+
+  /* Vanishing point marker */
+  .vp-dot {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 6px; height: 6px;
+    background: var(--kub-red);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    box-shadow: 0 0 0 2px var(--kub-cream), 0 0 0 3px var(--kub-red);
+  }
+
+  .below-photo {
+    margin-top: 0.32in;
+    z-index: 4;
+    position: relative;
+    text-align: center;
+  }
+  .film-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--kub-ink);
+  }
+  .tagline {
+    margin-top: 0.16in;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    color: var(--kub-ink);
+  }
+  .directed-by {
+    margin-top: 0.14in;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--kub-red);
+  }
+
+  .bottombar {
+    position: absolute;
+    bottom: 0.42in;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.6in;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--kub-ink);
+    z-index: 4;
+  }
+  .rating-box {
+    border: 0.75px solid var(--kub-ink);
+    padding: 3px 7px;
+    letter-spacing: 0.18em;
+  }
+  .rating-box.red { color: var(--kub-red); border-color: var(--kub-red); }
+
+  /* ====================================================================
+     PAGE 2 — GALLERY OF SYMMETRIES
+     ==================================================================== */
+
+  .p2 {
+    background: var(--kub-cream);
+    padding: 0.5in 0.5in 0.4in;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .p2::before {
+    content: '';
+    position: absolute;
+    top: 0.22in; left: 0.22in; right: 0.22in; bottom: 0.22in;
+    border: 0.5px solid var(--kub-ink);
+    pointer-events: none;
+  }
+  .p2::after {
+    content: '';
+    position: absolute;
+    top: 0.32in; left: 0.32in; right: 0.32in; bottom: 0.32in;
+    border: 0.5px solid var(--kub-ink);
+    pointer-events: none;
+  }
+
+  .p2-head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.08in 0.3in 0;
+    z-index: 4;
+    position: relative;
+  }
+
+  .p2-title-block {
+    text-align: center;
+    margin-top: 0.18in;
+    z-index: 4;
+    position: relative;
+  }
+  .p2-eyebrow {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    color: var(--kub-red);
+  }
+  .p2-title {
+    margin-top: 0.06in;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 38px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--kub-ink);
+  }
+  .p2-rule {
+    width: 0.9in;
+    height: 1px;
+    background: var(--kub-red);
+    margin: 0.08in auto 0.05in;
+  }
+  .p2-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--kub-ink);
+  }
+
+  /* Grid: 2 cols x 5 rows */
+  .gallery {
+    margin-top: 0.22in;
+    width: 7.2in;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0.16in;
+    z-index: 4;
+    position: relative;
+  }
+
+  .frame {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: var(--kub-orange);
+    overflow: hidden;
+    border: 1px solid var(--kub-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .frame svg.flines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .frame .stage {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, var(--kub-orange) 0%, var(--kub-orange-deep) 100%);
+    clip-path: polygon(0% 100%, 100% 100%, 70% 0%, 30% 0%);
+    opacity: 0.95;
+  }
+
+  .frame .pic {
+    position: relative;
+    width: 62%;
+    height: 70%;
+    z-index: 2;
+    border: 2px solid var(--kub-ink);
+    box-shadow: 0 0 0 1px var(--kub-cream), 0 0 0 2px var(--kub-ink), 0 8px 18px rgba(0,0,0,0.3);
+    overflow: hidden;
+    background: #000;
+  }
+  .frame .pic img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    filter: contrast(1.1) saturate(0.82) brightness(0.94);
+    display: block;
+  }
+
+  .frame .vp-mini {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 4px; height: 4px;
+    background: var(--kub-red);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    box-shadow: 0 0 0 1.5px var(--kub-cream);
+    display: none; /* hidden behind photo; geometry implied */
+  }
+
+  .frame .caption {
+    position: absolute;
+    bottom: 5px;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--kub-cream);
+    z-index: 4;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  }
+  .frame .scene-num {
+    position: absolute;
+    top: 5px;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.5px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--kub-cream);
+    z-index: 4;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  }
+
+  .directors-note {
+    margin-top: 0.20in;
+    width: 6.6in;
+    border-top: 0.75px solid var(--kub-ink);
+    border-bottom: 0.75px solid var(--kub-ink);
+    padding: 0.12in 0.3in;
+    text-align: center;
+    z-index: 4;
+    position: relative;
+  }
+  .dn-head {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--kub-red);
+    margin-bottom: 0.07in;
+  }
+  .dn-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 10.5px;
+    line-height: 1.55;
+    color: var(--kub-ink);
+    text-align: justify;
+    text-align-last: center;
+    letter-spacing: 0.015em;
+  }
+  .dn-body p + p { margin-top: 0.07in; }
+
+  .signoff {
+    margin-top: 0.12in;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--kub-ink);
+    z-index: 4;
+    position: relative;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ PAGE 1 -->
+<div class="page p1">
+
+  <!-- Corner hexagonal Overlook motifs -->
+  <svg class="hex-corner tl" viewBox="0 0 100 100">
+    <polygon points="50,4 92,28 92,72 50,96 8,72 8,28" fill="none" stroke="#a01e2a" stroke-width="1.2"/>
+    <polygon points="50,18 78,34 78,66 50,82 22,66 22,34" fill="none" stroke="#1a1a1a" stroke-width="0.8"/>
+    <circle cx="50" cy="50" r="3" fill="#a01e2a"/>
+  </svg>
+  <svg class="hex-corner tr" viewBox="0 0 100 100">
+    <polygon points="50,4 92,28 92,72 50,96 8,72 8,28" fill="none" stroke="#a01e2a" stroke-width="1.2"/>
+    <polygon points="50,18 78,34 78,66 50,82 22,66 22,34" fill="none" stroke="#1a1a1a" stroke-width="0.8"/>
+    <circle cx="50" cy="50" r="3" fill="#a01e2a"/>
+  </svg>
+  <svg class="hex-corner bl" viewBox="0 0 100 100">
+    <polygon points="50,4 92,28 92,72 50,96 8,72 8,28" fill="none" stroke="#a01e2a" stroke-width="1.2"/>
+    <polygon points="50,18 78,34 78,66 50,82 22,66 22,34" fill="none" stroke="#1a1a1a" stroke-width="0.8"/>
+    <circle cx="50" cy="50" r="3" fill="#a01e2a"/>
+  </svg>
+  <svg class="hex-corner br" viewBox="0 0 100 100">
+    <polygon points="50,4 92,28 92,72 50,96 8,72 8,28" fill="none" stroke="#a01e2a" stroke-width="1.2"/>
+    <polygon points="50,18 78,34 78,66 50,82 22,66 22,34" fill="none" stroke="#1a1a1a" stroke-width="0.8"/>
+    <circle cx="50" cy="50" r="3" fill="#a01e2a"/>
+  </svg>
+
+  <div class="topbar">
+    <span>REEL 01 / 02</span>
+    <span>OVERLOOK PICTURES</span>
+    <span>RUNTIME 1:24:48</span>
+  </div>
+
+  <div class="presents">[GROOM]&nbsp;&nbsp;PRESENTS</div>
+
+  <h1 class="title">THE&nbsp;&nbsp;BROTHERS</h1>
+  <div class="title-rule"></div>
+  <div class="subtitle">A&nbsp;&nbsp;FILM&nbsp;&nbsp;IN&nbsp;&nbsp;ONE&minus;POINT&nbsp;&nbsp;PERSPECTIVE</div>
+
+  <!-- Corridor / vanishing-point hero -->
+  <div class="corridor">
+    <div class="corridor-floor"></div>
+
+    <!-- Perspective lines: corners → center -->
+    <svg class="lines" viewBox="0 0 600 432" preserveAspectRatio="none">
+      <!-- 4 corner lines -->
+      <line x1="0"    y1="0"   x2="300" y2="216" stroke="#1a1a1a" stroke-width="0.6" opacity="0.45"/>
+      <line x1="600"  y1="0"   x2="300" y2="216" stroke="#1a1a1a" stroke-width="0.6" opacity="0.45"/>
+      <line x1="0"    y1="432" x2="300" y2="216" stroke="#1a1a1a" stroke-width="0.6" opacity="0.45"/>
+      <line x1="600"  y1="432" x2="300" y2="216" stroke="#1a1a1a" stroke-width="0.6" opacity="0.45"/>
+      <!-- additional symmetric guides -->
+      <line x1="150"  y1="0"   x2="300" y2="216" stroke="#1a1a1a" stroke-width="0.4" opacity="0.3"/>
+      <line x1="450"  y1="0"   x2="300" y2="216" stroke="#1a1a1a" stroke-width="0.4" opacity="0.3"/>
+      <line x1="150"  y1="432" x2="300" y2="216" stroke="#1a1a1a" stroke-width="0.4" opacity="0.3"/>
+      <line x1="450"  y1="432" x2="300" y2="216" stroke="#1a1a1a" stroke-width="0.4" opacity="0.3"/>
+      <line x1="0"    y1="216" x2="300" y2="216" stroke="#a01e2a" stroke-width="0.5" opacity="0.4"/>
+      <line x1="600"  y1="216" x2="300" y2="216" stroke="#a01e2a" stroke-width="0.5" opacity="0.4"/>
+      <line x1="300"  y1="0"   x2="300" y2="216" stroke="#a01e2a" stroke-width="0.5" opacity="0.4"/>
+      <line x1="300"  y1="432" x2="300" y2="216" stroke="#a01e2a" stroke-width="0.5" opacity="0.4"/>
+    </svg>
+
+    <div class="hero-wrap">
+      <img src="../photos/photo-08-mt-shasta.jpg" alt="Mt. Shasta">
+    </div>
+    <div class="vp-dot"></div>
+  </div>
+
+  <div class="below-photo">
+    <div class="film-label">SCENE&nbsp;&nbsp;ONE&nbsp;&nbsp;&middot;&nbsp;&nbsp;EXT.&nbsp;&nbsp;THE&nbsp;&nbsp;OVERLOOK&nbsp;&nbsp;&middot;&nbsp;&nbsp;DUSK</div>
+    <div class="tagline">"Forward.&nbsp;&nbsp;Always&nbsp;&nbsp;forward."</div>
+    <div class="directed-by">DIRECTED&nbsp;&nbsp;BY&nbsp;&nbsp;[GROOM]</div>
+  </div>
+
+  <div class="bottombar">
+    <span class="rating-box">PG&minus;13</span>
+    <span>FOR&nbsp;[BRIDE]&nbsp;&middot;&nbsp;ELEVEN&nbsp;FRAMES&nbsp;&middot;&nbsp;ONE&nbsp;CREW</span>
+    <span class="rating-box red">SHASTA · CA</span>
+  </div>
+
+</div>
+
+
+<!-- ============================================================ PAGE 2 -->
+<div class="page p2">
+
+  <div class="p2-head">
+    <span>REEL 02 / 02</span>
+    <span>THE GALLERY OF SYMMETRIES</span>
+    <span>ASPECT 1.85 : 1</span>
+  </div>
+
+  <div class="p2-title-block">
+    <div class="p2-eyebrow">A&nbsp;&nbsp;CATALOG&nbsp;&nbsp;OF&nbsp;&nbsp;FRAMES</div>
+    <div class="p2-title">TEN&nbsp;&nbsp;CORRIDORS</div>
+    <div class="p2-rule"></div>
+    <div class="p2-sub">each composed for the eye that cannot help but center itself</div>
+  </div>
+
+  <div class="gallery">
+
+    <div class="frame">
+      <div class="stage"></div>
+      <svg class="flines" viewBox="0 0 200 125" preserveAspectRatio="none">
+        <line x1="0" y1="0"   x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="0" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="0" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+      <div class="scene-num">SCENE 02</div>
+      <div class="pic"><img src="../photos/photo-02-egypt-pyramid.jpg" alt=""></div>
+      <div class="caption">EXT.&nbsp;&nbsp;GIZA&nbsp;&nbsp;&middot;&nbsp;&nbsp;EGYPT</div>
+    </div>
+
+    <div class="frame">
+      <div class="stage"></div>
+      <svg class="flines" viewBox="0 0 200 125" preserveAspectRatio="none">
+        <line x1="0" y1="0"   x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="0" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="0" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+      <div class="scene-num">SCENE 03</div>
+      <div class="pic"><img src="../photos/photo-04-cabo-boat.jpg" alt=""></div>
+      <div class="caption">EXT.&nbsp;&nbsp;LAND'S&nbsp;END&nbsp;&nbsp;&middot;&nbsp;&nbsp;CABO</div>
+    </div>
+
+    <div class="frame">
+      <div class="stage"></div>
+      <svg class="flines" viewBox="0 0 200 125" preserveAspectRatio="none">
+        <line x1="0" y1="0"   x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="0" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="0" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+      <div class="scene-num">SCENE 04</div>
+      <div class="pic"><img src="../photos/photo-07-zion-narrows.jpg" alt=""></div>
+      <div class="caption">INT.&nbsp;&nbsp;THE&nbsp;NARROWS&nbsp;&nbsp;&middot;&nbsp;&nbsp;ZION</div>
+    </div>
+
+    <div class="frame">
+      <div class="stage"></div>
+      <svg class="flines" viewBox="0 0 200 125" preserveAspectRatio="none">
+        <line x1="0" y1="0"   x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="0" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="0" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+      <div class="scene-num">SCENE 05</div>
+      <div class="pic"><img src="../photos/photo-11-zion-warriors.jpg" alt=""></div>
+      <div class="caption">EXT.&nbsp;&nbsp;THE&nbsp;WARRIORS&nbsp;&nbsp;&middot;&nbsp;&nbsp;ZION</div>
+    </div>
+
+    <div class="frame">
+      <div class="stage"></div>
+      <svg class="flines" viewBox="0 0 200 125" preserveAspectRatio="none">
+        <line x1="0" y1="0"   x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="0" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="0" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+      <div class="scene-num">SCENE 06</div>
+      <div class="pic"><img src="../photos/photo-05-sedona-spires.jpg" alt=""></div>
+      <div class="caption">EXT.&nbsp;&nbsp;RED&nbsp;SPIRES&nbsp;&nbsp;&middot;&nbsp;&nbsp;SEDONA</div>
+    </div>
+
+    <div class="frame">
+      <div class="stage"></div>
+      <svg class="flines" viewBox="0 0 200 125" preserveAspectRatio="none">
+        <line x1="0" y1="0"   x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="0" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="0" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+      <div class="scene-num">SCENE 07</div>
+      <div class="pic"><img src="../photos/photo-10-sedona-spiral.jpg" alt=""></div>
+      <div class="caption">EXT.&nbsp;&nbsp;THE&nbsp;SPIRAL&nbsp;&nbsp;&middot;&nbsp;&nbsp;SEDONA</div>
+    </div>
+
+    <div class="frame">
+      <div class="stage"></div>
+      <svg class="flines" viewBox="0 0 200 125" preserveAspectRatio="none">
+        <line x1="0" y1="0"   x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="0" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="0" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+      <div class="scene-num">SCENE 08</div>
+      <div class="pic"><img src="../photos/photo-06-times-square.jpg" alt=""></div>
+      <div class="caption">EXT.&nbsp;&nbsp;TIMES&nbsp;SQUARE&nbsp;&nbsp;&middot;&nbsp;&nbsp;NYC</div>
+    </div>
+
+    <div class="frame">
+      <div class="stage"></div>
+      <svg class="flines" viewBox="0 0 200 125" preserveAspectRatio="none">
+        <line x1="0" y1="0"   x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="0" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="0" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+      <div class="scene-num">SCENE 09</div>
+      <div class="pic"><img src="../photos/photo-09-neon-dorm.jpg" alt=""></div>
+      <div class="caption">INT.&nbsp;&nbsp;THE&nbsp;DORM&nbsp;&nbsp;&middot;&nbsp;&nbsp;ORIGIN</div>
+    </div>
+
+    <div class="frame">
+      <div class="stage"></div>
+      <svg class="flines" viewBox="0 0 200 125" preserveAspectRatio="none">
+        <line x1="0" y1="0"   x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="0" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="0" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+      <div class="scene-num">SCENE 10</div>
+      <div class="pic"><img src="../photos/photo-01-beach-brown-tees.jpg" alt=""></div>
+      <div class="caption">EXT.&nbsp;&nbsp;THE&nbsp;PACIFIC&nbsp;&nbsp;&middot;&nbsp;&nbsp;CA</div>
+    </div>
+
+    <div class="frame">
+      <div class="stage"></div>
+      <svg class="flines" viewBox="0 0 200 125" preserveAspectRatio="none">
+        <line x1="0" y1="0"   x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="0" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="0" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="125" x2="100" y2="62.5" stroke="#1a1a1a" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+      <div class="scene-num">SCENE 11</div>
+      <div class="pic"><img src="../photos/photo-03-beach-sunset-pile.jpg" alt=""></div>
+      <div class="caption">EXT.&nbsp;&nbsp;GOLDEN&nbsp;HOUR&nbsp;&nbsp;&middot;&nbsp;&nbsp;CA</div>
+    </div>
+
+  </div>
+
+  <div class="directors-note">
+    <div class="dn-head">DIRECTOR'S&nbsp;&nbsp;NOTE&nbsp;&nbsp;&middot;&nbsp;&nbsp;STANLEY&nbsp;&nbsp;KUBRICK&nbsp;&nbsp;[SIGNATURE&nbsp;STYLE]</div>
+    <div class="dn-body">
+      <p>"Symmetry is not perfection. Symmetry is permission to look. When the frame is balanced, the eye can rest. When the eye can rest, the audience can feel.</p>
+      <p>These eleven frames have been recomposed from their original casual photography into the visual grammar of Kubrick — perspective lines converging at the vanishing point, ensemble centered, color slightly drained to let the geometry breathe.</p>
+      <p>The director hopes you notice. The director hopes you don't."</p>
+    </div>
+  </div>
+
+  <div class="signoff">BY&nbsp;&nbsp;ORDER&nbsp;&nbsp;OF&nbsp;&nbsp;[GROOM]&nbsp;&nbsp;&mdash;&nbsp;&nbsp;DIRECTOR</div>
+
+</div>
+
+</body>
+</html>

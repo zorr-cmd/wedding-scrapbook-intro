@@ -1,0 +1,1161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>My Screenings — [GROOM]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=Manrope:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; padding: 0; background: #2a2a30; font-family: 'Inter', sans-serif; }
+  .page {
+    width: 8.5in; height: 11in;
+    margin: 0 auto;
+    page-break-after: always;
+    overflow: hidden;
+    position: relative;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ========== PAGE 1 — DARK LETTERBOXD APP ========== */
+  .p1 {
+    background: #0d0d12;
+    color: #e8e8ee;
+    padding: 0.3in 0.4in 0.85in;
+    font-family: 'Inter', sans-serif;
+  }
+  /* status bar */
+  .status {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px; font-weight: 600;
+    color: #fff;
+    padding: 2px 4px 8px;
+    letter-spacing: 0.02em;
+  }
+  .status .time { font-variant-numeric: tabular-nums; }
+  .status .right { display: flex; gap: 6px; align-items: center; font-size: 8px; }
+  .status .battery {
+    display: inline-block; width: 18px; height: 9px; border: 1px solid #fff;
+    border-radius: 2px; position: relative;
+  }
+  .status .battery::after {
+    content: ''; position: absolute; right: -3px; top: 2px; width: 2px; height: 3px; background: #fff; border-radius: 0 1px 1px 0;
+  }
+  .status .battery::before {
+    content: ''; position: absolute; left: 1px; top: 1px; bottom: 1px; width: 12px; background: #67e08a; border-radius: 1px;
+  }
+
+  /* header */
+  .app-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 4px 2px 10px;
+    border-bottom: 1px solid #1f1f2a;
+  }
+  .app-title h1 {
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .app-title .sub {
+    margin-top: 3px;
+    font-size: 10px;
+    color: #8a8a99;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .app-title .sub .dot { color: #44444f; padding: 0 4px; }
+  .avatar {
+    display: flex; align-items: center; gap: 7px;
+  }
+  .avatar .name {
+    font-size: 10px; font-weight: 600; color: #c8c8d4;
+  }
+  .avatar .pic {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: linear-gradient(135deg, #ff8a3d, #ff3d77 60%, #b73dff);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 11px; font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    border: 1.5px solid #1d1d28;
+    box-shadow: 0 0 0 1px #2a2a38;
+  }
+
+  /* tabs */
+  .tabs {
+    display: flex; gap: 16px;
+    padding: 10px 2px 8px;
+    border-bottom: 1px solid #1f1f2a;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  .tabs span { color: #5a5a6a; padding-bottom: 8px; position: relative; cursor: default; }
+  .tabs span.active {
+    color: #fff;
+  }
+  .tabs span.active::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -10px;
+    height: 2px; background: #ff7a3d; border-radius: 2px;
+  }
+  .tabs .right { margin-left: auto; color: #5a5a6a; font-weight: 500; letter-spacing: 0.03em; font-size: 9px; }
+
+  /* filter pill row */
+  .filter-row {
+    display: flex; gap: 5px; padding: 8px 0 8px; flex-wrap: wrap;
+  }
+  .pill {
+    font-size: 8.5px; font-weight: 600;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: #1a1a26;
+    color: #b8b8c8;
+    border: 1px solid #25252f;
+    letter-spacing: 0.03em;
+  }
+  .pill.on { background: #ff7a3d; color: #1a0a02; border-color: #ff7a3d; }
+
+  /* feed */
+  .feed { display: flex; flex-direction: column; gap: 6px; }
+  .card {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 10px;
+    padding: 8px;
+    border-radius: 11px;
+    overflow: hidden;
+    position: relative;
+  }
+  .card.dark {
+    background: linear-gradient(180deg, #14141d, #10101a);
+    border: 1px solid #1f1f2c;
+  }
+  .card.receipt {
+    background: #f6f3ec;
+    color: #18181e;
+    border: 1px solid #d8d3c4;
+    box-shadow: inset 0 0 0 1px #fff;
+  }
+  .card.alamo {
+    background: linear-gradient(135deg, #2a1410 0%, #3b1a14 60%, #2a1410 100%);
+    border: 1px solid #5a2a20;
+    color: #f3e6d2;
+  }
+  .card .thumb {
+    width: 88px; height: 88px;
+    border-radius: 7px;
+    overflow: hidden;
+    background: #000;
+    position: relative;
+  }
+  .card .thumb img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .card .thumb .badge {
+    position: absolute; top: 5px; left: 5px;
+    background: rgba(0,0,0,0.65); color: #fff;
+    font-size: 7px; font-weight: 700; letter-spacing: 0.08em;
+    padding: 2px 5px; border-radius: 3px;
+    font-family: 'Inter', sans-serif;
+  }
+  .card .body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .card .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.005em;
+  }
+  .card.dark .title { color: #fff; }
+  .card.receipt .title { color: #18181e; }
+  .card.alamo .title { color: #ffd8a8; }
+
+  .card .meta {
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    margin-top: 1px;
+  }
+  .card.dark .meta { color: #8a8a99; }
+  .card.receipt .meta { color: #6a665c; font-family: 'JetBrains Mono', monospace; font-size: 8px; }
+  .card.alamo .meta { color: #c7a888; }
+
+  .card .meta .year { color: #ff7a3d; font-weight: 700; }
+  .card.receipt .meta .year { color: #b8451f; }
+  .card.alamo .meta .year { color: #ff9c4a; }
+
+  .card .stars {
+    font-size: 10px; letter-spacing: 1px; margin-top: 2px;
+    color: #ffb43d;
+  }
+  .card.receipt .stars { color: #c79a1a; }
+
+  .card .review {
+    margin-top: 3px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 9.5px;
+    line-height: 1.25;
+  }
+  .card.dark .review { color: #d8d8e2; }
+  .card.receipt .review { color: #2a2a30; }
+  .card.alamo .review { color: #f0dcc0; }
+
+  .card .tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 4px; }
+  .tag {
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 1.5px 5px;
+    border-radius: 999px;
+    font-family: 'Inter', sans-serif;
+  }
+  .card.dark .tag { background: #20202c; color: #b8b8c8; border: 1px solid #2a2a38; }
+  .card.receipt .tag { background: #ebe6d6; color: #4a4538; border: 1px solid #d8d3c4; }
+  .card.alamo .tag { background: #4a221a; color: #f3d8b0; border: 1px solid #6b3220; }
+
+  .card .footer-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 4px;
+    font-size: 8px;
+    font-weight: 600;
+  }
+  .card .liked {
+    display: flex; align-items: center; gap: 3px;
+    color: #ff3d6e;
+    letter-spacing: 0.05em;
+  }
+  .card .liked svg { width: 10px; height: 10px; }
+  .card.receipt .liked { color: #c0254a; }
+  .card .order {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px;
+    letter-spacing: 0.03em;
+  }
+  .card.dark .order { color: #5a5a6a; }
+  .card.receipt .order { color: #8a8678; }
+  .card.alamo .order { color: #a08868; }
+
+  /* receipt card embellishments */
+  .card.receipt::before, .card.receipt::after {
+    content: ''; position: absolute; width: 14px; height: 14px;
+    background: #2a2a30; border-radius: 50%;
+  }
+  .card.receipt::before { left: -7px; top: 50%; transform: translateY(-50%); }
+  .card.receipt::after { right: -7px; top: 50%; transform: translateY(-50%); }
+
+  .alamo-strip {
+    position: absolute; top: 8px; right: 8px;
+    background: #ff7a3d; color: #1a0a02;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 7px; font-weight: 800;
+    letter-spacing: 0.12em;
+    padding: 3px 6px;
+    border-radius: 3px;
+  }
+
+  /* page nav (bottom) */
+  .nav-bar {
+    position: absolute;
+    bottom: 0.2in; left: 0.4in; right: 0.4in;
+    background: #14141e;
+    border: 1px solid #25252f;
+    border-radius: 22px;
+    padding: 10px 14px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 8px; font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .nav-bar .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: #5a5a6a; }
+  .nav-bar .nav-item.active { color: #ff7a3d; }
+  .nav-bar svg { width: 14px; height: 14px; }
+
+  /* ========== PAGE 2 — LIGHT PHYSICAL TICKET COLLECTION ========== */
+  .p2 {
+    background: #f4f1ea;
+    color: #18181e;
+    padding: 0.4in 0.4in 0.55in;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+  }
+  .p2::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 800px 300px at 20% 5%, rgba(255,180,100,0.08), transparent),
+      radial-gradient(ellipse 600px 400px at 100% 100%, rgba(60,40,20,0.06), transparent);
+    pointer-events: none;
+  }
+
+  .p2-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+    border-bottom: 2px solid #18181e;
+    position: relative; z-index: 1;
+  }
+  .p2-header h1 {
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .p2-header .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #5a5040;
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+  }
+  .p2-header .count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #18181e;
+    text-align: right;
+    letter-spacing: 0.04em;
+  }
+  .p2-header .count .big {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    display: block;
+    letter-spacing: -0.02em;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    position: relative; z-index: 1;
+  }
+
+  .stub {
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ALAMO style */
+  .stub.alamo-stub {
+    background: #1a0e08;
+    color: #f3e0c0;
+    border: 1px solid #3a2418;
+  }
+  .stub.alamo-stub .top-art {
+    height: 95px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stub.alamo-stub .top-art img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: contrast(1.05) saturate(1.1);
+  }
+  .stub.alamo-stub .top-art::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba(26,14,8,0.85));
+  }
+  .stub.alamo-stub .top-art .alamo-mark {
+    position: absolute; top: 6px; left: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 7px; font-weight: 800;
+    letter-spacing: 0.18em;
+    color: #ffd8a8;
+    background: rgba(26,14,8,0.7);
+    padding: 2px 5px;
+    border-radius: 2px;
+    border: 1px solid #ff9c4a;
+  }
+  .stub.alamo-stub .info { padding: 8px 10px 10px; }
+  .stub.alamo-stub .ttl {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffd8a8;
+    line-height: 1.05;
+    margin-bottom: 4px;
+  }
+  .stub.alamo-stub .presenter {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #ff9c4a;
+    margin-bottom: 6px;
+  }
+  .stub.alamo-stub .row {
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px;
+    color: #c7a888;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+  }
+  .stub.alamo-stub .rule {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 9px;
+    color: #f3d0a0;
+    margin-top: 6px;
+    line-height: 1.25;
+    border-top: 1px dashed #5a3826;
+    padding-top: 5px;
+  }
+  .stub.alamo-stub .stars {
+    color: #ffb43d; font-size: 11px; letter-spacing: 1px; margin-top: 4px;
+  }
+
+  /* IMAX style */
+  .stub.imax {
+    background: #07070c;
+    color: #e8e8ee;
+    border: 1px solid #1a1a24;
+  }
+  .stub.imax .imax-header {
+    background: linear-gradient(90deg, #c01818 0%, #18181e 100%);
+    padding: 6px 10px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .stub.imax .imax-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    color: #fff;
+  }
+  .stub.imax .imax-logo .x {
+    background: #fff; color: #c01818;
+    padding: 0 4px;
+    border-radius: 2px;
+  }
+  .stub.imax .imax-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px;
+    color: #fff;
+    letter-spacing: 0.1em;
+  }
+  .stub.imax .letterbox {
+    background: #000;
+    padding: 14px 0;
+    position: relative;
+  }
+  .stub.imax .letterbox img {
+    width: 100%; height: 80px; object-fit: cover; display: block;
+  }
+  .stub.imax .info { padding: 8px 10px 10px; background: #07070c; }
+  .stub.imax .ttl {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin-bottom: 4px;
+    line-height: 1.1;
+  }
+  .stub.imax .row {
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px;
+    color: #8a8a99;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+  .stub.imax .specs {
+    margin-top: 6px;
+    border-top: 1px solid #1a1a24;
+    padding-top: 5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px;
+    color: #ff5050;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+  }
+
+  /* A24 style */
+  .stub.a24 {
+    background: #fff;
+    color: #18181e;
+    border: 1px solid #d8d3c4;
+  }
+  .stub.a24 .a24-top {
+    padding: 10px 12px 6px;
+    border-bottom: 1px solid #ebe6d6;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .stub.a24 .a24-mark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: #18181e;
+  }
+  .stub.a24 .a24-mark .accent {
+    color: #d63a2a;
+  }
+  .stub.a24 .a24-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px;
+    color: #8a8678;
+    letter-spacing: 0.05em;
+  }
+  .stub.a24 .img-wrap {
+    height: 105px;
+    overflow: hidden;
+    background: #f6f3ec;
+  }
+  .stub.a24 .img-wrap img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .stub.a24 .info { padding: 8px 12px 10px; }
+  .stub.a24 .ttl {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    line-height: 1.05;
+  }
+  .stub.a24 .row {
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px;
+    color: #6a665c;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+  }
+  .stub.a24 .accent-bar {
+    height: 3px;
+    background: linear-gradient(90deg, #d63a2a, #18181e);
+    margin-top: 6px;
+  }
+  .stub.a24 .stars {
+    color: #c79a1a; font-size: 11px; letter-spacing: 1px; margin-top: 4px;
+  }
+
+  /* perforated edge */
+  .perf {
+    height: 8px;
+    background-image: radial-gradient(circle at 4px 4px, #f4f1ea 3px, transparent 3.5px);
+    background-size: 8px 8px;
+    background-position: 0 0;
+    background-repeat: repeat-x;
+  }
+  .stub.alamo-stub .perf { background-image: radial-gradient(circle at 4px 4px, #1a0e08 3px, transparent 3.5px); }
+  .stub.imax .perf { background-image: radial-gradient(circle at 4px 4px, #07070c 3px, transparent 3.5px); }
+  .stub.a24 .perf { background-image: radial-gradient(circle at 4px 4px, #fff 3px, transparent 3.5px); }
+
+  /* WEDDING ADVANCE TICKET (final, big) */
+  .wedding {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+    background: #fff;
+    color: #18181e;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid #18181e;
+    box-shadow: 0 4px 18px rgba(20,12,4,0.15);
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 80px;
+    height: 2.55in;
+  }
+  .wedding .photo-side {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+  }
+  .wedding .photo-side img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: contrast(1.05) saturate(0.9);
+  }
+  .wedding .photo-side::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.55));
+  }
+  .wedding .photo-side .stamp {
+    position: absolute; top: 10px; left: 10px;
+    border: 1.5px solid #fff;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    padding: 4px 8px;
+    border-radius: 2px;
+    background: rgba(0,0,0,0.3);
+  }
+  .wedding .photo-side .premiere {
+    position: absolute; bottom: 10px; left: 12px; right: 12px;
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.15;
+  }
+  .wedding .photo-side .premiere strong {
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    margin-bottom: 3px;
+    color: #ffd8a8;
+  }
+
+  .wedding .info-side {
+    padding: 14px 16px 12px;
+    border-left: 1px dashed #c8c3b4;
+    border-right: 1px dashed #c8c3b4;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .wedding .advance {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    color: #d63a2a;
+    margin-bottom: 4px;
+  }
+  .wedding .w-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.0;
+    margin-bottom: 5px;
+  }
+  .wedding .w-by {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    color: #18181e;
+    margin-bottom: 10px;
+  }
+  .wedding .w-by .dir-label {
+    color: #8a8678; font-size: 7px; font-weight: 700; letter-spacing: 0.15em; display: block; margin-bottom: 2px;
+  }
+  .wedding .w-rows {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: #18181e;
+    letter-spacing: 0.03em;
+    line-height: 1.7;
+    border-top: 1px dashed #c8c3b4;
+    padding-top: 6px;
+  }
+  .wedding .w-rows .label {
+    color: #8a8678;
+    width: 70px;
+    display: inline-block;
+  }
+  .wedding .w-tag {
+    margin-top: 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 9.5px;
+    color: #4a4538;
+    line-height: 1.25;
+  }
+  .wedding .qr-side {
+    background: #18181e;
+    color: #fff;
+    padding: 10px 8px 10px;
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+    gap: 4px;
+  }
+  .wedding .qr-side .seat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #ff9c4a;
+    text-align: center;
+  }
+  .wedding .qr-side .seat-num .big {
+    display: block;
+    font-size: 14px;
+    color: #fff;
+    letter-spacing: 0;
+    line-height: 1;
+    margin-top: 2px;
+    font-weight: 800;
+  }
+  .wedding .qr-side .qr-box {
+    background: #fff; padding: 4px; border-radius: 3px;
+  }
+  .wedding .qr-side .scan-txt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5.5px;
+    color: #a8a8b8;
+    letter-spacing: 0.06em;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .wedding .perforation {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+  }
+
+  /* footer */
+  .p2-footer {
+    position: absolute;
+    bottom: 0.22in;
+    left: 0.4in; right: 0.4in;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px;
+    color: #6a605a;
+    letter-spacing: 0.08em;
+    padding-top: 6px;
+    border-top: 1px dashed #c8c3b4;
+    background: #f4f1ea;
+    z-index: 2;
+  }
+
+  /* small badges */
+  .badge-row {
+    display: flex; gap: 4px; align-items: center; flex-wrap: wrap;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ===================== PAGE 1 — DIGITAL ARCHIVE ===================== -->
+<section class="page p1">
+
+  <div class="status">
+    <span class="time">9:41</span>
+    <span class="right">
+      <span>●●●●●</span>
+      <span>5G</span>
+      <span class="battery"></span>
+    </span>
+  </div>
+
+  <div class="app-header">
+    <div class="app-title">
+      <h1>MY SCREENINGS</h1>
+      <div class="sub">11 films <span class="dot">·</span> 9 years <span class="dot">·</span> viewing history</div>
+    </div>
+    <div class="avatar">
+      <span class="name">[GROOM]</span>
+      <span class="pic">G</span>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <span>ALL</span>
+    <span>5-STARS</span>
+    <span class="active">WITH THE BOYS</span>
+    <span>WATCHLIST</span>
+    <span class="right">SORT: NEWEST ↓</span>
+  </div>
+
+  <div class="filter-row">
+    <span class="pill on">11 RESULTS</span>
+    <span class="pill">EPIC</span>
+    <span class="pill">TRAVEL</span>
+    <span class="pill">ENSEMBLE</span>
+    <span class="pill">★★★★★</span>
+    <span class="pill">DIR: [GROOM]</span>
+  </div>
+
+  <div class="feed">
+
+    <!-- CARD 1 — Letterboxd dark (Egypt pyramid) -->
+    <article class="card dark">
+      <div class="thumb">
+        <img src="../photos/photo-02-egypt-pyramid.jpg" alt="">
+        <span class="badge">EGYPT · 2022</span>
+      </div>
+      <div class="body">
+        <div class="title">The Pyramid Incident</div>
+        <div class="meta"><span class="year">2022</span> · ALAMO DRAFTHOUSE GIZA · Oct 24, 2022 · 8:47 PM</div>
+        <div class="stars">★★★★★</div>
+        <div class="review">"watched this with the boys at the foot of the great pyramid. ensemble shot of the century. lifetime memory. would absolutely rewatch."</div>
+        <div class="tags">
+          <span class="tag">[NAME 1]</span>
+          <span class="tag">[NAME 2]</span>
+          <span class="tag">[NAME 3]</span>
+          <span class="tag">[NAME 4]</span>
+          <span class="tag">[NAME 5]</span>
+        </div>
+        <div class="footer-row">
+          <span class="liked"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-10-9C0 8 2 4 6 4c2 0 4 1.5 6 4 2-2.5 4-4 6-4 4 0 6 4 4 8-3 4.5-10 9-10 9z"/></svg> LIKED · FAVORITE</span>
+          <span class="order">#SCR-0247-EGY</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- CARD 2 — AMC receipt style (Cabo boat) -->
+    <article class="card receipt">
+      <div class="thumb">
+        <img src="../photos/photo-04-cabo-boat.jpg" alt="">
+        <span class="badge">AMC · BCS</span>
+      </div>
+      <div class="body">
+        <div class="title">Aftermath of Light</div>
+        <div class="meta"><span class="year">2023</span> · AMC CABO 6 · Jun 11, 2023 · 4:15 PM · AUD 3 · ROW H</div>
+        <div class="stars">★★★★★</div>
+        <div class="review">"saw it under the arch. open water, full sun, six boys on a boat. the kind of matinee you talk about for years."</div>
+        <div class="tags">
+          <span class="tag">[NAME 2]</span>
+          <span class="tag">[NAME 3]</span>
+          <span class="tag">[NAME 6]</span>
+          <span class="tag">[NAME 7]</span>
+          <span class="tag">[NAME 8]</span>
+        </div>
+        <div class="footer-row">
+          <span class="liked"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-10-9C0 8 2 4 6 4c2 0 4 1.5 6 4 2-2.5 4-4 6-4 4 0 6 4 4 8-3 4.5-10 9-10 9z"/></svg> A-LIST CONFIRMED</span>
+          <span class="order">CONF# 8847-2231-LND</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- CARD 3 — Alamo style (Zion warriors / hero) -->
+    <article class="card alamo">
+      <span class="alamo-strip">ALAMO · ZION</span>
+      <div class="thumb">
+        <img src="../photos/photo-11-zion-warriors.jpg" alt="">
+        <span class="badge">DIRECTOR'S CUT</span>
+      </div>
+      <div class="body">
+        <div class="title">Walking in Water</div>
+        <div class="meta"><span class="year">2024</span> · ALAMO DRAFTHOUSE ZION · May 03, 2024 · 7:30 PM</div>
+        <div class="stars">★★★★★</div>
+        <div class="review">"the boys raised their staffs and the screen went white. peak ensemble action. the bartender brought drinks to our seats mid-second-act."</div>
+        <div class="tags">
+          <span class="tag">[NAME 1]</span>
+          <span class="tag">[NAME 4]</span>
+          <span class="tag">[NAME 5]</span>
+          <span class="tag">[NAME 6]</span>
+          <span class="tag">[NAME 7]</span>
+        </div>
+        <div class="footer-row">
+          <span class="liked"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-10-9C0 8 2 4 6 4c2 0 4 1.5 6 4 2-2.5 4-4 6-4 4 0 6 4 4 8-3 4.5-10 9-10 9z"/></svg> 4-WALL FAVORITE</span>
+          <span class="order">ALAMO/ZION/044</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- CARD 4 — Letterboxd dark (Mt Shasta) -->
+    <article class="card dark">
+      <div class="thumb">
+        <img src="../photos/photo-08-mt-shasta.jpg" alt="">
+        <span class="badge">IMAX · 70MM</span>
+      </div>
+      <div class="body">
+        <div class="title">Geometry of Friendship</div>
+        <div class="meta"><span class="year">2023</span> · IMAX MT. SHASTA · Aug 19, 2023 · 6:42 PM</div>
+        <div class="stars">★★★★★</div>
+        <div class="review">"the alpenglow hit and i swear the score swelled. seven boys, one log throne. golden hour as a closing shot. unmatched."</div>
+        <div class="tags">
+          <span class="tag">[NAME 1]</span>
+          <span class="tag">[NAME 2]</span>
+          <span class="tag">[NAME 3]</span>
+          <span class="tag">[NAME 5]</span>
+          <span class="tag">[NAME 8]</span>
+        </div>
+        <div class="footer-row">
+          <span class="liked"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-10-9C0 8 2 4 6 4c2 0 4 1.5 6 4 2-2.5 4-4 6-4 4 0 6 4 4 8-3 4.5-10 9-10 9z"/></svg> TOP 4 OF ALL TIME</span>
+          <span class="order">#SCR-1108-SHA</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- CARD 5 — AMC receipt (Times Square) -->
+    <article class="card receipt">
+      <div class="thumb">
+        <img src="../photos/photo-06-times-square.jpg" alt="">
+        <span class="badge">AMC · NYC</span>
+      </div>
+      <div class="body">
+        <div class="title">Late Show on the Red Stairs</div>
+        <div class="meta"><span class="year">2022</span> · AMC EMPIRE 25 · Feb 18, 2022 · 11:55 PM · 4DX</div>
+        <div class="stars">★★★★☆</div>
+        <div class="review">"midnight in times square, the billboards as a second lighting setup. five of us posing like we owned the city. we did, for those ten minutes."</div>
+        <div class="tags">
+          <span class="tag">[NAME 2]</span>
+          <span class="tag">[NAME 4]</span>
+          <span class="tag">[NAME 6]</span>
+          <span class="tag">[NAME 7]</span>
+        </div>
+        <div class="footer-row">
+          <span class="liked"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-10-9C0 8 2 4 6 4c2 0 4 1.5 6 4 2-2.5 4-4 6-4 4 0 6 4 4 8-3 4.5-10 9-10 9z"/></svg> A-LIST CONFIRMED</span>
+          <span class="order">CONF# 5512-9013-NYC</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- CARD 6 — Letterboxd dark (Neon dorm) -->
+    <article class="card dark">
+      <div class="thumb">
+        <img src="../photos/photo-09-neon-dorm.jpg" alt="">
+        <span class="badge">A24 · ORIGIN</span>
+      </div>
+      <div class="body">
+        <div class="title">The Pilot Episode</div>
+        <div class="meta"><span class="year">2021</span> · LANDMARK · Mar 12, 2021 · 10:00 PM · ARTHOUSE</div>
+        <div class="stars">★★★★★</div>
+        <div class="review">"shot on whatever camera was nearby. rainbow practicals, dorm walls, masks still on. before all the trips. this is where the cinematic universe began."</div>
+        <div class="tags">
+          <span class="tag">[NAME 1]</span>
+          <span class="tag">[NAME 3]</span>
+          <span class="tag">[NAME 5]</span>
+          <span class="tag">[NAME 7]</span>
+          <span class="tag">[NAME 8]</span>
+        </div>
+        <div class="footer-row">
+          <span class="liked"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-10-9C0 8 2 4 6 4c2 0 4 1.5 6 4 2-2.5 4-4 6-4 4 0 6 4 4 8-3 4.5-10 9-10 9z"/></svg> ORIGIN STORY</span>
+          <span class="order">#SCR-0001-DRM</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- bottom nav -->
+  <div class="nav-bar">
+    <div class="nav-item active">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9l9-7 9 7v12h-6v-7H9v7H3z"/></svg>
+      <span>FEED</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+      <span>SEARCH</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+      <span>RATED</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-4-7 4V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+      <span>LISTS</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8z"/></svg>
+      <span>[GROOM]</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== PAGE 2 — PHYSICAL COLLECTION ===================== -->
+<section class="page p2">
+
+  <header class="p2-header">
+    <div>
+      <h1>PHYSICAL COLLECTION</h1>
+      <div class="sub">4 PREMIUM STUBS · 1 ADVANCE SCREENING · ARCHIVED BY [GROOM]</div>
+    </div>
+    <div class="count">
+      <span class="big">05</span>
+      OF 05 TICKETS
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <!-- ALAMO STUB — beach brown tees -->
+    <article class="stub alamo-stub">
+      <div class="top-art">
+        <img src="../photos/photo-01-beach-brown-tees.jpg" alt="">
+        <span class="alamo-mark">ALAMO · LA JOLLA</span>
+      </div>
+      <div class="info">
+        <div class="presenter">ALAMO DRAFTHOUSE PRESENTS</div>
+        <div class="ttl">Seven Across the Pacific</div>
+        <div class="row"><span>PREMIUM SEAT</span><span>05.14.2024</span></div>
+        <div class="row"><span>SOUND CHECK</span><span>7:45 PM</span></div>
+        <div class="row"><span>SEAT</span><span>BROTHERHOOD ROW</span></div>
+        <div class="stars">★★★★★</div>
+        <div class="rule">"food &amp; drink service during the screening. no talking. no texting. we will kick you out."</div>
+      </div>
+      <div class="perf"></div>
+    </article>
+
+    <!-- IMAX STUB — Sedona spires -->
+    <article class="stub imax">
+      <div class="imax-header">
+        <div class="imax-logo">IMA<span class="x">X</span></div>
+        <div class="imax-sub">EXPERIENCE IT IN IMAX</div>
+      </div>
+      <div class="letterbox">
+        <img src="../photos/photo-05-sedona-spires.jpg" alt="">
+      </div>
+      <div class="info">
+        <div class="ttl">The Red Spires</div>
+        <div class="row"><span>SEDONA · AZ</span><span>11.07.2023</span></div>
+        <div class="row"><span>AUD 02</span><span>SEAT G-12</span></div>
+        <div class="specs">
+          PROJECTED IN 70MM IMAX · DIGITAL LASER<br>
+          AUDIO 12.1 SURROUND · ASPECT 1.43:1
+        </div>
+      </div>
+      <div class="perf"></div>
+    </article>
+
+    <!-- A24 STUB — Beach sunset pile -->
+    <article class="stub a24">
+      <div class="a24-top">
+        <div class="a24-mark">AN A<span class="accent">24</span> RELEASE</div>
+        <div class="a24-sub">PRES. BY THE BROTHERS PROD.</div>
+      </div>
+      <div class="img-wrap">
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" alt="">
+      </div>
+      <div class="info">
+        <div class="ttl">Golden Hour, Eight Bodies</div>
+        <div class="row"><span>METROGRAPH</span><span>09.22.2022</span></div>
+        <div class="row"><span>ROW C · SEAT 4</span><span>$18.50</span></div>
+        <div class="stars">★★★★★</div>
+        <div class="accent-bar"></div>
+      </div>
+      <div class="perf"></div>
+    </article>
+
+    <!-- ALAMO STUB — Sedona spiral -->
+    <article class="stub alamo-stub">
+      <div class="top-art">
+        <img src="../photos/photo-10-sedona-spiral.jpg" alt="">
+        <span class="alamo-mark">ALAMO · SEDONA</span>
+      </div>
+      <div class="info">
+        <div class="presenter">ALAMO DRAFTHOUSE PRESENTS</div>
+        <div class="ttl">The Spiral &amp; the Spires</div>
+        <div class="row"><span>PREMIUM SEAT</span><span>11.09.2023</span></div>
+        <div class="row"><span>SHOWING</span><span>5:15 PM (SUNSET)</span></div>
+        <div class="row"><span>SEAT</span><span>BROTHERHOOD ROW</span></div>
+        <div class="stars">★★★★★</div>
+        <div class="rule">"the only quiet film of the year. shot in 4:3. arrive 15 minutes early or do not arrive at all."</div>
+      </div>
+      <div class="perf"></div>
+    </article>
+
+    <!-- ===== WEDDING ADVANCE TICKET ===== -->
+    <article class="wedding">
+      <div class="photo-side">
+        <img src="../photos/photo-07-zion-narrows.jpg" alt="">
+        <span class="stamp">ADVANCE TICKET · WORLD PREMIERE</span>
+        <div class="premiere">
+          <strong>NOW BOOKING</strong>
+          one screening only. no encores.
+        </div>
+      </div>
+      <div class="info-side">
+        <div>
+          <div class="advance">ADVANCE TICKET · 01 OF 01</div>
+          <div class="w-title">The Wedding</div>
+          <div class="w-by">
+            <span class="dir-label">DIRECTED BY</span>
+            [GROOM] &amp; [BRIDE]
+          </div>
+          <div class="w-rows">
+            <div><span class="label">PREMIERE</span> [WEDDING DATE]</div>
+            <div><span class="label">VENUE</span> [VENUE NAME]</div>
+            <div><span class="label">DOORS</span> [TIME]</div>
+            <div><span class="label">RATING</span> <span style="font-family: 'Inter', sans-serif; color: #c79a1a;">★★★★★</span></div>
+            <div><span class="label">STATUS</span> SOLD OUT</div>
+          </div>
+        </div>
+        <div class="w-tag">"all screenings sold out to the brotherhood. scan to RSVP — but we know you're coming."</div>
+      </div>
+      <div class="qr-side">
+        <div class="seat-num">SEAT<span class="big">BF-01</span></div>
+        <div class="qr-box">
+          <!-- decorative QR-code SVG -->
+          <svg width="62" height="62" viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+            <rect width="33" height="33" fill="#fff"/>
+            <!-- finder pattern TL -->
+            <rect x="0" y="0" width="7" height="7" fill="#18181e"/>
+            <rect x="1" y="1" width="5" height="5" fill="#fff"/>
+            <rect x="2" y="2" width="3" height="3" fill="#18181e"/>
+            <!-- finder pattern TR -->
+            <rect x="26" y="0" width="7" height="7" fill="#18181e"/>
+            <rect x="27" y="1" width="5" height="5" fill="#fff"/>
+            <rect x="28" y="2" width="3" height="3" fill="#18181e"/>
+            <!-- finder pattern BL -->
+            <rect x="0" y="26" width="7" height="7" fill="#18181e"/>
+            <rect x="1" y="27" width="5" height="5" fill="#fff"/>
+            <rect x="2" y="28" width="3" height="3" fill="#18181e"/>
+            <!-- timing lines / random pattern -->
+            <g fill="#18181e">
+              <rect x="9" y="0" width="1" height="1"/><rect x="11" y="0" width="1" height="1"/><rect x="13" y="0" width="2" height="1"/>
+              <rect x="17" y="0" width="1" height="1"/><rect x="19" y="0" width="2" height="1"/><rect x="23" y="0" width="1" height="1"/>
+              <rect x="8" y="2" width="2" height="1"/><rect x="12" y="2" width="1" height="1"/><rect x="15" y="2" width="2" height="1"/>
+              <rect x="19" y="2" width="1" height="1"/><rect x="22" y="2" width="1" height="1"/><rect x="24" y="2" width="2" height="1"/>
+              <rect x="9" y="4" width="1" height="1"/><rect x="11" y="4" width="2" height="1"/><rect x="14" y="4" width="1" height="1"/>
+              <rect x="17" y="4" width="2" height="1"/><rect x="20" y="4" width="1" height="1"/><rect x="22" y="4" width="2" height="1"/>
+              <rect x="0" y="9" width="1" height="1"/><rect x="3" y="9" width="2" height="1"/><rect x="7" y="9" width="1" height="1"/>
+              <rect x="9" y="9" width="2" height="1"/><rect x="13" y="9" width="1" height="1"/><rect x="15" y="9" width="2" height="1"/>
+              <rect x="19" y="9" width="1" height="1"/><rect x="22" y="9" width="2" height="1"/><rect x="25" y="9" width="1" height="1"/>
+              <rect x="27" y="9" width="2" height="1"/><rect x="31" y="9" width="2" height="1"/>
+              <rect x="2" y="11" width="2" height="1"/><rect x="5" y="11" width="1" height="1"/><rect x="8" y="11" width="2" height="1"/>
+              <rect x="11" y="11" width="1" height="1"/><rect x="14" y="11" width="2" height="1"/><rect x="18" y="11" width="2" height="1"/>
+              <rect x="21" y="11" width="1" height="1"/><rect x="24" y="11" width="2" height="1"/><rect x="28" y="11" width="1" height="1"/>
+              <rect x="30" y="11" width="2" height="1"/>
+              <rect x="0" y="13" width="2" height="1"/><rect x="4" y="13" width="1" height="1"/><rect x="6" y="13" width="2" height="1"/>
+              <rect x="10" y="13" width="1" height="1"/><rect x="12" y="13" width="2" height="1"/><rect x="16" y="13" width="1" height="1"/>
+              <rect x="19" y="13" width="2" height="1"/><rect x="22" y="13" width="1" height="1"/><rect x="25" y="13" width="2" height="1"/>
+              <rect x="29" y="13" width="1" height="1"/><rect x="32" y="13" width="1" height="1"/>
+              <rect x="2" y="15" width="1" height="1"/><rect x="4" y="15" width="2" height="1"/><rect x="7" y="15" width="1" height="1"/>
+              <rect x="10" y="15" width="2" height="1"/><rect x="14" y="15" width="1" height="1"/><rect x="16" y="15" width="2" height="1"/>
+              <rect x="20" y="15" width="1" height="1"/><rect x="23" y="15" width="2" height="1"/><rect x="27" y="15" width="1" height="1"/>
+              <rect x="29" y="15" width="2" height="1"/>
+              <rect x="0" y="17" width="1" height="1"/><rect x="3" y="17" width="1" height="1"/><rect x="6" y="17" width="2" height="1"/>
+              <rect x="9" y="17" width="1" height="1"/><rect x="12" y="17" width="2" height="1"/><rect x="16" y="17" width="1" height="1"/>
+              <rect x="18" y="17" width="2" height="1"/><rect x="22" y="17" width="2" height="1"/><rect x="25" y="17" width="1" height="1"/>
+              <rect x="28" y="17" width="2" height="1"/><rect x="31" y="17" width="1" height="1"/>
+              <rect x="2" y="19" width="2" height="1"/><rect x="5" y="19" width="1" height="1"/><rect x="8" y="19" width="1" height="1"/>
+              <rect x="11" y="19" width="2" height="1"/><rect x="14" y="19" width="1" height="1"/><rect x="17" y="19" width="2" height="1"/>
+              <rect x="21" y="19" width="2" height="1"/><rect x="25" y="19" width="1" height="1"/><rect x="28" y="19" width="1" height="1"/>
+              <rect x="30" y="19" width="2" height="1"/>
+              <rect x="0" y="21" width="2" height="1"/><rect x="4" y="21" width="1" height="1"/><rect x="7" y="21" width="2" height="1"/>
+              <rect x="10" y="21" width="1" height="1"/><rect x="13" y="21" width="2" height="1"/><rect x="17" y="21" width="1" height="1"/>
+              <rect x="20" y="21" width="2" height="1"/><rect x="23" y="21" width="1" height="1"/><rect x="26" y="21" width="2" height="1"/>
+              <rect x="30" y="21" width="1" height="1"/>
+              <rect x="2" y="23" width="1" height="1"/><rect x="5" y="23" width="2" height="1"/><rect x="9" y="23" width="1" height="1"/>
+              <rect x="11" y="23" width="2" height="1"/><rect x="15" y="23" width="1" height="1"/><rect x="18" y="23" width="2" height="1"/>
+              <rect x="22" y="23" width="1" height="1"/><rect x="25" y="23" width="2" height="1"/><rect x="29" y="23" width="2" height="1"/>
+              <rect x="9" y="26" width="2" height="1"/><rect x="12" y="26" width="1" height="1"/><rect x="14" y="26" width="2" height="1"/>
+              <rect x="18" y="26" width="1" height="1"/><rect x="21" y="26" width="2" height="1"/><rect x="24" y="26" width="1" height="1"/>
+              <rect x="8" y="28" width="1" height="1"/><rect x="11" y="28" width="2" height="1"/><rect x="15" y="28" width="1" height="1"/>
+              <rect x="17" y="28" width="2" height="1"/><rect x="20" y="28" width="1" height="1"/><rect x="23" y="28" width="2" height="1"/>
+              <rect x="9" y="30" width="2" height="1"/><rect x="13" y="30" width="1" height="1"/><rect x="15" y="30" width="2" height="1"/>
+              <rect x="19" y="30" width="1" height="1"/><rect x="22" y="30" width="2" height="1"/><rect x="26" y="30" width="1" height="1"/>
+              <rect x="8" y="32" width="2" height="1"/><rect x="12" y="32" width="1" height="1"/><rect x="14" y="32" width="2" height="1"/>
+              <rect x="18" y="32" width="1" height="1"/><rect x="21" y="32" width="1" height="1"/><rect x="24" y="32" width="2" height="1"/>
+            </g>
+          </svg>
+        </div>
+        <div class="scan-txt">SCAN TO RSVP<br>(WE KNOW YOU'RE COMING)</div>
+      </div>
+    </article>
+
+  </div>
+
+  <footer class="p2-footer">
+    11 SCREENINGS LOGGED · 11 STARS GIVEN · 11 BROTHERS PRESENT AT EVERY SHOWING
+  </footer>
+
+</section>
+
+</body>
+</html>
