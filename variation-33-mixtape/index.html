@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A Mixtape for [GROOM]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Reenie+Beanie&family=Caveat:wght@400;700&family=Patrick+Hand&family=Gloria+Hallelujah&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f0e8d2;
+    --paper-dark:#e3d6b4;
+    --kraft:#d8b878;
+    --ink:#1c1814;
+    --ink-soft:#2b241c;
+    --accent:#c43a1f;
+    --accent-blue:#3a5a8b;
+    --shadow: 0 2px 4px rgba(0,0,0,.18), 0 10px 30px rgba(0,0,0,.12);
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:#3a3530; }
+  body{
+    font-family: 'Patrick Hand', cursive;
+    color:var(--ink);
+    padding: 28px 0;
+  }
+
+  @page { size: 8.5in 11in; margin:0; }
+
+  .page{
+    width: 8.5in;
+    height: 11in;
+    margin: 0 auto 32px;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    page-break-after: always;
+  }
+
+  /* ===== Aged paper texture / vignette / stains ===== */
+  .paper-tex{
+    position:absolute; inset:0; pointer-events:none; z-index:1;
+    background:
+      radial-gradient(ellipse at 12% 8%, rgba(120,80,30,.18), transparent 45%),
+      radial-gradient(ellipse at 88% 92%, rgba(90,60,20,.20), transparent 50%),
+      radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(40,25,10,.30) 100%);
+  }
+  .paper-tex::before{
+    content:""; position:absolute; inset:0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.22  0 0 0 0 0.16  0 0 0 0 0.08  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.30'/></svg>");
+    mix-blend-mode: multiply;
+    opacity:.55;
+  }
+  .paper-tex::after{
+    content:""; position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient( 90deg, rgba(60,40,20,.04) 0 2px, transparent 2px 7px),
+      repeating-linear-gradient(  0deg, rgba(60,40,20,.03) 0 2px, transparent 2px 9px);
+    mix-blend-mode: multiply;
+  }
+
+  .coffee{
+    position:absolute; width:160px; height:160px; pointer-events:none;
+    border-radius:50%;
+    background: radial-gradient(circle at 55% 45%, transparent 38%, rgba(110,70,25,.22) 42%, rgba(110,70,25,.30) 50%, transparent 64%);
+    filter: blur(.4px);
+    z-index:2;
+  }
+  .coffee.c2{ width:90px; height:90px;
+    background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(120,75,30,.28) 38%, transparent 60%);
+  }
+
+  /* worn edge */
+  .page::after{
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:3;
+    box-shadow: inset 0 0 60px rgba(40,20,5,.28), inset 0 0 4px rgba(0,0,0,.4);
+  }
+
+  /* ===== Layout: J-card composed across the page ===== */
+  .jcard{
+    position:absolute; inset:0; z-index:5;
+    display:grid;
+    grid-template-columns: 1fr 56px 1fr;
+    padding: 36px 30px 30px;
+    gap: 0;
+  }
+
+  /* fine perforation/fold lines between panels */
+  .fold{
+    position:absolute; top:30px; bottom:24px; width:1px;
+    background-image: linear-gradient(to bottom, rgba(40,25,10,.5) 50%, transparent 50%);
+    background-size: 1px 8px;
+    z-index:6;
+    opacity:.55;
+  }
+  .fold.l{ left: calc(30px + (100% - 60px) / 2 - 28px); }
+  .fold.r{ left: calc(30px + (100% - 60px) / 2 + 28px); }
+
+  /* ===== Panels ===== */
+  .panel{ position:relative; padding: 6px 14px; }
+
+  /* ---------- Front cover (Page 1 left) ---------- */
+  .cover h1{
+    font-family: 'Permanent Marker', cursive;
+    color: var(--ink);
+    font-size: 44px;
+    line-height: .98;
+    margin: 4px 0 2px;
+    letter-spacing: 1px;
+    transform: rotate(-1.2deg);
+  }
+  .cover .for{
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 26px;
+    color: var(--ink-soft);
+    margin-bottom: -2px;
+    transform: rotate(.6deg);
+  }
+  .cover h1 .accent{ color:var(--accent); }
+  .cover .years{
+    font-family: 'Special Elite', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    margin-top: 6px;
+    color: var(--ink-soft);
+    transform: rotate(-.4deg);
+    display:inline-block;
+  }
+
+  .polaroid{
+    background:#fafaf3;
+    padding: 10px 10px 38px;
+    box-shadow: var(--shadow);
+    width: 80%;
+    margin: 14px auto 10px;
+    transform: rotate(-3deg);
+    position:relative;
+    border: 1px solid rgba(0,0,0,.08);
+  }
+  .polaroid.tilt-r{ transform: rotate(2.4deg); }
+  .polaroid img{
+    width:100%; display:block; aspect-ratio: 1/1; object-fit: cover;
+    filter: contrast(.96) saturate(.85) sepia(.07);
+  }
+  .polaroid .cap{
+    position:absolute; left:0; right:0; bottom:8px;
+    text-align:center;
+    font-family:'Caveat', cursive;
+    font-size: 18px;
+    color: var(--ink-soft);
+  }
+
+  .cover .below-photo{
+    font-family:'Reenie Beanie', cursive;
+    text-align:center;
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1.15;
+    margin: 4px 14px 0;
+    transform: rotate(-.5deg);
+  }
+
+  .doodle-row{
+    display:flex; justify-content:center; gap:14px;
+    margin-top: 6px;
+    color: var(--ink);
+  }
+
+  .side-label{
+    position:absolute; bottom: 12px; left: 18px;
+    font-family:'Permanent Marker', cursive;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: var(--ink);
+    transform: rotate(-2deg);
+  }
+  .side-label .min{
+    font-family:'Special Elite', monospace;
+    font-size: 13px;
+    margin-left: 6px;
+    color: var(--ink-soft);
+    letter-spacing: 2px;
+  }
+
+  .stamp{
+    position:absolute;
+    border: 2.5px solid var(--accent);
+    color: var(--accent);
+    font-family:'Special Elite', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    padding: 5px 9px;
+    border-radius: 3px;
+    transform: rotate(-9deg);
+    opacity:.78;
+    mix-blend-mode: multiply;
+  }
+
+  /* ---------- Spine (middle strip) ---------- */
+  .spine{
+    background: var(--paper-dark);
+    margin: 0 4px;
+    border-left: 1px dashed rgba(40,25,10,.35);
+    border-right: 1px dashed rgba(40,25,10,.35);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    box-shadow: inset 0 0 18px rgba(80,50,15,.22);
+    padding: 0;
+  }
+  .spine .title{
+    font-family:'Permanent Marker', cursive;
+    font-size: 18px;
+    color: var(--ink);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    letter-spacing: 4px;
+    white-space: nowrap;
+  }
+  .spine .deco{
+    position:absolute; left:0; right:0;
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+    color: var(--ink);
+  }
+  .spine .deco.top{ top: 14px; }
+  .spine .deco.bot{ bottom: 14px; }
+
+  /* ---------- Tracklist panel ---------- */
+  .tracks h2{
+    font-family:'Permanent Marker', cursive;
+    font-size: 24px;
+    margin: 0 0 2px;
+    color: var(--ink);
+    letter-spacing: 1.5px;
+    transform: rotate(-.6deg);
+  }
+  .tracks h2 .dash{ color: var(--accent); }
+  .tracks .sub{
+    font-family:'Reenie Beanie', cursive;
+    font-size: 17px;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    transform: rotate(.4deg);
+  }
+
+  .tlist{
+    font-family:'Caveat', cursive;
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.22;
+  }
+  .trk{
+    display:grid;
+    grid-template-columns: 28px 1fr auto;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 7px;
+    position:relative;
+  }
+  .trk .num{
+    font-family:'Special Elite', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 1px;
+    padding-top: 2px;
+  }
+  .trk .ttl{
+    font-family:'Caveat', cursive;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.05;
+    color: var(--ink);
+    position:relative;
+  }
+  .trk .ttl::after{
+    content:""; display:block; height:0;
+    border-bottom: 1px dotted rgba(28,24,20,.45);
+    margin: 2px 6px 0 0;
+  }
+  .trk .run{
+    font-family:'Special Elite', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 1px;
+    white-space:nowrap;
+  }
+  .trk .note{
+    grid-column: 2 / 4;
+    font-family:'Reenie Beanie', cursive;
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-top: -2px;
+    line-height: 1.1;
+  }
+  .trk.with-thumb{
+    grid-template-columns: 28px 1fr auto;
+  }
+  .trk .thumb{
+    position:absolute;
+    right: -2px; top: -4px;
+    width: 64px; height: 64px;
+    background:#fafaf3;
+    padding: 4px 4px 12px;
+    box-shadow: var(--shadow);
+    transform: rotate(4deg);
+    border:1px solid rgba(0,0,0,.08);
+  }
+  .trk .thumb.left{
+    right:auto; left: -84px;
+    transform: rotate(-5deg);
+  }
+  .trk .thumb img{ width:100%; height:48px; object-fit:cover; display:block; filter: contrast(.95) saturate(.85) sepia(.08); }
+
+  /* Standalone art thumbnails dropped into the tracklist column */
+  .art-thumb{
+    background:#fafaf3;
+    padding: 6px 6px 16px;
+    box-shadow: var(--shadow);
+    border:1px solid rgba(0,0,0,.08);
+    width: 90px;
+    position:absolute;
+  }
+  .art-thumb img{ width:100%; height:70px; object-fit:cover; display:block; filter: contrast(.95) saturate(.85) sepia(.08); }
+  .art-thumb .cap{
+    position:absolute; left:0; right:0; bottom:2px; text-align:center;
+    font-family:'Caveat', cursive; font-size:12px; color:var(--ink-soft);
+  }
+
+  /* ---------- PAGE 2: Liner notes ---------- */
+  .liner h2{
+    font-family:'Permanent Marker', cursive;
+    font-size: 26px;
+    margin: 0 0 4px;
+    transform: rotate(-.8deg);
+    color: var(--ink);
+    letter-spacing: 1.5px;
+  }
+  .liner .ln{
+    font-family:'Caveat', cursive;
+    font-size: 18.5px;
+    line-height: 1.28;
+    color: var(--ink);
+    margin-top: 6px;
+  }
+  .liner .ln p{ margin: 0 0 7px; }
+  .liner .ln .sig{
+    font-family:'Reenie Beanie', cursive;
+    font-size: 22px;
+    margin-top: 8px;
+  }
+  .liner .credits{
+    margin-top: 12px;
+    font-family:'Permanent Marker', cursive;
+    font-size: 13px;
+    letter-spacing: 1.2px;
+    line-height: 1.5;
+    color: var(--ink);
+    border-top: 1.5px dashed rgba(28,24,20,.45);
+    padding-top: 8px;
+  }
+  .liner .credits .small{
+    font-family:'Special Elite', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-top: 6px;
+    color: var(--ink-soft);
+  }
+
+  /* tape sketch */
+  .tape-sketch{
+    display:block;
+    margin: 6px auto 0;
+  }
+
+  /* helper: tiny scribble */
+  .scribble{ color: var(--ink); }
+
+  /* highlight one track */
+  .trk.hilite .ttl{ color: var(--accent); }
+  .trk.hilite .num{ color: var(--accent); }
+
+  /* hidden track styling */
+  .hidden-block{
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1.5px dashed rgba(28,24,20,.4);
+  }
+  .hidden-block .label{
+    font-family:'Permanent Marker', cursive;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  /* punched hole on the spine for that case loop look */
+  .hole{
+    position:absolute; left:50%; transform:translateX(-50%);
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #3a3530;
+    box-shadow: inset 0 2px 3px rgba(0,0,0,.6);
+    z-index: 7;
+  }
+  .hole.t{ top: 50px; }
+  .hole.b{ bottom: 38px; }
+
+  @media print{
+    body{ background:#fff; padding:0; }
+    .page{ margin:0; box-shadow:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 1 — J-CARD FRONT + SPINE + SIDE A
+     ============================================================ -->
+<div class="page" id="p1">
+  <div class="paper-tex"></div>
+  <div class="coffee" style="top:-30px; left:-30px;"></div>
+  <div class="coffee c2" style="bottom:60px; right:42%;"></div>
+
+  <div class="fold l"></div>
+  <div class="fold r"></div>
+
+  <div class="jcard">
+
+    <!-- ===== LEFT PANEL — Front cover ===== -->
+    <div class="panel cover">
+
+      <div class="for">for</div>
+      <h1>[GROOM]<br><span class="accent">A MIXTAPE</span></h1>
+      <div class="years">MMXVII &mdash; MMXXVI</div>
+
+      <div class="polaroid">
+        <img src="../photos/photo-08-mt-shasta.jpg" alt="Mt Shasta alpenglow">
+        <div class="cap">mt. shasta &mdash; the one we play last</div>
+      </div>
+
+      <div class="below-photo">
+        songs we played<br>
+        while we lived this
+      </div>
+
+      <div class="doodle-row">
+        <!-- arrow -->
+        <svg width="48" height="22" viewBox="0 0 48 22" fill="none">
+          <path d="M2 11 Q14 2 24 11 T46 11" stroke="#1c1814" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+          <path d="M40 6 L46 11 L40 16" stroke="#1c1814" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <!-- heart -->
+        <svg width="22" height="22" viewBox="0 0 22 22">
+          <path d="M11 19 C 3 13 2 7 6 4 C 9 2 11 5 11 7 C 11 5 13 2 16 4 C 20 7 19 13 11 19 Z"
+                fill="none" stroke="#c43a1f" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+        <!-- star -->
+        <svg width="22" height="22" viewBox="0 0 22 22">
+          <path d="M11 2 L13.4 8.4 L20 9 L15 13.6 L16.4 20 L11 16.6 L5.6 20 L7 13.6 L2 9 L8.6 8.4 Z"
+                fill="none" stroke="#1c1814" stroke-width="1.4" stroke-linejoin="round"/>
+        </svg>
+        <!-- music note -->
+        <svg width="22" height="22" viewBox="0 0 22 22">
+          <path d="M9 17 a3 2.4 0 1 0 3 -2.4 V4 L18 6 V14" fill="none" stroke="#1c1814" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- Small dorm thumbnail tucked in -->
+      <div class="polaroid tilt-r" style="width:42%; margin: 18px 0 0 14px;">
+        <img src="../photos/photo-09-neon-dorm.jpg" alt="dorm neon" style="aspect-ratio: 4/3;">
+        <div class="cap">the dorm, 2017</div>
+      </div>
+
+      <div class="stamp" style="right: 18px; bottom: 60px;">BE&nbsp;KIND &middot;&nbsp;REWIND</div>
+
+      <div class="side-label">SIDE A <span class="min">&middot; 45 min</span></div>
+
+    </div>
+
+    <!-- ===== MIDDLE — Spine ===== -->
+    <div class="panel spine">
+      <div class="hole t"></div>
+      <div class="deco top">
+        <!-- small cassette -->
+        <svg width="34" height="22" viewBox="0 0 60 38">
+          <rect x="2" y="2" width="56" height="34" rx="3" fill="none" stroke="#1c1814" stroke-width="1.6"/>
+          <circle cx="20" cy="20" r="5" fill="none" stroke="#1c1814" stroke-width="1.4"/>
+          <circle cx="40" cy="20" r="5" fill="none" stroke="#1c1814" stroke-width="1.4"/>
+          <rect x="14" y="9" width="32" height="6" fill="none" stroke="#1c1814" stroke-width="1.2"/>
+        </svg>
+        <!-- heart -->
+        <svg width="14" height="14" viewBox="0 0 22 22">
+          <path d="M11 19 C 3 13 2 7 6 4 C 9 2 11 5 11 7 C 11 5 13 2 16 4 C 20 7 19 13 11 19 Z"
+                fill="#c43a1f" stroke="#c43a1f" stroke-width="1.2" stroke-linejoin="round"/>
+        </svg>
+        <!-- squiggle -->
+        <svg width="22" height="10" viewBox="0 0 22 10"><path d="M1 5 Q4 1 7 5 T13 5 T19 5" stroke="#1c1814" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>
+      </div>
+
+      <div class="title">THE BROTHERS &middot; A MIXTAPE &middot; '17&mdash;'26</div>
+
+      <div class="deco bot">
+        <!-- star -->
+        <svg width="14" height="14" viewBox="0 0 22 22"><path d="M11 2 L13.4 8.4 L20 9 L15 13.6 L16.4 20 L11 16.6 L5.6 20 L7 13.6 L2 9 L8.6 8.4 Z" fill="#1c1814" stroke="#1c1814" stroke-width="1" stroke-linejoin="round"/></svg>
+        <!-- note -->
+        <svg width="14" height="16" viewBox="0 0 22 22"><path d="M9 17 a3 2.4 0 1 0 3 -2.4 V4 L18 6 V14" fill="none" stroke="#1c1814" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <!-- x's -->
+        <svg width="22" height="10" viewBox="0 0 22 10"><path d="M2 2 L6 8 M6 2 L2 8 M11 2 L15 8 M15 2 L11 8 M19 5 L19 5" stroke="#1c1814" stroke-width="1.3" stroke-linecap="round" fill="none"/></svg>
+      </div>
+      <div class="hole b"></div>
+    </div>
+
+    <!-- ===== RIGHT PANEL — Tracklist Side A ===== -->
+    <div class="panel tracks">
+      <h2>SIDE A <span class="dash">&mdash;</span> THE EARLY YEARS</h2>
+      <div class="sub">for [GROOM] &mdash; to play in your truck on the drive home</div>
+
+      <div class="tlist">
+
+        <div class="trk">
+          <div class="num">01.</div>
+          <div class="ttl">The Origin Story</div>
+          <div class="run">3:47</div>
+          <div class="note">(recorded in the dorm, 2017)</div>
+        </div>
+
+        <div class="trk">
+          <div class="num">02.</div>
+          <div class="ttl">Brown Tees by the Ocean</div>
+          <div class="run">4:12</div>
+          <div class="note">(la jolla, sunny day, summer '23)</div>
+        </div>
+
+        <div class="trk" style="position:relative;">
+          <div class="num">03.</div>
+          <div class="ttl">Pyramids of Giza (Live)</div>
+          <div class="run">5:08</div>
+          <div class="note">(egypt, '22 &mdash; yes, that egypt)</div>
+        </div>
+
+        <!-- art thumbnail floating mid-list -->
+        <div style="position:relative; height: 86px;">
+          <div class="art-thumb" style="top:-4px; left: 4px; transform: rotate(-5deg);">
+            <img src="../photos/photo-01-beach-brown-tees.jpg" alt="brown tees">
+            <div class="cap">side a, track 2</div>
+          </div>
+          <div class="art-thumb" style="top:6px; right: 4px; transform: rotate(4deg); width:96px;">
+            <img src="../photos/photo-02-egypt-pyramid.jpg" alt="egypt pyramid" style="height:60px;">
+            <div class="cap">track 3 &mdash; egypt</div>
+          </div>
+        </div>
+
+        <div class="trk">
+          <div class="num">04.</div>
+          <div class="ttl">Beach Pile / Golden Hour Mix</div>
+          <div class="run">4:35</div>
+          <div class="note">(you'll know which sunset)</div>
+        </div>
+
+        <div class="trk">
+          <div class="num">05.</div>
+          <div class="ttl">Cabo on a Boat (B-Side)</div>
+          <div class="run">3:55</div>
+          <div class="note">(los cabos, the arch in view)</div>
+        </div>
+
+        <div class="trk">
+          <div class="num">06.</div>
+          <div class="ttl">Sedona, Pt. 1</div>
+          <div class="run">4:18</div>
+          <div class="note">(the red rocks took our breath)</div>
+        </div>
+
+        <!-- floating art row -->
+        <div style="position:relative; height: 92px; margin-top:4px;">
+          <div class="art-thumb" style="top:0; left: 0; transform: rotate(-3deg);">
+            <img src="../photos/photo-03-beach-sunset-pile.jpg" alt="beach sunset pile" style="height:70px;">
+            <div class="cap">track 4</div>
+          </div>
+          <div class="art-thumb" style="top:8px; left: 100px; transform: rotate(3.5deg);">
+            <img src="../photos/photo-04-cabo-boat.jpg" alt="cabo boat" style="height:70px;">
+            <div class="cap">track 5 &mdash; cabo</div>
+          </div>
+          <div class="art-thumb" style="top:-2px; right: 0; transform: rotate(-2deg);">
+            <img src="../photos/photo-05-sedona-spires.jpg" alt="sedona" style="height:70px;">
+            <div class="cap">track 6 &mdash; sedona</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- little doodles in corner -->
+      <div style="position:absolute; right: 14px; bottom: 10px; display:flex; gap:8px; align-items:center;">
+        <span style="font-family:'Reenie Beanie', cursive; font-size:14px; color:var(--ink-soft);">flip me &rarr;</span>
+        <svg width="36" height="16" viewBox="0 0 36 16"><path d="M2 8 Q10 1 18 8 T34 8" stroke="#1c1814" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M28 4 L34 8 L28 12" stroke="#1c1814" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 2 — SIDE B + LINER NOTES + DEDICATION
+     ============================================================ -->
+<div class="page" id="p2">
+  <div class="paper-tex"></div>
+  <div class="coffee" style="top:40%; left:-50px;"></div>
+  <div class="coffee c2" style="top:80px; right:30px;"></div>
+
+  <div class="fold l"></div>
+  <div class="fold r"></div>
+
+  <div class="jcard">
+
+    <!-- ===== LEFT PANEL — Side B tracklist ===== -->
+    <div class="panel tracks">
+      <h2>SIDE B <span class="dash">&mdash;</span> THE LATER YEARS</h2>
+      <div class="sub">play loud. windows down. all of you in the truck.</div>
+
+      <div class="tlist">
+
+        <div class="trk">
+          <div class="num">07.</div>
+          <div class="ttl">Times Square at 3 AM</div>
+          <div class="run">4:51</div>
+          <div class="note">(we ran the city, briefly)</div>
+        </div>
+
+        <div class="trk">
+          <div class="num">08.</div>
+          <div class="ttl">The Narrows (Underwater Mix)</div>
+          <div class="run">6:24</div>
+          <div class="note">(zion canyon, knee-deep, no regrets)</div>
+        </div>
+
+        <!-- floating art row -->
+        <div style="position:relative; height: 92px; margin: 2px 0 4px;">
+          <div class="art-thumb" style="top:-4px; left: 0; transform: rotate(-4deg);">
+            <img src="../photos/photo-06-times-square.jpg" alt="times square" style="height:72px;">
+            <div class="cap">track 7</div>
+          </div>
+          <div class="art-thumb" style="top:6px; right: 10px; transform: rotate(3deg); width:110px;">
+            <img src="../photos/photo-07-zion-narrows.jpg" alt="zion narrows" style="height:72px;">
+            <div class="cap">track 8 &mdash; the narrows</div>
+          </div>
+        </div>
+
+        <div class="trk hilite">
+          <div class="num">09.</div>
+          <div class="ttl">Mt. Shasta &mdash; Alpenglow Theme</div>
+          <div class="run">5:48</div>
+          <div class="note">(this is the one. play it last.)</div>
+        </div>
+
+        <div class="trk">
+          <div class="num">10.</div>
+          <div class="ttl">Sedona, Pt. 2</div>
+          <div class="run">4:00</div>
+          <div class="note">(the spiral / the stones)</div>
+        </div>
+
+        <div class="trk">
+          <div class="num">11.</div>
+          <div class="ttl">Warriors Theme</div>
+          <div class="run">4:30</div>
+          <div class="note">(sticks raised, the river roaring)</div>
+        </div>
+
+        <!-- floating art row 2 -->
+        <div style="position:relative; height: 92px; margin: 4px 0 0;">
+          <div class="art-thumb" style="top:-2px; left: 0; transform: rotate(-3deg);">
+            <img src="../photos/photo-10-sedona-spiral.jpg" alt="sedona spiral" style="height:72px;">
+            <div class="cap">track 10</div>
+          </div>
+          <div class="art-thumb" style="top:8px; right: 0; transform: rotate(4deg); width:110px;">
+            <img src="../photos/photo-11-zion-warriors.jpg" alt="warriors" style="height:72px;">
+            <div class="cap">track 11 &mdash; warriors</div>
+          </div>
+        </div>
+
+        <div class="hidden-block">
+          <div class="label">&#9733; HIDDEN TRACK</div>
+          <div class="trk">
+            <div class="num">12.</div>
+            <div class="ttl">The Wedding (Untitled, to be recorded)</div>
+            <div class="run">?:??</div>
+            <div class="note">(your move, [GROOM])</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== MIDDLE — Spine ===== -->
+    <div class="panel spine">
+      <div class="hole t"></div>
+      <div class="deco top">
+        <svg width="14" height="14" viewBox="0 0 22 22">
+          <path d="M11 19 C 3 13 2 7 6 4 C 9 2 11 5 11 7 C 11 5 13 2 16 4 C 20 7 19 13 11 19 Z" fill="#c43a1f" stroke="#c43a1f" stroke-width="1.2" stroke-linejoin="round"/>
+        </svg>
+        <svg width="22" height="10" viewBox="0 0 22 10"><path d="M1 5 Q4 1 7 5 T13 5 T19 5" stroke="#1c1814" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>
+        <svg width="34" height="22" viewBox="0 0 60 38">
+          <rect x="2" y="2" width="56" height="34" rx="3" fill="none" stroke="#1c1814" stroke-width="1.6"/>
+          <circle cx="20" cy="20" r="5" fill="none" stroke="#1c1814" stroke-width="1.4"/>
+          <circle cx="40" cy="20" r="5" fill="none" stroke="#1c1814" stroke-width="1.4"/>
+          <rect x="14" y="9" width="32" height="6" fill="none" stroke="#1c1814" stroke-width="1.2"/>
+        </svg>
+      </div>
+
+      <div class="title">SIDE B &middot; LINER NOTES &middot; FOR [GROOM]</div>
+
+      <div class="deco bot">
+        <svg width="22" height="10" viewBox="0 0 22 10"><path d="M2 2 L6 8 M6 2 L2 8 M11 2 L15 8 M15 2 L11 8" stroke="#1c1814" stroke-width="1.3" stroke-linecap="round" fill="none"/></svg>
+        <svg width="14" height="14" viewBox="0 0 22 22"><path d="M11 2 L13.4 8.4 L20 9 L15 13.6 L16.4 20 L11 16.6 L5.6 20 L7 13.6 L2 9 L8.6 8.4 Z" fill="#1c1814" stroke="#1c1814" stroke-width="1" stroke-linejoin="round"/></svg>
+        <svg width="14" height="16" viewBox="0 0 22 22"><path d="M9 17 a3 2.4 0 1 0 3 -2.4 V4 L18 6 V14" fill="none" stroke="#1c1814" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="hole b"></div>
+    </div>
+
+    <!-- ===== RIGHT PANEL — Liner notes + dedication ===== -->
+    <div class="panel liner">
+      <h2>LINER NOTES</h2>
+
+      <div class="ln">
+        <p><span style="font-family:'Permanent Marker',cursive; font-size:20px;">[GROOM] &mdash;</span></p>
+
+        <p>we made this for you because we couldn't think of what else to give you that you didn't already have. you have the videos. you have the photos. you have us, technically, on retainer.</p>
+
+        <p>so this is a mixtape. it's mostly songs we played in the car together. some of them were yours, some of them were [NAME 3]'s (the ones with too much bass), some of them just... played, somewhere, while we were standing in a place that mattered.</p>
+
+        <p>play it at the wedding. play it in the truck. play it in twenty years and remember the brothers you traveled with before you traveled with [BRIDE].</p>
+
+        <div class="sig">
+          with love and slight envy,<br>
+          &mdash; the boys
+        </div>
+
+        <p style="margin-top:6px; font-family:'Reenie Beanie', cursive; font-size:17px;">P.S. The hidden track is up to you.</p>
+      </div>
+
+      <div class="credits">
+        MIX BY [NAME 1]<br>
+        CASE DECORATED BY [NAME 5]<br>
+        NOTES BY [NAME 7]<br>
+        DELIVERED BY THE WHOLE CREW
+        <div class="small">
+          RECORDED ONTO 90-MIN MAXELL XL-II<br>
+          PLEASE BE KIND. REWIND.
+        </div>
+      </div>
+
+      <!-- tape sketch + heart + stamp -->
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-top: 10px;">
+        <svg width="92" height="56" viewBox="0 0 120 72" class="tape-sketch">
+          <rect x="3" y="3" width="114" height="66" rx="5" fill="none" stroke="#1c1814" stroke-width="2"/>
+          <rect x="14" y="14" width="92" height="20" rx="2" fill="none" stroke="#1c1814" stroke-width="1.5"/>
+          <line x1="14" y1="22" x2="106" y2="22" stroke="#1c1814" stroke-width=".8"/>
+          <line x1="14" y1="28" x2="106" y2="28" stroke="#1c1814" stroke-width=".8"/>
+          <text x="60" y="46" text-anchor="middle" font-family="Permanent Marker" font-size="9" fill="#1c1814">FOR [GROOM]</text>
+          <circle cx="38" cy="58" r="7" fill="none" stroke="#1c1814" stroke-width="1.5"/>
+          <circle cx="38" cy="58" r="2" fill="#1c1814"/>
+          <circle cx="82" cy="58" r="7" fill="none" stroke="#1c1814" stroke-width="1.5"/>
+          <circle cx="82" cy="58" r="2" fill="#1c1814"/>
+          <rect x="55" y="56" width="10" height="4" fill="none" stroke="#1c1814" stroke-width="1"/>
+        </svg>
+
+        <svg width="36" height="36" viewBox="0 0 22 22">
+          <path d="M11 19 C 3 13 2 7 6 4 C 9 2 11 5 11 7 C 11 5 13 2 16 4 C 20 7 19 13 11 19 Z" fill="#c43a1f" stroke="#c43a1f" stroke-width="1" stroke-linejoin="round"/>
+        </svg>
+
+        <div class="stamp" style="position:relative; transform: rotate(-7deg);">BE&nbsp;KIND &middot; REWIND</div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

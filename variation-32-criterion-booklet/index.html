@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>The Criterion Collection · The Brothers · #1011</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f1ea;
+    --paper-shadow: #ede7dc;
+    --ink: #15110d;
+    --ink-soft: #2a241d;
+    --ink-mute: #5a5048;
+    --rule: #2a241d;
+    --crit-orange: #f47346;
+    --border-photo: #1a1612;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #2a2520;
+    font-family: 'EB Garamond', Garamond, 'Times New Roman', serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  @page {
+    size: 8.5in 11in;
+    margin: 0;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: var(--paper);
+    position: relative;
+    margin: 24px auto;
+    box-shadow:
+      0 1px 0 rgba(0,0,0,0.06) inset,
+      0 30px 80px rgba(0,0,0,0.55),
+      0 4px 12px rgba(0,0,0,0.35);
+    overflow: hidden;
+    page-break-after: always;
+    /* subtle paper grain */
+    background-image:
+      radial-gradient(rgba(120,90,60,0.025) 1px, transparent 1px),
+      radial-gradient(rgba(80,60,40,0.02) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 2px;
+  }
+
+  /* Top Criterion orange bar */
+  .crit-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: var(--crit-orange);
+  }
+
+  /* Center gutter — looks like the spine of a folded booklet */
+  .gutter {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0.18) 8%,
+      rgba(0,0,0,0.22) 50%,
+      rgba(0,0,0,0.18) 92%,
+      rgba(0,0,0,0) 100%
+    );
+    transform: translateX(-0.5px);
+  }
+  .gutter::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    left: -14px;
+    width: 28px;
+    background: linear-gradient(
+      to right,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0.05) 40%,
+      rgba(0,0,0,0.10) 50%,
+      rgba(0,0,0,0.05) 60%,
+      rgba(0,0,0,0) 100%
+    );
+    pointer-events: none;
+  }
+
+  .leaf {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 50%;
+    padding: 0.62in 0.55in 0.55in 0.55in;
+  }
+  .leaf.left  { left: 0; padding-right: 0.42in; }
+  .leaf.right { right: 0; padding-left: 0.42in; }
+
+  /* ----------  PAGE 1 LEFT — BOOKLET COVER  ---------- */
+
+  .cover-header {
+    text-align: center;
+    padding-top: 6px;
+  }
+  .crit-wordmark {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 8.5px;
+    letter-spacing: 0.32em;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .crit-wordmark .dot {
+    display: inline-block;
+    width: 3px; height: 3px;
+    background: var(--crit-orange);
+    border-radius: 50%;
+    vertical-align: middle;
+    margin: 0 8px 2px;
+  }
+
+  .cover-title-block {
+    text-align: center;
+    margin-top: 38px;
+  }
+  .cover-title {
+    font-family: 'Cormorant Garamond', 'EB Garamond', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .cover-the {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    display: block;
+    margin-bottom: -4px;
+    color: var(--ink-soft);
+  }
+  .cover-subtitle {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: 14px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Featured cover photo */
+  .cover-plate {
+    margin: 26px auto 0;
+    width: 88%;
+    border: 1px solid var(--border-photo);
+    background: var(--border-photo);
+    padding: 6px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.08);
+  }
+  .cover-plate img {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    filter: contrast(1.04) saturate(0.92);
+  }
+  .cover-caption {
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .cover-credits {
+    position: absolute;
+    left: 0.55in;
+    right: 0.42in;
+    bottom: 0.7in;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 7.5px;
+    letter-spacing: 0.08em;
+    line-height: 1.85;
+    color: var(--ink);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .cover-credits .rule {
+    width: 50px;
+    height: 1px;
+    background: var(--ink);
+    margin: 0 auto 10px;
+    opacity: 0.5;
+  }
+
+  .spine-no {
+    position: absolute;
+    bottom: 0.32in;
+    right: 0.42in;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--crit-orange);
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+  .spine-no .hash {
+    color: var(--ink);
+    font-weight: 500;
+    font-size: 9px;
+    font-style: normal;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.3em;
+    display: block;
+    text-align: right;
+    margin-bottom: 2px;
+  }
+
+  /* ----------  PAGE 1 RIGHT — ESSAY PAGE 1  ---------- */
+
+  .essay-toplabel {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 7.5px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    text-align: center;
+    margin: 0;
+  }
+  .essay-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 30px;
+    line-height: 1.05;
+    color: var(--ink);
+    margin: 10px 0 6px;
+    text-align: center;
+    letter-spacing: -0.005em;
+  }
+  .essay-dek {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align: center;
+    margin: 0 0 18px;
+  }
+  .essay-rule {
+    width: 36px;
+    height: 1px;
+    background: var(--ink);
+    margin: 0 auto 16px;
+  }
+
+  .essay-cols {
+    column-count: 2;
+    column-gap: 16px;
+    column-rule: 0;
+    font-family: 'EB Garamond', serif;
+    font-size: 9.4px;
+    line-height: 1.52;
+    color: var(--ink);
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+  .essay-cols p {
+    margin: 0 0 7px 0;
+    text-indent: 1.1em;
+  }
+  .essay-cols p.first { text-indent: 0; }
+  .essay-cols p.first::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 46px;
+    line-height: 0.86;
+    float: left;
+    padding: 4px 6px 0 0;
+    color: var(--ink);
+  }
+
+  .footnote {
+    margin-top: 14px;
+    border-top: 0.5px solid rgba(0,0,0,0.3);
+    padding-top: 6px;
+    font-family: 'EB Garamond', serif;
+    font-size: 7.5px;
+    line-height: 1.45;
+    color: var(--ink-mute);
+    column-span: all;
+  }
+  .footnote sup { font-size: 7px; }
+
+  .folio {
+    position: absolute;
+    bottom: 0.32in;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 9px;
+    color: var(--ink-mute);
+    letter-spacing: 0.02em;
+  }
+  .folio.left  { left: 0.55in; }
+  .folio.right { right: 0.42in; }
+  .folio-center {
+    position: absolute;
+    bottom: 0.32in;
+    font-family: 'Inter', sans-serif;
+    font-size: 7px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .folio-center.left  { left: 0; right: 50%; text-align: center; padding-right: 0.5in;}
+  .folio-center.right { left: 50%; right: 0; text-align: center; padding-left: 0.5in;}
+
+  /* ----------  PAGE 2 — ESSAY 2/3 + PLATES  ---------- */
+
+  /* Left leaf header */
+  .running-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Inter', sans-serif;
+    font-size: 7px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid rgba(0,0,0,0.35);
+  }
+  .running-head .left  { text-align: left; }
+  .running-head .right { text-align: right; }
+
+  .essay-cols.continued {
+    font-size: 9.2px;
+    line-height: 1.5;
+  }
+  .essay-cols.continued p { text-indent: 1.1em; margin: 0 0 6px 0; }
+
+  /* In-flow plate inside columns */
+  .plate {
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    margin: 6px 0 8px 0;
+    text-align: center;
+  }
+  .plate .frame {
+    border: 1px solid var(--border-photo);
+    background: var(--border-photo);
+    padding: 3px;
+  }
+  .plate .frame img {
+    display: block;
+    width: 100%;
+    height: 92px;
+    object-fit: cover;
+    filter: contrast(1.04) saturate(0.92);
+  }
+  .plate .cap {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 7.4px;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+    text-align: left;
+    margin-top: 4px;
+    line-height: 1.32;
+    text-indent: 0;
+  }
+  .plate .cap .roman {
+    font-style: normal;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 6.8px;
+    color: var(--ink);
+    margin-right: 4px;
+  }
+  .plate .cap em { font-style: italic; }
+
+  /* Right leaf */
+  .author-note {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 8.6px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    margin: 10px 0 10px;
+    padding-top: 8px;
+    border-top: 0.5px solid rgba(0,0,0,0.3);
+    text-align: justify;
+  }
+
+  .section-rule {
+    margin: 14px auto;
+    width: 36px;
+    height: 1px;
+    background: var(--ink);
+  }
+
+  .plates-grid-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 7px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--ink-mute);
+    margin: 0 0 10px 0;
+  }
+  .plates-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 8px 8px;
+  }
+  .plates-grid .plate-mini {
+    text-align: left;
+  }
+  .plates-grid .plate-mini .frame {
+    border: 1px solid var(--border-photo);
+    background: var(--border-photo);
+    padding: 2px;
+  }
+  .plates-grid .plate-mini .frame img {
+    display: block;
+    width: 100%;
+    height: 56px;
+    object-fit: cover;
+    filter: contrast(1.04) saturate(0.92);
+  }
+  .plates-grid .plate-mini .cap {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 6.4px;
+    line-height: 1.25;
+    color: var(--ink-soft);
+    margin-top: 3px;
+  }
+  .plates-grid .plate-mini .cap .roman {
+    font-style: normal;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 5.9px;
+    color: var(--ink);
+    margin-right: 3px;
+  }
+
+  /* Technical credits panel */
+  .tech-credits {
+    margin-top: 14px;
+    padding: 10px 12px 12px;
+    border: 0.5px solid rgba(0,0,0,0.55);
+    font-family: 'Inter', sans-serif;
+    font-size: 6.6px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1.85;
+    color: var(--ink);
+    text-align: center;
+  }
+  .tech-credits .label {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 8px;
+    text-transform: none;
+    letter-spacing: 0.04em;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .tech-credits .div {
+    height: 1px;
+    width: 24px;
+    background: var(--ink);
+    opacity: 0.5;
+    margin: 6px auto;
+  }
+
+  .colophon {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 0.20in;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 6px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  /* Re-use spine no on page 2 right side */
+  .spine-no.small {
+    font-size: 14px;
+    bottom: 0.55in;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ====================================================== -->
+<!-- =========          PAGE 1                  =========== -->
+<!-- ====================================================== -->
+<section class="page" id="page-1">
+  <div class="crit-bar"></div>
+  <div class="gutter"></div>
+
+  <!-- LEFT: BOOKLET COVER -->
+  <div class="leaf left">
+    <div class="cover-header">
+      <div class="crit-wordmark">
+        The Criterion Collection<span class="dot"></span>Spine №&nbsp;1011
+      </div>
+    </div>
+
+    <div class="cover-title-block">
+      <span class="cover-the">The</span>
+      <h1 class="cover-title">Brothers</h1>
+      <div class="cover-subtitle">A film by [GROOM]</div>
+    </div>
+
+    <figure class="cover-plate">
+      <img src="../photos/photo-08-mt-shasta.jpg" alt="Mt. Shasta sunset" />
+    </figure>
+    <div class="cover-caption">[GROOM] · MMXXVI</div>
+
+    <div class="cover-credits">
+      <div class="rule"></div>
+      Essay by [BRIDE]<br/>
+      New interviews with the cast<br/>
+      Audio commentary by the group chat<br/>
+      4K restoration · supervised by the director
+    </div>
+
+    <div class="spine-no">
+      <span class="hash">№</span>1011
+    </div>
+
+    <div class="folio-center left">The Criterion Collection</div>
+  </div>
+
+  <!-- RIGHT: ESSAY PAGE 1 -->
+  <div class="leaf right">
+    <div class="essay-toplabel">An Essay by [BRIDE]</div>
+    <h2 class="essay-title">The Decade in Question</h2>
+    <div class="essay-dek">On the long-form ensemble film by [GROOM]</div>
+    <div class="essay-rule"></div>
+
+    <div class="essay-cols">
+      <p class="first">The first thing to understand about [GROOM]'s ensemble film <em>The Brothers</em> is that it was not, in any conventional sense, <em>made.</em> It was witnessed. Across ten years and four continents, a single recurring cast of eight men were photographed in a series of moments they did not stage. The director was present. The camera was sometimes there. The film, as we know it now, did not exist until last summer, when [GROOM] sat in an editing room and discovered that he had been making a film all along.</p>
+
+      <p>Critics will be tempted to compare this work to the longitudinal projects of Michael Apted (the <em>Up</em> series), Richard Linklater's <em>Boyhood,</em> or the family albums of Sally Mann. Each comparison fails for the same reason: those projects had a thesis. <em>The Brothers</em> has only an ensemble. It is held together by the conviction, present in every frame, that these eight people will keep showing up<sup>1</sup> &mdash; and that someone, the director, will keep paying attention.</p>
+
+      <p>What [GROOM] understood before anyone else did was that the subject of his film was not any single member of the group, but the negative space between them: the running joke that survives a decade, the chair always pulled up for whoever is late, the photograph that nobody remembers being taken. The camera, in this account, is not an instrument of surveillance but of inheritance. It catalogues what the group has, in plain view, already given itself.</p>
+
+      <p>The structure that emerges across the work's eleven panels is therefore not chronological. It is liturgical. The pyramid at Giza is not the beginning of anything; the dorm room at the end of the COVID year is not the conclusion. They are stations &mdash; recurring marks against which the cast measures itself. The film proposes, without ever quite saying so, that friendship at this scale is a kind of architecture.</p>
+
+      <p>It is in this sense that [BRIDE]'s arrival into the frame, late in the cycle, registers not as interruption but as continuation. The ensemble was always making room for her.</p>
+
+      <div class="footnote"><sup>1</sup>&nbsp;The film's working title, <em>We Were Here,</em> was abandoned in 2024. The current title was suggested, characteristically, by [NAME&nbsp;4] in a group chat at 2:14 a.m. and never formally voted on.</div>
+    </div>
+
+    <div class="folio right">i</div>
+    <div class="folio-center right">An essay · The Decade in Question</div>
+  </div>
+</section>
+
+
+<!-- ====================================================== -->
+<!-- =========          PAGE 2                  =========== -->
+<!-- ====================================================== -->
+<section class="page" id="page-2">
+  <div class="crit-bar"></div>
+  <div class="gutter"></div>
+
+  <!-- LEFT: ESSAY CONTINUED + PLATES I, II, III -->
+  <div class="leaf left">
+    <div class="running-head">
+      <span class="left">The Decade in Question</span>
+      <span class="right">[BRIDE] · ii</span>
+    </div>
+
+    <div class="essay-cols continued">
+
+      <div class="plate">
+        <div class="frame"><img src="../photos/photo-02-egypt-pyramid.jpg" alt="Plate I" /></div>
+        <div class="cap"><span class="roman">Plate I.</span>[GROOM], <em>Untitled (Pyramid),</em> 2022. Digital pigment print.</div>
+      </div>
+
+      <p>If there is a thesis statement in <em>The Brothers,</em> it is delivered without dialogue, in the second movement: six men in keffiyehs, balanced into a human pyramid at Giza, while the actual pyramid stands behind them, indifferent to the joke. The shot lasts less than a second, and the joke is not the point. The point is the patience required to build a pyramid out of a body, the trust required to be at the bottom of it, and the editorial decision &mdash; made decades later &mdash; to keep the take.</p>
+
+      <p>The same logic governs the Utah sequence, the most physically demanding stretch in the film. In <em>Untitled (Narrows),</em> the camera does not move. The men do. They walk into the river bearing wooden staffs that the director has not asked them to carry, and which he will, in post, decline to explain. The staffs are simply there, the way a Tarkovsky candle is simply there: a prop the audience must accept on faith.</p>
+
+      <div class="plate">
+        <div class="frame"><img src="../photos/photo-07-zion-narrows.jpg" alt="Plate II" /></div>
+        <div class="cap"><span class="roman">Plate II.</span>[GROOM], <em>Untitled (Narrows),</em> 2023. Digital pigment print.</div>
+      </div>
+
+      <p>It is at Mt. Shasta, in the film's quietest passage, that the project's true subject finally declares itself. Seven figures arranged on a rough-hewn bench, the alpenglow doing the lighting work the director did not need to do, the mountain pink as a held breath. There is no joke in this frame. There is only the recognition &mdash; visible on every face &mdash; that this configuration of people, in this light, will not occur again.</p>
+
+      <div class="plate">
+        <div class="frame"><img src="../photos/photo-08-mt-shasta.jpg" alt="Plate III" /></div>
+        <div class="cap"><span class="roman">Plate III.</span>[GROOM], <em>Untitled (Shasta),</em> 2024. Digital pigment print.</div>
+      </div>
+
+      <p>This is the film's central claim, and it does not require argument: that to keep a friendship for a decade is to perform, repeatedly and without applause, an act of preservation. The director's only innovation has been to keep the shutter open while it happened.</p>
+
+    </div>
+
+    <div class="folio-center left">Page ii · An essay</div>
+  </div>
+
+
+  <!-- RIGHT: CONCLUSION + PLATES IV-XI GRID + CREDITS -->
+  <div class="leaf right">
+    <div class="running-head">
+      <span class="left">An essay by [BRIDE]</span>
+      <span class="right">iii · The Brothers</span>
+    </div>
+
+    <div class="essay-cols continued">
+      <p class="first">What remains, after the eleven plates have been examined and the ensemble has been counted, is the small administrative miracle of the film's existence at all. [GROOM] did not, in any year of the last ten, set out to make this. He set out to be present, and to bring the camera with him. The film is what was left over.</p>
+
+      <p>It is fitting, then, that the wedding of [GROOM] and [BRIDE] now serves as the work's de facto premiere. The cast is in attendance. The director has, for once, stepped fully into the frame. And the ensemble &mdash; [NAME&nbsp;1], [NAME&nbsp;2], [NAME&nbsp;3], [NAME&nbsp;4], [NAME&nbsp;5], [NAME&nbsp;6], [NAME&nbsp;7], [NAME&nbsp;8] &mdash; has done what ensembles, at their best, always do. It has made room.</p>
+    </div>
+
+    <div class="author-note">
+      &mdash;&nbsp;[BRIDE] is a writer and editor. She lives with [GROOM] in [CITY]. This is her first published essay on [GROOM]'s work, and, if the director is to be believed, not her last.
+    </div>
+
+    <div class="section-rule"></div>
+    <div class="plates-grid-label">Plates IV &mdash; XI · The Ensemble Across a Decade</div>
+
+    <div class="plates-grid">
+
+      <div class="plate-mini">
+        <div class="frame"><img src="../photos/photo-01-beach-brown-tees.jpg" alt="IV"></div>
+        <div class="cap"><span class="roman">IV.</span><em>Untitled (Overlook),</em> 2025.</div>
+      </div>
+
+      <div class="plate-mini">
+        <div class="frame"><img src="../photos/photo-04-cabo-boat.jpg" alt="V"></div>
+        <div class="cap"><span class="roman">V.</span><em>Untitled (El&nbsp;Arco),</em> 2023.</div>
+      </div>
+
+      <div class="plate-mini">
+        <div class="frame"><img src="../photos/photo-05-sedona-spires.jpg" alt="VI"></div>
+        <div class="cap"><span class="roman">VI.</span><em>Untitled (Spires),</em> 2022.</div>
+      </div>
+
+      <div class="plate-mini">
+        <div class="frame"><img src="../photos/photo-10-sedona-spiral.jpg" alt="VII"></div>
+        <div class="cap"><span class="roman">VII.</span><em>Untitled (Cairn),</em> 2022.</div>
+      </div>
+
+      <div class="plate-mini">
+        <div class="frame"><img src="../photos/photo-06-times-square.jpg" alt="VIII"></div>
+        <div class="cap"><span class="roman">VIII.</span><em>Untitled (Red&nbsp;Steps),</em> 2023.</div>
+      </div>
+
+      <div class="plate-mini">
+        <div class="frame"><img src="../photos/photo-09-neon-dorm.jpg" alt="IX"></div>
+        <div class="cap"><span class="roman">IX.</span><em>Untitled (Dormitory),</em> 2021.</div>
+      </div>
+
+      <div class="plate-mini">
+        <div class="frame"><img src="../photos/photo-03-beach-sunset-pile.jpg" alt="X"></div>
+        <div class="cap"><span class="roman">X.</span><em>Untitled (Pile),</em> 2024.</div>
+      </div>
+
+      <div class="plate-mini">
+        <div class="frame"><img src="../photos/photo-11-zion-warriors.jpg" alt="XI"></div>
+        <div class="cap"><span class="roman">XI.</span><em>Untitled (Warriors),</em> 2023.</div>
+      </div>
+
+    </div>
+
+    <div class="tech-credits">
+      <span class="label">Technical Credits &amp; Restoration Notes</span>
+      Produced by The Group Chat<br/>
+      Cinematography by The Sun<br/>
+      Edited by Memory<br/>
+      Sound design by Laughter, Occasional Silence
+      <div class="div"></div>
+      Restoration: none needed<br/>
+      Timing supervised by [GROOM]<br/>
+      Mastered for digital presentation
+      <div class="div"></div>
+      11 photographs · 16 by 9 aspect<br/>
+      Block color · natural sound<br/>
+      Printed for the Wedding Edition · MMXXVI
+    </div>
+
+    <div class="colophon">© MMXXVI · The Criterion Collection · Spine №&nbsp;1011</div>
+  </div>
+</section>
+
+</body>
+</html>

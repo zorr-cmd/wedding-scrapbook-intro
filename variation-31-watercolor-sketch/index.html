@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Boys — A Watercolor Diary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&family=Architects+Daughter&family=Homemade+Apple&family=Reenie+Beanie&family=Indie+Flower&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+
+  :root {
+    --paper: #f1e7cd;
+    --paper-deep: #e6d8b2;
+    --paper-shadow: #c9b78a;
+    --ink: #2a2418;
+    --ink-soft: #4a3f2a;
+    --fountain-blue: #1d3a5c;
+    --watercolor-rust: #8a4a32;
+    --watercolor-sage: #6b7a4a;
+    --watercolor-ochre: #b88748;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #4a3f2a;
+    font-family: 'Caveat', cursive;
+    color: var(--ink);
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    position: relative;
+    margin: 20px auto;
+    background:
+      radial-gradient(ellipse at top left, rgba(160,120,60,0.18), transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(120,80,30,0.22), transparent 55%),
+      radial-gradient(ellipse at center, rgba(245,235,205,0.4), transparent 70%),
+      linear-gradient(180deg, #f3e9cf 0%, #ecdfba 50%, #e5d4a8 100%);
+    overflow: hidden;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.4);
+    page-break-after: always;
+  }
+
+  .page:last-child { page-break-after: auto; }
+
+  /* Paper texture overlay using SVG noise */
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.4  0 0 0 0 0.3  0 0 0 0 0.15  0 0 0 0.22 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Faint sketchbook ruled lines */
+  .page::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 23px,
+      rgba(80, 60, 30, 0.06) 23px,
+      rgba(80, 60, 30, 0.06) 24px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Corner foxing — darker stains at edges */
+  .foxing {
+    position: absolute;
+    z-index: 3;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(8px);
+  }
+  .foxing.tl { top: -30px; left: -30px; width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(140,100,40,0.35), transparent 70%); }
+  .foxing.tr { top: -20px; right: -20px; width: 150px; height: 150px;
+    background: radial-gradient(circle, rgba(120,80,30,0.3), transparent 70%); }
+  .foxing.bl { bottom: -30px; left: -40px; width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(150,110,50,0.35), transparent 70%); }
+  .foxing.br { bottom: -20px; right: -30px; width: 170px; height: 170px;
+    background: radial-gradient(circle, rgba(130,90,40,0.3), transparent 70%); }
+
+  .content {
+    position: relative;
+    z-index: 5;
+    padding: 0.55in 0.6in 0.5in;
+    height: 100%;
+  }
+
+  /* ========= TITLE / HANDWRITING ========= */
+  h1.diary-title {
+    font-family: 'Homemade Apple', cursive;
+    font-size: 44px;
+    line-height: 1;
+    color: var(--ink);
+    transform: rotate(-1.5deg);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .subtitle {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--ink-soft);
+    line-height: 1.25;
+    transform: rotate(-0.5deg);
+    margin-top: 4px;
+    max-width: 5.5in;
+  }
+
+  .subtitle .line { display: block; }
+
+  .page-mark {
+    position: absolute;
+    top: 0.45in;
+    right: 0.6in;
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 22px;
+    color: var(--ink-soft);
+    transform: rotate(3deg);
+    z-index: 6;
+  }
+
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+  }
+
+  .header-ornament {
+    margin-top: 6px;
+    margin-right: 30px;
+  }
+
+  .ornament-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 8px;
+    margin-bottom: 14px;
+  }
+
+  .ornament-row svg { opacity: 0.75; }
+
+  .ornament-row .scribble {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      var(--ink) 8%,
+      var(--ink) 92%,
+      transparent 100%);
+    opacity: 0.4;
+    margin-top: 4px;
+  }
+
+  /* ========= WATERCOLOR PHOTOS ========= */
+  /* The watercolor effect: heavy filter stack + SVG turbulence + paper blend */
+
+  .painting {
+    position: relative;
+    display: inline-block;
+    padding: 8px 8px 6px;
+    background: #fbf5e3;
+    box-shadow:
+      0 2px 4px rgba(60,40,20,0.15),
+      0 8px 18px rgba(60,40,20,0.25);
+    border: 1px solid rgba(80, 60, 30, 0.15);
+  }
+
+  .painting img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter:
+      url(#watercolor)
+      saturate(1.15)
+      contrast(0.78)
+      brightness(1.12)
+      sepia(0.12);
+  }
+
+  .painting .img-wrap {
+    position: relative;
+    overflow: hidden;
+    background: #f5ecd2;
+  }
+
+  /* Bleed/wash overlay simulating watercolor pooling at edges */
+  .painting .img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 30%, transparent 40%, rgba(245,235,200,0.15) 70%, rgba(245,235,200,0.35) 100%),
+      radial-gradient(ellipse at 80% 70%, transparent 50%, rgba(180,130,70,0.12) 90%);
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+
+  /* Paper grain on top of image */
+  .painting .img-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' seed='7'/><feColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.4  0 0 0 0 0.2  0 0 0 0.3 0'/></filter><rect width='100%25' height='100%25' filter='url(%23p)'/></svg>");
+    mix-blend-mode: multiply;
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .caption {
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: var(--fountain-blue);
+    line-height: 1.15;
+    margin-top: 4px;
+    padding: 0 4px;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  /* Smaller caption on page 2 since paintings are smaller */
+  #page2 .caption {
+    font-size: 14px;
+    line-height: 1.1;
+  }
+
+  .caption.italic { font-style: italic; }
+
+  /* ========= PAGE 1 LAYOUT ========= */
+  .p1-paintings {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 22px;
+    align-items: start;
+  }
+
+  .p1-paintings .painting-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .p1-paintings .painting-card:nth-child(1) { transform: rotate(-2.5deg); margin-top: 10px; }
+  .p1-paintings .painting-card:nth-child(2) { transform: rotate(1.5deg); margin-top: 0; }
+  .p1-paintings .painting-card:nth-child(3) { transform: rotate(-1deg); margin-top: 18px; }
+
+  .p1-paintings .painting .img-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+
+  .annotation {
+    font-family: 'Kalam', cursive;
+    font-size: 14px;
+    color: var(--fountain-blue);
+    position: absolute;
+    z-index: 7;
+    line-height: 1.1;
+    pointer-events: none;
+  }
+
+  /* Pull-quote / field note style boxes for page 2 */
+  .field-note {
+    font-family: 'Caveat', cursive;
+    color: var(--ink-soft);
+    line-height: 1.2;
+    padding: 6px 10px;
+    border-left: 2px solid rgba(80, 60, 30, 0.3);
+    background: rgba(255, 250, 230, 0.4);
+    transform: rotate(-0.8deg);
+  }
+
+  .field-note.big {
+    font-size: 18px;
+    max-width: 3.4in;
+  }
+
+  /* Signature */
+  .signature {
+    font-family: 'Homemade Apple', cursive;
+    font-size: 16px;
+    color: var(--fountain-blue);
+    text-align: right;
+    margin-top: 8px;
+  }
+
+  /* ========= PAGE 2 LAYOUT ========= */
+  .p2-header {
+    font-family: 'Homemade Apple', cursive;
+    font-size: 24px;
+    color: var(--ink);
+    transform: rotate(-1deg);
+    margin-bottom: 4px;
+  }
+
+  .p2-sub {
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+    transform: rotate(0.5deg);
+    line-height: 1.2;
+  }
+
+  .p2-grid {
+    position: relative;
+    height: 9.4in;
+    margin-top: 0;
+  }
+
+  /* Absolutely positioned paintings on p2, organic layout */
+  .p2-grid .painting-card {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Page content width ~ 7.3in (8.5 - 1.2 padding). 8 paintings in 4 rows of 2. */
+  /* All 4:3 landscape. Width 1.9in -> img height 1.425in + caption ~0.45in = ~1.87in per row */
+
+  /* Row 1 */
+  .pos-a { top: 0in;     left: 0in;     width: 1.75in; transform: rotate(-2.5deg); }
+  .pos-b { top: 0.05in;  right: 0in;    width: 1.75in; transform: rotate(1.8deg); }
+
+  /* Row 2 */
+  .pos-c { top: 1.8in;   left: 0.1in;   width: 1.75in; transform: rotate(-1deg); }
+  .pos-d { top: 1.85in;  right: 0.1in;  width: 1.75in; transform: rotate(2deg); }
+
+  /* Row 3 */
+  .pos-e { top: 3.6in;   left: 0in;     width: 1.75in; transform: rotate(1.2deg); }
+  .pos-f { top: 3.65in;  right: 0in;    width: 1.75in; transform: rotate(-1.5deg); }
+
+  /* Row 4 */
+  .pos-g { top: 5.4in;   left: 0.1in;   width: 1.75in; transform: rotate(-1.2deg); }
+  .pos-h { top: 5.45in;  right: 0.1in;  width: 1.75in; transform: rotate(2.2deg); }
+
+  /* All landscape 4:3 for consistent row heights */
+  .pos-a .img-wrap { aspect-ratio: 4/3; }
+  .pos-b .img-wrap { aspect-ratio: 4/3; }
+  .pos-c .img-wrap { aspect-ratio: 4/3; }
+  .pos-d .img-wrap { aspect-ratio: 4/3; }
+  .pos-e .img-wrap { aspect-ratio: 4/3; }
+  .pos-f .img-wrap { aspect-ratio: 4/3; }
+  .pos-g .img-wrap { aspect-ratio: 4/3; }
+  .pos-h .img-wrap { aspect-ratio: 4/3; }
+
+  /* Field notes — in horizontal gutter between row's two paintings */
+  /* Each painting is 1.75in wide. Page width 7.3in. Gutter = 7.3-3.5 = 3.8in */
+  /* Gutter starts at left:1.85in, ends at left:5.45in */
+  .fn-1 { position: absolute; top: 0.35in; left: 2.05in; width: 3.2in;
+    font-size: 15px; transform: rotate(0.5deg); }
+  .fn-2 { position: absolute; top: 3.9in; left: 2.05in; width: 3.2in;
+    font-size: 15px; transform: rotate(-0.8deg); }
+
+  /* Map corner — placed INSIDE .p2-grid as bottom-left element */
+  .map-corner {
+    position: absolute;
+    top: 7.3in;
+    left: 0in;
+    width: 3.4in;
+    transform: rotate(-2deg);
+    z-index: 6;
+  }
+  .map-corner .map-label {
+    font-family: 'Kalam', cursive;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .map-corner svg {
+    width: 100%;
+    height: 1.3in;
+    display: block;
+  }
+
+  /* Final note — placed INSIDE .p2-grid as bottom-right element */
+  .final-note {
+    position: absolute;
+    top: 7.2in;
+    right: 0in;
+    width: 3.2in;
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    line-height: 1.3;
+    color: var(--ink-soft);
+    transform: rotate(0.8deg);
+    z-index: 6;
+  }
+  .final-note .signoff {
+    font-family: 'Homemade Apple', cursive;
+    font-size: 15px;
+    color: var(--fountain-blue);
+    margin-top: 6px;
+    display: block;
+    text-align: right;
+  }
+
+  /* Subtle hand-drawn arrow class */
+  .ink-arrow {
+    color: var(--fountain-blue);
+    opacity: 0.7;
+  }
+
+  @media screen {
+    body { padding: 20px 0; }
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG FILTER DEFINITIONS (shared across pages) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="watercolor" x="-5%" y="-5%" width="110%" height="110%">
+      <!-- Step 1: posterize colors via componentTransfer (creates flat washes) -->
+      <feComponentTransfer in="SourceGraphic" result="posterized">
+        <feFuncR type="discrete" tableValues="0.15 0.35 0.55 0.75 0.92"/>
+        <feFuncG type="discrete" tableValues="0.15 0.35 0.55 0.75 0.92"/>
+        <feFuncB type="discrete" tableValues="0.18 0.38 0.58 0.78 0.94"/>
+      </feComponentTransfer>
+      <!-- Step 2: turbulence noise for paper grain -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="3" seed="5" result="noise"/>
+      <!-- Step 3: displace to create wavy watercolor bleed -->
+      <feDisplacementMap in="posterized" in2="noise" scale="10" result="displaced"/>
+      <!-- Step 4: soften (watercolor doesn't have sharp edges) -->
+      <feGaussianBlur in="displaced" stdDeviation="1.1" result="soft"/>
+      <!-- Step 5: layer fine noise back in for paper texture -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="11" result="paperNoise"/>
+      <feColorMatrix in="paperNoise" values="0 0 0 0 0.35  0 0 0 0 0.28  0 0 0 0 0.15  0 0 0 0.35 0" result="paperTinted"/>
+      <feComposite in="paperTinted" in2="soft" operator="in" result="grainMasked"/>
+      <feBlend in="soft" in2="grainMasked" mode="multiply"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- ====================== PAGE 1 ====================== -->
+<div class="page" id="page1">
+  <div class="foxing tl"></div>
+  <div class="foxing tr"></div>
+  <div class="foxing bl"></div>
+  <div class="foxing br"></div>
+
+  <div class="page-mark">page I.</div>
+
+  <div class="content">
+    <div class="header-row">
+      <div>
+        <h1 class="diary-title">the boys — a watercolor diary</h1>
+        <p class="subtitle">
+          <span class="line">ten years on the road,</span>
+          <span class="line">with brushes that weren't supposed to be there,</span>
+          <span class="line">for [GROOM] on his wedding day.</span>
+        </p>
+      </div>
+      <div class="header-ornament">
+        <!-- Small ink mountain + brush -->
+        <svg width="100" height="70" viewBox="0 0 100 70" fill="none" stroke="#2a2418" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <!-- mountain range -->
+          <path d="M 5 55 L 22 28 L 32 42 L 48 18 L 62 38 L 75 25 L 92 50 L 95 55 Z" fill="none"/>
+          <path d="M 22 28 L 25 33 L 28 30" stroke-width="0.9"/>
+          <path d="M 48 18 L 52 24 L 55 21" stroke-width="0.9"/>
+          <!-- brush -->
+          <path d="M 10 65 L 55 62" stroke-width="1.2"/>
+          <path d="M 55 62 L 65 60 L 67 64 L 57 66 Z" fill="#2a2418" fill-opacity="0.55" stroke-width="0.7"/>
+          <path d="M 67 64 L 88 62" stroke-width="0.9"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="ornament-row">
+      <svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="#2a2418" stroke-width="1.2" stroke-linecap="round">
+        <path d="M 2 7 C 5 2, 9 12, 12 7 S 18 2, 20 7"/>
+      </svg>
+      <div class="scribble"></div>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="#2a2418" opacity="0.7">
+        <circle cx="8" cy="8" r="1.6"/>
+      </svg>
+      <div class="scribble"></div>
+      <svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="#2a2418" stroke-width="1.2" stroke-linecap="round">
+        <path d="M 2 7 C 5 12, 9 2, 12 7 S 18 12, 20 7"/>
+      </svg>
+    </div>
+
+    <div class="p1-paintings">
+      <!-- Mt Shasta -->
+      <div class="painting-card">
+        <div class="painting">
+          <div class="img-wrap">
+            <img src="../photos/photo-08-mt-shasta.jpg" alt="Mt Shasta">
+          </div>
+        </div>
+        <p class="caption italic">
+          mt. shasta — october.<br>
+          the day we agreed to<br>do this one more time.
+        </p>
+      </div>
+
+      <!-- Egypt Pyramid -->
+      <div class="painting-card">
+        <div class="painting">
+          <div class="img-wrap">
+            <img src="../photos/photo-02-egypt-pyramid.jpg" alt="Giza Pyramid">
+          </div>
+        </div>
+        <p class="caption italic">
+          giza — october.<br>
+          we built a pyramid in front<br>of the pyramid.<br>
+          <span style="font-size:14px; color:var(--ink-soft);">(he did not believe us)</span>
+        </p>
+      </div>
+
+      <!-- Zion Narrows -->
+      <div class="painting-card">
+        <div class="painting">
+          <div class="img-wrap">
+            <img src="../photos/photo-07-zion-narrows.jpg" alt="Zion Narrows">
+          </div>
+        </div>
+        <p class="caption italic">
+          the narrows — spring.<br>
+          knee-deep, brushes ruined,<br>worth it.
+        </p>
+      </div>
+    </div>
+
+    <!-- (annotations removed to avoid overlapping captions) -->
+
+    <!-- Body copy / opening note -->
+    <div style="position: absolute; bottom: 1.4in; left: 0.6in; right: 0.6in; padding: 0; z-index: 6;">
+      <div class="field-note big" style="max-width: 4.6in; margin-left: 0.2in;">
+        i thought about giving him photographs. but the camera<br>
+        was always too obvious — it stole the seconds<br>
+        instead of holding them. so i bought a tin of paints,<br>
+        a moleskine, and i sat. for ten years.<br>
+        <span style="display:block; margin-top:4px; font-style:italic; color:#1d3a5c;">— turn the page —</span>
+      </div>
+      <p class="signature">— for [GROOM], from [NAME 1]<br><span style="font-family:'Kalam'; font-size:14px;">MMXXVI</span></p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ====================== PAGE 2 ====================== -->
+<div class="page" id="page2">
+  <div class="foxing tl"></div>
+  <div class="foxing tr"></div>
+  <div class="foxing bl"></div>
+  <div class="foxing br"></div>
+
+  <div class="page-mark">page II.</div>
+
+  <div class="content">
+    <h2 class="p2-header">...continued — the rest of the boys.</h2>
+    <p class="p2-sub">painted on planes, in dorms, on boat decks, in canyons.<br>
+      mostly with the water that was nearby.</p>
+
+    <div class="ornament-row" style="margin-bottom: 6px;">
+      <div class="scribble"></div>
+    </div>
+
+    <div class="p2-grid">
+
+      <!-- A: beach brown tees (landscape) -->
+      <div class="painting-card pos-a">
+        <div class="painting">
+          <div class="img-wrap">
+            <img src="../photos/photo-01-beach-brown-tees.jpg" alt="Beach brown tees">
+          </div>
+        </div>
+        <p class="caption italic">la jolla — the brown<br>shirt summit.</p>
+      </div>
+
+      <!-- B: cabo boat (portrait) -->
+      <div class="painting-card pos-b">
+        <div class="painting">
+          <div class="img-wrap">
+            <img src="../photos/photo-04-cabo-boat.jpg" alt="Cabo boat">
+          </div>
+        </div>
+        <p class="caption italic">cabo — land's end.<br>painted on the boat.</p>
+      </div>
+
+      <!-- C: sedona spires (portrait) -->
+      <div class="painting-card pos-c">
+        <div class="painting">
+          <div class="img-wrap">
+            <img src="../photos/photo-05-sedona-spires.jpg" alt="Sedona spires">
+          </div>
+        </div>
+        <p class="caption italic">sedona — the red ones.<br>kept making them redder.</p>
+      </div>
+
+      <!-- D: times square (portrait) -->
+      <div class="painting-card pos-d">
+        <div class="painting">
+          <div class="img-wrap">
+            <img src="../photos/photo-06-times-square.jpg" alt="Times Square">
+          </div>
+        </div>
+        <p class="caption italic">times square, 2 a.m.<br>tried to paint the neon.</p>
+      </div>
+
+      <!-- E: beach sunset pile (landscape - tall framed) -->
+      <div class="painting-card pos-e">
+        <div class="painting">
+          <div class="img-wrap">
+            <img src="../photos/photo-03-beach-sunset-pile.jpg" alt="Beach sunset pile">
+          </div>
+        </div>
+        <p class="caption italic">the pile — golden hour.<br>laughing at no one.</p>
+      </div>
+
+      <!-- F: sedona spiral (portrait/landscape) -->
+      <div class="painting-card pos-f">
+        <div class="painting">
+          <div class="img-wrap">
+            <img src="../photos/photo-10-sedona-spiral.jpg" alt="Sedona spiral">
+          </div>
+        </div>
+        <p class="caption italic">sedona, take two.<br>[NAME 2]'s stone spiral.</p>
+      </div>
+
+      <!-- G: neon dorm (landscape) -->
+      <div class="painting-card pos-g">
+        <div class="painting">
+          <div class="img-wrap">
+            <img src="../photos/photo-09-neon-dorm.jpg" alt="Neon dorm">
+          </div>
+        </div>
+        <p class="caption italic">the dorm year.<br>painted from memory.</p>
+      </div>
+
+      <!-- Field notes interspersed in margins -->
+      <div class="field-note fn-1">
+        every trip i kept telling them:<br>
+        <em>"one day i'll paint this."</em><br>
+        one day became a decade.<br>then a wedding.
+      </div>
+
+      <!-- H: Zion warriors centered, bottom of grid -->
+      <div class="painting-card pos-h">
+        <div class="painting">
+          <div class="img-wrap">
+            <img src="../photos/photo-11-zion-warriors.jpg" alt="Zion warriors">
+          </div>
+        </div>
+        <p class="caption italic">warriors of zion.<br>sticks raised, mythic.</p>
+      </div>
+
+      <div class="field-note fn-2">
+        the camera was too obvious.<br>
+        the brush gave me an excuse<br>
+        to sit still long enough<br>to remember.
+      </div>
+
+    <!-- Hand-drawn map corner — bottom-left of grid -->
+    <div class="map-corner">
+      <div class="map-label">— the route, more or less —</div>
+      <svg viewBox="0 0 260 100" fill="none" stroke="#2a2418" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+        <!-- California -->
+        <path d="M 10 18 L 14 32 L 12 50 L 20 68 L 26 82 L 38 88 L 42 78 L 36 60 L 32 42 L 28 28 L 22 18 Z" opacity="0.85"/>
+        <text x="14" y="46" font-family="Kalam, cursive" font-size="9" fill="#2a2418" stroke="none" opacity="0.8">CA</text>
+
+        <!-- AZ / UT block -->
+        <path d="M 50 30 L 80 28 L 82 60 L 50 62 Z" opacity="0.85"/>
+        <text x="55" y="48" font-family="Kalam, cursive" font-size="9" fill="#2a2418" stroke="none" opacity="0.8">AZ / UT</text>
+
+        <!-- Mexico -->
+        <path d="M 30 88 L 50 92 L 56 78 L 44 74 Z" opacity="0.85"/>
+        <text x="38" y="88" font-family="Kalam, cursive" font-size="8" fill="#2a2418" stroke="none" opacity="0.8">MX</text>
+
+        <!-- New York blob -->
+        <circle cx="155" cy="40" r="6" opacity="0.85"/>
+        <text x="148" y="58" font-family="Kalam, cursive" font-size="9" fill="#2a2418" stroke="none" opacity="0.8">NYC</text>
+
+        <!-- Egypt -->
+        <path d="M 200 50 L 230 48 L 240 65 L 220 78 L 205 70 Z" opacity="0.85"/>
+        <text x="210" y="65" font-family="Kalam, cursive" font-size="9" fill="#2a2418" stroke="none" opacity="0.8">EGYPT</text>
+
+        <!-- X marks -->
+        <g stroke-width="1.4" stroke="#8a4a32">
+          <path d="M 24 38 L 30 44 M 30 38 L 24 44"/>  <!-- Shasta -->
+          <path d="M 26 70 L 32 76 M 32 70 L 26 76"/>  <!-- LA beach -->
+          <path d="M 60 45 L 66 51 M 66 45 L 60 51"/>  <!-- Sedona -->
+          <path d="M 72 38 L 78 44 M 78 38 L 72 44"/>  <!-- Zion -->
+          <path d="M 42 84 L 48 90 M 48 84 L 42 90"/>  <!-- Cabo -->
+          <path d="M 152 38 L 158 44 M 158 38 L 152 44"/> <!-- NYC -->
+          <path d="M 215 60 L 221 66 M 221 60 L 215 66"/> <!-- Giza -->
+        </g>
+
+        <!-- Connecting dashed line -->
+        <path d="M 30 44 Q 50 50, 66 48 T 155 42 T 220 62" stroke-dasharray="2,3" opacity="0.5" stroke="#1d3a5c"/>
+      </svg>
+    </div>
+
+    <!-- Final note — bottom-right of grid -->
+    <div class="final-note">
+      p.s. — [GROOM], i'm sorry the<br>
+      wedding scene isn't painted yet.<br>
+      i'll bring my brushes.<br>
+      and the bad jokes.<br>
+      and the rest of the boys.<br>
+      <span class="signoff">— [NAME 1], MMXXVI</span>
+    </div>
+
+    </div> <!-- /.p2-grid -->
+  </div> <!-- /.content -->
+</div> <!-- /.page -->
+
+
+</body>
+</html>

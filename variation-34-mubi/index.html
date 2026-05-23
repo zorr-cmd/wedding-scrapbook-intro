@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Brotherhood Channel — The Brothers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafafa;
+    --ink: #111111;
+    --ink-soft: #4a4a4a;
+    --ink-mute: #8a8a8a;
+    --line: #e6e6e6;
+    --accent: #102a51;   /* Mubi-style deep blue */
+    --chip-bg: #f1f1ef;
+  }
+
+  @page { size: 8.5in 11in; margin: 0; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #d0d0d0;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: var(--bg);
+    margin: 0 auto 12px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ============ HEADER BAR ============ */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.36in 0.55in 0.22in;
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+  .brand {
+    font-weight: 800;
+    font-size: 10.5pt;
+    letter-spacing: 0.32em;
+    color: var(--ink);
+  }
+  .brand .dot { color: var(--accent); }
+  .nav {
+    display: flex;
+    gap: 22px;
+    font-size: 7.5pt;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .nav span.active { color: var(--ink); }
+  .nav span.sep { color: var(--ink-mute); font-weight: 300; }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 7pt;
+    letter-spacing: 0.18em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .badge-pill {
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 6.5pt;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    margin: 0 0.55in;
+    margin-top: 0.28in;
+    height: 4.55in;
+    overflow: hidden;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero .scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(0,0,0,0) 35%,
+      rgba(0,0,0,0.15) 55%,
+      rgba(0,0,0,0.62) 88%,
+      rgba(0,0,0,0.78) 100%);
+  }
+  .hero-text {
+    position: absolute;
+    left: 0.42in;
+    right: 0.42in;
+    bottom: 0.32in;
+    color: #ffffff;
+  }
+  .hero-track {
+    font-size: 7pt;
+    letter-spacing: 0.32em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-track .accent-bar {
+    display: inline-block;
+    width: 22px;
+    height: 1px;
+    background: rgba(255,255,255,0.7);
+  }
+  .hero-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 56pt;
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    margin: 0 0 8px;
+  }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 17pt;
+    color: rgba(255,255,255,0.92);
+    margin: 0 0 14px;
+    letter-spacing: 0.005em;
+  }
+  .hero-meta {
+    font-size: 7.5pt;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.78);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .hero-meta .star { color: #f0c674; letter-spacing: 0; font-size: 8pt; }
+
+  /* ============ CONTENT COLS ============ */
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 0.78fr;
+    gap: 0.45in;
+    padding: 0.34in 0.55in 0.35in;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .col-label {
+    font-size: 7pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-mute);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .synopsis-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 12.5pt;
+    line-height: 1.45;
+    color: #1a1a1a;
+    letter-spacing: 0.003em;
+  }
+  .synopsis-body em { font-style: normal; font-weight: 500; }
+
+  .curator-panel {
+    margin-top: 18px;
+    background: #f4f3ef;
+    border-left: 2px solid var(--accent);
+    padding: 14px 16px;
+  }
+  .curator-panel .curator-label {
+    font-size: 6.5pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .curator-panel .curator-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 10pt;
+    line-height: 1.5;
+    color: #2a2a2a;
+  }
+  .curator-panel em { font-style: normal; font-weight: 500; }
+
+  /* metadata stack right column */
+  .meta-stack {
+    display: flex;
+    flex-direction: column;
+  }
+  .meta-row {
+    display: grid;
+    grid-template-columns: 0.78fr 1fr;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 8pt;
+    align-items: baseline;
+  }
+  .meta-row:first-child { padding-top: 0; }
+  .meta-key {
+    font-size: 6.8pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 600;
+  }
+  .meta-val {
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.4;
+    font-size: 8.5pt;
+    letter-spacing: -0.005em;
+  }
+  .meta-val.italic-serif {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 10pt;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+    align-items: center;
+  }
+  .btn {
+    padding: 11px 18px;
+    border-radius: 6px;
+    font-size: 8pt;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: default;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid #cfcfcf;
+  }
+  .stream-note {
+    font-size: 7pt;
+    color: var(--ink-mute);
+    letter-spacing: 0.1em;
+    font-style: italic;
+    margin-top: 10px;
+  }
+
+  /* ============ PAGE 2 ============ */
+  .section-head {
+    padding: 0.32in 0.55in 0.12in;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+    margin: 0 0.55in;
+    padding-left: 0;
+    padding-right: 0;
+    flex-shrink: 0;
+  }
+  .section-head .h {
+    font-size: 9pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .section-head .sub {
+    font-size: 7pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 500;
+  }
+
+  .stills {
+    padding: 0.14in 0.55in 0.16in;
+    flex-shrink: 0;
+  }
+  .stills-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: 1.32in 1.32in;
+    gap: 7px;
+  }
+  .still {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+    background: #eaeaea;
+  }
+  .still.featured {
+    grid-row: 1 / span 2;
+  }
+  .still img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .still .scrim-s {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 55%, rgba(0,0,0,0.72) 100%);
+  }
+  .still-caption {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    bottom: 6px;
+    color: #fff;
+    font-size: 6.2pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .still.featured .still-caption {
+    font-size: 7.5pt;
+    left: 14px;
+    bottom: 12px;
+  }
+  .still.featured .still-caption .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 12pt;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* second row stills (3 wide) */
+  .stills-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1in;
+    gap: 7px;
+    margin-top: 7px;
+  }
+  .stills-grid-2 .still { border-radius: 3px; }
+
+  /* RELATED FILMS */
+  .related-wrap {
+    padding: 0.16in 0.55in 0.12in;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .related-card {
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 11px 11px 10px;
+    border-radius: 3px;
+    height: 1.45in;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .related-card .corner {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 5.5pt;
+    letter-spacing: 0.22em;
+    color: var(--ink-mute);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .related-card .rc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 15pt;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-top: 18px;
+  }
+  .related-card .rc-meta {
+    font-size: 6.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+  .related-card .rc-bot {
+    font-size: 6pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 500;
+  }
+  .related-card.featured-related {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #fff;
+  }
+  .related-card.featured-related .rc-title,
+  .related-card.featured-related .rc-meta,
+  .related-card.featured-related .rc-bot,
+  .related-card.featured-related .corner { color: #fff; }
+  .related-card.featured-related .rc-meta,
+  .related-card.featured-related .rc-bot,
+  .related-card.featured-related .corner { color: rgba(255,255,255,0.75); }
+
+  /* REVIEWS */
+  .reviews-wrap {
+    padding: 0.14in 0.55in 0.1in;
+    flex: 1;
+  }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-top: 10px;
+  }
+  .review {
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+  }
+  .review .stars {
+    color: var(--accent);
+    font-size: 8pt;
+    letter-spacing: 0.04em;
+    margin-bottom: 7px;
+  }
+  .review .quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 9.5pt;
+    line-height: 1.38;
+    color: #1a1a1a;
+    margin: 0 0 7px;
+  }
+  .review .src {
+    font-size: 6.5pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 600;
+  }
+
+  /* FOOTER */
+  .pagefoot {
+    padding: 0.14in 0.55in 0.22in;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    margin-top: auto;
+  }
+  .pagefoot .left {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .pagefoot .stream-line {
+    font-size: 7pt;
+    color: var(--ink-soft);
+    letter-spacing: 0.12em;
+    font-style: italic;
+  }
+  .pagefoot .copyright {
+    font-size: 6pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 500;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- =============== PAGE 1: FEATURE PAGE =============== -->
+<section class="page">
+
+  <!-- Header bar -->
+  <div class="topbar">
+    <div class="brand">BROTHERHOOD<span class="dot">.</span>CHANNEL</div>
+    <div class="nav">
+      <span class="active">Films</span>
+      <span class="sep">·</span>
+      <span>Directors</span>
+      <span class="sep">·</span>
+      <span>Now Showing</span>
+      <span class="sep">·</span>
+      <span>Coming Soon</span>
+    </div>
+    <div class="header-right">
+      <span class="badge-pill">Film of the Week</span>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <img src="../photos/photo-08-mt-shasta.jpg" alt="The Brothers" />
+    <div class="scrim"></div>
+    <div class="hero-text">
+      <div class="hero-track">
+        <span class="accent-bar"></span>
+        Film of the Week · Curated by The Brotherhood
+      </div>
+      <h1 class="hero-title">The Brothers</h1>
+      <p class="hero-sub">An ensemble film by [GROOM]</p>
+      <div class="hero-meta">
+        2017–2026 &nbsp;·&nbsp; 11 Chapters &nbsp;·&nbsp; Color &nbsp;·&nbsp; English &nbsp;·&nbsp;
+        <span class="star">★★★★★</span> 5/5
+      </div>
+    </div>
+  </div>
+
+  <!-- Two-column content -->
+  <div class="content">
+
+    <!-- LEFT: SYNOPSIS -->
+    <div class="col-left">
+      <div class="col-label">Synopsis</div>
+      <p class="synopsis-body">
+        A decade of friendship rendered as a single film. [GROOM]'s
+        <em>The Brothers</em> assembles eleven photographic moments —
+        taken across four continents and ten years — into a quiet
+        ensemble portrait. Less a documentary than a witness statement,
+        the film tracks eight men through their twenties and into the
+        wedding of one of them. The viewer is invited to notice not
+        what happens, but what stays.
+      </p>
+
+      <div class="curator-panel">
+        <div class="curator-label">From the Curator</div>
+        <div class="curator-text">
+          Selected as part of our <em>Modern Ensemble</em> program.
+          This film pairs naturally with <em>Boyhood</em>
+          (Linklater, 2014), <em>The Trip</em> (Winterbottom, 2010),
+          and <em>Past Lives</em> (Song, 2023).
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: METADATA -->
+    <div class="col-right">
+      <div class="col-label">Credits</div>
+      <div class="meta-stack">
+        <div class="meta-row">
+          <div class="meta-key">Directed by</div>
+          <div class="meta-val italic-serif">[GROOM]</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Starring</div>
+          <div class="meta-val">[NAME 1], [NAME 2], [NAME 3], [NAME 4], [NAME 5], [NAME 6], [NAME 7], [NAME 8]</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Produced by</div>
+          <div class="meta-val">The Group Chat</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Cinematography</div>
+          <div class="meta-val">Natural Light, Available</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Editing</div>
+          <div class="meta-val">Memory</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Original Score</div>
+          <div class="meta-val">Joe Hisaishi <span style="color:var(--ink-mute); font-weight:400; font-size:7.5pt;">(unauthorized)</span></div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Runtime</div>
+          <div class="meta-val">A decade <span style="color:var(--ink-mute); font-weight:400;">(cont.)</span></div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Availability</div>
+          <div class="meta-val">Streaming exclusively, wedding edition</div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <div class="btn btn-primary">▶ Watch Now</div>
+        <div class="btn btn-ghost">+ Watchlist</div>
+      </div>
+      <div class="stream-note">Streaming only on Brotherhood Channel.</div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =============== PAGE 2: STILLS + RELATED + REVIEWS =============== -->
+<section class="page">
+
+  <!-- Header bar (consistent) -->
+  <div class="topbar">
+    <div class="brand">BROTHERHOOD<span class="dot">.</span>CHANNEL</div>
+    <div class="nav">
+      <span>Films</span>
+      <span class="sep">·</span>
+      <span>Directors</span>
+      <span class="sep">·</span>
+      <span class="active">The Brothers</span>
+      <span class="sep">·</span>
+      <span>More</span>
+    </div>
+    <div class="header-right">
+      <span class="badge-pill">Page 2 / 2</span>
+    </div>
+  </div>
+
+  <!-- STILLS -->
+  <div style="padding: 0.28in 0.55in 0;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 10px; border-bottom: 1px solid var(--line);">
+      <div class="col-label" style="border:0; padding:0; margin:0;">Stills from the Film</div>
+      <div style="font-size: 6.8pt; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500; font-style: italic;">10 of 11 selected by the director</div>
+    </div>
+  </div>
+
+  <div class="stills">
+    <div class="stills-grid">
+      <!-- Featured still: Zion Warriors (epic) -->
+      <div class="still featured">
+        <img src="../photos/photo-11-zion-warriors.jpg" alt="Still" />
+        <div class="scrim-s"></div>
+        <div class="still-caption">
+          <span class="num">Featured Still</span>
+          The Narrows, Zion · 2023
+        </div>
+      </div>
+      <div class="still">
+        <img src="../photos/photo-02-egypt-pyramid.jpg" alt="Still" />
+        <div class="scrim-s"></div>
+        <div class="still-caption">Still 02 · Giza, Egypt · 2022</div>
+      </div>
+      <div class="still">
+        <img src="../photos/photo-04-cabo-boat.jpg" alt="Still" />
+        <div class="scrim-s"></div>
+        <div class="still-caption">Still 03 · Cabo San Lucas · 2021</div>
+      </div>
+      <div class="still">
+        <img src="../photos/photo-01-beach-brown-tees.jpg" alt="Still" />
+        <div class="scrim-s"></div>
+        <div class="still-caption">Still 04 · La Jolla, California · 2023</div>
+      </div>
+      <div class="still">
+        <img src="../photos/photo-07-zion-narrows.jpg" alt="Still" />
+        <div class="scrim-s"></div>
+        <div class="still-caption">Still 05 · The Narrows, Zion · 2023</div>
+      </div>
+    </div>
+
+    <div class="stills-grid-2">
+      <div class="still">
+        <img src="../photos/photo-05-sedona-spires.jpg" alt="Still" />
+        <div class="scrim-s"></div>
+        <div class="still-caption">Still 06 · Sedona, AZ</div>
+      </div>
+      <div class="still">
+        <img src="../photos/photo-10-sedona-spiral.jpg" alt="Still" />
+        <div class="scrim-s"></div>
+        <div class="still-caption">Still 07 · Sedona, AZ</div>
+      </div>
+      <div class="still">
+        <img src="../photos/photo-06-times-square.jpg" alt="Still" />
+        <div class="scrim-s"></div>
+        <div class="still-caption">Still 08 · Times Square, NYC</div>
+      </div>
+      <div class="still">
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" alt="Still" />
+        <div class="scrim-s"></div>
+        <div class="still-caption">Still 09 · California</div>
+      </div>
+      <div class="still">
+        <img src="../photos/photo-09-neon-dorm.jpg" alt="Still" />
+        <div class="scrim-s"></div>
+        <div class="still-caption">Still 10 · Origin Story</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED FILMS -->
+  <div class="related-wrap">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 4px; border-bottom: 1px solid var(--line);">
+      <div class="col-label" style="border:0; padding:0; margin:0;">If You Liked This, You May Also Like</div>
+      <div style="font-size: 6.8pt; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500;">Related Films</div>
+    </div>
+
+    <div class="related-grid">
+      <div class="related-card">
+        <div class="corner">Drama · 165 min</div>
+        <div>
+          <div class="rc-title">Boyhood</div>
+          <div class="rc-meta">Richard Linklater · 2014</div>
+        </div>
+        <div class="rc-bot">Watch</div>
+      </div>
+      <div class="related-card">
+        <div class="corner">Comedy · 112 min</div>
+        <div>
+          <div class="rc-title">The Trip</div>
+          <div class="rc-meta">Michael Winterbottom · 2010</div>
+        </div>
+        <div class="rc-bot">Watch</div>
+      </div>
+      <div class="related-card">
+        <div class="corner">Romance · 105 min</div>
+        <div>
+          <div class="rc-title">Past Lives</div>
+          <div class="rc-meta">Celine Song · 2023</div>
+        </div>
+        <div class="rc-bot">Watch</div>
+      </div>
+      <div class="related-card featured-related">
+        <div class="corner">Ensemble · 188 min</div>
+        <div>
+          <div class="rc-title">Magnolia</div>
+          <div class="rc-meta">Paul Thomas Anderson · 1999</div>
+        </div>
+        <div class="rc-bot">Curator's Pick</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <div class="reviews-wrap">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 4px; border-bottom: 1px solid var(--line);">
+      <div class="col-label" style="border:0; padding:0; margin:0;">Reviews &amp; Critical Reception</div>
+      <div style="font-size: 6.8pt; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500;">Press</div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"[GROOM] has made the kind of film that does not announce itself, then becomes the only film you remember."</p>
+        <div class="src">— The Daily Brotherhood</div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"An act of patience. We have not seen this kind of ensemble portrait since Apted's <em style="font-style:normal;">Up</em> series."</p>
+        <div class="src">— Group Chat Quarterly</div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"The cinematography here is conducted by the sun."</p>
+        <div class="src">— [BRIDE]</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="pagefoot">
+    <div class="left">
+      <div class="btn btn-primary">+ Add to Watchlist</div>
+      <div class="stream-line">Streaming exclusively on Brotherhood Channel from [WEDDING DATE].</div>
+    </div>
+    <div class="copyright">© MMXXVI · Mubi / Brotherhood Channel</div>
+  </div>
+
+</section>
+
+</body>
+</html>

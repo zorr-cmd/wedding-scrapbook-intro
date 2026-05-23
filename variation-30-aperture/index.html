@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Brothers — A Monograph by [GROOM]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f1ea;
+    --ink: #1a1815;
+    --soft-ink: #3a3530;
+    --muted: #7a7268;
+    --rule: #cbc3b6;
+    --border: #2a2622;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page {
+    size: 8.5in 11in;
+    margin: 0;
+  }
+
+  html, body {
+    background: #d8d2c5;
+    font-family: 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.12);
+    page-break-after: always;
+  }
+
+  /* Subtle paper texture via layered gradients */
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(180,160,130,0.04), transparent 60%),
+      radial-gradient(ellipse at 80% 70%, rgba(180,160,130,0.05), transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .page-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    padding: 0.7in 0.85in;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page.page-two .page-inner {
+    padding: 0.55in 0.75in 0.5in;
+  }
+
+  /* ============ PAGE 1: TITLE PAGE ============ */
+
+  .publisher-mark {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 7.5pt;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 38px;
+  }
+
+  .title-block {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+
+  .book-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 64pt;
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+
+  .book-subtitle {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13pt;
+    color: var(--soft-ink);
+    letter-spacing: 0.02em;
+  }
+
+  .ornament {
+    text-align: center;
+    margin: 18px 0 24px;
+    color: var(--muted);
+    font-size: 10pt;
+    letter-spacing: 0.6em;
+  }
+
+  /* Hero plate */
+  .hero-plate {
+    text-align: center;
+    margin: 0 auto 22px;
+    width: 78%;
+  }
+
+  .hero-frame {
+    border: 1px solid var(--border);
+    padding: 4px;
+    background: var(--cream);
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .hero-frame img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    filter: contrast(1.02) saturate(0.98);
+  }
+
+  .plate-caption {
+    margin-top: 10px;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 8.5pt;
+    color: var(--soft-ink);
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+  }
+
+  .plate-caption .plate-num {
+    font-style: normal;
+    font-variant: small-caps;
+    letter-spacing: 0.15em;
+    color: var(--ink);
+  }
+
+  /* Foreword */
+  .foreword {
+    margin: 8px auto 0;
+    width: 4.1in;
+    text-align: justify;
+    font-family: 'EB Garamond', serif;
+    font-size: 9.5pt;
+    line-height: 1.55;
+    color: var(--soft-ink);
+    hyphens: auto;
+  }
+
+  .foreword p {
+    text-indent: 1.2em;
+    margin-bottom: 6pt;
+  }
+
+  .foreword p:first-child {
+    text-indent: 0;
+  }
+
+  .foreword p:first-child::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28pt;
+    font-weight: 500;
+    float: left;
+    line-height: 0.85;
+    padding: 4px 6px 0 0;
+    color: var(--ink);
+  }
+
+  .foreword .editors {
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  /* Colophon at bottom */
+  .colophon {
+    margin-top: auto;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    text-transform: uppercase;
+    line-height: 1.8;
+    padding-top: 14px;
+  }
+
+  .colophon .rule {
+    width: 28px;
+    height: 1px;
+    background: var(--rule);
+    margin: 0 auto 10px;
+  }
+
+  /* ============ PAGE 2: PLATE INDEX ============ */
+
+  .index-header {
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .index-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .index-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 22pt;
+    letter-spacing: 0.32em;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+
+  .index-rule {
+    width: 60px;
+    height: 1px;
+    background: var(--border);
+    margin: 10px auto 16px;
+  }
+
+  .plate-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 28px;
+    margin-bottom: 10px;
+  }
+
+  .plate-item {
+    text-align: center;
+  }
+
+  .plate-frame {
+    border: 1px solid var(--border);
+    padding: 3px;
+    background: var(--cream);
+    display: block;
+    width: 100%;
+  }
+
+  .plate-frame img {
+    display: block;
+    width: 100%;
+    height: 78px;
+    object-fit: cover;
+    filter: contrast(1.02) saturate(0.98);
+  }
+
+  .plate-item .plate-caption {
+    margin-top: 5px;
+    font-size: 7pt;
+    letter-spacing: 0.05em;
+    line-height: 1.35;
+  }
+
+  .row-divider {
+    border-top: 1px solid var(--rule);
+    margin: 0;
+    grid-column: 1 / -1;
+  }
+
+  /* Acknowledgements */
+  .ack-section {
+    margin-top: 10px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .ack-header {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .ack-body {
+    width: 4.6in;
+    margin: 0 auto;
+    text-align: justify;
+    font-family: 'EB Garamond', serif;
+    font-size: 8.5pt;
+    line-height: 1.5;
+    color: var(--soft-ink);
+    hyphens: auto;
+  }
+
+  .ack-body em {
+    color: var(--ink);
+  }
+
+  /* Page 2 footer */
+  .page2-footer {
+    margin-top: auto;
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .page2-footer .small-colophon {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .page-number {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 10pt;
+    color: var(--soft-ink);
+    letter-spacing: 0.15em;
+  }
+</style>
+</head>
+<body>
+
+<!-- =================== PAGE 1: TITLE / FOREWORD =================== -->
+<div class="page">
+  <div class="page-inner">
+
+    <div class="publisher-mark">Aperture &nbsp;·&nbsp; [GROOM] Publications &nbsp;·&nbsp; MMXXVI</div>
+
+    <div class="title-block">
+      <h1 class="book-title">The Brothers</h1>
+      <div class="book-subtitle">Photographs by [GROOM], 2017—2026</div>
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <div class="hero-plate">
+      <div class="hero-frame">
+        <img src="../photos/photo-08-mt-shasta.jpg" alt="Mt. Shasta sunset">
+      </div>
+      <div class="plate-caption">
+        <span class="plate-num">Plate I.</span> &nbsp;—&nbsp; <em>Untitled, Mt. Shasta, California, 2024.</em><br>
+        From the series &lsquo;The Brothers.&rsquo; Pigment print on cotton rag.
+      </div>
+    </div>
+
+    <div class="foreword">
+      <p>There is a quiet conviction in [GROOM]&rsquo;s photographs that recalls the long-form ensemble work of August Sander or Mary Ellen Mark. For nearly a decade, working with a single recurring cast of eight men, he has constructed a visual record of contemporary American friendship — a subject most photographers consider unphotographable.</p>
+      <p>These pictures resist the easy categories of travel photography, ethnography, or family album. They are, instead, what they purport to be: durable evidence that a group of people decided, eleven times, that this moment was worth standing still for.</p>
+      <p>On the occasion of [GROOM]&rsquo;s marriage to [BRIDE], we present this work in its entirety for the first time. The eleven plates that follow represent ten years of patient attention. <span class="editors">— The Editors, MMXXVI</span></p>
+    </div>
+
+    <div class="colophon">
+      <div class="rule"></div>
+      First Edition &nbsp;·&nbsp; Printed in one copy<br>
+      ISBN 978-0-00-000000-0<br>
+      © MMXXVI &nbsp;[GROOM]&nbsp; / &nbsp;Aperture Publications
+    </div>
+
+  </div>
+</div>
+
+<!-- =================== PAGE 2: PLATE INDEX =================== -->
+<div class="page page-two">
+  <div class="page-inner">
+
+    <div class="index-header">
+      <div class="index-eyebrow">The Brothers &nbsp;·&nbsp; A Monograph</div>
+      <div class="index-title">Index of Plates</div>
+    </div>
+
+    <div class="index-rule"></div>
+
+    <div class="plate-grid">
+
+      <div class="plate-item">
+        <div class="plate-frame"><img src="../photos/photo-02-egypt-pyramid.jpg" alt=""></div>
+        <div class="plate-caption">
+          <span class="plate-num">Plate II.</span> &nbsp;—&nbsp; <em>Untitled, Giza, Egypt, 2022.</em><br>
+          From the series &lsquo;The Brothers.&rsquo;
+        </div>
+      </div>
+
+      <div class="plate-item">
+        <div class="plate-frame"><img src="../photos/photo-04-cabo-boat.jpg" alt=""></div>
+        <div class="plate-caption">
+          <span class="plate-num">Plate III.</span> &nbsp;—&nbsp; <em>Untitled, Cabo San Lucas, 2023.</em><br>
+          From the series &lsquo;The Brothers.&rsquo;
+        </div>
+      </div>
+
+      <div class="row-divider"></div>
+
+      <div class="plate-item">
+        <div class="plate-frame"><img src="../photos/photo-07-zion-narrows.jpg" alt=""></div>
+        <div class="plate-caption">
+          <span class="plate-num">Plate IV.</span> &nbsp;—&nbsp; <em>Untitled, The Narrows, Zion, 2023.</em><br>
+          From the series &lsquo;The Brothers.&rsquo;
+        </div>
+      </div>
+
+      <div class="plate-item">
+        <div class="plate-frame"><img src="../photos/photo-11-zion-warriors.jpg" alt=""></div>
+        <div class="plate-caption">
+          <span class="plate-num">Plate V.</span> &nbsp;—&nbsp; <em>Untitled (variant), Zion, 2023.</em><br>
+          From the series &lsquo;The Brothers.&rsquo;
+        </div>
+      </div>
+
+      <div class="row-divider"></div>
+
+      <div class="plate-item">
+        <div class="plate-frame"><img src="../photos/photo-05-sedona-spires.jpg" alt=""></div>
+        <div class="plate-caption">
+          <span class="plate-num">Plate VI.</span> &nbsp;—&nbsp; <em>Untitled, Sedona, Arizona, 2023.</em><br>
+          From the series &lsquo;The Brothers.&rsquo;
+        </div>
+      </div>
+
+      <div class="plate-item">
+        <div class="plate-frame"><img src="../photos/photo-10-sedona-spiral.jpg" alt=""></div>
+        <div class="plate-caption">
+          <span class="plate-num">Plate VII.</span> &nbsp;—&nbsp; <em>Untitled (Spiral), Sedona, 2023.</em><br>
+          From the series &lsquo;The Brothers.&rsquo;
+        </div>
+      </div>
+
+      <div class="row-divider"></div>
+
+      <div class="plate-item">
+        <div class="plate-frame"><img src="../photos/photo-06-times-square.jpg" alt=""></div>
+        <div class="plate-caption">
+          <span class="plate-num">Plate VIII.</span> &nbsp;—&nbsp; <em>Untitled, Times Square, New York, 2022.</em><br>
+          From the series &lsquo;The Brothers.&rsquo;
+        </div>
+      </div>
+
+      <div class="plate-item">
+        <div class="plate-frame"><img src="../photos/photo-09-neon-dorm.jpg" alt=""></div>
+        <div class="plate-caption">
+          <span class="plate-num">Plate IX.</span> &nbsp;—&nbsp; <em>Untitled (Interior, with Neon), 2020.</em><br>
+          From the series &lsquo;The Brothers.&rsquo;
+        </div>
+      </div>
+
+      <div class="row-divider"></div>
+
+      <div class="plate-item">
+        <div class="plate-frame"><img src="../photos/photo-01-beach-brown-tees.jpg" alt=""></div>
+        <div class="plate-caption">
+          <span class="plate-num">Plate X.</span> &nbsp;—&nbsp; <em>Untitled, Pacific Overlook, California, 2025.</em><br>
+          From the series &lsquo;The Brothers.&rsquo;
+        </div>
+      </div>
+
+      <div class="plate-item">
+        <div class="plate-frame"><img src="../photos/photo-03-beach-sunset-pile.jpg" alt=""></div>
+        <div class="plate-caption">
+          <span class="plate-num">Plate XI.</span> &nbsp;—&nbsp; <em>Untitled (Golden Hour), California, 2025.</em><br>
+          From the series &lsquo;The Brothers.&rsquo;
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ack-section">
+      <div class="ack-header">Acknowledgements</div>
+      <div class="ack-body">
+        [GROOM] gratefully acknowledges the eight subjects of this work — [NAME 1], [NAME 2], [NAME 3], [NAME 4], [NAME 5], [NAME 6], [NAME 7], and [NAME 8] — whose continued willingness to be photographed has made this project possible. Special thanks to <em>[BRIDE]</em>, to whom this monograph is dedicated.
+      </div>
+    </div>
+
+    <div class="page2-footer">
+      <div class="small-colophon">Aperture Publications &nbsp;·&nbsp; New York &nbsp;·&nbsp; Wedding Edition</div>
+      <div class="page-number">— II —</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
