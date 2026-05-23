@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<title>KARDEŞLER — Bir Yeşilçam Filmi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cinzel:wght@600;800;900&family=Bungee&family=Cormorant+Garamond:ital,wght@0,500;1,500;1,700&family=Stardos+Stencil:wght@400;700&family=Anton&family=Playfair+Display:ital,wght@0,800;0,900;1,800&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f0e4c8;
+    --cream-deep: #e8d8a8;
+    --burnt: #c95824;
+    --ochre: #d4a73a;
+    --crimson: #a01e2a;
+    --teal: #1e6b6b;
+    --ink: #1a0f08;
+    --gold: #c8a85a;
+  }
+
+  html, body { background: #2a1a10; font-family: 'Cormorant Garamond', serif; color: var(--ink); }
+
+  /* ---------- PAGE BASE ---------- */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+    color: var(--ink);
+    margin: 0 auto;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* Aged paper texture: layered radial+grain via SVG noise data URI */
+  .paper-tex::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 15%, rgba(255,230,180,0.5), transparent 55%),
+      radial-gradient(ellipse at 80% 85%, rgba(160,30,42,0.10), transparent 60%),
+      radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(60,30,15,0.25) 100%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.05  0 0 0 0 0.02  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+    background-size: cover, cover, cover, 400px 400px;
+    pointer-events: none;
+    z-index: 30;
+    mix-blend-mode: multiply;
+  }
+
+  /* Foxed / aged edge darkening */
+  .paper-tex::after {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgba(80,40,15,0.35), transparent 8%, transparent 92%, rgba(80,40,15,0.35)),
+      linear-gradient(to bottom, rgba(80,40,15,0.30), transparent 7%, transparent 93%, rgba(80,40,15,0.30));
+    pointer-events: none;
+    z-index: 31;
+  }
+
+  /* ---------- PAGE 1: THE POSTER ---------- */
+  .poster {
+    background:
+      radial-gradient(ellipse at 50% 30%, #f4ead0 0%, #e8d8a8 55%, #d6c088 100%);
+  }
+
+  /* Ornate Ottoman-style top border */
+  .ornate-border {
+    position: absolute;
+    left: 0; right: 0;
+    height: 0.45in;
+    z-index: 5;
+    color: var(--crimson);
+  }
+  .ornate-border.top { top: 0.18in; }
+  .ornate-border.bottom { bottom: 0.18in; transform: scaleY(-1); }
+  .ornate-border svg { display: block; width: 100%; height: 100%; }
+
+  /* Side decorative columns */
+  .side-orn {
+    position: absolute;
+    top: 0.7in; bottom: 0.7in;
+    width: 0.28in;
+    z-index: 5;
+    color: var(--gold);
+  }
+  .side-orn.left { left: 0.18in; }
+  .side-orn.right { right: 0.18in; }
+  .side-orn svg { height: 100%; width: 100%; }
+
+  /* TITLE BLOCK */
+  .title-block {
+    position: absolute;
+    top: 0.55in;
+    left: 0.6in;
+    right: 0.6in;
+    text-align: center;
+    z-index: 12;
+  }
+  .top-tag {
+    font-family: 'Stardos Stencil', sans-serif;
+    font-weight: 700;
+    color: var(--crimson);
+    letter-spacing: 0.45em;
+    font-size: 9.5pt;
+    margin-bottom: 4pt;
+  }
+  .top-tag .dot { color: var(--gold); margin: 0 6pt; }
+
+  .title {
+    font-family: 'Abril Fatface', serif;
+    font-size: 88pt;
+    line-height: 0.92;
+    color: var(--crimson);
+    letter-spacing: 0.015em;
+    text-shadow:
+      3px 3px 0 var(--ochre),
+      6px 6px 0 var(--ink);
+    margin-top: 6pt;
+    padding-right: 6pt; /* prevent shadow from clipping */
+  }
+  .title .accent { color: var(--burnt); }
+
+  .subtitle-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 11pt;
+    letter-spacing: 0.18em;
+    margin-top: 14pt;
+    line-height: 1.4;
+  }
+  .subtitle-en .pipe { color: var(--burnt); margin: 0 6pt; font-style: normal; }
+
+  .director-credit {
+    font-family: 'Stardos Stencil', sans-serif;
+    font-weight: 700;
+    color: var(--teal);
+    font-size: 13pt;
+    letter-spacing: 0.32em;
+    margin-top: 10pt;
+  }
+  .director-credit .yon {
+    color: var(--ink);
+    background: var(--ochre);
+    padding: 2pt 8pt 1pt;
+    margin-right: 8pt;
+    border: 1.5pt solid var(--ink);
+  }
+
+  /* HERO PAINTED IMAGE */
+  .hero-wrap {
+    position: absolute;
+    top: 3.55in;
+    left: 1.55in;
+    width: 4.3in;
+    height: 2.8in;
+    z-index: 8;
+    border: 4pt solid var(--ink);
+    box-shadow:
+      0 0 0 2pt var(--cream),
+      0 0 0 4pt var(--gold),
+      0 0 0 6pt var(--ink),
+      10pt 12pt 0 rgba(26,15,8,0.35);
+    overflow: hidden;
+    background: var(--crimson);
+  }
+  .hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: contrast(1.25) saturate(1.55) brightness(0.92) sepia(0.25);
+  }
+  .hero-wrap::after {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to top, rgba(160,30,42,0.55), rgba(212,167,58,0.20) 45%, rgba(30,107,107,0.30)),
+      radial-gradient(ellipse at 50% 100%, rgba(0,0,0,0.55), transparent 60%);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  /* CAST PORTRAITS COLUMN */
+  .cast-col {
+    position: absolute;
+    top: 3.55in;
+    right: 0.55in;
+    width: 1.35in;
+    z-index: 9;
+    display: flex; flex-direction: column;
+    gap: 5pt;
+  }
+  .cast-card {
+    background: var(--cream-deep);
+    border: 2pt solid var(--ink);
+    padding: 3pt 3pt 4pt;
+    box-shadow: 4pt 4pt 0 rgba(26,15,8,0.45);
+  }
+  .cast-card .frame {
+    width: 100%;
+    height: 0.62in;
+    overflow: hidden;
+    border: 1pt solid var(--ink);
+    background: var(--crimson);
+  }
+  .cast-card .frame img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: contrast(1.35) saturate(1.6) brightness(0.9) sepia(0.45) hue-rotate(-8deg);
+  }
+  .cast-card .name {
+    font-family: 'Stardos Stencil', sans-serif;
+    font-weight: 700;
+    font-size: 9pt;
+    color: var(--ink);
+    text-align: center;
+    letter-spacing: 0.12em;
+    margin-top: 3pt;
+    line-height: 1.05;
+  }
+  .cast-card .role {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 7.5pt;
+    color: var(--crimson);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+  .cast-header {
+    font-family: 'Stardos Stencil', sans-serif;
+    font-weight: 700;
+    color: var(--crimson);
+    text-align: center;
+    font-size: 10pt;
+    letter-spacing: 0.32em;
+    border-top: 1.5pt solid var(--ink);
+    border-bottom: 1.5pt solid var(--ink);
+    padding: 2pt 0;
+    margin-bottom: 4pt;
+    background: var(--ochre);
+  }
+
+  /* LEFT SIDE: vertical TURKISH callout */
+  .vert-text {
+    position: absolute;
+    top: 3.7in;
+    left: 0.55in;
+    width: 0.85in;
+    z-index: 9;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-orientation: mixed;
+    font-family: 'Bungee', sans-serif;
+    color: var(--teal);
+    font-size: 22pt;
+    letter-spacing: 0.18em;
+    text-align: center;
+    line-height: 1;
+  }
+
+  /* TAGLINE */
+  .tagline {
+    position: absolute;
+    bottom: 1.95in;
+    left: 0.6in;
+    right: 0.6in;
+    text-align: center;
+    z-index: 12;
+  }
+  .tagline .tr {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 800;
+    color: var(--crimson);
+    font-size: 22pt;
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+  }
+  .tagline .en {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--ink);
+    font-size: 11pt;
+    letter-spacing: 0.18em;
+    margin-top: 4pt;
+  }
+  .tagline .rule {
+    width: 1.6in; height: 0; border-top: 1pt solid var(--ink);
+    margin: 8pt auto 6pt;
+    position: relative;
+  }
+  .tagline .rule::before, .tagline .rule::after {
+    content: "✦"; position: absolute; top: -8pt; color: var(--gold); font-size: 10pt;
+  }
+  .tagline .rule::before { left: -10pt; }
+  .tagline .rule::after  { right: -10pt; }
+
+  /* PRODUCTION CREDIT STRIP */
+  .prod-credit {
+    position: absolute;
+    bottom: 1.4in;
+    left: 0.6in; right: 0.6in;
+    z-index: 12;
+    text-align: center;
+    font-family: 'Stardos Stencil', sans-serif;
+    font-weight: 700;
+    font-size: 9.5pt;
+    letter-spacing: 0.24em;
+    color: var(--ink);
+    border-top: 2pt double var(--ink);
+    border-bottom: 2pt double var(--ink);
+    padding: 4pt 0;
+    background: rgba(212,167,58,0.45);
+  }
+  .prod-credit .sep { color: var(--crimson); margin: 0 8pt; }
+
+  /* LAUREL / FESTIVAL */
+  .laurel {
+    position: absolute;
+    bottom: 0.35in; left: 0.55in;
+    width: 1.4in; height: 1.05in;
+    z-index: 14;
+    color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+  }
+  .laurel svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .laurel .text {
+    position: relative;
+    font-family: 'Stardos Stencil', sans-serif;
+    font-weight: 700;
+    color: var(--teal);
+    text-align: center;
+    font-size: 7pt;
+    letter-spacing: 0.18em;
+    line-height: 1.15;
+    padding: 0 14pt;
+  }
+  .laurel .text .big {
+    display: block;
+    font-family: 'Abril Fatface', serif;
+    font-size: 14pt;
+    color: var(--crimson);
+    letter-spacing: 0.02em;
+    margin: 1pt 0;
+  }
+
+  /* Rating box */
+  .rating {
+    position: absolute;
+    bottom: 0.42in; right: 0.6in;
+    z-index: 14;
+    border: 2pt solid var(--ink);
+    background: var(--cream);
+    padding: 3pt 8pt 4pt;
+    text-align: center;
+    box-shadow: 3pt 3pt 0 var(--crimson);
+  }
+  .rating .grade {
+    font-family: 'Abril Fatface', serif;
+    color: var(--crimson);
+    font-size: 28pt;
+    line-height: 0.9;
+  }
+  .rating .label {
+    font-family: 'Stardos Stencil', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.22em;
+    color: var(--ink);
+    margin-top: 2pt;
+  }
+
+  /* Corner peel */
+  .corner-peel {
+    position: absolute;
+    top: 0; right: 0;
+    width: 0.9in; height: 0.9in;
+    z-index: 33;
+    background: linear-gradient(225deg, #c9b58a 0%, #b89c6a 40%, transparent 50%);
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    box-shadow: inset -4pt -4pt 8pt rgba(0,0,0,0.25);
+  }
+  .corner-peel::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(225deg, transparent 48%, rgba(26,15,8,0.45) 50%, transparent 52%);
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+  }
+
+  /* Reel numbers like Cinzel marks */
+  .reel {
+    position: absolute;
+    top: 0.3in;
+    z-index: 13;
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 14pt;
+    color: var(--ink);
+    background: var(--ochre);
+    border: 2pt solid var(--ink);
+    padding: 2pt 10pt 1pt;
+    letter-spacing: 0.18em;
+  }
+  .reel.left { left: 0.7in; transform: rotate(-3deg); }
+  .reel.right { right: 0.7in; transform: rotate(3deg); }
+
+  /* ===========================================================
+     PAGE 2: SAHNELER
+     =========================================================== */
+  .scenes {
+    background:
+      radial-gradient(ellipse at 50% 50%, #f4ead0 0%, #e8d8a8 60%, #d6c088 100%);
+    padding: 0;
+  }
+
+  .scenes-header {
+    position: absolute;
+    top: 0.55in;
+    left: 0.6in; right: 0.6in;
+    text-align: center;
+    z-index: 12;
+  }
+  .scenes-header .strip {
+    font-family: 'Stardos Stencil', sans-serif;
+    font-weight: 700;
+    color: var(--cream);
+    background: var(--crimson);
+    padding: 4pt 10pt 3pt;
+    display: inline-block;
+    letter-spacing: 0.4em;
+    font-size: 10pt;
+    border: 2pt solid var(--ink);
+    box-shadow: 4pt 4pt 0 var(--ink);
+  }
+  .scenes-header h1 {
+    font-family: 'Abril Fatface', serif;
+    font-size: 48pt;
+    line-height: 0.92;
+    color: var(--crimson);
+    letter-spacing: 0.02em;
+    margin-top: 10pt;
+    text-shadow: 2px 2px 0 var(--ochre), 4px 4px 0 var(--ink);
+  }
+  .scenes-header .sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--ink);
+    font-size: 10pt;
+    letter-spacing: 0.14em;
+    margin-top: 6pt;
+  }
+  .scenes-header .sub .em { color: var(--burnt); font-weight: 700; font-style: normal; letter-spacing: 0.3em;}
+
+  /* Lobby card grid — asymmetric */
+  .lobby-grid {
+    position: absolute;
+    top: 1.9in;
+    left: 0.5in;
+    right: 0.5in;
+    bottom: 1.55in;
+    z-index: 6;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 7pt;
+  }
+
+  .lobby {
+    position: relative;
+    border: 3pt solid var(--ink);
+    background: var(--cream-deep);
+    box-shadow: 4pt 4pt 0 rgba(26,15,8,0.5);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .lobby .pic { flex: 1; overflow: hidden; position: relative; background: var(--ink); }
+  .lobby .pic img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: contrast(1.25) saturate(1.55) brightness(0.94) sepia(0.22);
+  }
+  .lobby .pic::after {
+    content: "";
+    position: absolute; inset: 0;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+  .lobby.b-burnt   { border-color: var(--burnt);}
+  .lobby.b-burnt   .pic::after { background: linear-gradient(135deg, rgba(201,88,36,0.32), transparent 55%);}
+  .lobby.b-ochre   { border-color: var(--ochre);}
+  .lobby.b-ochre   .pic::after { background: linear-gradient(135deg, rgba(212,167,58,0.32), transparent 55%);}
+  .lobby.b-crimson { border-color: var(--crimson);}
+  .lobby.b-crimson .pic::after { background: linear-gradient(135deg, rgba(160,30,42,0.30), transparent 55%);}
+  .lobby.b-teal    { border-color: var(--teal);}
+  .lobby.b-teal    .pic::after { background: linear-gradient(135deg, rgba(30,107,107,0.32), transparent 55%);}
+
+  .lobby .cap {
+    background: var(--cream);
+    padding: 3pt 5pt 4pt;
+    border-top: 1.5pt solid var(--ink);
+  }
+  .lobby .cap .no {
+    font-family: 'Stardos Stencil', sans-serif;
+    font-size: 7pt;
+    color: var(--crimson);
+    letter-spacing: 0.22em;
+    font-weight: 700;
+  }
+  .lobby .cap .tr {
+    font-family: 'Abril Fatface', serif;
+    color: var(--ink);
+    font-size: 10pt;
+    line-height: 1.05;
+    margin-top: 1pt;
+  }
+  .lobby .cap .en {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 8pt;
+    color: var(--teal);
+    letter-spacing: 0.06em;
+    margin-top: 1pt;
+  }
+
+  /* Quote / title cards */
+  .titlecard {
+    position: relative;
+    border: 3pt solid var(--ink);
+    background: var(--crimson);
+    color: var(--cream);
+    box-shadow: 4pt 4pt 0 rgba(26,15,8,0.5);
+    padding: 5pt 6pt;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .titlecard.ochre { background: var(--ochre); color: var(--ink); }
+  .titlecard.teal  { background: var(--teal); color: var(--cream); }
+
+  .titlecard .quote {
+    font-family: 'Abril Fatface', serif;
+    font-size: 11pt;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+  }
+  .titlecard .en {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 7pt;
+    letter-spacing: 0.14em;
+    margin-top: 2pt;
+    opacity: 0.92;
+  }
+  .titlecard .deco {
+    font-family: 'Cinzel', serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.32em;
+    margin-bottom: 3pt;
+    opacity: 0.8;
+  }
+
+  /* Grid placements */
+  .g1  { grid-column: 1 / span 5;  grid-row: 1 / span 4;  }
+  .g2  { grid-column: 6 / span 4;  grid-row: 1 / span 3;  }
+  .g3  { grid-column: 10 / span 3; grid-row: 1 / span 3;  }
+  .gq1 { grid-column: 6 / span 7;  grid-row: 4 / span 1;  }
+  .g4  { grid-column: 1 / span 3;  grid-row: 5 / span 3;  }
+  .g5  { grid-column: 4 / span 4;  grid-row: 5 / span 4;  }
+  .g6  { grid-column: 8 / span 5;  grid-row: 5 / span 3;  }
+  .g7  { grid-column: 1 / span 3;  grid-row: 8 / span 3;  }
+  .gq2 { grid-column: 4 / span 4;  grid-row: 9 / span 2;  }
+  .g8  { grid-column: 8 / span 5;  grid-row: 8 / span 3;  }
+
+  /* Bottom credits block */
+  .credits-block {
+    position: absolute;
+    left: 0.5in; right: 0.5in;
+    bottom: 0.55in;
+    z-index: 12;
+    border: 2pt solid var(--ink);
+    background: var(--cream);
+    padding: 8pt 14pt 9pt;
+    box-shadow: 5pt 5pt 0 var(--crimson);
+  }
+  .credits-block .row1 {
+    font-family: 'Stardos Stencil', sans-serif;
+    font-weight: 700;
+    color: var(--ink);
+    text-align: center;
+    font-size: 8pt;
+    letter-spacing: 0.22em;
+    line-height: 1.5;
+  }
+  .credits-block .row1 .lbl { color: var(--crimson); }
+  .credits-block .row1 .sep { color: var(--gold); margin: 0 6pt; }
+  .credits-block .ded {
+    margin-top: 5pt;
+    padding-top: 5pt;
+    border-top: 1pt dashed var(--ink);
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 10pt;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .credits-block .ded .em {
+    font-family: 'Abril Fatface', serif;
+    font-style: normal;
+    color: var(--crimson);
+  }
+  .credits-block .signoff {
+    margin-top: 3pt;
+    font-family: 'Stardos Stencil', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    color: var(--teal);
+    font-size: 8pt;
+    letter-spacing: 0.32em;
+  }
+
+  /* Page 2 corner reel */
+  .page2 .corner-peel { background: linear-gradient(225deg, #c9b58a 0%, #b89c6a 40%, transparent 50%); }
+
+  /* Print fidelity */
+  @media print {
+    html, body { background: white; }
+    .page { box-shadow: none; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== PAGE 1: POSTER ===================== -->
+<section class="page poster paper-tex">
+
+  <!-- Reel marks -->
+  <div class="reel left">I</div>
+  <div class="reel right">II</div>
+
+  <!-- Top ornate border -->
+  <div class="ornate-border top">
+    <svg viewBox="0 0 800 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="1.4">
+        <line x1="0" y1="6" x2="800" y2="6"/>
+        <line x1="0" y1="34" x2="800" y2="34"/>
+      </g>
+      <g fill="currentColor">
+        <!-- repeated rosette pattern -->
+        <g id="ros">
+          <circle cx="20" cy="20" r="3.5"/>
+          <path d="M20 8 Q26 14 20 20 Q14 14 20 8 Z"/>
+          <path d="M20 32 Q26 26 20 20 Q14 26 20 32 Z"/>
+          <path d="M8 20 Q14 14 20 20 Q14 26 8 20 Z"/>
+          <path d="M32 20 Q26 14 20 20 Q26 26 32 20 Z"/>
+        </g>
+        <use href="#ros" x="40"/><use href="#ros" x="80"/><use href="#ros" x="120"/><use href="#ros" x="160"/>
+        <use href="#ros" x="200"/><use href="#ros" x="240"/><use href="#ros" x="280"/><use href="#ros" x="320"/>
+        <use href="#ros" x="360"/><use href="#ros" x="400"/><use href="#ros" x="440"/><use href="#ros" x="480"/>
+        <use href="#ros" x="520"/><use href="#ros" x="560"/><use href="#ros" x="600"/><use href="#ros" x="640"/>
+        <use href="#ros" x="680"/><use href="#ros" x="720"/><use href="#ros" x="760"/>
+      </g>
+      <!-- center medallion -->
+      <g transform="translate(400,20)" fill="currentColor">
+        <path d="M-30,0 Q-15,-10 0,0 Q15,-10 30,0 Q15,10 0,0 Q-15,10 -30,0 Z"/>
+        <circle r="4"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Bottom ornate border (mirrored) -->
+  <div class="ornate-border bottom">
+    <svg viewBox="0 0 800 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="1.4">
+        <line x1="0" y1="6" x2="800" y2="6"/>
+        <line x1="0" y1="34" x2="800" y2="34"/>
+      </g>
+      <g fill="currentColor">
+        <g id="ros2">
+          <circle cx="20" cy="20" r="3.5"/>
+          <path d="M20 8 Q26 14 20 20 Q14 14 20 8 Z"/>
+          <path d="M20 32 Q26 26 20 20 Q14 26 20 32 Z"/>
+          <path d="M8 20 Q14 14 20 20 Q14 26 8 20 Z"/>
+          <path d="M32 20 Q26 14 20 20 Q26 26 32 20 Z"/>
+        </g>
+        <use href="#ros2" x="40"/><use href="#ros2" x="80"/><use href="#ros2" x="120"/><use href="#ros2" x="160"/>
+        <use href="#ros2" x="200"/><use href="#ros2" x="240"/><use href="#ros2" x="280"/><use href="#ros2" x="320"/>
+        <use href="#ros2" x="360"/><use href="#ros2" x="400"/><use href="#ros2" x="440"/><use href="#ros2" x="480"/>
+        <use href="#ros2" x="520"/><use href="#ros2" x="560"/><use href="#ros2" x="600"/><use href="#ros2" x="640"/>
+        <use href="#ros2" x="680"/><use href="#ros2" x="720"/><use href="#ros2" x="760"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Side ornate columns -->
+  <div class="side-orn left">
+    <svg viewBox="0 0 20 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="0" x2="10" y2="600" stroke="currentColor" stroke-width="0.8"/>
+      <g fill="currentColor">
+        <circle cx="10" cy="30"  r="3"/><circle cx="10" cy="90"  r="3"/>
+        <circle cx="10" cy="150" r="3"/><circle cx="10" cy="210" r="3"/>
+        <circle cx="10" cy="270" r="3"/><circle cx="10" cy="330" r="3"/>
+        <circle cx="10" cy="390" r="3"/><circle cx="10" cy="450" r="3"/>
+        <circle cx="10" cy="510" r="3"/><circle cx="10" cy="570" r="3"/>
+      </g>
+    </svg>
+  </div>
+  <div class="side-orn right">
+    <svg viewBox="0 0 20 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="0" x2="10" y2="600" stroke="currentColor" stroke-width="0.8"/>
+      <g fill="currentColor">
+        <circle cx="10" cy="30"  r="3"/><circle cx="10" cy="90"  r="3"/>
+        <circle cx="10" cy="150" r="3"/><circle cx="10" cy="210" r="3"/>
+        <circle cx="10" cy="270" r="3"/><circle cx="10" cy="330" r="3"/>
+        <circle cx="10" cy="390" r="3"/><circle cx="10" cy="450" r="3"/>
+        <circle cx="10" cy="510" r="3"/><circle cx="10" cy="570" r="3"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- TITLE -->
+  <div class="title-block">
+    <div class="top-tag">YEŞİLÇAM FİLM STÜDYOLARI <span class="dot">✦</span> SUNAR <span class="dot">✦</span> PRESENTS</div>
+    <div class="title">KARDE<span class="accent">Ş</span>LER</div>
+    <div class="subtitle-en">
+      THE BROTHERS <span class="pipe">·</span> A FILM IN ELEVEN ACTS <span class="pipe">·</span><br/>
+      DEDICATED TO <b>[GROOM]</b> ON THE EVE OF HIS MARRIAGE TO <b>[BRIDE]</b>
+    </div>
+    <div class="director-credit"><span class="yon">YÖNETMEN</span>[GROOM]</div>
+  </div>
+
+  <!-- vertical turkish text -->
+  <div class="vert-text">SİNEMASKOP</div>
+
+  <!-- HERO -->
+  <div class="hero-wrap">
+    <img class="hero-img" src="../photos/photo-08-mt-shasta.jpg" alt="Mt. Shasta sunset"/>
+  </div>
+
+  <!-- CAST -->
+  <aside class="cast-col">
+    <div class="cast-header">BAŞROLDE</div>
+    <div class="cast-card">
+      <div class="frame"><img src="../photos/photo-02-egypt-pyramid.jpg" alt=""/></div>
+      <div class="name">[NAME 1]</div>
+      <div class="role">başrolde</div>
+    </div>
+    <div class="cast-card">
+      <div class="frame"><img src="../photos/photo-09-neon-dorm.jpg" alt=""/></div>
+      <div class="name">[NAME 2]</div>
+      <div class="role">başrolde</div>
+    </div>
+    <div class="cast-card">
+      <div class="frame"><img src="../photos/photo-11-zion-warriors.jpg" alt=""/></div>
+      <div class="name">[NAME 3]</div>
+      <div class="role">başrolde</div>
+    </div>
+    <div class="cast-card">
+      <div class="frame"><img src="../photos/photo-01-beach-brown-tees.jpg" alt=""/></div>
+      <div class="name">[NAME 4]</div>
+      <div class="role">başrolde</div>
+    </div>
+  </aside>
+
+  <!-- TAGLINE -->
+  <div class="tagline">
+    <div class="tr">"Bir nesil. Sekiz adam. Sayısız hatıra."</div>
+    <div class="rule"></div>
+    <div class="en">ONE GENERATION <span style="color:var(--burnt)">·</span> EIGHT MEN <span style="color:var(--burnt)">·</span> COUNTLESS MEMORIES</div>
+  </div>
+
+  <!-- PRODUCTION CREDIT -->
+  <div class="prod-credit">
+    YAPIM <span class="sep">·</span> KARDE&#350; F&#304;LM <span class="sep">·</span> MMXVII—MMXXVI <span class="sep">·</span> RENKL&#304; <span class="sep">·</span> TÜRKÇE
+  </div>
+
+  <!-- LAUREL -->
+  <div class="laurel">
+    <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="1.6">
+        <!-- left laurel -->
+        <path d="M30,12 Q14,55 30,98"/>
+        <g fill="currentColor" stroke="none">
+          <ellipse cx="25" cy="22" rx="3" ry="6" transform="rotate(-30 25 22)"/>
+          <ellipse cx="20" cy="32" rx="3" ry="6" transform="rotate(-25 20 32)"/>
+          <ellipse cx="17" cy="44" rx="3" ry="6" transform="rotate(-15 17 44)"/>
+          <ellipse cx="16" cy="56" rx="3" ry="6" transform="rotate(-5 16 56)"/>
+          <ellipse cx="17" cy="68" rx="3" ry="6" transform="rotate(10 17 68)"/>
+          <ellipse cx="20" cy="80" rx="3" ry="6" transform="rotate(20 20 80)"/>
+          <ellipse cx="25" cy="90" rx="3" ry="6" transform="rotate(30 25 90)"/>
+        </g>
+        <!-- right laurel -->
+        <path d="M110,12 Q126,55 110,98"/>
+        <g fill="currentColor" stroke="none">
+          <ellipse cx="115" cy="22" rx="3" ry="6" transform="rotate(30 115 22)"/>
+          <ellipse cx="120" cy="32" rx="3" ry="6" transform="rotate(25 120 32)"/>
+          <ellipse cx="123" cy="44" rx="3" ry="6" transform="rotate(15 123 44)"/>
+          <ellipse cx="124" cy="56" rx="3" ry="6" transform="rotate(5 124 56)"/>
+          <ellipse cx="123" cy="68" rx="3" ry="6" transform="rotate(-10 123 68)"/>
+          <ellipse cx="120" cy="80" rx="3" ry="6" transform="rotate(-20 120 80)"/>
+          <ellipse cx="115" cy="90" rx="3" ry="6" transform="rotate(-30 115 90)"/>
+        </g>
+      </g>
+    </svg>
+    <div class="text">
+      RESMİ SEÇKİ
+      <span class="big">★ ★ ★</span>
+      İSTANBUL FİLM<br/>FESTİVALİ<br/>MMXXVI
+    </div>
+  </div>
+
+  <!-- RATING -->
+  <div class="rating">
+    <div class="grade">+18</div>
+    <div class="label">SADECE KARDEŞLER İÇİN</div>
+  </div>
+
+  <div class="corner-peel"></div>
+</section>
+
+
+<!-- ===================== PAGE 2: SAHNELER ===================== -->
+<section class="page page2 scenes paper-tex">
+
+  <!-- top + bottom decorative borders reused -->
+  <div class="ornate-border top">
+    <svg viewBox="0 0 800 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="1.4">
+        <line x1="0" y1="6" x2="800" y2="6"/>
+        <line x1="0" y1="34" x2="800" y2="34"/>
+      </g>
+      <g fill="currentColor">
+        <g id="ros3">
+          <circle cx="20" cy="20" r="3.5"/>
+          <path d="M20 8 Q26 14 20 20 Q14 14 20 8 Z"/>
+          <path d="M20 32 Q26 26 20 20 Q14 26 20 32 Z"/>
+          <path d="M8 20 Q14 14 20 20 Q14 26 8 20 Z"/>
+          <path d="M32 20 Q26 14 20 20 Q26 26 32 20 Z"/>
+        </g>
+        <use href="#ros3" x="40"/><use href="#ros3" x="80"/><use href="#ros3" x="120"/><use href="#ros3" x="160"/>
+        <use href="#ros3" x="200"/><use href="#ros3" x="240"/><use href="#ros3" x="280"/><use href="#ros3" x="320"/>
+        <use href="#ros3" x="360"/><use href="#ros3" x="400"/><use href="#ros3" x="440"/><use href="#ros3" x="480"/>
+        <use href="#ros3" x="520"/><use href="#ros3" x="560"/><use href="#ros3" x="600"/><use href="#ros3" x="640"/>
+        <use href="#ros3" x="680"/><use href="#ros3" x="720"/><use href="#ros3" x="760"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- HEADER -->
+  <div class="scenes-header">
+    <div class="strip">FRAGMANLAR <span style="color:var(--ochre)">★</span> SCENES FROM THE FILM</div>
+    <h1>SAHNELER</h1>
+    <div class="sub">Bir ömürlük dostluğun fotoğraf hikayesi <span class="em">·</span> A PHOTOGRAPHIC STORY OF A LIFETIME OF FRIENDSHIP</div>
+  </div>
+
+  <!-- LOBBY CARD GRID -->
+  <div class="lobby-grid">
+
+    <!-- 01 — beach brown tees -->
+    <div class="lobby b-burnt g1">
+      <div class="pic"><img src="../photos/photo-01-beach-brown-tees.jpg" alt=""/></div>
+      <div class="cap">
+        <div class="no">SAHNE 01 — DIŞ. SAHİL — GÜN</div>
+        <div class="tr">KAHVERENGİ FORMA</div>
+        <div class="en">The brown jerseys · Pacific Coast, CA · MMXXIII</div>
+      </div>
+    </div>
+
+    <!-- 02 — egypt -->
+    <div class="lobby b-ochre g2">
+      <div class="pic"><img src="../photos/photo-02-egypt-pyramid.jpg" alt=""/></div>
+      <div class="cap">
+        <div class="no">SAHNE 02 — DIŞ. ÇÖL — GÜN</div>
+        <div class="tr">MISIR PİRAMİTLERİ</div>
+        <div class="en">Giza, Egypt · MMXXII</div>
+      </div>
+    </div>
+
+    <!-- 03 — cabo boat -->
+    <div class="lobby b-teal g3">
+      <div class="pic"><img src="../photos/photo-04-cabo-boat.jpg" alt=""/></div>
+      <div class="cap">
+        <div class="no">SAHNE 03 — DIŞ. OKYANUS</div>
+        <div class="tr">EL ARCO</div>
+        <div class="en">Cabo, MX · MMXXI</div>
+      </div>
+    </div>
+
+    <!-- Quote card 1 -->
+    <div class="titlecard ochre gq1">
+      <div class="deco">★ TÜRKÇE ARASÖZ ★</div>
+      <div class="quote">"Yolun açık olsun, kardeşim."</div>
+      <div class="en">MAY YOUR ROAD BE OPEN, MY BROTHER</div>
+    </div>
+
+    <!-- 04 — sedona spires -->
+    <div class="lobby b-crimson g4">
+      <div class="pic"><img src="../photos/photo-05-sedona-spires.jpg" alt=""/></div>
+      <div class="cap">
+        <div class="no">SAHNE 04 — DIŞ. KIZIL KAYALAR</div>
+        <div class="tr">SEDONA</div>
+        <div class="en">Arizona · MMXXIII</div>
+      </div>
+    </div>
+
+    <!-- 05 — beach sunset pile (portrait, larger) -->
+    <div class="lobby b-burnt g5">
+      <div class="pic"><img src="../photos/photo-03-beach-sunset-pile.jpg" alt=""/></div>
+      <div class="cap">
+        <div class="no">SAHNE 05 — DIŞ. SAHİL — ALTIN SAAT</div>
+        <div class="tr">GÜN BATIMI</div>
+        <div class="en">Golden hour, CA · MMXXII</div>
+      </div>
+    </div>
+
+    <!-- 06 — zion narrows -->
+    <div class="lobby b-teal g6">
+      <div class="pic"><img src="../photos/photo-07-zion-narrows.jpg" alt=""/></div>
+      <div class="cap">
+        <div class="no">SAHNE 06 — DIŞ. KANYON — NEHİR</div>
+        <div class="tr">DAR GEÇİT</div>
+        <div class="en">Zion Narrows, Utah · MMXXIV</div>
+      </div>
+    </div>
+
+    <!-- 07 — times square -->
+    <div class="lobby b-ochre g7">
+      <div class="pic"><img src="../photos/photo-06-times-square.jpg" alt=""/></div>
+      <div class="cap">
+        <div class="no">SAHNE 07 — DIŞ. MEYDAN — GECE</div>
+        <div class="tr">NEW YORK</div>
+        <div class="en">Times Square · MMXXIII</div>
+      </div>
+    </div>
+
+    <!-- Quote card 2 -->
+    <div class="titlecard teal gq2">
+      <div class="deco">★ SON SÖZ ★</div>
+      <div class="quote">"Hayat bir film, biz başroldeyiz."</div>
+      <div class="en">LIFE IS A FILM &mdash; AND WE ARE THE LEADS</div>
+    </div>
+
+    <!-- 08 — combined: sedona spiral + neon dorm + warriors stacked -->
+    <div class="lobby b-crimson g8">
+      <div class="pic" style="display:flex;">
+        <div style="flex:1; position:relative; overflow:hidden; border-right:2pt solid var(--ink);">
+          <img src="../photos/photo-10-sedona-spiral.jpg" alt="" style="width:100%;height:100%;object-fit:cover;filter: contrast(1.25) saturate(1.55) brightness(0.94) sepia(0.22);"/>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column;">
+          <div style="flex:1; overflow:hidden; border-bottom:2pt solid var(--ink); position:relative;">
+            <img src="../photos/photo-09-neon-dorm.jpg" alt="" style="width:100%;height:100%;object-fit:cover;filter: contrast(1.25) saturate(1.55) brightness(0.94) sepia(0.22);"/>
+          </div>
+          <div style="flex:1; overflow:hidden; position:relative;">
+            <img src="../photos/photo-11-zion-warriors.jpg" alt="" style="width:100%;height:100%;object-fit:cover;filter: contrast(1.3) saturate(1.6) brightness(0.92) sepia(0.30);"/>
+          </div>
+        </div>
+      </div>
+      <div class="cap">
+        <div class="no">SAHNE 08–10 — MONTAJ</div>
+        <div class="tr">SPİRAL · NEON · SAVAŞÇILAR</div>
+        <div class="en">Sedona · Dorm Days · Zion Warriors</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CREDITS BLOCK -->
+  <div class="credits-block">
+    <div class="row1">
+      <span class="lbl">MÜZİK</span> GRUP SOHBETİ <span class="sep">✦</span>
+      <span class="lbl">GÖRÜNTÜ YÖNETMENİ</span> GÜNEŞ <span class="sep">✦</span>
+      <span class="lbl">SENARYO</span> HAYAT <span class="sep">✦</span>
+      <span class="lbl">YAPIMCI</span> KARDEŞLİK
+    </div>
+    <div class="ded">
+      Bu film, <span class="em">[GROOM]</span>'a ithaf edilmiştir.<br/>
+      <em>This film is dedicated to [GROOM]. — From your brothers, with infinite love.</em>
+    </div>
+    <div class="signoff">— KARDEŞLERİNDEN, SONSUZ SEVGİYLE —</div>
+  </div>
+
+  <div class="corner-peel"></div>
+</section>
+
+</body>
+</html>

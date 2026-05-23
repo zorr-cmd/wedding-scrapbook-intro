@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wedding Scrapbook Intro — 5 Variations</title>
-<meta property="og:title" content="Wedding Scrapbook Intro — 5 Variations">
-<meta property="og:description" content="Five creative takes on a 2-page scrapbook intro spread.">
+<title>Wedding Scrapbook Intro — 10 Variations</title>
+<meta property="og:title" content="Wedding Scrapbook Intro — 10 Variations">
+<meta property="og:description" content="Ten creative takes on a 2-page scrapbook intro spread — six film-themed for the filmmaker groom, four general styles.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -17,6 +17,7 @@
     --text: #f3f1ed;
     --muted: #9a9892;
     --accent: #d4a373;
+    --accent-2: #e85a26;
     --border: #2a2a2e;
   }
   * { box-sizing: border-box; }
@@ -37,7 +38,7 @@
   }
   header.top p {
     color: var(--muted);
-    max-width: 680px;
+    max-width: 720px;
     margin: 0 auto 24px;
     font-size: 15px;
     line-height: 1.55;
@@ -60,9 +61,42 @@
     transition: all .15s;
   }
   .toc a:hover { background: var(--panel-2); border-color: var(--accent); color: var(--accent); }
+  .toc a.film { border-color: rgba(232, 90, 38, 0.4); }
+  .toc a.film:hover { border-color: var(--accent-2); color: var(--accent-2); }
+
+  .section-divider {
+    padding: 64px 40px 24px;
+    max-width: 1900px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+  }
+  .section-divider .label {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--accent-2);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .section-divider.alt .label { color: var(--accent); }
+  .section-divider h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(28px, 3.5vw, 42px);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .section-divider p {
+    color: var(--muted);
+    max-width: 680px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+  }
 
   section.variation {
-    padding: 56px 40px;
+    padding: 40px 40px 56px;
     border-bottom: 1px solid var(--border);
     max-width: 1900px;
     margin: 0 auto;
@@ -84,6 +118,7 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
+  section.variation.film .var-header .num { color: var(--accent-2); }
   .var-header h2 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
@@ -96,7 +131,7 @@
     margin: 0;
     font-size: 14px;
     line-height: 1.55;
-    max-width: 600px;
+    max-width: 620px;
   }
   .var-actions { display: flex; gap: 10px; flex-shrink: 0; }
   .btn {
@@ -115,6 +150,8 @@
   .btn:hover { background: var(--panel-2); border-color: var(--accent); color: var(--accent); }
   .btn.primary { background: var(--accent); color: #1a1306; border-color: var(--accent); }
   .btn.primary:hover { background: #e8b687; color: #1a1306; }
+  section.variation.film .btn.primary { background: var(--accent-2); color: #1a0a05; border-color: var(--accent-2); }
+  section.variation.film .btn.primary:hover { background: #f47346; color: #1a0a05; }
 
   .pages {
     display: grid;
@@ -159,31 +196,187 @@
 
   @media (max-width: 900px) {
     .pages { grid-template-columns: 1fr; }
-    section.variation { padding: 40px 20px; }
+    section.variation { padding: 32px 20px; }
     header.top { padding: 40px 20px 20px; }
+    .section-divider { padding: 48px 20px 16px; }
   }
 </style>
 </head>
 <body>
 
 <header class="top">
-  <h1>Wedding Scrapbook Intro — 5 Variations</h1>
-  <p>Five distinct creative takes on a 2-page intro spread (8.5″ × 11″ each, US Letter) featuring all 11 photos. Each is self-contained HTML you can edit, print, or export to PDF. Click any variation to open the live HTML in a new tab.</p>
+  <h1>Wedding Scrapbook Intro — 10 Variations</h1>
+  <p>Ten distinct creative takes on a 2-page intro spread (8.5″ × 11″ each, US Letter). The first six are <strong style="color: var(--accent-2)">film-themed</strong> in honor of the groom — a Turkish working filmmaker. The last four are general design styles from the first round. Click any variation to open the live HTML in a new tab.</p>
   <nav class="toc">
-    <a href="#v1">01 · Vintage Passport</a>
-    <a href="#v2">02 · Polaroid Scatter</a>
-    <a href="#v3">03 · Magazine Editorial</a>
-    <a href="#v4">04 · Cartographer's Atlas</a>
-    <a href="#v5">05 · Cinematic Film Reel</a>
+    <a href="#v5" class="film">05 · Criterion Reel</a>
+    <a href="#v6" class="film">06 · Yeşilçam Poster</a>
+    <a href="#v7" class="film">07 · Director's Boards</a>
+    <a href="#v8" class="film">08 · VHS Archive</a>
+    <a href="#v9" class="film">09 · Festival Programme</a>
+    <a href="#v10" class="film">10 · Director's Notebook</a>
+    <a href="#v1">01 · Passport</a>
+    <a href="#v2">02 · Polaroid</a>
+    <a href="#v3">03 · Editorial</a>
+    <a href="#v4">04 · Atlas</a>
   </nav>
 </header>
+
+<div class="section-divider">
+  <div class="label">Series One · Six Variations</div>
+  <h2>For the Filmmaker</h2>
+  <p>Six variations built around cinema, photography, and the working process of filmmaking — in honor of the groom's craft and his Turkish heritage.</p>
+</div>
+
+<section class="variation film" id="v5">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Film · Variation 05</div>
+      <h2>The Brothers — A Cinematic Reel</h2>
+      <p class="tagline">A Criterion-Collection title card and contact sheet. Page 1 is the movie poster (hero still, director credits, "Rated B for Brotherhood", runtime 10 years). Page 2 is three 35mm film strips (Kodak Portra, Kodak Gold, Ilford HP5) with sprocket holes and slate timestamps.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-5-cinema/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · Title Card</div>
+      <img src="screenshots/variation-5-page1.jpg" alt="Variation 5 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · The Working Print</div>
+      <img src="screenshots/variation-5-page2.jpg" alt="Variation 5 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="variation film" id="v6">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Film · Variation 06</div>
+      <h2>KARDEŞLER — Vintage Yeşilçam Cinema Poster</h2>
+      <p class="tagline">A hand-painted 1960s-70s Turkish cinema poster in honor of the groom's heritage. Bold flat colors (burnt orange, ochre, crimson, teal), ornate Ottoman borders, painted cast portraits, melodramatic Turkish title typography. Page 2 ("SAHNELER") presents the remaining photos as bilingual lobby cards.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-6-turkish-poster/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · The Poster</div>
+      <img src="screenshots/variation-6-page1.jpg" alt="Variation 6 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · SAHNELER (Scenes)</div>
+      <img src="screenshots/variation-6-page2.jpg" alt="Variation 6 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="variation film" id="v7">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Film · Variation 07</div>
+      <h2>Brothers. A Shot List. — Director's Storyboard Binder</h2>
+      <p class="tagline">A pre-production binder rendered on ruled storyboard paper with punched holes. Page 1: full shot list spreadsheet (SC#, SH#, EXT/INT, LENS, NOTES) and hero storyboard panels with scene slugs and camera direction. Page 2: remaining boards, plus inline-SVG lens diagram, 3-point lighting plan, and a wedding-day call sheet. Director's-red pencil for FINAL CUT marks.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-7-storyboard/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · Shot List + Hero Boards</div>
+      <img src="screenshots/variation-7-page1.jpg" alt="Variation 7 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · Boards Cont'd + Call Sheet</div>
+      <img src="screenshots/variation-7-page2.jpg" alt="Variation 7 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="variation film" id="v8">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Film · Variation 08</div>
+      <h2>The Home Video Archive — VHS Tape Library</h2>
+      <p class="tagline">A 1990s VHS home video archive. Page 1: chyron title, transport controls (▶ PAUSE ⏪), shelf of Sharpie-labeled tape spines, and a CRT TV "now playing" with scan lines, burnt-in timestamp, and REC indicator. Page 2: tape index of all stills as mini-CRT frames with tracking errors and a closing chyron in Turkish (Şerefe / İyi yolculuklar).</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-8-vhs/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · Tape Library + Now Playing</div>
+      <img src="screenshots/variation-8-page1.jpg" alt="Variation 8 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · Tape Contents Index</div>
+      <img src="screenshots/variation-8-page2.jpg" alt="Variation 8 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="variation film" id="v9">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Film · Variation 09</div>
+      <h2>The Cinema of [GROOM] — Festival Programme</h2>
+      <p class="tagline">A premium international film festival programme. Page 1: full-bleed hero, "Cinema of [GROOM]" in Bodoni serif, a 2-column Programmer's Note essay with drop cap, festival sidebar (Jury, Homage, Founded), and sponsor footer. Page 2: 11 films presented as catalogue entries with monospace metadata, italic synopses, and laurel award badges. Pretentious-in-a-good-way.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-9-film-festival/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · Programme Cover + Note</div>
+      <img src="screenshots/variation-9-page1.jpg" alt="Variation 9 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · Filmography</div>
+      <img src="screenshots/variation-9-page2.jpg" alt="Variation 9 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="variation film" id="v10">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Film · Variation 10</div>
+      <h2>Project: Brothers — Director's Notebook</h2>
+      <p class="tagline">The most intimate variation. An open black Moleskine — ruled paper, binding shadow, dog-eared corner, coffee rings. Photos taped in as polaroid test shots with hand-scrawled lens notes, exposure logs, lens diagrams, blocking notes. Page 2 includes a yellow-legal-pad CALL SHEET with "NO BAD TAKES PERMITTED" and a postscript ending in Şerefe.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-10-directors-notebook/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · Left Page (Mission, Polaroids)</div>
+      <img src="screenshots/variation-10-page1.jpg" alt="Variation 10 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · Right Page (Notes, Call Sheet)</div>
+      <img src="screenshots/variation-10-page2.jpg" alt="Variation 10 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<div class="section-divider alt">
+  <div class="label">Series Two · Four Variations</div>
+  <h2>Other Styles</h2>
+  <p>Four variations from the first round, kept here for reference. Not film-themed, but might still inspire.</p>
+</div>
 
 <section class="variation" id="v1">
   <div class="var-header">
     <div class="left">
       <div class="num">Variation 01</div>
       <h2>The Chronicles of the Crew — A Vintage Passport</h2>
-      <p class="tagline">Aged leather, ink stamps, boarding passes, and polaroids clipped into a well-worn passport journal. Coordinates under each photo, a manifest of destinations, twine and washi tape. Indiana-Jones-meets-old-world-wanderlust.</p>
+      <p class="tagline">Aged leather, ink stamps, boarding passes, and polaroids clipped into a well-worn passport journal. Coordinates under each photo, a manifest of destinations, twine and washi tape.</p>
     </div>
     <div class="var-actions">
       <a class="btn primary" href="variation-1-passport/index.html" target="_blank">Open HTML ↗</a>
@@ -206,7 +399,7 @@
     <div class="left">
       <div class="num">Variation 02</div>
       <h2>The Boys — Polaroid Scatter</h2>
-      <p class="tagline">A tactile scrapbook page. Polaroids rotated at random angles, slightly overlapping, with handwritten captions, washi tape, paper clips, and doodles in the margins. Warm cream paper. Feels like a best friend made it by hand at a coffee shop.</p>
+      <p class="tagline">A tactile scrapbook page. Polaroids rotated at random angles, slightly overlapping, with handwritten captions, washi tape, paper clips, and doodles in the margins.</p>
     </div>
     <div class="var-actions">
       <a class="btn primary" href="variation-2-polaroid/index.html" target="_blank">Open HTML ↗</a>
@@ -229,7 +422,7 @@
     <div class="left">
       <div class="num">Variation 03</div>
       <h2>Brothers — A Magazine Editorial</h2>
-      <p class="tagline">A premium independent magazine. Crisp serif typography (Playfair Display + Inter), generous whitespace, full-bleed hero photo on the cover, asymmetric editorial grid on the spread. Captions, pull quotes, page numbers. Cereal / Kinfolk / Monocle energy.</p>
+      <p class="tagline">A premium independent magazine. Crisp serif typography (Playfair Display + Inter), generous whitespace, full-bleed hero photo on the cover, asymmetric editorial grid on the spread.</p>
     </div>
     <div class="var-actions">
       <a class="btn primary" href="variation-3-editorial/index.html" target="_blank">Open HTML ↗</a>
@@ -252,7 +445,7 @@
     <div class="left">
       <div class="num">Variation 04</div>
       <h2>The Atlas of Brotherhood — Cartographer's Journey</h2>
-      <p class="tagline">A vintage explorer's chart with photos pinned to real lat/long coordinates: Giza, Cabo, Zion, Sedona, NYC, Mt. Shasta, La Jolla. Dashed travel routes, compass rose, "Hic Sunt Amici". Page 2 is a numbered field log of every stop.</p>
+      <p class="tagline">A vintage explorer's chart with photos pinned to real lat/long coordinates: Giza, Cabo, Zion, Sedona, NYC, Mt. Shasta, La Jolla. Dashed travel routes, compass rose. Page 2 is a numbered field log.</p>
     </div>
     <div class="var-actions">
       <a class="btn primary" href="variation-4-map-journey/index.html" target="_blank">Open HTML ↗</a>
@@ -270,32 +463,9 @@
   </div>
 </section>
 
-<section class="variation" id="v5">
-  <div class="var-header">
-    <div class="left">
-      <div class="num">Variation 05</div>
-      <h2>The Brothers — A Cinematic Reel</h2>
-      <p class="tagline">A Criterion-Collection title card and contact sheet. Page 1 is the movie poster (hero still, director credits, "Rated B for Brotherhood", runtime 10 years). Page 2 is three 35mm film strips (Kodak Portra, Kodak Gold, Ilford HP5) with sprocket holes and slate timestamps.</p>
-    </div>
-    <div class="var-actions">
-      <a class="btn primary" href="variation-5-cinema/index.html" target="_blank">Open HTML ↗</a>
-    </div>
-  </div>
-  <div class="pages">
-    <div class="page-card">
-      <div class="label">Page 1 · Title Card</div>
-      <img src="screenshots/variation-5-page1.jpg" alt="Variation 5 Page 1" loading="lazy">
-    </div>
-    <div class="page-card">
-      <div class="label">Page 2 · The Working Print</div>
-      <img src="screenshots/variation-5-page2.jpg" alt="Variation 5 Page 2" loading="lazy">
-    </div>
-  </div>
-</section>
-
 <footer>
-  <p>Five creative variations of a wedding scrapbook intro spread, each 2 pages at 8.5″ × 11″.</p>
-  <p>To print: open any variation, ⌘P → Save as PDF or print to paper at 100% scale (no fit-to-page).</p>
+  <p>Ten creative variations of a wedding scrapbook intro spread, each 2 pages at 8.5″ × 11″.</p>
+  <p>To print: open any variation, ⌘P → Save as PDF or print at 100% scale (no fit-to-page).</p>
 </footer>
 
 </body>

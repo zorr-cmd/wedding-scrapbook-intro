@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Director's Notebook — Project: Brothers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Kalam:wght@300;400;700&family=Architects+Daughter&family=Indie+Flower&family=Permanent+Marker&family=Reenie+Beanie&family=Homemade+Apple&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #f3ecd6;
+    --paper-2: #ede4c8;
+    --ink: #1a1208;
+    --pencil: #5a5247;
+    --tape: #e8d8a8;
+    --red: #c4283f;
+    --rule: rgba(70, 60, 40, 0.10);
+  }
+  @page { size: 8.5in 11in; margin: 0; }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:#2a2118; }
+  body{ font-family: 'Caveat', cursive; color: var(--ink); -webkit-font-smoothing:antialiased; }
+
+  .spread{ display:flex; flex-direction:column; align-items:center; padding: 30px 0; gap:24px; }
+
+  .page{
+    width: 8.5in; height: 11in;
+    position: relative; overflow:hidden;
+    background:
+      radial-gradient(ellipse at 50% 40%, rgba(0,0,0,0) 55%, rgba(80,55,20,0.18) 100%),
+      repeating-linear-gradient(to bottom, transparent 0 23px, var(--rule) 23px 24px),
+      linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.55), 0 4px 10px rgba(0,0,0,0.3);
+    color: var(--ink);
+    page-break-after: always;
+  }
+  .page:last-of-type{ page-break-after: auto; }
+
+  .grain{ position:absolute; inset:0; pointer-events:none; opacity: 0.18; mix-blend-mode: multiply; }
+
+  .binding-right{
+    position:absolute; top:0; bottom:0; right:0; width:42px;
+    background: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.06) 50%, rgba(0,0,0,0.30) 100%);
+    pointer-events:none;
+  }
+  .binding-left{
+    position:absolute; top:0; bottom:0; left:0; width:42px;
+    background: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.06) 50%, rgba(0,0,0,0.30) 100%);
+    pointer-events:none;
+  }
+  .edge-tint{
+    position:absolute; inset:0; pointer-events:none;
+    background:
+      radial-gradient(circle at 0% 100%, rgba(80,50,10,0.18), transparent 18%),
+      radial-gradient(circle at 100% 0%, rgba(80,50,10,0.15), transparent 18%),
+      radial-gradient(circle at 0% 0%, rgba(80,50,10,0.10), transparent 12%);
+  }
+  .dog-ear-br{
+    position:absolute; right:0; bottom:0; width:38px; height:38px;
+    background: linear-gradient(135deg, transparent 50%, #d9cda7 50%);
+    box-shadow: -2px -2px 4px rgba(0,0,0,0.15) inset;
+  }
+  .dog-ear-bl{
+    position:absolute; left:0; bottom:0; width:38px; height:38px;
+    background: linear-gradient(225deg, transparent 50%, #d9cda7 50%);
+    box-shadow: 2px -2px 4px rgba(0,0,0,0.15) inset;
+  }
+
+  /* ===== Header / label ===== */
+  .label-block{
+    position:absolute; top:36px; left:54px;
+    font-family: 'Special Elite', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    line-height: 1.5;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    padding: 6px 10px;
+    background: rgba(255,255,255,0.18);
+    width: 360px;
+    transform: rotate(-0.6deg);
+  }
+  .label-block .big{ font-family: 'Special Elite', monospace; font-size: 15px; font-weight: 700; letter-spacing: 0.08em; }
+  .label-block .small{ font-size: 10px; color:#3a2f1d; }
+
+  .hand-title{
+    position:absolute;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 21px; color:#231a0c;
+    letter-spacing: 0.5px;
+    transform: rotate(-1.5deg);
+  }
+
+  .mission{
+    position:absolute;
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 20px; color:#241a0c;
+    line-height: 1.2;
+    width: 430px;
+    transform: rotate(-0.4deg);
+  }
+  .mission .sig{ font-family: 'Caveat', cursive; font-size: 16px; color: var(--pencil); display:block; margin-top:2px; }
+
+  /* ===== Polaroid ===== */
+  .polaroid{
+    position:absolute;
+    background:#fdfaf2;
+    padding: 7px 7px 26px 7px;
+    box-shadow:
+      0 1px 0 rgba(0,0,0,0.08) inset,
+      0 10px 20px rgba(0,0,0,0.26),
+      0 2px 4px rgba(0,0,0,0.15);
+    border: 1px solid #e8e1cf;
+  }
+  .polaroid .img{ display:block; background:#000; overflow:hidden; }
+  .polaroid img{ display:block; width:100%; height:100%; object-fit:cover; }
+  .polaroid .cap{
+    position:absolute; left:0; right:0; bottom:5px;
+    font-family: 'Caveat', cursive; text-align:center;
+    font-size: 13px; color:#2a2316;
+    line-height: 1.1; padding: 0 6px;
+  }
+  .tape{
+    position:absolute;
+    width: 56px; height: 14px;
+    background: var(--tape);
+    opacity: 0.82;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.18) 0 4px, rgba(0,0,0,0.04) 4px 8px),
+      linear-gradient(90deg, rgba(255,255,255,0.4), rgba(255,255,255,0));
+  }
+  .tape.tl{ top:-7px; left:-10px; transform: rotate(-28deg); }
+  .tape.tr{ top:-7px; right:-10px; transform: rotate(28deg); }
+  .tape.bl{ bottom:-7px; left:-10px; transform: rotate(28deg); }
+  .tape.br{ bottom:-7px; right:-10px; transform: rotate(-28deg); }
+  .tape.t{ top:-8px; left:50%; margin-left:-28px; transform: rotate(-3deg); }
+
+  /* annotations */
+  .annot{
+    position:absolute;
+    font-family: 'Caveat', cursive;
+    font-size: 15.5px; line-height: 1.18;
+    color: var(--ink);
+  }
+  .annot.pencil{ color: var(--pencil); font-family:'Kalam', cursive; font-weight:300; font-size:14px; line-height:1.25; }
+  .annot.red{ color: var(--red); font-family:'Permanent Marker', cursive; font-size:15px; }
+  .annot b.marker{ font-family:'Permanent Marker', cursive; font-weight:400; font-size:14.5px; }
+
+  .lens-diagram{
+    position:absolute;
+    color: var(--pencil);
+    font-family:'Architects Daughter', cursive;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+  .lens-diagram .note{ margin-top: 2px; max-width: 240px; }
+
+  /* exposure log */
+  .exposure-log{
+    position:absolute;
+    background: #f8f1d8;
+    border: 1px dashed #8d7a4c;
+    padding: 8px 10px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 9.5px;
+    color: #2a200f;
+    line-height: 1.45;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    transform: rotate(-1.2deg);
+  }
+  .exposure-log .head{ font-weight:700; letter-spacing: 0.04em; margin-bottom:2px; font-size:10px; }
+  .exposure-log .keep{ color: var(--red); font-weight:700; }
+  .exposure-log .note{ font-family: 'Caveat', cursive; font-size: 13px; color: var(--pencil); margin-top: 4px; line-height: 1.1; }
+
+  /* bottom quote (page 1) */
+  .quote-block{
+    position:absolute; left: 245px; right: 70px; bottom: 26px;
+    border-top: 1px solid rgba(0,0,0,0.18);
+    padding-top: 7px;
+    font-family:'Caveat', cursive;
+    font-size: 15px; color: var(--ink);
+    line-height: 1.25;
+  }
+  .quote-block .turk{
+    font-family:'Homemade Apple', cursive;
+    font-size: 12px; color: #6b3a2a;
+    margin-top: 4px; display:block;
+  }
+  .quote-block .em{ font-family:'Reenie Beanie', cursive; font-size: 19px; }
+
+  /* right page */
+  .right-header{
+    position:absolute; top:36px; left:80px; right:60px;
+    font-family: 'Special Elite', monospace;
+    font-size: 12.5px; letter-spacing: 0.12em;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 5px;
+    color: var(--ink);
+    transform: rotate(-0.3deg);
+  }
+  .right-header .red{ color: var(--red); }
+  .right-sub{
+    position:absolute; top:62px; left:80px;
+    font-family: 'Caveat', cursive; font-size: 17px; color: var(--pencil);
+    transform: rotate(-0.5deg);
+  }
+
+  /* call sheet */
+  .callsheet{
+    position:absolute;
+    background:
+      repeating-linear-gradient(to bottom, transparent 0 16px, rgba(0,80,140,0.10) 16px 17px),
+      #fbf7d6;
+    border: 1px solid #b8a974;
+    padding: 10px 12px 12px 30px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: #1a1208;
+    line-height: 1.5;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    transform: rotate(1.4deg);
+    width: 268px;
+  }
+  .callsheet::before{
+    content:''; position:absolute; left: 22px; top:0; bottom:0;
+    width:1px; background: var(--red); opacity: 0.55;
+  }
+  .callsheet::after{
+    content:''; position:absolute; left:8px; top:0; bottom:0; width:8px;
+    background:
+      radial-gradient(circle at 4px 22px, #d9cba0 0 3px, transparent 3.5px),
+      radial-gradient(circle at 4px 70px, #d9cba0 0 3px, transparent 3.5px),
+      radial-gradient(circle at 4px 118px, #d9cba0 0 3px, transparent 3.5px),
+      radial-gradient(circle at 4px 166px, #d9cba0 0 3px, transparent 3.5px),
+      radial-gradient(circle at 4px 214px, #d9cba0 0 3px, transparent 3.5px),
+      radial-gradient(circle at 4px 262px, #d9cba0 0 3px, transparent 3.5px);
+  }
+  .callsheet .title{
+    font-weight:700; text-align:center; letter-spacing: 0.08em;
+    border-bottom: 1px solid #1a1208; padding-bottom: 3px; margin-bottom: 4px;
+  }
+  .callsheet .row{ display:flex; justify-content:space-between; gap: 6px; }
+  .callsheet .row .val{ font-weight:700; }
+  .callsheet .stamp{
+    position:absolute; right:-16px; top:-14px;
+    color: var(--red); font-family:'Permanent Marker', cursive;
+    font-size: 12px; transform: rotate(8deg);
+    border: 2px solid var(--red); padding: 2px 5px;
+    opacity: 0.9; background: rgba(253, 247, 214, 0.85);
+  }
+  .callsheet .divider{ border-top: 1px dashed #4a3a18; margin: 3px 0; }
+
+  .todo{
+    position:absolute;
+    font-family:'Kalam', cursive;
+    font-size: 13.5px; color: var(--ink);
+    line-height: 1.5;
+    width: 220px;
+    transform: rotate(-1deg);
+  }
+  .todo .h{
+    font-family:'Permanent Marker', cursive;
+    font-size: 16px; margin-bottom: 4px;
+    border-bottom: 2px solid var(--ink);
+    display: inline-block; padding-bottom: 1px;
+  }
+  .todo .done{ position:relative; color: var(--pencil); }
+  .todo .done::after{
+    content:''; position:absolute; left:18px; right:8px; top:50%;
+    border-top: 1.5px solid var(--red);
+    transform: rotate(-1deg);
+  }
+  .todo .check{ color: var(--red); font-weight:700; margin-right:4px; }
+
+  .postscript{
+    position:absolute;
+    font-family:'Homemade Apple', cursive;
+    font-size: 11.5px; color: var(--ink);
+    line-height: 1.6;
+    border-top: 1.5px solid rgba(0,0,0,0.25);
+    padding-top: 6px;
+  }
+  .postscript .big{ font-family:'Caveat', cursive; font-size: 16px; line-height: 1.2; }
+  .postscript .sig{ font-family:'Caveat', cursive; font-size: 15px; color: var(--pencil); }
+  .postscript .sere{ color: var(--red); font-family:'Permanent Marker', cursive; font-size: 14px; }
+
+  .pageno{
+    position:absolute; bottom: 12px; font-family:'Special Elite', monospace;
+    font-size: 10.5px; color: var(--pencil); letter-spacing: 0.1em;
+  }
+  .pageno.l{ left: 60px; }
+  .pageno.r{ right: 60px; }
+
+  .smudge{
+    position:absolute; width:60px; height:38px; border-radius:50%;
+    background: radial-gradient(ellipse, rgba(70,40,10,0.16), rgba(70,40,10,0.03) 70%, transparent);
+    transform: rotate(-25deg);
+    pointer-events:none;
+  }
+  .coffee{
+    position:absolute; width: 70px; height: 70px;
+    border-radius: 50%;
+    border: 4px solid rgba(120,70,20,0.18);
+    background: radial-gradient(circle, rgba(120,70,20,0.03), transparent 65%);
+    transform: rotate(15deg);
+    pointer-events:none;
+  }
+
+  @media screen { body{ padding: 30px 0; } }
+  @media print {
+    body{ background:#fff; padding:0; }
+    .page{ box-shadow:none; }
+    .spread{ padding:0; gap:0; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <filter id="paper-noise">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix values="0 0 0 0 0.25
+                           0 0 0 0 0.18
+                           0 0 0 0 0.08
+                           0 0 0 0.55 0"/>
+  </filter>
+</svg>
+
+<div class="spread">
+
+  <!-- ============================================================== -->
+  <!-- PAGE 1 — LEFT                                                   -->
+  <!-- Layout (816w x 1056h):                                          -->
+  <!--   ZONE A 36-170    : header label + mission                     -->
+  <!--   ZONE B 200-470   : Shasta polaroid (left) + annot+log (right) -->
+  <!--   ZONE C 480-770   : Zion polaroid (left) + lens diagram (right)-->
+  <!--   ZONE D 780-960   : Beach polaroid + annot                     -->
+  <!--   ZONE E 970-1056  : quote + page no                            -->
+  <!-- ============================================================== -->
+  <div class="page left">
+    <div class="grain"><svg width="100%" height="100%"><rect width="100%" height="100%" filter="url(#paper-noise)"/></svg></div>
+    <div class="edge-tint"></div>
+    <div class="binding-right"></div>
+    <div class="dog-ear-br"></div>
+
+    <div class="coffee" style="top:30px; right:90px;"></div>
+    <div class="smudge" style="top:740px; left:380px; opacity:0.6;"></div>
+
+    <!-- =========== ZONE A: HEADER + MISSION =========== -->
+    <div class="label-block">
+      <div class="big">PROJECT: BROTHERS</div>
+      <div>DIRECTOR: [GROOM]</div>
+      <div>NOTEBOOK 03 · MMXVII—MMXXVI</div>
+      <div class="small">PROPERTY OF [GROOM]. IF FOUND, RETURN TO<br>
+        [PHONE NUMBER] — OR THE GROUP CHAT.</div>
+    </div>
+
+    <div class="hand-title" style="top:148px; left:54px;">— mission statement —</div>
+    <div class="mission" style="top:178px; left:54px;">
+      "The aim of these films is not to capture our youth — it is to remember that we showed up.
+      Every location, every frame, every brother in the wide shot."
+      <span class="sig">For [GROOM], on the eve of his wedding. — Your assistant directors.</span>
+    </div>
+
+    <!-- =========== ZONE B: SHASTA POLAROID + ANNOT + EXPOSURE LOG =========== -->
+
+    <!-- Shasta polaroid: landscape, ~250w x 195h (with caption). Top:280, left:54 -->
+    <div class="polaroid" style="top:280px; left:54px; width:250px; transform: rotate(-3.5deg);">
+      <div class="tape tl"></div>
+      <div class="tape br"></div>
+      <div class="img" style="width:236px; height:158px;">
+        <img src="../photos/photo-08-mt-shasta.jpg" alt="Mt Shasta">
+      </div>
+      <div class="cap">MT. SHASTA · 09 OCT 24 · ★ HERO</div>
+    </div>
+
+    <!-- Annotations next to Shasta (right side, starts at x=330) -->
+    <div class="annot" style="top:298px; left:330px; width: 230px;">
+      <b class="marker">85mm</b> — long lens compresses everything.<br>
+      felt right for the hero.
+      <span style="display:block; color:var(--pencil); margin-top:2px; font-size:13px;">— [GROOM]</span>
+    </div>
+    <div class="annot red" style="top:355px; left:340px; transform: rotate(-4deg);">★ USE THIS</div>
+
+    <!-- Exposure log under the annotations -->
+    <div class="exposure-log" style="top:392px; left:330px; width:230px;">
+      <div class="head">EXPOSURE LOG — 09 OCT 24 — MT. SHASTA</div>
+      ──────────────────────────────<br>
+      6:30&nbsp;&nbsp;f/5.6&nbsp;&nbsp;1/250&nbsp;&nbsp;sunset peaking<br>
+      6:35&nbsp;&nbsp;f/4.5&nbsp;&nbsp;1/200<br>
+      <span class="keep">6:42&nbsp;&nbsp;f/4&nbsp;&nbsp;&nbsp;&nbsp;1/200&nbsp;&nbsp;★ KEEPER</span><br>
+      6:50&nbsp;&nbsp;f/3.5&nbsp;&nbsp;1/160&nbsp;&nbsp;fading<br>
+      ──────────────────────────────
+      <div class="note">note: alpenglow held longer than expected. gratitude.</div>
+    </div>
+
+    <!-- =========== ZONE C: ZION POLAROID + LENS DIAGRAM =========== -->
+
+    <!-- Zion polaroid: portrait, ~190w x 280h. Top:500, left:60 -->
+    <div class="polaroid" style="top:500px; left:60px; width:190px; transform: rotate(2.5deg);">
+      <div class="tape tr"></div>
+      <div class="tape bl"></div>
+      <div class="img" style="width:176px; height:236px;">
+        <img src="../photos/photo-07-zion-narrows.jpg" alt="Zion narrows">
+      </div>
+      <div class="cap">ZION · THE WIDE · 24mm</div>
+    </div>
+
+    <!-- Annotation + lens diagram right of Zion (starts x=290) -->
+    <div class="annot" style="top:555px; left:290px; width: 240px;">
+      blocking: front row sitting,<br>
+      back row standing on the log.<br>
+      classic ensemble wedge.<br>
+      <span style="color:var(--red); font-family:'Permanent Marker'; font-size:14px;">fits 7. fits brothers.</span>
+    </div>
+
+    <div class="lens-diagram" style="top:625px; left:290px; width:260px;">
+      <svg viewBox="0 0 240 100" width="240" height="100">
+        <rect x="120" y="35" width="65" height="48" fill="none" stroke="#3d3220" stroke-width="1.4"/>
+        <rect x="138" y="22" width="28" height="14" fill="none" stroke="#3d3220" stroke-width="1.2"/>
+        <rect x="170" y="42" width="10" height="8" fill="none" stroke="#3d3220" stroke-width="1"/>
+        <rect x="60" y="46" width="60" height="26" fill="none" stroke="#3d3220" stroke-width="1.4"/>
+        <line x1="78" y1="46" x2="78" y2="72" stroke="#3d3220" stroke-width="1"/>
+        <line x1="96" y1="46" x2="96" y2="72" stroke="#3d3220" stroke-width="1"/>
+        <line x1="112" y1="46" x2="112" y2="72" stroke="#3d3220" stroke-width="1"/>
+        <ellipse cx="58" cy="59" rx="6" ry="14" fill="none" stroke="#3d3220" stroke-width="1.4"/>
+        <ellipse cx="60" cy="59" rx="3" ry="10" fill="rgba(196,40,63,0.18)" stroke="none"/>
+        <line x1="58" y1="59" x2="6" y2="14" stroke="#7a6535" stroke-width="0.8" stroke-dasharray="3 2"/>
+        <line x1="58" y1="59" x2="6" y2="104" stroke="#7a6535" stroke-width="0.8" stroke-dasharray="3 2"/>
+        <text x="4" y="10" font-family="Architects Daughter" font-size="10" fill="#3d3220">field of view</text>
+        <text x="84" y="92" font-family="Caveat" font-size="14" fill="#c4283f">24mm</text>
+      </svg>
+      <div class="note">wide enough to fit everyone,<br>narrow enough to keep them close.</div>
+    </div>
+
+    <!-- =========== ZONE D: BEACH PILE =========== -->
+
+    <!-- Beach polaroid: small landscape-ish, downsized. Top:790, left:80 -->
+    <div class="polaroid" style="top:790px; left:80px; width:135px; transform: rotate(-2.5deg);">
+      <div class="tape t"></div>
+      <div class="img" style="width:121px; height:162px;">
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" alt="Beach pile">
+      </div>
+      <div class="cap">B-ROLL · joy</div>
+    </div>
+    <div class="annot pencil" style="top:810px; left:240px; width:230px;">
+      no direction given. none needed.
+    </div>
+    <div class="annot red" style="top:840px; left:240px; transform: rotate(-3deg); font-size:14px;">→ FINAL CUT</div>
+    <div class="annot pencil" style="top:870px; left:240px; width:300px; font-size:13px;">
+      this is the frame where i realized<br>
+      we weren't making a film. we were living one.
+    </div>
+
+    <!-- =========== ZONE E: QUOTE =========== -->
+    <div class="quote-block">
+      <span class="em">"A film is not about the destination. It is about who shows up to the wide shot."</span>
+      <span style="color: var(--pencil); font-family:'Caveat'; font-size:14px;">— me, just now, while writing this.</span>
+      <span class="turk">"Sinema, dünyayı görmenin bir yoludur." — perhaps it just is.</span>
+    </div>
+
+    <div class="pageno l">— 1 —</div>
+  </div>
+
+
+  <!-- ============================================================== -->
+  <!-- PAGE 2 — RIGHT                                                  -->
+  <!-- Layout grid:                                                    -->
+  <!--   Header band 36-90                                             -->
+  <!--   Top row     100-310 : Giza | Pacific (2 wide landscape)       -->
+  <!--   Mid row     320-540 : Cabo | Zion-warriors                    -->
+  <!--   Lower row   555-770 : TimesSq | Dorm                          -->
+  <!--   Sedona row  555-770 : Sedona x2 (inline with above? NO)       -->
+  <!-- Actually use 3 cols: L=80, M=300, R=540                         -->
+  <!-- ============================================================== -->
+  <div class="page right">
+    <div class="grain"><svg width="100%" height="100%"><rect width="100%" height="100%" filter="url(#paper-noise)"/></svg></div>
+    <div class="edge-tint"></div>
+    <div class="binding-left"></div>
+    <div class="dog-ear-bl"></div>
+
+    <div class="smudge" style="top:60px; right:140px; transform: rotate(35deg);"></div>
+
+    <!-- HEADER -->
+    <div class="right-header">SCENE NOTES <span class="red">·</span> LOCATIONS <span class="red">·</span> MORE POLAROIDS <span class="red">·</span> CONT'D</div>
+    <div class="right-sub">— every road we drove, every wide shot we held.</div>
+
+    <!-- =================== TOP ROW: GIZA (L) | PACIFIC (R) =================== -->
+
+    <!-- GIZA polaroid (landscape) -->
+    <div class="polaroid" style="top:104px; left:82px; width:175px; transform: rotate(-4deg);">
+      <div class="tape tl"></div>
+      <div class="tape tr"></div>
+      <div class="img" style="width:161px; height:107px;">
+        <img src="../photos/photo-02-egypt-pyramid.jpg" alt="Giza">
+      </div>
+      <div class="cap">GIZA · human pyramid · take 1</div>
+    </div>
+    <div class="annot" style="top:265px; left:84px; width:180px;">
+      <b class="marker">GIZA</b> — 6 brothers, perfect base.<br>
+      zero rehearsal.<br>
+      <span style="color:var(--red); font-family:'Permanent Marker'; font-size:13px;">f/8 1/500 — fix in color.</span>
+    </div>
+
+    <!-- PACIFIC polaroid (landscape) -->
+    <div class="polaroid" style="top:108px; left:430px; width:200px; transform: rotate(3deg);">
+      <div class="tape tl"></div>
+      <div class="tape tr"></div>
+      <div class="img" style="width:186px; height:124px;">
+        <img src="../photos/photo-01-beach-brown-tees.jpg" alt="Beach brown tees">
+      </div>
+      <div class="cap">PACIFIC · ensemble · 7 of 7</div>
+    </div>
+    <div class="annot pencil" style="top:288px; left:432px; width:200px;">
+      golden hour pile.<br>
+      ensemble at full attendance.<br>
+      <span style="color:var(--red); font-family:'Permanent Marker'; font-size:13px;">35mm. perfect.</span>
+    </div>
+
+    <!-- =================== MID ROW: CABO (L) | ZION-WARRIORS (R) =================== -->
+
+    <!-- CABO polaroid (portrait) -->
+    <div class="polaroid" style="top:355px; left:78px; width:140px; transform: rotate(4deg);">
+      <div class="tape tr"></div>
+      <div class="tape bl"></div>
+      <div class="img" style="width:126px; height:168px;">
+        <img src="../photos/photo-04-cabo-boat.jpg" alt="Cabo">
+      </div>
+      <div class="cap">CABO · El Arco · blue hour</div>
+    </div>
+    <div class="annot pencil" style="top:370px; left:240px; width:170px;">
+      boat. 35mm. magic light<br>
+      through the rocks.<br>
+      nat. sound: engine + laughter.
+    </div>
+    <div class="annot red" style="top:430px; left:240px; font-size:14px; transform: rotate(-3deg);">★ SCORE: oud, soft.</div>
+
+    <!-- ZION WARRIORS polaroid (landscape) -->
+    <div class="polaroid" style="top:355px; left:445px; width:190px; transform: rotate(-3.5deg);">
+      <div class="tape bl"></div>
+      <div class="tape br"></div>
+      <div class="img" style="width:176px; height:117px;">
+        <img src="../photos/photo-11-zion-warriors.jpg" alt="Zion warriors">
+      </div>
+      <div class="cap">ZION · the heroic alt-take</div>
+    </div>
+    <div class="annot red" style="top:518px; left:475px; font-size:13px; transform: rotate(-3deg);">★ FX VERSION</div>
+    <div class="annot pencil" style="top:540px; left:445px; width:185px;">
+      if cinema is myth-making,<br>
+      these are the myths.
+    </div>
+
+    <!-- =================== LOWER ROW: TIMES SQ (L) | SEDONA-1 (M) | DORM (R) =================== -->
+
+    <!-- TIMES SQUARE polaroid (portrait, small) -->
+    <div class="polaroid" style="top:585px; left:62px; width:125px; transform: rotate(-3deg);">
+      <div class="tape t"></div>
+      <div class="img" style="width:111px; height:148px;">
+        <img src="../photos/photo-06-times-square.jpg" alt="Times Sq">
+      </div>
+      <div class="cap">TIMES SQ · noise.</div>
+    </div>
+
+    <!-- SEDONA spires (portrait small) -->
+    <div class="polaroid" style="top:585px; left:215px; width:120px; transform: rotate(4deg);">
+      <div class="tape br"></div>
+      <div class="tape tl"></div>
+      <div class="img" style="width:106px; height:142px;">
+        <img src="../photos/photo-05-sedona-spires.jpg" alt="Sedona spires">
+      </div>
+      <div class="cap">SEDONA · pt 1</div>
+    </div>
+
+    <!-- DORM NEON (landscape) -->
+    <div class="polaroid" style="top:585px; left:355px; width:175px; transform: rotate(-2deg);">
+      <div class="tape t"></div>
+      <div class="img" style="width:161px; height:105px;">
+        <img src="../photos/photo-09-neon-dorm.jpg" alt="Dorm neon">
+      </div>
+      <div class="cap">DORM · origin frame · MMXX</div>
+    </div>
+
+    <!-- SEDONA SPIRAL (portrait, small, far right) -->
+    <div class="polaroid" style="top:585px; left:545px; width:115px; transform: rotate(3deg);">
+      <div class="tape tl"></div>
+      <div class="img" style="width:101px; height:134px;">
+        <img src="../photos/photo-10-sedona-spiral.jpg" alt="Sedona spiral">
+      </div>
+      <div class="cap">SEDONA pt 2</div>
+    </div>
+
+    <!-- Mini annotations strip under lower row -->
+    <div class="annot pencil" style="top:758px; left:62px; width:125px; font-size:12.5px;">
+      24mm. high ISO.<br>
+      grain = soul.
+    </div>
+    <div class="annot pencil" style="top:758px; left:215px; width:120px; font-size:12.5px;">
+      magic hour pt. 1.<br>
+      wind: 8mph.
+    </div>
+    <div class="annot pencil" style="top:758px; left:355px; width:175px; font-size:12.5px;">
+      35mm. tripod on a textbook<br>
+      on a chair. <span style="font-family:'Caveat'">— [GROOM] (probably).</span>
+    </div>
+    <div class="annot pencil" style="top:758px; left:545px; width:115px; font-size:12.5px;">
+      foreground compose.<br>
+      stones by [NAME 2].
+    </div>
+
+    <!-- =================== BOTTOM BAND: CALL SHEET | TO DO | POSTSCRIPT =================== -->
+
+    <!-- CALL SHEET (bottom left) -->
+    <div class="callsheet" style="top:820px; left:54px;">
+      <div class="stamp">DRAFT v.7</div>
+      <div class="title">CALL SHEET — WEDDING DAY</div>
+      <div>PRODUCTION: <b>[GROOM] + [BRIDE]</b></div>
+      <div>LOC: [CITY] · DATE: [WEDDING DATE]</div>
+      <div class="divider"></div>
+      <div class="row"><span>GENERAL CALL ........</span> <span class="val">10:00 AM</span></div>
+      <div class="row"><span>GROOM CALL ..........</span> <span class="val">12:00 PM</span></div>
+      <div class="row"><span>BROTHERS CALL .......</span> <span class="val">10:30 AM</span></div>
+      <div class="row"><span>CEREMONY (ACTION) ...</span> <span class="val">04:00 PM</span></div>
+      <div class="row"><span>EST. WRAP ...........</span> <span class="val">02:00 AM</span></div>
+      <div class="divider"></div>
+      <div>EQUIPMENT: all hearts present.</div>
+      <div>WARDROBE: black tie.</div>
+      <div>WEATHER: nostalgic. high of love.</div>
+      <div>NOTE: <span style="color:var(--red);">NO BAD TAKES PERMITTED.</span></div>
+    </div>
+
+    <!-- TO DO (middle column, top of bottom band) -->
+    <div class="todo" style="top:818px; left:370px; width:240px;">
+      <div class="h">TO DO — pre-wrap</div>
+      <div class="done"><span class="check">☑</span> Cast brothers <span style="color:var(--pencil)">(2017)</span></div>
+      <div class="done"><span class="check">☑</span> Scout locations <span style="color:var(--pencil)">(6 countries)</span></div>
+      <div class="done"><span class="check">☑</span> Build chemistry <span style="color:var(--pencil)">(organic)</span></div>
+      <div class="done"><span class="check">☑</span> Production <span style="color:var(--pencil)">(10 yrs, 11 frames)</span></div>
+      <div><span class="check">☐</span> Final wrap <span style="color:var(--pencil)">(pending [WEDDING DATE])</span></div>
+      <div><span class="check">☐</span> Plan reunion <span style="color:var(--pencil)">(see group chat)</span></div>
+    </div>
+
+    <!-- POSTSCRIPT (far right column, full height of bottom band) -->
+    <div class="postscript" style="top:820px; left:625px; width:165px; font-size:10.5px; line-height:1.5;">
+      <span class="big" style="font-size:15px;">P.S. — </span>
+      if you read this far,<br>
+      [GROOM] — these are<br>
+      not just our notes on<br>
+      a film. these are the<br>
+      notes of brothers who<br>
+      learned filmmaking from<br>
+      you, by watching you live.<br>
+      <span class="sere" style="font-size:13px;">Şerefe.</span> <span class="sig" style="font-size:13px;">we love you.</span><br>
+      <span class="sig" style="font-size:13px;">don't fuck up the<br>wedding shot.</span><br>
+      <span class="sig" style="font-size:13px;">— [NAME 1] et al.</span>
+    </div>
+
+    <div class="pageno r">— 2 —</div>
+  </div>
+
+</div>
+</body>
+</html>

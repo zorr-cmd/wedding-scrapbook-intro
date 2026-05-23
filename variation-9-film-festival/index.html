@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Brotherhood International Film Festival — XXVII Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@300;400;500&family=Bodoni+Moda:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f4efe2;
+    --paper:#faf6ea;
+    --ink:#141210;
+    --ink-soft:#3a342c;
+    --rule:#1a1814;
+    --accent:#e85a26;       /* İstanbul Film Festival sunset orange */
+    --accent-deep:#b8421a;
+    --muted:#857c6c;
+  }
+  @page { size: 8.5in 11in; margin: 0; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{background:#2a2520; font-family:'EB Garamond', Georgia, serif; color:var(--ink);}
+  body{padding:0;}
+  .page{
+    width:8.5in; height:11in;
+    background:var(--cream);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(232,90,38,0.025), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(20,18,16,0.04), transparent 50%);
+    position:relative; overflow:hidden;
+    page-break-after: always;
+    margin: 0.25in auto;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  .page:last-child { page-break-after: auto; }
+  @media print{ .page{ margin:0; box-shadow:none; } }
+
+  /* ============ FESTIVAL BRANDING STRIP ============ */
+  .branding{
+    background:var(--ink);
+    color:var(--cream);
+    padding: 0.14in 0.4in 0.16in;
+    font-family:'Inter', sans-serif;
+    border-top: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+  }
+  .branding .rule-top, .branding .rule-bot{
+    border-top:1px solid rgba(244,239,226,0.25);
+    margin: 4px 0;
+  }
+  .brand-line-1{
+    font-size:8.8pt; letter-spacing:0.32em; font-weight:500;
+    text-align:center; text-transform:uppercase;
+  }
+  .brand-line-1 .dot{ color:var(--accent); margin: 0 0.5em; }
+  .brand-line-2{
+    font-size:7pt; letter-spacing:0.5em; font-weight:300;
+    text-align:center; text-transform:uppercase;
+    color: rgba(244,239,226,0.75);
+    margin-top:3px;
+  }
+
+  /* ============ PAGE 1 ============ */
+  .hero{
+    position:relative;
+    width:100%; height:3.7in;
+    overflow:hidden;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero img{
+    width:100%; height:100%; object-fit:cover;
+    filter: contrast(1.05) saturate(0.95);
+    display:block;
+  }
+  .hero .edition{
+    position:absolute; top:0.22in; left:0.32in;
+    font-family:'Inter', sans-serif;
+    font-size:7.5pt; letter-spacing:0.35em; font-weight:500;
+    color:#fff; background:rgba(20,18,16,0.55);
+    padding: 5px 10px;
+    text-transform:uppercase;
+    backdrop-filter: blur(4px);
+  }
+  .hero .corner-meta{
+    position:absolute; bottom:0.22in; right:0.32in;
+    text-align:right;
+    font-family:'JetBrains Mono', monospace;
+    font-size:6.6pt; line-height:1.6;
+    color:#fff; background:rgba(20,18,16,0.55);
+    padding: 7px 10px;
+    backdrop-filter: blur(4px);
+  }
+  .title-block{
+    padding: 0.24in 0.5in 0.14in;
+    border-bottom: 1px solid var(--rule);
+    background: linear-gradient(180deg, var(--paper), var(--cream));
+  }
+  .title-eyebrow{
+    font-family:'Inter', sans-serif;
+    font-size:7pt; letter-spacing:0.4em; font-weight:500;
+    color:var(--accent-deep);
+    text-transform:uppercase;
+    margin-bottom: 0.08in;
+    text-align:center;
+  }
+  .title-eyebrow::before, .title-eyebrow::after{
+    content:''; display:inline-block;
+    width:24px; height:1px; background:var(--accent-deep);
+    vertical-align:middle; margin: 0 14px 3px;
+  }
+  .main-title{
+    font-family:'Bodoni Moda', 'Cormorant Garamond', serif;
+    font-weight:900;
+    font-size:42pt; line-height:0.98;
+    letter-spacing:-0.012em;
+    text-align:center;
+    color:var(--ink);
+  }
+  .main-title .of{
+    font-style:italic; font-weight:400;
+    font-family:'Cormorant Garamond', serif;
+    color:var(--accent-deep);
+    font-size:28pt;
+    display:inline-block; transform: translateY(-2px);
+    margin: 0 6px;
+  }
+  .main-title .name{
+    font-family:'Bodoni Moda', serif;
+    font-weight:900;
+    text-transform:uppercase;
+  }
+  .subtitle{
+    text-align:center;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic; font-weight:500;
+    font-size:12pt;
+    color:var(--ink-soft);
+    margin-top: 0.08in;
+    letter-spacing:0.02em;
+  }
+  .subtitle .sep{ color:var(--accent); margin: 0 0.4em; font-style:normal; }
+  .tertiary{
+    text-align:center;
+    font-family:'Inter', sans-serif;
+    font-size:6.5pt; letter-spacing:0.32em; font-weight:400;
+    color:var(--muted);
+    text-transform:uppercase;
+    margin-top: 0.09in;
+  }
+
+  /* ============ PROGRAMMER'S NOTE LAYOUT ============ */
+  .essay-section{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1.95in;
+    gap: 0.24in;
+    padding: 0.2in 0.5in 0.9in;
+  }
+  .essay-header{
+    grid-column: 1 / -1;
+    display:flex; align-items:baseline; justify-content:space-between;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.08in;
+    margin-bottom: 0.06in;
+  }
+  .essay-title{
+    font-family:'Cormorant Garamond', serif;
+    font-size:12pt; font-weight:600;
+    letter-spacing:0.18em; text-transform:uppercase;
+  }
+  .essay-byline{
+    font-family:'Inter', sans-serif;
+    font-size:6.5pt; letter-spacing:0.25em; text-transform:uppercase;
+    color:var(--muted);
+  }
+  .col{
+    font-family:'EB Garamond', serif;
+    font-size:8.4pt; line-height:1.38;
+    text-align: justify;
+    hyphens:auto;
+    color:var(--ink);
+  }
+  .col p{ margin-bottom: 5pt; text-indent: 0.16in; }
+  .col p:first-child{ text-indent: 0; }
+  .col p:first-child::first-letter{
+    font-family:'Bodoni Moda', serif;
+    font-weight:900;
+    float:left;
+    font-size:30pt; line-height:0.85;
+    padding: 2pt 5pt 0 0;
+    color:var(--accent-deep);
+  }
+  .col-essay em{ font-style:italic; }
+  .col-signature{
+    margin-top: 4pt;
+    text-align:right;
+    font-style:italic;
+    font-family:'Cormorant Garamond', serif;
+    font-size:9.5pt;
+    color:var(--ink-soft);
+  }
+
+  /* Sidebar */
+  .sidebar{
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 0.13in 0.16in 0.14in;
+    font-family:'Inter', sans-serif;
+    font-size:7pt;
+    line-height:1.4;
+  }
+  .sidebar h4{
+    font-family:'Inter', sans-serif;
+    font-size:5.6pt; letter-spacing:0.26em;
+    font-weight:600; text-transform:uppercase;
+    color:var(--ink);
+    margin-bottom: 1.5pt;
+    display:flex; align-items:center; gap:5px;
+  }
+  .sidebar h4::before{
+    content:''; display:inline-block;
+    width:6px; height:6px; background:var(--accent);
+  }
+  .sidebar .item{ margin-bottom: 5pt; }
+  .sidebar .val{
+    font-family:'Cormorant Garamond', serif;
+    font-size:8.5pt; font-weight:500;
+    color:var(--ink-soft);
+    letter-spacing:0;
+    line-height:1.2;
+  }
+  .sidebar .val.small{ font-size:7.4pt; line-height:1.38; }
+  .sidebar-divider{
+    height:1px; background:var(--rule); opacity:0.18;
+    margin: 4pt 0;
+  }
+
+  /* ============ SPONSOR FOOTER ============ */
+  .sponsors{
+    position:absolute; bottom:0; left:0; right:0;
+    border-top: 1px solid var(--rule);
+    padding: 0.14in 0.4in 0.12in;
+    background: var(--paper);
+  }
+  .sponsors .label{
+    font-family:'Inter', sans-serif;
+    font-size:6pt; letter-spacing:0.42em; font-weight:500;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-align:center;
+    margin-bottom: 7px;
+  }
+  .sponsor-row{
+    display:flex; justify-content:space-around; align-items:center;
+    gap: 0.18in;
+    font-family:'Inter', sans-serif;
+    font-size:6.8pt; letter-spacing:0.18em; font-weight:600;
+    text-transform:uppercase;
+    color:var(--ink);
+  }
+  .sponsor-row .sp{ text-align:center; line-height:1.2; }
+  .sponsor-row .sp .sub{
+    display:block; font-weight:400; font-size:5.4pt;
+    color:var(--muted); letter-spacing:0.22em;
+    margin-top: 2px;
+  }
+  .sponsor-row .divider{
+    width:1px; height:18px; background:var(--rule); opacity:0.3;
+  }
+
+  /* ============ PAGE 2 — FILMOGRAPHY ============ */
+  .filmography-banner{
+    padding: 0.14in 0.4in 0.14in;
+    background: var(--ink);
+    color: var(--cream);
+    text-align:center;
+    border-bottom: 2px solid var(--accent);
+  }
+  .filmography-banner .top{
+    font-family:'Inter', sans-serif;
+    font-size:6.2pt; letter-spacing:0.5em; font-weight:500;
+    color:var(--accent);
+    text-transform:uppercase;
+    margin-bottom: 4px;
+  }
+  .filmography-banner .main{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600; font-style:italic;
+    font-size:16pt; line-height:1.1;
+    letter-spacing:0.01em;
+  }
+  .filmography-banner .sub{
+    font-family:'Inter', sans-serif;
+    font-size:6.2pt; letter-spacing:0.32em; font-weight:400;
+    text-transform:uppercase;
+    color: rgba(244,239,226,0.7);
+    margin-top: 5px;
+  }
+
+  .film-grid{
+    padding: 0.1in 0.4in 0.06in;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.22in;
+    row-gap: 0.06in;
+  }
+  .film-entry{
+    display:grid;
+    grid-template-columns: 1.05in 1fr;
+    gap: 0.1in;
+    padding-bottom: 0.05in;
+    border-bottom: 1px solid rgba(20,18,16,0.18);
+  }
+  .film-entry.no-border{ border-bottom: none; padding-bottom: 0; }
+  .film-still{
+    width:100%; height:0.72in;
+    object-fit:cover;
+    filter: contrast(1.05) saturate(0.96);
+    border: 1px solid var(--rule);
+  }
+  .film-still.tall{ height:0.78in; }
+  .film-info{ min-width: 0; }
+  .film-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:5.4pt; letter-spacing:0.18em;
+    color:var(--accent-deep);
+    font-weight:500;
+    margin-bottom: 0;
+  }
+  .film-title{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic; font-weight:600;
+    font-size:11.5pt; line-height:1.02;
+    color:var(--ink);
+    margin-bottom: 2px;
+  }
+  .film-title .roman{ font-style:normal; font-weight:500; color:var(--accent-deep); }
+  .film-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:4.8pt; line-height:1.5;
+    color:var(--ink-soft);
+    letter-spacing:0.01em;
+    padding: 2px 0 3px;
+    border-top:1px dotted rgba(20,18,16,0.3);
+    border-bottom:1px dotted rgba(20,18,16,0.3);
+    margin-bottom: 3px;
+  }
+  .film-meta .k{ color:var(--muted); }
+  .film-synopsis{
+    font-family:'EB Garamond', serif;
+    font-style:italic;
+    font-size:6.6pt; line-height:1.28;
+    color:var(--ink);
+  }
+  .film-synopsis .attr{
+    font-style:normal;
+    font-family:'Inter', sans-serif;
+    font-size:5pt; letter-spacing:0.16em;
+    color:var(--muted);
+    text-transform:uppercase;
+    display:block; margin-top: 2px;
+  }
+  .laurel{
+    display:inline-block;
+    font-family:'Inter', sans-serif;
+    font-size:4.6pt; letter-spacing:0.18em;
+    font-weight:600;
+    text-transform:uppercase;
+    color:var(--accent-deep);
+    border: 1px solid var(--accent-deep);
+    padding: 1.5px 4px;
+    margin-top: 3px;
+    margin-right: 3px;
+  }
+  .laurel.solid{ background:var(--accent); color:#fff; border-color:var(--accent); }
+
+  /* Closing Night */
+  .closing{
+    margin: 0.06in 0.4in 0.04in;
+    padding: 0.12in 0.2in 0.14in;
+    background: var(--ink);
+    color: var(--cream);
+    position:relative;
+    border-left: 4px solid var(--accent);
+  }
+  .closing .stamp{
+    position:absolute; top:0.1in; right:0.14in;
+    font-family:'Inter', sans-serif;
+    font-size:5.2pt; letter-spacing:0.32em;
+    color:var(--accent);
+    border:1px solid var(--accent);
+    padding: 2px 5px;
+    text-transform:uppercase;
+  }
+  .closing .eyebrow{
+    font-family:'Inter', sans-serif;
+    font-size:6pt; letter-spacing:0.4em; font-weight:500;
+    color:var(--accent);
+    text-transform:uppercase;
+    margin-bottom: 4px;
+  }
+  .closing .title{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic; font-weight:600;
+    font-size:14pt; line-height:1.1;
+    margin-bottom: 4px;
+  }
+  .closing .body{
+    font-family:'EB Garamond', serif;
+    font-size:7pt; line-height:1.38;
+    color: rgba(244,239,226,0.92);
+    max-width: 6.6in;
+  }
+  .closing .body em{ color:#fff; }
+
+  .colophon{
+    margin: 0.06in 0.4in 0;
+    padding-top: 0.06in;
+    border-top: 1px solid rgba(20,18,16,0.2);
+    text-align:center;
+    font-family:'Inter', sans-serif;
+    font-size:5.2pt; letter-spacing:0.4em; font-weight:400;
+    color: var(--muted);
+    text-transform:uppercase;
+  }
+  .colophon .accent{ color:var(--accent-deep); }
+</style>
+</head>
+<body>
+
+<!-- ============================== PAGE 1 ============================== -->
+<section class="page">
+
+  <div class="branding">
+    <div class="brand-line-1">The Brotherhood International Film Festival<span class="dot">·</span>XXVII Edition</div>
+    <div class="brand-line-2">MMXXVI &nbsp;·&nbsp; Programme &nbsp;·&nbsp; Free</div>
+  </div>
+
+  <div class="hero">
+    <img src="../photos/photo-08-mt-shasta.jpg" alt="Mt. Shasta sunset">
+    <div class="edition">No. 27 &nbsp;·&nbsp; Festival Issue</div>
+    <div class="corner-meta">
+      COVER STILL · "AFTERMATH OF LIGHT"<br>
+      DIR. [GROOM] · MT. SHASTA, CA · 2024<br>
+      35MM EQUIV · GOLDEN HOUR · 17:42 LOCAL
+    </div>
+  </div>
+
+  <div class="title-block">
+    <div class="title-eyebrow">A Retrospective Presented in Eleven Parts</div>
+    <h1 class="main-title">
+      The Cinema <span class="of">of</span><br>
+      <span class="name">[GROOM]</span>
+    </h1>
+    <div class="subtitle">Eleven Films <span class="sep">·</span> One Lifetime <span class="sep">·</span> One Brotherhood</div>
+    <div class="tertiary">Presented in Partnership with The Group Chat &nbsp;·&nbsp; MMXXVI</div>
+  </div>
+
+  <div class="essay-section">
+    <div class="essay-header">
+      <div class="essay-title">Programmer's Note</div>
+      <div class="essay-byline">By the Selection Committee · 4,200 words abridged</div>
+    </div>
+
+    <div class="col col-essay">
+      <p>When we began assembling this year's retrospective, the work of [GROOM] presented an unusual challenge for the selection committee. His oeuvre — eleven principal works, completed in collaboration with a rotating ensemble of seven brothers across a decade and four continents — defies easy categorization. Is it ethnography? Travelogue? Comedy of manners? We have settled, finally, on what feels truest: it is a slow-motion love letter, projected in eleven parts.</p>
+      <p>The films span the Pyramids of Giza (<em>Geometry of Friendship</em>, 2022), the slot canyons of Zion (<em>Walking in Water</em>, 2023), the alpenglow of Mt. Shasta (<em>Aftermath of Light</em>, 2024), and the neon-soaked corridors of dormitory life (<em>Interior with Brothers</em>, 2020). They are bound by a single recurring camera position — the wide ensemble shot, frame composed by self-timer, witnessed by the seven who made it.</p>
+    </div>
+
+    <div class="col col-essay">
+      <p>The director's training in Yeşilçam-era staging is evident throughout: the patient master shot, the refusal to cut, the trust that the moment will arrive if only one waits for it. What distinguishes [GROOM] from his peers is not the equipment, nor the locations, but the unembarrassed sincerity with which he frames his subjects. They are not "characters." They are <em>kardeşlerim</em>. They are the work itself.</p>
+      <p>It is our privilege, on the occasion of his wedding, to present these works together for the first time. May this programme serve as the catalogue of record — and may every screening sell out.</p>
+      <div class="col-signature">— The Programming Committee, MMXXVI</div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="item">
+        <h4>Festival Dates</h4>
+        <div class="val">[DATE] – [DATE]</div>
+      </div>
+      <div class="item">
+        <h4>Venue</h4>
+        <div class="val small">The Wedding<br>[CITY]</div>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="item">
+        <h4>Jury President</h4>
+        <div class="val">[BRIDE]</div>
+      </div>
+      <div class="item">
+        <h4>Jury Members</h4>
+        <div class="val small">
+          [NAME 1] · [NAME 2]<br>
+          [NAME 3] · [NAME 4]<br>
+          [NAME 5] · [NAME 6]<br>
+          [NAME 7] · [NAME 8]
+        </div>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="item">
+        <h4>Homage To</h4>
+        <div class="val small"><em>Yeşilçam</em> &amp; everyone who ever held the camera</div>
+      </div>
+      <div class="item">
+        <h4>Founded</h4>
+        <div class="val">MMXVII</div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="sponsors">
+    <div class="label">— Made Possible by Our Founding Partners —</div>
+    <div class="sponsor-row">
+      <div class="sp">The Group Chat<span class="sub">Principal Underwriter</span></div>
+      <div class="divider"></div>
+      <div class="sp">The Family<span class="sub">Producing Partner</span></div>
+      <div class="divider"></div>
+      <div class="sp">The Bar Down the Street<span class="sub">Hospitality Sponsor</span></div>
+      <div class="divider"></div>
+      <div class="sp">Golden Hour Productions<span class="sub">Post-Production</span></div>
+      <div class="divider"></div>
+      <div class="sp">Empire Bldg Vending<span class="sub">Official Snack Partner</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== PAGE 2 ============================== -->
+<section class="page">
+
+  <div class="branding">
+    <div class="brand-line-1">The Brotherhood International Film Festival<span class="dot">·</span>XXVII Edition</div>
+    <div class="brand-line-2">Filmography &nbsp;·&nbsp; The Complete Works &nbsp;·&nbsp; Chronological Order</div>
+  </div>
+
+  <div class="filmography-banner">
+    <div class="top">Films in the Retrospective</div>
+    <div class="main">Ten Works by [GROOM] &amp; Ensemble</div>
+    <div class="sub">In Chronological Order &nbsp;·&nbsp; All Screenings Free with Programme</div>
+  </div>
+
+  <div class="film-grid">
+
+    <!-- 1 — Interior with Brothers (2020, dorm) -->
+    <div class="film-entry">
+      <img class="film-still tall" src="../photos/photo-09-neon-dorm.jpg" alt="Neon dorm">
+      <div class="film-info">
+        <div class="film-num">No. 01 / X</div>
+        <div class="film-title">Interior with Brothers</div>
+        <div class="film-meta">
+          <span class="k">DIR.</span> [GROOM] &nbsp;·&nbsp; <span class="k">YEAR.</span> 2020<br>
+          <span class="k">LOC.</span> Dormitory, [CITY] &nbsp;·&nbsp; <span class="k">RUN.</span> 8 min<br>
+          <span class="k">LANG.</span> English / silence &nbsp;·&nbsp; <span class="k">FORMAT.</span> Digital<br>
+          <span class="k">SECT.</span> Origins · Restored 2K
+        </div>
+        <div class="film-synopsis">
+          Five young men press themselves against a wall lit in rainbow neon; one wears a surgical mask. The first known still from the director's earliest period — a portrait of the world narrowing to those nearest you.
+        </div>
+        <span class="laurel">Restored Print</span>
+      </div>
+    </div>
+
+    <!-- 2 — Vertical Brothers (2021, Times Square) -->
+    <div class="film-entry">
+      <img class="film-still tall" src="../photos/photo-06-times-square.jpg" alt="Times Square">
+      <div class="film-info">
+        <div class="film-num">No. 02 / X</div>
+        <div class="film-title">Vertical Brothers</div>
+        <div class="film-meta">
+          <span class="k">DIR.</span> [GROOM] &nbsp;·&nbsp; <span class="k">YEAR.</span> 2021<br>
+          <span class="k">LOC.</span> Times Square, NYC &nbsp;·&nbsp; <span class="k">RUN.</span> 14 min<br>
+          <span class="k">LANG.</span> None spoken &nbsp;·&nbsp; <span class="k">FORMAT.</span> Anamorphic Digital<br>
+          <span class="k">SECT.</span> Official Selection
+        </div>
+        <div class="film-synopsis">
+          Five figures arrange themselves on the red stairs as the city advertises itself behind them. A study of bodies in repose against capital in motion.
+        </div>
+        <span class="laurel solid">Audience Award</span>
+      </div>
+    </div>
+
+    <!-- 3 — Geometry of Friendship (2022, Egypt) -->
+    <div class="film-entry">
+      <img class="film-still tall" src="../photos/photo-02-egypt-pyramid.jpg" alt="Egypt pyramid">
+      <div class="film-info">
+        <div class="film-num">No. 03 / X</div>
+        <div class="film-title">Geometry of Friendship</div>
+        <div class="film-meta">
+          <span class="k">DIR.</span> [GROOM] &nbsp;·&nbsp; <span class="k">YEAR.</span> 2022<br>
+          <span class="k">LOC.</span> Giza, Egypt &nbsp;·&nbsp; <span class="k">RUN.</span> 12 min<br>
+          <span class="k">LANG.</span> None spoken &nbsp;·&nbsp; <span class="k">FORMAT.</span> Digital, 4K<br>
+          <span class="k">SECT.</span> Competition · World Premiere
+        </div>
+        <div class="film-synopsis">
+          Six men construct an improbable architectural homage to a 4,500-year-old monument. A meditation on inheritance, geometry, and the joy of stacking yourself on top of your friends.
+          <span class="attr">— Programme Note</span>
+        </div>
+        <span class="laurel">Sunday Brunch Jury Prize</span>
+      </div>
+    </div>
+
+    <!-- 4 — El Arco / The Arch (2022, Cabo) -->
+    <div class="film-entry">
+      <img class="film-still tall" src="../photos/photo-04-cabo-boat.jpg" alt="Cabo boat">
+      <div class="film-info">
+        <div class="film-num">No. 04 / X</div>
+        <div class="film-title">El Arco <span class="roman">/ The Arch</span></div>
+        <div class="film-meta">
+          <span class="k">DIR.</span> [GROOM] &nbsp;·&nbsp; <span class="k">YEAR.</span> 2022<br>
+          <span class="k">LOC.</span> Cabo San Lucas, México &nbsp;·&nbsp; <span class="k">RUN.</span> 11 min<br>
+          <span class="k">LANG.</span> English / Spanish &nbsp;·&nbsp; <span class="k">FORMAT.</span> Digital<br>
+          <span class="k">SECT.</span> Aquatic Selection
+        </div>
+        <div class="film-synopsis">
+          Six men, one boat, one stone arch carved by the Pacific. The director's first water-based composition; a study in horizontal blocking against eternal geology.
+        </div>
+        <span class="laurel">Official Selection · MMXXII</span>
+      </div>
+    </div>
+
+    <!-- 5 — Walking in Water (2023, Zion Narrows) -->
+    <div class="film-entry">
+      <img class="film-still tall" src="../photos/photo-07-zion-narrows.jpg" alt="Zion Narrows">
+      <div class="film-info">
+        <div class="film-num">No. 05 / X</div>
+        <div class="film-title">Walking in Water</div>
+        <div class="film-meta">
+          <span class="k">DIR.</span> [GROOM] &nbsp;·&nbsp; <span class="k">YEAR.</span> 2023<br>
+          <span class="k">LOC.</span> The Narrows, Zion N.P. &nbsp;·&nbsp; <span class="k">RUN.</span> 19 min<br>
+          <span class="k">LANG.</span> None spoken &nbsp;·&nbsp; <span class="k">FORMAT.</span> 65mm Digital<br>
+          <span class="k">SECT.</span> Competition
+        </div>
+        <div class="film-synopsis">
+          Seven figures with carved walking sticks descend a river hemmed in by stone. The director's most patient work — a hymn for those who would rather wade than wait.
+        </div>
+        <span class="laurel solid">Grand Prix</span>
+      </div>
+    </div>
+
+    <!-- 6 — Warriors of the Narrows (2023, Zion warriors) -->
+    <div class="film-entry">
+      <img class="film-still tall" src="../photos/photo-11-zion-warriors.jpg" alt="Zion warriors">
+      <div class="film-info">
+        <div class="film-num">No. 06 / X</div>
+        <div class="film-title">Warriors of the Narrows</div>
+        <div class="film-meta">
+          <span class="k">DIR.</span> [GROOM] &nbsp;·&nbsp; <span class="k">YEAR.</span> 2023<br>
+          <span class="k">LOC.</span> The Narrows, Zion N.P. &nbsp;·&nbsp; <span class="k">RUN.</span> 7 min<br>
+          <span class="k">LANG.</span> War cries &nbsp;·&nbsp; <span class="k">FORMAT.</span> Anamorphic<br>
+          <span class="k">SECT.</span> Midnight Selection · Companion Piece
+        </div>
+        <div class="film-synopsis">
+          A short, savage companion to <em>Walking in Water</em>. Same seven men, same canyon, sticks now raised. Proof that the wide ensemble shot, given enough light, becomes a battle scene.
+        </div>
+        <span class="laurel">Cult Section</span>
+      </div>
+    </div>
+
+    <!-- 7 — Red Country I (2023, Sedona spires) -->
+    <div class="film-entry">
+      <img class="film-still tall" src="../photos/photo-05-sedona-spires.jpg" alt="Sedona spires">
+      <div class="film-info">
+        <div class="film-num">No. 07 / X</div>
+        <div class="film-title">Red Country <span class="roman">I</span></div>
+        <div class="film-meta">
+          <span class="k">DIR.</span> [GROOM] &nbsp;·&nbsp; <span class="k">YEAR.</span> 2023<br>
+          <span class="k">LOC.</span> Sedona, Arizona &nbsp;·&nbsp; <span class="k">RUN.</span> 9 min<br>
+          <span class="k">LANG.</span> Wind &nbsp;·&nbsp; <span class="k">FORMAT.</span> Digital, 4K<br>
+          <span class="k">SECT.</span> Landscapes Programme
+        </div>
+        <div class="film-synopsis">
+          Five men in jackets, dwarfed by sandstone. The first panel of a diptych. The director discovers his lifelong subject: the human figure as a unit of scale.
+        </div>
+        <span class="laurel">Diptych I of II</span>
+      </div>
+    </div>
+
+    <!-- 8 — Red Country II: The Spiral (2023, Sedona spiral) -->
+    <div class="film-entry">
+      <img class="film-still tall" src="../photos/photo-10-sedona-spiral.jpg" alt="Sedona spiral">
+      <div class="film-info">
+        <div class="film-num">No. 08 / X</div>
+        <div class="film-title">Red Country <span class="roman">II</span>: The Spiral</div>
+        <div class="film-meta">
+          <span class="k">DIR.</span> [GROOM] &nbsp;·&nbsp; <span class="k">YEAR.</span> 2023<br>
+          <span class="k">LOC.</span> Sedona, Arizona &nbsp;·&nbsp; <span class="k">RUN.</span> 10 min<br>
+          <span class="k">LANG.</span> None spoken &nbsp;·&nbsp; <span class="k">FORMAT.</span> Digital, 4K<br>
+          <span class="k">SECT.</span> Landscapes Programme
+        </div>
+        <div class="film-synopsis">
+          A spiral of river stones laid in foreground; five men in background. A film that locates the sacred in the act of arranging things together.
+        </div>
+        <span class="laurel">Diptych II of II</span>
+      </div>
+    </div>
+
+    <!-- 9 — Aftermath of Light (2024, Mt. Shasta) -->
+    <div class="film-entry">
+      <img class="film-still tall" src="../photos/photo-08-mt-shasta.jpg" alt="Mt. Shasta">
+      <div class="film-info">
+        <div class="film-num">No. 09 / X</div>
+        <div class="film-title">Aftermath of Light</div>
+        <div class="film-meta">
+          <span class="k">DIR.</span> [GROOM] &nbsp;·&nbsp; <span class="k">YEAR.</span> 2024<br>
+          <span class="k">LOC.</span> Mt. Shasta, California &nbsp;·&nbsp; <span class="k">RUN.</span> 16 min<br>
+          <span class="k">LANG.</span> None spoken &nbsp;·&nbsp; <span class="k">FORMAT.</span> 65mm Digital, IMAX<br>
+          <span class="k">SECT.</span> Closing Selection · 2024
+        </div>
+        <div class="film-synopsis">
+          Seven men on a log throne; behind them, the volcano blushes pink. The director's most-cited work. Featured on the cover of this programme.
+        </div>
+        <span class="laurel solid">Best Cinematography</span>
+      </div>
+    </div>
+
+    <!-- 10 — Uniform (2024, brown tees) -->
+    <div class="film-entry">
+      <img class="film-still tall" src="../photos/photo-01-beach-brown-tees.jpg" alt="Beach brown tees">
+      <div class="film-info">
+        <div class="film-num">No. 10 / X</div>
+        <div class="film-title">Uniform</div>
+        <div class="film-meta">
+          <span class="k">DIR.</span> [GROOM] &nbsp;·&nbsp; <span class="k">YEAR.</span> 2025<br>
+          <span class="k">LOC.</span> Pacific Coast, California &nbsp;·&nbsp; <span class="k">RUN.</span> 6 min<br>
+          <span class="k">LANG.</span> Wind, surf &nbsp;·&nbsp; <span class="k">FORMAT.</span> Digital<br>
+          <span class="k">SECT.</span> New Works
+        </div>
+        <div class="film-synopsis">
+          Seven men in matching brown shirts arrange themselves along an ocean ledge. A film about the small uniforms we agree to wear for one another.
+        </div>
+        <span class="laurel">World Premiere</span>
+      </div>
+    </div>
+
+    <!-- 11 — Saltwater Diaries (2025, beach sunset pile) — spans both columns -->
+    <div class="film-entry no-border" style="grid-column: 1 / -1; grid-template-columns: 1.6in 1fr;">
+      <img class="film-still" src="../photos/photo-03-beach-sunset-pile.jpg" alt="Beach sunset pile" style="height:1.05in;">
+      <div class="film-info">
+        <div class="film-num">No. 11 / X &nbsp; · &nbsp; ENCORE PRESENTATION</div>
+        <div class="film-title">Saltwater Diaries</div>
+        <div class="film-meta">
+          <span class="k">DIR.</span> [GROOM] &nbsp;·&nbsp; <span class="k">YEAR.</span> 2025 &nbsp;·&nbsp; <span class="k">LOC.</span> California Coast &nbsp;·&nbsp; <span class="k">RUN.</span> 22 min &nbsp;·&nbsp; <span class="k">FORMAT.</span> 65mm Digital &nbsp;·&nbsp; <span class="k">SECT.</span> Encore · Director's Cut
+        </div>
+        <div class="film-synopsis">
+          Eight men collapsed into one shape on the sand as the sun gives up. The director's first work to abandon the wide ensemble in favor of the pile — a long, joyful, terminal embrace. The committee considers it the spiritual sequel to <em>Geometry of Friendship</em>; the director declines to comment.
+          <span class="attr">— Critic's Selection · Festival Catalogue, p. 47</span>
+        </div>
+        <span class="laurel solid">Best Picture · MMXXV</span>
+        <span class="laurel">Brotherhood Prize</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Closing Night Gala -->
+  <div class="closing">
+    <div class="stamp">World Premiere</div>
+    <div class="eyebrow">— Closing Night Gala · [WEDDING DATE] —</div>
+    <div class="title">The Wedding</div>
+    <div class="body">
+      A new work premieres tonight: <em>The Wedding</em>, a feature collaboration between [GROOM] and [BRIDE]. The retrospective concludes with cake, with toasts, and with whatever the band agrees to play after midnight. The jury has declined to vote — the verdict was unanimous from the first frame. <em>Şerefe</em>, and may the road be open.
+    </div>
+  </div>
+
+  <div class="colophon">
+    Programme Designed in the House Style &nbsp;<span class="accent">·</span>&nbsp; Printed on Recycled Stock &nbsp;<span class="accent">·</span>&nbsp; The Brotherhood Int'l Film Festival, MMXXVI
+  </div>
+</section>
+
+</body>
+</html>

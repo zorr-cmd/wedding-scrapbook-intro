@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>THE BROTHERS — HOME VIDEO ARCHIVE — VHS COLLECTION VOL. 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Bebas+Neue&family=Anton&family=Oswald:wght@400;700&family=Black+Ops+One&family=Permanent+Marker&family=Caveat:wght@400;700&family=Reenie+Beanie&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: 8.5in 11in;
+    margin: 0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #0a0604;
+    font-family: 'Oswald', sans-serif;
+    color: #f0e8d8;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #0f0a05;
+    background-image:
+      radial-gradient(ellipse at center, rgba(40,25,10,0.4) 0%, rgba(10,6,4,0.95) 75%, rgba(0,0,0,1) 100%),
+      repeating-linear-gradient(0deg, rgba(255,200,120,0.015) 0px, rgba(255,200,120,0.015) 1px, transparent 1px, transparent 4px);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    color: #f0e8d8;
+    padding: 0.3in;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* CRT vignette overlay */
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.55) 100%);
+    pointer-events: none;
+    z-index: 50;
+  }
+  /* subtle scanlines across whole page */
+  .page::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.08) 0, rgba(0,0,0,0.08) 1px, transparent 1px, transparent 3px);
+    pointer-events: none;
+    z-index: 49;
+    mix-blend-mode: multiply;
+  }
+
+  /* ------- VCR top tape-label bar ------- */
+  .vcr-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'VT323', monospace;
+    font-size: 14pt;
+    color: #f4c842;
+    border: 2px solid #f4c842;
+    background: linear-gradient(180deg, #1a120a 0%, #0c0805 100%);
+    padding: 6px 14px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 6px rgba(244,200,66,0.4);
+    box-shadow: inset 0 0 12px rgba(0,0,0,0.7), 0 0 4px rgba(244,200,66,0.2);
+    position: relative;
+    z-index: 5;
+  }
+  .vcr-bar .controls { letter-spacing: 6px; }
+  .vcr-bar .rec {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffeded;
+  }
+  .rec-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e53935;
+    box-shadow: 0 0 8px #e53935, 0 0 14px rgba(229,57,53,0.6);
+    animation: blink 1.2s steps(2, end) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0.2; } }
+
+  /* ------- Chyron title ------- */
+  .chyron-title {
+    margin-top: 14px;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+  }
+  .chyron-title h1 {
+    font-family: 'Bebas Neue', 'Anton', sans-serif;
+    font-size: 44pt;
+    line-height: 0.95;
+    color: #fff5dc;
+    letter-spacing: 2px;
+    text-shadow:
+      3px 3px 0 #000,
+      6px 6px 0 #6b1f1f,
+      0 0 14px rgba(255,200,100,0.25);
+  }
+  .chyron-title h1 .accent { color: #f4c842; }
+  .chyron-title .sub {
+    font-family: 'VT323', monospace;
+    font-size: 13pt;
+    color: #f4c842;
+    letter-spacing: 3px;
+    margin-top: 8px;
+    text-shadow: 0 0 6px rgba(244,200,66,0.4);
+  }
+
+  /* ------- main layout page 1 ------- */
+  .pg1-body {
+    display: grid;
+    grid-template-columns: 1.4in 1fr;
+    gap: 16px;
+    margin-top: 16px;
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* VHS tape shelf (vertical spines) */
+  .shelf {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 6px;
+    background: linear-gradient(180deg, #2a1a0e 0%, #1a0e05 100%);
+    border: 2px solid #3a2516;
+    box-shadow: inset 0 0 18px rgba(0,0,0,0.8);
+    border-radius: 4px;
+  }
+  .shelf-label {
+    font-family: 'VT323', monospace;
+    font-size: 11pt;
+    color: #f4c842;
+    text-align: center;
+    letter-spacing: 2px;
+    border-bottom: 1px dashed rgba(244,200,66,0.4);
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+  }
+  .tape {
+    flex: 1;
+    position: relative;
+    border-radius: 3px;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.7),
+      inset 1px 0 0 rgba(255,255,255,0.15),
+      inset -2px 0 4px rgba(0,0,0,0.5);
+    overflow: hidden;
+    padding: 6px 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 0;
+  }
+  .tape::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 4px);
+    pointer-events: none;
+  }
+  .tape.black {
+    background: linear-gradient(90deg, #0a0a0a 0%, #1a1a1a 50%, #050505 100%);
+    color: #fafafa;
+  }
+  .tape.white {
+    background: linear-gradient(90deg, #e8e2d0 0%, #f4ecd6 50%, #d8d0bc 100%);
+    color: #1a0e05;
+  }
+  .tape.red {
+    background: linear-gradient(90deg, #6b1f1f 0%, #8a2828 50%, #4a1010 100%);
+    color: #fff5dc;
+  }
+  .tape.blue {
+    background: linear-gradient(90deg, #1a2a4a 0%, #243860 50%, #0e1a30 100%);
+    color: #fff5dc;
+  }
+  .tape.masking {
+    background: linear-gradient(90deg, #2a2a2a 0%, #3a3a3a 100%);
+    color: #fff5dc;
+  }
+  .tape.masking .masking-label {
+    background: #d4c894;
+    color: #1a0e05;
+    padding: 4px 2px;
+    border-radius: 1px;
+    text-align: center;
+    transform: rotate(-2deg);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    margin-top: 6px;
+  }
+  .tape .tape-no {
+    font-family: 'VT323', monospace;
+    font-size: 9pt;
+    letter-spacing: 1px;
+    opacity: 0.85;
+  }
+  .tape .tape-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 11pt;
+    line-height: 1.05;
+    text-align: center;
+    transform: rotate(-1.5deg);
+    padding: 0 2px;
+  }
+  .tape.white .tape-title { font-family: 'Caveat', cursive; font-weight: 700; font-size: 13pt; }
+  .tape.masking .tape-title { font-family: 'Reenie Beanie', cursive; font-size: 14pt; transform: none; color: #1a0e05; }
+  .tape .stars {
+    font-size: 8pt;
+    color: #f4c842;
+    letter-spacing: 2px;
+  }
+  .tape.white .stars { color: #b8860b; }
+
+  /* ------- NOW PLAYING CRT panel ------- */
+  .crt-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 0;
+  }
+  .crt-bezel {
+    flex: 1;
+    background: linear-gradient(160deg, #3a3a3a 0%, #1a1a1a 50%, #2a2a2a 100%);
+    border-radius: 26px;
+    padding: 22px;
+    box-shadow:
+      inset 0 4px 12px rgba(255,255,255,0.08),
+      inset 0 -6px 14px rgba(0,0,0,0.7),
+      0 6px 18px rgba(0,0,0,0.9);
+    position: relative;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .crt-bezel::before {
+    content: 'SONY TRINITRON';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'VT323', monospace;
+    font-size: 7pt;
+    color: #888;
+    letter-spacing: 3px;
+  }
+  .crt-bezel::after {
+    content: '◉   ◉   ◉';
+    position: absolute;
+    bottom: 4px;
+    right: 12px;
+    font-size: 5pt;
+    color: #666;
+    letter-spacing: 2px;
+  }
+  .crt-screen {
+    flex: 1;
+    background: #0a0604;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+      inset 0 0 40px rgba(0,0,0,0.95),
+      inset 0 0 8px rgba(120,80,40,0.3);
+  }
+  .crt-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.15) saturate(0.82) sepia(0.12) brightness(0.92);
+  }
+  .crt-screen .chroma {
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+  .crt-screen::after {
+    /* scanlines */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.22) 0, rgba(0,0,0,0.22) 1px, transparent 1px, transparent 3px),
+      radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.45) 100%);
+    pointer-events: none;
+  }
+  .crt-screen::before {
+    /* tracking glitch band */
+    content: '';
+    position: absolute;
+    top: 22%;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.08) 70%, transparent 100%);
+    transform: skewX(-20deg);
+    pointer-events: none;
+    z-index: 3;
+  }
+  .crt-overlay {
+    position: absolute;
+    z-index: 4;
+    font-family: 'VT323', monospace;
+    color: #fff5dc;
+    text-shadow: 0 0 6px rgba(255,255,255,0.5), 1px 1px 0 rgba(0,0,0,0.9);
+    letter-spacing: 1px;
+  }
+  .crt-overlay.top-left {
+    top: 14px;
+    left: 16px;
+    font-size: 14pt;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .crt-overlay.top-right {
+    top: 14px;
+    right: 16px;
+    font-size: 13pt;
+    text-align: right;
+    line-height: 1.1;
+  }
+  .crt-overlay.bottom-left {
+    bottom: 30px;
+    left: 16px;
+    font-size: 12pt;
+    color: #f4c842;
+  }
+  .tracking-bar {
+    position: absolute;
+    bottom: 12px;
+    left: 16px;
+    right: 16px;
+    height: 8px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.4);
+    z-index: 4;
+  }
+  .tracking-bar .fill {
+    width: 38%;
+    height: 100%;
+    background: linear-gradient(90deg, #f4c842, #e53935);
+    box-shadow: 0 0 6px rgba(244,200,66,0.6);
+  }
+  .crt-caption {
+    font-family: 'VT323', monospace;
+    font-size: 13pt;
+    color: #f4c842;
+    letter-spacing: 2px;
+    text-align: center;
+    border-top: 1px solid rgba(244,200,66,0.4);
+    border-bottom: 1px solid rgba(244,200,66,0.4);
+    padding: 4px 8px;
+    background: rgba(0,0,0,0.6);
+    text-shadow: 0 0 6px rgba(244,200,66,0.4);
+  }
+  .crt-caption .red { color: #e53935; }
+  .crt-caption .white { color: #fff5dc; }
+
+  /* ------- Page 2 ------- */
+  .pg2-header {
+    text-align: center;
+    margin-top: 10px;
+    position: relative;
+    z-index: 5;
+  }
+  .pg2-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26pt;
+    color: #fff5dc;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 0 #000, 4px 4px 0 #6b1f1f;
+  }
+  .pg2-header .sub2 {
+    font-family: 'VT323', monospace;
+    font-size: 11pt;
+    color: #f4c842;
+    letter-spacing: 2px;
+    margin-top: 4px;
+    text-shadow: 0 0 6px rgba(244,200,66,0.3);
+  }
+
+  /* Stills grid */
+  .stills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    min-height: 0;
+  }
+  .still {
+    background: linear-gradient(160deg, #3a3a3a 0%, #1a1a1a 50%, #2a2a2a 100%);
+    border-radius: 6px;
+    padding: 6px;
+    box-shadow:
+      inset 0 2px 6px rgba(255,255,255,0.08),
+      inset 0 -3px 8px rgba(0,0,0,0.7),
+      0 3px 8px rgba(0,0,0,0.8);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .still .screen-mini {
+    flex: 1;
+    background: #0a0604;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 18px rgba(0,0,0,0.95);
+    min-height: 0;
+  }
+  .still .screen-mini img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.18) saturate(0.78) sepia(0.15) brightness(0.9);
+  }
+  .still .screen-mini::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.22) 0, rgba(0,0,0,0.22) 1px, transparent 1px, transparent 3px),
+      radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.5) 100%);
+    pointer-events: none;
+  }
+  .still .mini-overlay {
+    position: absolute;
+    font-family: 'VT323', monospace;
+    color: #fff5dc;
+    text-shadow: 0 0 4px rgba(255,255,255,0.5), 1px 1px 0 rgba(0,0,0,0.9);
+    font-size: 8pt;
+    letter-spacing: 1px;
+    z-index: 3;
+  }
+  .still .mini-overlay.tl { top: 6px; left: 8px; display: flex; align-items: center; gap: 4px; }
+  .still .mini-overlay.tr { top: 6px; right: 8px; }
+  .still .mini-overlay.br { bottom: 6px; right: 8px; color: #f4c842; }
+  .still .mini-overlay .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #e53935;
+    box-shadow: 0 0 5px #e53935;
+  }
+  .still .label {
+    font-family: 'VT323', monospace;
+    font-size: 10pt;
+    color: #f4c842;
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin-top: 6px;
+    text-shadow: 0 0 4px rgba(244,200,66,0.3);
+  }
+  .still.glitch .screen-mini::before {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(255,80,80,0.3), rgba(255,255,255,0.4), rgba(80,80,255,0.3), transparent);
+    transform: skewX(-15deg);
+    z-index: 3;
+  }
+
+  /* tape counter & sticker bottom strip */
+  .bottom-strip {
+    margin-top: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+  }
+  .counter {
+    flex: 1;
+    background: #0a0604;
+    border: 2px solid #f4c842;
+    padding: 8px 14px;
+    font-family: 'VT323', monospace;
+    font-size: 16pt;
+    color: #f4c842;
+    letter-spacing: 3px;
+    text-shadow: 0 0 6px rgba(244,200,66,0.5);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+  }
+  .sticker {
+    background: #f4c842;
+    color: #1a0e05;
+    padding: 8px 14px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 12pt;
+    transform: rotate(-3deg);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    border: 1px dashed #6b4a10;
+    letter-spacing: 1px;
+  }
+
+  /* tracking error standalone */
+  .tracking-error {
+    margin-top: 12px;
+    height: 18px;
+    background:
+      linear-gradient(90deg, transparent, rgba(255,255,255,0.1) 25%, rgba(255,80,80,0.25) 50%, rgba(80,160,255,0.2) 75%, transparent),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 2px);
+    transform: skewX(-12deg);
+    position: relative;
+    z-index: 5;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .tracking-error::after {
+    content: 'TRACKING';
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%) skewX(12deg);
+    font-family: 'VT323', monospace;
+    font-size: 11pt;
+    color: #fff5dc;
+    letter-spacing: 3px;
+    text-shadow: 0 0 4px rgba(255,255,255,0.5);
+    opacity: 0.7;
+  }
+
+  /* closing chyron */
+  .closing-chyron {
+    margin-top: 14px;
+    background: linear-gradient(180deg, #6b1f1f 0%, #4a1010 100%);
+    padding: 10px 16px;
+    border-top: 2px solid #f4c842;
+    border-bottom: 2px solid #f4c842;
+    position: relative;
+    z-index: 5;
+    box-shadow: 0 0 12px rgba(244,200,66,0.3);
+  }
+  .closing-chyron p {
+    font-family: 'VT323', monospace;
+    font-size: 13pt;
+    color: #fff5dc;
+    letter-spacing: 2px;
+    line-height: 1.45;
+    text-shadow: 0 0 4px rgba(255,255,255,0.4);
+  }
+  .closing-chyron .yellow { color: #f4c842; }
+  .closing-chyron .red-dot {
+    color: #e53935;
+    font-weight: bold;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<div class="page">
+
+  <!-- VCR control bar -->
+  <div class="vcr-bar">
+    <span class="controls">&#9654; PLAY &nbsp; &#10074;&#10074; PAUSE &nbsp; &#9194; REW &nbsp; &#9193; FF &nbsp; &#9209; STOP</span>
+    <span class="rec"><span class="rec-dot"></span> REC</span>
+  </div>
+
+  <!-- Chyron title -->
+  <div class="chyron-title">
+    <h1>THE BROTHERS <span class="accent">—</span> HOME VIDEO ARCHIVE<br/><span class="accent">VHS COLLECTION VOL. 01</span></h1>
+    <div class="sub">OWNER: [GROOM] &nbsp; · &nbsp; 11 TAPES &nbsp; · &nbsp; DO NOT REWIND &nbsp; · &nbsp; PLEASE BE KIND, REWIND.</div>
+  </div>
+
+  <!-- Body: shelf + featured CRT -->
+  <div class="pg1-body">
+
+    <!-- VHS shelf -->
+    <div class="shelf">
+      <div class="shelf-label">SHELF A</div>
+
+      <div class="tape black">
+        <div class="tape-no">TAPE 01</div>
+        <div class="tape-title">GIZA '22</div>
+        <div class="stars">★ ★ ★ ★ ★</div>
+      </div>
+
+      <div class="tape white">
+        <div class="tape-no">TAPE 02</div>
+        <div class="tape-title">ZION NARROWS '23</div>
+        <div class="stars">★ ★ ★ ★</div>
+      </div>
+
+      <div class="tape red">
+        <div class="tape-no">TAPE 03</div>
+        <div class="tape-title">CABO '20</div>
+        <div class="stars">★ ★ ★ ★</div>
+      </div>
+
+      <div class="tape blue">
+        <div class="tape-no">TAPE 04</div>
+        <div class="tape-title">TIMES SQ NYE '21</div>
+        <div class="stars">★ ★ ★</div>
+      </div>
+
+      <div class="tape masking">
+        <div class="tape-no">TAPE 05</div>
+        <div class="masking-label">
+          <div class="tape-title">SHASTA SUNSET '24</div>
+        </div>
+        <div class="stars">★ ★ ★ ★ ★</div>
+      </div>
+
+      <div class="tape black">
+        <div class="tape-no">TAPE 06</div>
+        <div class="tape-title">SEDONA '23</div>
+        <div class="stars">★ ★ ★ ★</div>
+      </div>
+    </div>
+
+    <!-- Featured CRT panel -->
+    <div class="crt-panel">
+      <div class="crt-bezel">
+        <div class="crt-screen">
+          <img src="../photos/photo-08-mt-shasta.jpg" alt="Mt Shasta" />
+
+          <div class="crt-overlay top-left">
+            <span class="rec-dot"></span>
+            <span>REC&nbsp;&nbsp;SP</span>
+          </div>
+          <div class="crt-overlay top-right">
+            OCT 24 2024<br/>18:47:32
+          </div>
+          <div class="crt-overlay bottom-left">
+            CH-03 &nbsp; VHS-C
+          </div>
+          <div class="tracking-bar">
+            <div class="fill"></div>
+          </div>
+        </div>
+      </div>
+      <div class="crt-caption">
+        <span class="red">►</span> FOOTAGE: <span class="white">MT. SHASTA · DUSK · CAMPSITE BENCH · TAKE 03</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ============ PAGE 2 ============ -->
+<div class="page">
+
+  <!-- VCR bar repeated -->
+  <div class="vcr-bar">
+    <span class="controls">&#9654; PLAY &nbsp; &#10074;&#10074; PAUSE &nbsp; &#9194; REW &nbsp; &#9193; FF &nbsp; &#9209; STOP</span>
+    <span class="rec"><span class="rec-dot"></span> REC</span>
+  </div>
+
+  <div class="pg2-header">
+    <h2>TAPE CONTENTS — INDEX OF STILLS</h2>
+    <div class="sub2">COMPILED FROM VHS-C RECORDINGS · MMXVII–MMXXVI · TRANSFERRED TO DIGITAL MMXXVI FOR ARCHIVAL PURPOSES</div>
+  </div>
+
+  <div class="stills-grid">
+
+    <div class="still">
+      <div class="screen-mini">
+        <img src="../photos/photo-02-egypt-pyramid.jpg" alt="Giza" />
+        <div class="mini-overlay tl"><span class="dot"></span>REC</div>
+        <div class="mini-overlay tr">MAR 14 '22</div>
+        <div class="mini-overlay br">00:12:04</div>
+      </div>
+      <div class="label">TAPE 01 — GIZA '22 — STILL 03</div>
+    </div>
+
+    <div class="still glitch">
+      <div class="screen-mini">
+        <img src="../photos/photo-07-zion-narrows.jpg" alt="Zion Narrows" />
+        <div class="mini-overlay tl"><span class="dot"></span>REC</div>
+        <div class="mini-overlay tr">JUN 09 '23</div>
+        <div class="mini-overlay br">00:34:51</div>
+      </div>
+      <div class="label">TAPE 02 — NARROWS — STILL 01</div>
+    </div>
+
+    <div class="still">
+      <div class="screen-mini">
+        <img src="../photos/photo-04-cabo-boat.jpg" alt="Cabo" />
+        <div class="mini-overlay tl"><span class="dot"></span>REC</div>
+        <div class="mini-overlay tr">FEB 22 '20</div>
+        <div class="mini-overlay br">00:08:17</div>
+      </div>
+      <div class="label">TAPE 03 — CABO '20 — STILL 02</div>
+    </div>
+
+    <div class="still">
+      <div class="screen-mini">
+        <img src="../photos/photo-06-times-square.jpg" alt="Times Square" />
+        <div class="mini-overlay tl"><span class="dot"></span>REC</div>
+        <div class="mini-overlay tr">DEC 31 '21</div>
+        <div class="mini-overlay br">23:47:09</div>
+      </div>
+      <div class="label">TAPE 04 — NYE TIMES SQ — STILL 05</div>
+    </div>
+
+    <div class="still">
+      <div class="screen-mini">
+        <img src="../photos/photo-05-sedona-spires.jpg" alt="Sedona spires" />
+        <div class="mini-overlay tl"><span class="dot"></span>REC</div>
+        <div class="mini-overlay tr">APR 03 '23</div>
+        <div class="mini-overlay br">00:21:33</div>
+      </div>
+      <div class="label">TAPE 06 — SEDONA — STILL 04</div>
+    </div>
+
+    <div class="still glitch">
+      <div class="screen-mini">
+        <img src="../photos/photo-10-sedona-spiral.jpg" alt="Sedona spiral" />
+        <div class="mini-overlay tl"><span class="dot"></span>REC</div>
+        <div class="mini-overlay tr">APR 04 '23</div>
+        <div class="mini-overlay br">00:45:12</div>
+      </div>
+      <div class="label">TAPE 06 — SEDONA — STILL 09</div>
+    </div>
+
+    <div class="still">
+      <div class="screen-mini">
+        <img src="../photos/photo-01-beach-brown-tees.jpg" alt="Beach tees" />
+        <div class="mini-overlay tl"><span class="dot"></span>REC</div>
+        <div class="mini-overlay tr">AUG 11 '22</div>
+        <div class="mini-overlay br">00:03:48</div>
+      </div>
+      <div class="label">TAPE 07 — LA JOLLA — STILL 01</div>
+    </div>
+
+    <div class="still">
+      <div class="screen-mini">
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" alt="Beach sunset pile" />
+        <div class="mini-overlay tl"><span class="dot"></span>REC</div>
+        <div class="mini-overlay tr">AUG 11 '22</div>
+        <div class="mini-overlay br">00:19:27</div>
+      </div>
+      <div class="label">TAPE 07 — SUNSET PILE — STILL 06</div>
+    </div>
+
+    <div class="still">
+      <div class="screen-mini">
+        <img src="../photos/photo-09-neon-dorm.jpg" alt="Neon dorm" />
+        <div class="mini-overlay tl"><span class="dot"></span>REC</div>
+        <div class="mini-overlay tr">NOV 16 '20</div>
+        <div class="mini-overlay br">00:01:22</div>
+      </div>
+      <div class="label">TAPE 08 — DORM ERA — STILL 02</div>
+    </div>
+
+    <div class="still glitch">
+      <div class="screen-mini">
+        <img src="../photos/photo-11-zion-warriors.jpg" alt="Zion warriors" />
+        <div class="mini-overlay tl"><span class="dot"></span>REC</div>
+        <div class="mini-overlay tr">JUN 09 '23</div>
+        <div class="mini-overlay br">00:58:44</div>
+      </div>
+      <div class="label">TAPE 02 — WARRIORS CUT — BONUS</div>
+    </div>
+
+  </div>
+
+  <!-- Tracking error band -->
+  <div class="tracking-error"></div>
+
+  <!-- Counter + sticker -->
+  <div class="bottom-strip">
+    <div class="counter">00:42:18 / 02:00:00 &nbsp; VHS-C &nbsp; SP MODE</div>
+    <div class="sticker">REPLAY THIS TAPE!</div>
+  </div>
+
+  <!-- Closing chyron -->
+  <div class="closing-chyron">
+    <p><span class="red-dot">►</span> CLOSING TAPE — REC STOP — EOF</p>
+    <p><span class="red-dot">►</span> DEDICATED TO <span class="yellow">[GROOM]</span> — ON HIS WEDDING DAY <span class="yellow">MMXXVI</span></p>
+    <p><span class="red-dot">►</span> PLEASE REWIND BEFORE RETURNING TO THE GROUP CHAT</p>
+    <p><span class="red-dot">►</span> <span class="yellow">ŞEREFE</span> / CHEERS / <span class="yellow">İYİ YOLCULUKLAR</span></p>
+  </div>
+
+</div>
+
+</body>
+</html>
