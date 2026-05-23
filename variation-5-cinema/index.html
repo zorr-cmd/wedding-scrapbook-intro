@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Brothers — A Film in Eleven Frames</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #050505;
+    font-family: 'JetBrains Mono', monospace;
+    color: #e8dcc0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Page shell                                                        */
+  /* ------------------------------------------------------------------ */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    background: #0a0a0a;
+    color: #f5f5f5;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* Film grain overlay — subtle SVG noise */
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.18;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* Vignette */
+  .page::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 45;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.65) 100%);
+  }
+
+  /* Thin frame border around each page */
+  .page-border {
+    position: absolute;
+    inset: 0.28in;
+    border: 1px solid rgba(232,220,192,0.18);
+    z-index: 30;
+    pointer-events: none;
+  }
+  .page-border::before,
+  .page-border::after {
+    content: '';
+    position: absolute;
+    background: rgba(232,220,192,0.35);
+  }
+  .page-border::before { /* top-left corner accent */
+    width: 14px; height: 1px;
+    top: -1px; left: -1px;
+    box-shadow: 0 0 0 0 transparent;
+  }
+
+  /* Corner crop marks */
+  .crop {
+    position: absolute;
+    width: 18px; height: 18px;
+    z-index: 31;
+    pointer-events: none;
+  }
+  .crop::before, .crop::after {
+    content: '';
+    position: absolute;
+    background: rgba(232,220,192,0.55);
+  }
+  .crop::before { width: 18px; height: 1px; }
+  .crop::after  { width: 1px;  height: 18px; }
+  .crop.tl { top: 0.18in; left: 0.18in; }
+  .crop.tr { top: 0.18in; right: 0.18in; }
+  .crop.tr::before { right: 0; }
+  .crop.tr::after  { right: 0; }
+  .crop.bl { bottom: 0.18in; left: 0.18in; }
+  .crop.bl::before { bottom: 0; }
+  .crop.bl::after  { bottom: 0; }
+  .crop.br { bottom: 0.18in; right: 0.18in; }
+  .crop.br::before { bottom: 0; right: 0; }
+  .crop.br::after  { bottom: 0; right: 0; }
+
+  /* ------------------------------------------------------------------ */
+  /*  Shared monospace helpers                                          */
+  /* ------------------------------------------------------------------ */
+  .mono { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; }
+  .micro { font-size: 7px; letter-spacing: 0.22em; text-transform: uppercase; }
+  .small { font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; }
+  .gold  { color: #e8dcc0; }
+  .dim   { color: rgba(245,245,245,0.5); }
+
+  /* ================================================================== */
+  /*  PAGE 1 — TITLE CARD                                               */
+  /* ================================================================== */
+  .title-card {
+    display: flex;
+    flex-direction: column;
+    padding: 0.55in 0.6in;
+    position: relative;
+  }
+
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(232,220,192,0.35);
+    border-bottom: 1px solid rgba(232,220,192,0.35);
+    padding: 7px 0;
+    margin-bottom: 0.42in;
+  }
+  .header-row .left,
+  .header-row .right {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+  .reel-mark {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: #e8dcc0;
+    border-radius: 50%;
+  }
+
+  /* Studio mark */
+  .studio {
+    text-align: center;
+    margin-bottom: 0.3in;
+  }
+  .studio .presents {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.55em;
+    color: rgba(232,220,192,0.7);
+    text-transform: uppercase;
+    padding-left: 0.55em; /* compensate letter-spacing */
+  }
+  .studio .studio-name {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.45em;
+    color: #e8dcc0;
+    margin-top: 6px;
+    padding-left: 0.45em;
+  }
+  .studio .rule {
+    width: 60px;
+    height: 1px;
+    background: #e8dcc0;
+    margin: 12px auto 0;
+    opacity: 0.6;
+  }
+
+  /* The title block */
+  .title-block {
+    text-align: center;
+    margin-bottom: 0.18in;
+  }
+  .title-block .article {
+    font-family: 'Cinzel', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.5em;
+    color: rgba(232,220,192,0.85);
+    padding-left: 0.5em;
+  }
+  .title-block h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 108px;
+    letter-spacing: 0.06em;
+    line-height: 0.92;
+    color: #f5f5f5;
+    margin: 6px 0 4px;
+    text-shadow: 0 0 28px rgba(232,220,192,0.12);
+  }
+  .title-block .ampersand {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    color: #e8dcc0;
+  }
+  .title-block .subtitle-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 10px;
+  }
+  .title-block .subtitle-line .bar {
+    flex: 0 0 40px;
+    height: 1px;
+    background: rgba(232,220,192,0.55);
+  }
+  .title-block .subtitle-line .text {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.42em;
+    color: #e8dcc0;
+    padding-left: 0.42em;
+  }
+
+  .tagline {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    color: rgba(245,245,245,0.78);
+    margin: 12px auto 0.28in;
+    max-width: 4.6in;
+  }
+  .tagline::before, .tagline::after {
+    content: '· · ·';
+    color: rgba(232,220,192,0.45);
+    margin: 0 0.5em;
+    letter-spacing: 0.3em;
+    font-style: normal;
+  }
+
+  /* Hero still — letterbox */
+  .hero {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2.39 / 1;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid rgba(232,220,192,0.25);
+    box-shadow:
+      0 0 0 6px #0a0a0a,
+      0 0 0 7px rgba(232,220,192,0.18),
+      0 18px 40px rgba(0,0,0,0.6);
+  }
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 62%;
+    filter: contrast(1.06) saturate(1.0);
+  }
+  .hero .timecode {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px;
+    letter-spacing: 0.18em;
+    color: rgba(245,245,245,0.85);
+    background: rgba(0,0,0,0.55);
+    padding: 3px 6px;
+    border: 1px solid rgba(245,245,245,0.25);
+  }
+  .hero .scene-slate {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px;
+    letter-spacing: 0.18em;
+    color: rgba(245,245,245,0.85);
+    background: rgba(0,0,0,0.55);
+    padding: 3px 6px;
+    border: 1px solid rgba(245,245,245,0.25);
+  }
+
+  /* Credit block beneath hero */
+  .credits {
+    margin-top: 0.32in;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.18in 0.3in;
+    text-align: center;
+  }
+  .credits .credit-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(232,220,192,0.75);
+    margin-bottom: 6px;
+  }
+  .credits .credit-name {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 11.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #f5f5f5;
+    line-height: 1.4;
+    padding-left: 0.22em;
+  }
+  .credits .credit.full {
+    grid-column: 1 / -1;
+  }
+  .credits .credit.full .credit-name {
+    font-size: 13px;
+    letter-spacing: 0.32em;
+  }
+  .credits .divider {
+    grid-column: 1 / -1;
+    height: 1px;
+    background: rgba(232,220,192,0.22);
+    margin: 4px 0;
+  }
+
+  /* Footer */
+  .title-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 0.22in;
+    border-top: 1px solid rgba(232,220,192,0.28);
+  }
+  .title-footer .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(232,220,192,0.55);
+    padding: 5px 9px;
+  }
+  .title-footer .badge .b {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #e8dcc0;
+    line-height: 1;
+    padding-left: 0.05em;
+  }
+  .title-footer .badge .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.5px;
+    letter-spacing: 0.28em;
+    color: rgba(245,245,245,0.8);
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  /* ================================================================== */
+  /*  PAGE 2 — THE REEL / CONTACT SHEET                                 */
+  /* ================================================================== */
+  .reel-page {
+    display: flex;
+    flex-direction: column;
+    padding: 0.42in 0.5in 0.42in;
+    position: relative;
+  }
+
+  .reel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(232,220,192,0.35);
+    border-bottom: 1px solid rgba(232,220,192,0.35);
+    padding: 6px 0;
+    margin-bottom: 0.22in;
+  }
+  .reel-header .title-mini {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.42em;
+    color: #e8dcc0;
+    padding-left: 0.42em;
+  }
+
+  .reel-title {
+    text-align: center;
+    margin-bottom: 0.04in;
+  }
+  .reel-title .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.42em;
+    color: rgba(232,220,192,0.8);
+    text-transform: uppercase;
+    padding-left: 0.42em;
+  }
+  .reel-title h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    letter-spacing: 0.16em;
+    color: #f5f5f5;
+    margin-top: 2px;
+    padding-left: 0.16em;
+  }
+  .reel-title .rule {
+    width: 80px;
+    height: 1px;
+    background: rgba(232,220,192,0.5);
+    margin: 8px auto 0;
+  }
+
+  /* ---------------- FILM STRIP ---------------- */
+  .strip-wrap {
+    margin: 0.1in 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .strip-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.5px;
+    letter-spacing: 0.28em;
+    color: rgba(232,220,192,0.65);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    padding: 0 4px;
+  }
+
+  .film-strip {
+    background: #000;
+    position: relative;
+    padding: 8px 8px;
+    box-shadow:
+      0 0 0 1px rgba(245,245,245,0.08),
+      0 10px 22px rgba(0,0,0,0.5);
+  }
+
+  /* sprocket holes via background image (top + bottom) */
+  .sprockets {
+    height: 10px;
+    background-image: repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent 8px,
+      #f5f5f5 8px,
+      #f5f5f5 18px,
+      transparent 18px,
+      transparent 26px
+    );
+    background-size: 26px 6px;
+    background-repeat: repeat-x;
+    background-position: center;
+  }
+
+  .frames {
+    display: flex;
+    gap: 6px;
+    padding: 6px 4px;
+    align-items: stretch;
+  }
+  .frame {
+    background: #000;
+    border: 2px solid #f5f5f5;
+    overflow: hidden;
+    position: relative;
+    flex: 1;
+  }
+  .frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.03) saturate(1.0) brightness(1.04);
+  }
+  .frame .slate {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    padding: 14px 6px 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6px;
+    letter-spacing: 0.18em;
+    color: rgba(245,245,245,0.92);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+  }
+  .frame .frame-no {
+    position: absolute;
+    top: 3px; left: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5.5px;
+    letter-spacing: 0.18em;
+    color: rgba(245,245,245,0.7);
+  }
+
+  /* aspect ratio variants for frames */
+  .frame.r-43 { aspect-ratio: 4 / 3; }
+  .frame.r-32 { aspect-ratio: 3 / 2; }
+  .frame.r-11 { aspect-ratio: 1 / 1; }
+  .frame.r-23 { aspect-ratio: 2 / 3; }
+
+  /* strip tilt variants */
+  .tilt-l { transform: rotate(-1.4deg); transform-origin: center; }
+  .tilt-r { transform: rotate( 1.2deg); transform-origin: center; }
+
+  /* End credits */
+  .end-credits {
+    margin-top: auto;
+    text-align: center;
+    padding-top: 0.14in;
+    border-top: 1px solid rgba(232,220,192,0.3);
+  }
+  .end-credits .end-mark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.42em;
+    color: rgba(232,220,192,0.85);
+    text-transform: uppercase;
+    padding-left: 0.42em;
+  }
+  .end-credits .dedication {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.34em;
+    color: #f5f5f5;
+    margin: 6px 0 3px;
+    padding-left: 0.34em;
+  }
+  .end-credits .occasion {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(245,245,245,0.82);
+    margin-bottom: 6px;
+  }
+  .end-credits .date-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.32em;
+    color: rgba(232,220,192,0.85);
+    text-transform: uppercase;
+    padding: 4px 0;
+  }
+  .end-credits .date-line .dot {
+    width: 4px; height: 4px; border-radius: 50%; background: #e8dcc0;
+  }
+  .end-credits .gratitude {
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.28em;
+    color: rgba(245,245,245,0.55);
+    text-transform: uppercase;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- =============================== PAGE 1 — TITLE CARD =============================== -->
+<section class="page title-card">
+
+  <div class="page-border"></div>
+  <div class="crop tl"></div><div class="crop tr"></div>
+  <div class="crop bl"></div><div class="crop br"></div>
+
+  <!-- Top header bar -->
+  <div class="header-row">
+    <div class="left mono micro gold">
+      <span class="reel-mark"></span>
+      <span>REEL 01 / 01</span>
+      <span class="dim">·</span>
+      <span class="dim">35MM · COLOR</span>
+    </div>
+    <div class="right mono micro dim">
+      <span>ASPECT 2.39:1</span>
+      <span>·</span>
+      <span>SOUND: DOLBY · ATMOS OF LAUGHTER</span>
+    </div>
+  </div>
+
+  <!-- Studio mark -->
+  <div class="studio">
+    <div class="presents">THE BROTHERHOOD PICTURES &nbsp;·&nbsp; A LIFETIME PRODUCTION</div>
+    <div class="studio-name">PRESENTS</div>
+    <div class="rule"></div>
+  </div>
+
+  <!-- Main title -->
+  <div class="title-block">
+    <div class="article">— AN ORIGINAL MEMORY IN ELEVEN FRAMES —</div>
+    <h1>THE BROTHERS</h1>
+    <div class="subtitle-line">
+      <span class="bar"></span>
+      <span class="text">A FILM ABOUT GOOD COMPANY</span>
+      <span class="bar"></span>
+    </div>
+  </div>
+
+  <div class="tagline">Some friendships are stories. Others are epics.</div>
+
+  <!-- Hero still -->
+  <div class="hero">
+    <img src="../photos/photo-08-mt-shasta.jpg" alt="Mt. Shasta sunset throne">
+    <div class="scene-slate">SCENE 47 · TAKE 01 · INT. GOLDEN HOUR</div>
+    <div class="timecode">01:42:08:17</div>
+  </div>
+
+  <!-- Director / production credits -->
+  <div class="credits">
+
+    <div class="credit full">
+      <div class="credit-label">Written, Produced, and Lived By</div>
+      <div class="credit-name">THE BOYS</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="credit">
+      <div class="credit-label">Directed By</div>
+      <div class="credit-name">Time<br>&amp; Circumstance</div>
+    </div>
+    <div class="credit">
+      <div class="credit-label">Cinematography</div>
+      <div class="credit-name">Sunlight<br>Saltwater · Red Rock</div>
+    </div>
+    <div class="credit">
+      <div class="credit-label">Original Score</div>
+      <div class="credit-name">Group Chat<br>(Unreleased)</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="credit full">
+      <div class="credit-label">Starring, In Order Of Appearance</div>
+      <div class="credit-name">A · B · C · D · E · F · G · H</div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="title-footer">
+    <div class="badge">
+      <div class="b">B</div>
+      <div class="lbl">RATED B<br>FOR BROTHERHOOD</div>
+    </div>
+    <div class="mono micro dim" style="text-align:center; line-height:1.6;">
+      ORIGINAL THEATRICAL RELEASE<br>
+      <span class="gold">— ENGAGED FOR SCREENINGS WORLDWIDE —</span>
+    </div>
+    <div class="mono micro gold" style="text-align:right; line-height:1.6;">
+      RUNTIME &nbsp; 10 YEARS<br>
+      <span class="dim">FILE NO. WED-2026-01</span>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- =============================== PAGE 2 — THE REEL =============================== -->
+<section class="page reel-page">
+
+  <div class="page-border"></div>
+  <div class="crop tl"></div><div class="crop tr"></div>
+  <div class="crop bl"></div><div class="crop br"></div>
+
+  <!-- header -->
+  <div class="reel-header">
+    <div class="mono micro gold">
+      <span class="reel-mark" style="display:inline-block;vertical-align:middle;margin-right:8px;"></span>
+      REEL 02 &nbsp; · &nbsp; CONTACT SHEET
+    </div>
+    <div class="title-mini">THE BROTHERS</div>
+    <div class="mono micro dim">
+      DEV: STANDARD · C-41 &nbsp; · &nbsp; PRINTED ON ARCHIVAL STOCK
+    </div>
+  </div>
+
+  <!-- title -->
+  <div class="reel-title">
+    <div class="kicker">— SELECTED STILLS · OUTTAKES · B-ROLL —</div>
+    <h2>THE WORKING PRINT</h2>
+    <div class="rule"></div>
+  </div>
+
+
+  <!-- STRIP 1 — 3 frames, Egypt / Cabo / Times Square -->
+  <div class="strip-wrap tilt-l">
+    <div class="strip-meta">
+      <span>KODAK PORTRA 400 · 5063</span>
+      <span>ROLL A · 36 EXP</span>
+      <span>EI 400 · DEV C-41</span>
+    </div>
+    <div class="film-strip">
+      <div class="sprockets"></div>
+      <div class="frames">
+        <div class="frame r-32">
+          <div class="frame-no">01A</div>
+          <img src="../photos/photo-02-egypt-pyramid.jpg" alt="Giza pyramid">
+          <div class="slate"><span>GIZA · EG</span><span>04:32</span></div>
+        </div>
+        <div class="frame r-32">
+          <div class="frame-no">02A</div>
+          <img src="../photos/photo-04-cabo-boat.jpg" alt="Cabo San Lucas">
+          <div class="slate"><span>CABO · MX</span><span>11:18</span></div>
+        </div>
+        <div class="frame r-32">
+          <div class="frame-no">03A</div>
+          <img src="../photos/photo-06-times-square.jpg" alt="Times Square">
+          <div class="slate"><span>NYC · TKTS</span><span>22:47</span></div>
+        </div>
+      </div>
+      <div class="sprockets"></div>
+    </div>
+  </div>
+
+
+  <!-- STRIP 2 — 4 frames, Zion / Sedona / Mt Shasta / Sedona spiral -->
+  <div class="strip-wrap">
+    <div class="strip-meta">
+      <span>KODAK GOLD 200</span>
+      <span>ROLL B · 36 EXP</span>
+      <span>EI 200 · SUNNY 16</span>
+    </div>
+    <div class="film-strip">
+      <div class="sprockets"></div>
+      <div class="frames">
+        <div class="frame r-43">
+          <div class="frame-no">04B</div>
+          <img src="../photos/photo-07-zion-narrows.jpg" alt="Zion Narrows">
+          <div class="slate"><span>ZION · UT</span><span>09:14</span></div>
+        </div>
+        <div class="frame r-43">
+          <div class="frame-no">05B</div>
+          <img src="../photos/photo-05-sedona-spires.jpg" alt="Sedona spires">
+          <div class="slate"><span>SEDONA · AZ</span><span>15:02</span></div>
+        </div>
+        <div class="frame r-43">
+          <div class="frame-no">06B</div>
+          <img src="../photos/photo-10-sedona-spiral.jpg" alt="Sedona spiral">
+          <div class="slate"><span>SEDONA · AZ</span><span>17:36</span></div>
+        </div>
+        <div class="frame r-43">
+          <div class="frame-no">07B</div>
+          <img src="../photos/photo-11-zion-warriors.jpg" alt="Zion warriors">
+          <div class="slate"><span>ZION · UT</span><span>SUNRISE</span></div>
+        </div>
+      </div>
+      <div class="sprockets"></div>
+    </div>
+  </div>
+
+
+  <!-- STRIP 3 — 4 frames, beach tees / beach pile / neon dorm / mt shasta -->
+  <div class="strip-wrap tilt-r">
+    <div class="strip-meta">
+      <span>ILFORD HP5 PLUS · PUSH-PROCESSED FOR COLOR</span>
+      <span>ROLL C · 24 EXP</span>
+      <span>EI 800 · DEV PUSH +1</span>
+    </div>
+    <div class="film-strip">
+      <div class="sprockets"></div>
+      <div class="frames">
+        <div class="frame r-43">
+          <div class="frame-no">08C</div>
+          <img src="../photos/photo-09-neon-dorm.jpg" alt="Neon dorm">
+          <div class="slate"><span>INT · COLLEGE</span><span>YR 01</span></div>
+        </div>
+        <div class="frame r-43">
+          <div class="frame-no">09C</div>
+          <img src="../photos/photo-01-beach-brown-tees.jpg" alt="Beach brown tees">
+          <div class="slate"><span>PACIFIC · CA</span><span>13:24</span></div>
+        </div>
+        <div class="frame r-43">
+          <div class="frame-no">10C</div>
+          <img src="../photos/photo-03-beach-sunset-pile.jpg" alt="Beach sunset pile">
+          <div class="slate"><span>GOLDEN HOUR</span><span>19:18</span></div>
+        </div>
+      </div>
+      <div class="sprockets"></div>
+    </div>
+  </div>
+
+
+  <!-- END CREDITS -->
+  <div class="end-credits">
+    <div class="end-mark">— END OF REEL ONE —</div>
+    <div class="dedication">DEDICATED TO THE GROOM</div>
+    <div class="occasion">on the eve of forever</div>
+    <div class="date-line">
+      <span>SUMMER · MMXXVI</span>
+      <span class="dot"></span>
+      <span>A TRUE STORY</span>
+      <span class="dot"></span>
+      <span>EXHIBITED ONCE · REMEMBERED ALWAYS</span>
+    </div>
+    <div class="gratitude">— WITH GRATITUDE TO EVERYONE WHO MADE IT WITH US —</div>
+  </div>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wedding Scrapbook Intro — 5 Variations</title>
+<meta property="og:title" content="Wedding Scrapbook Intro — 5 Variations">
+<meta property="og:description" content="Five creative takes on a 2-page scrapbook intro spread.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f10;
+    --panel: #1a1a1c;
+    --panel-2: #232326;
+    --text: #f3f1ed;
+    --muted: #9a9892;
+    --accent: #d4a373;
+    --border: #2a2a2e;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; }
+  a { color: var(--accent); }
+
+  header.top {
+    padding: 56px 40px 24px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  header.top h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 56px);
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+  }
+  header.top p {
+    color: var(--muted);
+    max-width: 680px;
+    margin: 0 auto 24px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .toc {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  .toc a {
+    text-decoration: none;
+    color: var(--text);
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    transition: all .15s;
+  }
+  .toc a:hover { background: var(--panel-2); border-color: var(--accent); color: var(--accent); }
+
+  section.variation {
+    padding: 56px 40px;
+    border-bottom: 1px solid var(--border);
+    max-width: 1900px;
+    margin: 0 auto;
+  }
+  .var-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .var-header .left { flex: 1 1 480px; min-width: 0; }
+  .var-header .num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--accent);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .var-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin: 4px 0 8px;
+    font-size: clamp(28px, 3vw, 38px);
+    letter-spacing: -0.01em;
+  }
+  .var-header .tagline {
+    color: var(--muted);
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    max-width: 600px;
+  }
+  .var-actions { display: flex; gap: 10px; flex-shrink: 0; }
+  .btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: all .15s;
+    color: var(--text);
+    background: var(--panel);
+    cursor: pointer;
+  }
+  .btn:hover { background: var(--panel-2); border-color: var(--accent); color: var(--accent); }
+  .btn.primary { background: var(--accent); color: #1a1306; border-color: var(--accent); }
+  .btn.primary:hover { background: #e8b687; color: #1a1306; }
+
+  .pages {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .page-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .page-card .label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .page-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  }
+
+  footer {
+    padding: 40px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  footer code {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .pages { grid-template-columns: 1fr; }
+    section.variation { padding: 40px 20px; }
+    header.top { padding: 40px 20px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>Wedding Scrapbook Intro — 5 Variations</h1>
+  <p>Five distinct creative takes on a 2-page intro spread (8.5″ × 11″ each, US Letter) featuring all 11 photos. Each is self-contained HTML you can edit, print, or export to PDF. Click any variation to open the live HTML in a new tab.</p>
+  <nav class="toc">
+    <a href="#v1">01 · Vintage Passport</a>
+    <a href="#v2">02 · Polaroid Scatter</a>
+    <a href="#v3">03 · Magazine Editorial</a>
+    <a href="#v4">04 · Cartographer's Atlas</a>
+    <a href="#v5">05 · Cinematic Film Reel</a>
+  </nav>
+</header>
+
+<section class="variation" id="v1">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Variation 01</div>
+      <h2>The Chronicles of the Crew — A Vintage Passport</h2>
+      <p class="tagline">Aged leather, ink stamps, boarding passes, and polaroids clipped into a well-worn passport journal. Coordinates under each photo, a manifest of destinations, twine and washi tape. Indiana-Jones-meets-old-world-wanderlust.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-1-passport/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · Cover</div>
+      <img src="screenshots/variation-1-page1.jpg" alt="Variation 1 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · Field Notes & Stamps</div>
+      <img src="screenshots/variation-1-page2.jpg" alt="Variation 1 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="variation" id="v2">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Variation 02</div>
+      <h2>The Boys — Polaroid Scatter</h2>
+      <p class="tagline">A tactile scrapbook page. Polaroids rotated at random angles, slightly overlapping, with handwritten captions, washi tape, paper clips, and doodles in the margins. Warm cream paper. Feels like a best friend made it by hand at a coffee shop.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-2-polaroid/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · The Boys</div>
+      <img src="screenshots/variation-2-page1.jpg" alt="Variation 2 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · More Memories</div>
+      <img src="screenshots/variation-2-page2.jpg" alt="Variation 2 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="variation" id="v3">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Variation 03</div>
+      <h2>Brothers — A Magazine Editorial</h2>
+      <p class="tagline">A premium independent magazine. Crisp serif typography (Playfair Display + Inter), generous whitespace, full-bleed hero photo on the cover, asymmetric editorial grid on the spread. Captions, pull quotes, page numbers. Cereal / Kinfolk / Monocle energy.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-3-editorial/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · Cover</div>
+      <img src="screenshots/variation-3-page1.jpg" alt="Variation 3 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · Feature Spread</div>
+      <img src="screenshots/variation-3-page2.jpg" alt="Variation 3 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="variation" id="v4">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Variation 04</div>
+      <h2>The Atlas of Brotherhood — Cartographer's Journey</h2>
+      <p class="tagline">A vintage explorer's chart with photos pinned to real lat/long coordinates: Giza, Cabo, Zion, Sedona, NYC, Mt. Shasta, La Jolla. Dashed travel routes, compass rose, "Hic Sunt Amici". Page 2 is a numbered field log of every stop.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-4-map-journey/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · The Atlas</div>
+      <img src="screenshots/variation-4-page1.jpg" alt="Variation 4 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · The Field Log</div>
+      <img src="screenshots/variation-4-page2.jpg" alt="Variation 4 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="variation" id="v5">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Variation 05</div>
+      <h2>The Brothers — A Cinematic Reel</h2>
+      <p class="tagline">A Criterion-Collection title card and contact sheet. Page 1 is the movie poster (hero still, director credits, "Rated B for Brotherhood", runtime 10 years). Page 2 is three 35mm film strips (Kodak Portra, Kodak Gold, Ilford HP5) with sprocket holes and slate timestamps.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-5-cinema/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · Title Card</div>
+      <img src="screenshots/variation-5-page1.jpg" alt="Variation 5 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · The Working Print</div>
+      <img src="screenshots/variation-5-page2.jpg" alt="Variation 5 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Five creative variations of a wedding scrapbook intro spread, each 2 pages at 8.5″ × 11″.</p>
+  <p>To print: open any variation, ⌘P → Save as PDF or print to paper at 100% scale (no fit-to-page).</p>
+</footer>
+
+</body>
+</html>

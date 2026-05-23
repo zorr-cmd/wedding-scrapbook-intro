@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Boys — A Scrapbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&family=Shadows+Into+Light+Two&family=Permanent+Marker&family=Homemade+Apple&family=Sacramento&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+
+  :root {
+    --paper: #f5f1e8;
+    --paper-warm: #efe7d4;
+    --ink: #2b2620;
+    --ink-soft: #3a342c;
+    --tape-blue: rgba(140, 188, 210, 0.72);
+    --tape-pink: rgba(232, 168, 178, 0.74);
+    --tape-mustard: rgba(214, 178, 96, 0.72);
+    --tape-mint: rgba(168, 204, 178, 0.72);
+  }
+
+  html, body { margin: 0; padding: 0; background: #d9d4c5; }
+  body { font-family: 'Caveat', cursive; color: var(--ink); }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    background-color: var(--paper);
+    background-image:
+      /* coffee ring stain */
+      radial-gradient(ellipse 1.2in 1.1in at 7.6in 1.1in, rgba(120, 80, 40, 0.05) 38%, rgba(120, 80, 40, 0.12) 42%, rgba(120, 80, 40, 0.05) 46%, transparent 50%),
+      /* subtle paper fiber noise via layered gradients */
+      radial-gradient(circle at 12% 18%, rgba(180,160,120,0.10) 0%, transparent 18%),
+      radial-gradient(circle at 88% 72%, rgba(180,160,120,0.10) 0%, transparent 22%),
+      radial-gradient(circle at 40% 90%, rgba(120,100,70,0.06) 0%, transparent 25%),
+      radial-gradient(circle at 70% 10%, rgba(120,100,70,0.05) 0%, transparent 20%),
+      /* fiber texture */
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.38  0 0 0 0 0.28  0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>"),
+      linear-gradient(180deg, #faf6ed 0%, #f3ecdb 100%);
+    background-blend-mode: multiply, normal, normal, normal, normal, normal, normal;
+  }
+
+  .page::after {
+    /* warm vignette */
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 110% 100% at 50% 50%, transparent 55%, rgba(80,60,30,0.10) 100%);
+    pointer-events: none;
+  }
+
+  /* ---------- Polaroid ---------- */
+  .polaroid {
+    position: absolute;
+    background: #fffefb;
+    padding: 14px 14px 0 14px;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.10),
+      0 8px 18px rgba(40, 30, 15, 0.18),
+      0 20px 36px rgba(40, 30, 15, 0.10);
+    border-radius: 2px;
+    /* inner photo wrapper sits above; caption strip uses padding-bottom */
+  }
+  .polaroid .photo {
+    width: 100%;
+    height: calc(100% - 64px - 14px); /* leave caption + top padding */
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.92) contrast(0.98) brightness(0.99);
+    box-shadow: inset 0 0 30px rgba(60, 40, 20, 0.08);
+  }
+  .polaroid .cap {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.05;
+  }
+  /* slight grain over photo */
+  .polaroid .photo-wrap {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 64px - 14px);
+    overflow: hidden;
+  }
+  .polaroid .photo-wrap::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.18 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .polaroid .photo-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.92) contrast(0.98) brightness(0.99);
+  }
+
+  /* ---------- Washi Tape ---------- */
+  .tape {
+    position: absolute;
+    width: 110px; height: 26px;
+    background: var(--tape-blue);
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.10),
+      inset 0 0 18px rgba(255,255,255,0.25);
+    /* torn edges via clip-path */
+    clip-path: polygon(2% 12%, 8% 4%, 16% 14%, 25% 2%, 34% 16%, 44% 6%, 55% 14%, 66% 2%, 78% 12%, 88% 4%, 98% 14%, 98% 88%, 90% 96%, 80% 86%, 70% 98%, 58% 88%, 46% 96%, 34% 86%, 22% 98%, 10% 88%, 2% 96%);
+  }
+  .tape::before {
+    /* stripe pattern for texture */
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 14px, rgba(255,255,255,0.15) 14px 16px),
+      repeating-linear-gradient(0deg, transparent 0 4px, rgba(0,0,0,0.05) 4px 5px);
+    opacity: 0.9;
+  }
+  .tape.pink { background: var(--tape-pink); }
+  .tape.mustard { background: var(--tape-mustard); }
+  .tape.mint { background: var(--tape-mint); }
+
+  /* ---------- Paperclip ---------- */
+  .paperclip {
+    position: absolute;
+    width: 38px; height: 86px;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.25));
+  }
+
+  /* ---------- Doodles ---------- */
+  .doodle {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  /* ---------- Title ---------- */
+  .title {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 0.55in;
+    font-family: 'Permanent Marker', cursive;
+    color: var(--ink);
+    letter-spacing: 2px;
+    line-height: 0.9;
+  }
+  .title .main {
+    font-size: 92px;
+    transform: rotate(-2deg);
+    display: inline-block;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.04);
+  }
+  .title .sub {
+    font-family: 'Caveat', cursive;
+    font-weight: 500;
+    font-size: 30px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    transform: rotate(-1.5deg);
+    display: block;
+  }
+  .title .underline {
+    display: block;
+    width: 140px;
+    height: 6px;
+    margin: 8px auto 0;
+    background: var(--ink);
+    border-radius: 2px;
+    transform: rotate(-1.2deg);
+    opacity: 0.85;
+  }
+
+  .corner-note {
+    position: absolute;
+    font-family: 'Kalam', cursive;
+    color: var(--ink-soft);
+    transform: rotate(-3deg);
+  }
+
+  .closing-note {
+    position: absolute;
+    bottom: 0.5in;
+    right: 0.7in;
+    text-align: right;
+    font-family: 'Homemade Apple', cursive;
+    color: var(--ink);
+    font-size: 22px;
+    line-height: 1.55;
+    max-width: 3.4in;
+    transform: rotate(-2deg);
+  }
+  .closing-note .sig {
+    font-family: 'Sacramento', cursive;
+    font-size: 38px;
+    display: block;
+    margin-top: 6px;
+  }
+
+  /* corner stamps / margin doodles */
+  .page-num {
+    position: absolute;
+    bottom: 0.3in;
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: rgba(60, 50, 30, 0.55);
+  }
+</style>
+</head>
+<body>
+
+<!-- =================== PAGE 1 =================== -->
+<div class="page" id="p1">
+
+  <!-- Decorative arrow doodle pointing at title (top-left) -->
+  <svg class="doodle" style="top:1.2in; left:0.45in; width:120px; height:80px; transform: rotate(-8deg);" viewBox="0 0 120 80" fill="none" stroke="#3a342c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 65 C 30 60, 50 40, 70 25 C 85 14, 95 12, 108 14" stroke-dasharray="0" />
+    <path d="M100 8 L 110 14 L 102 22" />
+  </svg>
+  <div class="corner-note" style="top: 0.95in; left: 0.5in; font-size: 22px;">look at these guys ↗</div>
+
+  <!-- Hand-drawn heart top right -->
+  <svg class="doodle" style="top: 0.55in; right: 0.55in; width: 70px; height: 60px; transform: rotate(12deg);" viewBox="0 0 70 60" fill="none" stroke="#c44a4a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M35 52 C 12 36, 4 22, 14 12 C 22 4, 32 10, 35 18 C 38 10, 48 4, 56 12 C 66 22, 58 36, 35 52 Z" />
+  </svg>
+
+  <!-- TITLE -->
+  <div class="title">
+    <span class="main">The Boys</span>
+    <span class="underline"></span>
+    <span class="sub">ten years of trouble &amp; good times — for raj, on the eve of forever</span>
+  </div>
+
+  <!-- HERO polaroid: Mt. Shasta sunset, middle-upper, big -->
+  <div class="polaroid" style="top: 2.7in; left: 2.05in; width: 4.4in; height: 3.55in; transform: rotate(-2.5deg); z-index: 5;">
+    <div class="photo-wrap"><img src="../photos/photo-08-mt-shasta.jpg" alt=""></div>
+    <div class="cap" style="font-size: 26px;">shasta sunset // forever</div>
+    <!-- washi tape on top -->
+    <div class="tape mustard" style="top: -14px; left: 1.5in; width: 130px; transform: rotate(-6deg);"></div>
+    <div class="tape blue" style="top: -12px; right: 0.7in; width: 100px; transform: rotate(7deg);"></div>
+  </div>
+
+  <!-- Egypt pyramid, left side, overlapping hero a bit -->
+  <div class="polaroid" style="top: 4.4in; left: 0.45in; width: 2.7in; height: 2.35in; transform: rotate(-7deg); z-index: 6;">
+    <div class="photo-wrap"><img src="../photos/photo-02-egypt-pyramid.jpg" alt=""></div>
+    <div class="cap" style="font-size: 22px;">human pyramid @ the pyramid</div>
+    <div class="tape pink" style="top: -12px; left: 0.9in; width: 90px; transform: rotate(-12deg);"></div>
+  </div>
+
+  <!-- Times Square, right side, overlapping hero from the right -->
+  <div class="polaroid" style="top: 5.4in; right: 0.4in; width: 2.55in; height: 3.05in; transform: rotate(6deg); z-index: 7;">
+    <div class="photo-wrap"><img src="../photos/photo-06-times-square.jpg" alt=""></div>
+    <div class="cap" style="font-size: 22px;">times square, 3am energy</div>
+  </div>
+
+  <!-- Beach brown tees, bottom-left -->
+  <div class="polaroid" style="top: 7.2in; left: 0.8in; width: 3.1in; height: 2.5in; transform: rotate(4deg); z-index: 4;">
+    <div class="photo-wrap"><img src="../photos/photo-01-beach-brown-tees.jpg" alt=""></div>
+    <div class="cap" style="font-size: 22px;">matching fits, salty air</div>
+    <div class="tape mint" style="top: -12px; left: 0.5in; width: 110px; transform: rotate(-8deg);"></div>
+  </div>
+
+  <!-- Neon dorm — small, tilted, top-right under title -->
+  <div class="polaroid" style="top: 2.2in; right: 0.55in; width: 2.1in; height: 1.85in; transform: rotate(8deg); z-index: 8;">
+    <div class="photo-wrap"><img src="../photos/photo-09-neon-dorm.jpg" alt=""></div>
+    <div class="cap" style="font-size: 20px;">neon era // day one</div>
+    <!-- paperclip -->
+    <svg class="paperclip" style="top:-30px; right: 22px; transform: rotate(15deg);" viewBox="0 0 38 86" fill="none" stroke="#9aa0a6" stroke-width="3" stroke-linecap="round">
+      <path d="M27 8 C 33 8, 33 18, 27 18 L 11 18 C 5 18, 5 28, 11 28 L 27 28 C 33 28, 33 38, 27 38 L 11 38 C 5 38, 5 48, 11 48 L 27 48 C 33 48, 33 58, 27 58 L 11 58 C 5 58, 5 68, 11 68 L 27 68" />
+    </svg>
+  </div>
+
+  <!-- doodled arrow from neon dorm down to beach brown tees with "10 years!" note -->
+  <svg class="doodle" style="top: 7.0in; left: 4.2in; width: 200px; height: 80px; transform: rotate(2deg);" viewBox="0 0 200 80" fill="none" stroke="#3a342c" stroke-width="2" stroke-linecap="round">
+    <path d="M5 10 C 60 20, 120 40, 185 65" stroke-dasharray="5 4" />
+    <path d="M178 56 L 188 66 L 176 72" />
+  </svg>
+  <div class="corner-note" style="top: 7.55in; left: 4.4in; font-family: 'Kalam', cursive; font-weight: 700; font-size: 22px; transform: rotate(-4deg); color: #b35a4a;">10 years!!</div>
+
+  <div class="page-num" style="left: 0.5in;">~ page one ~</div>
+  <div class="corner-note" style="bottom: 0.32in; right: 0.55in; font-size: 20px;">est. freshman year</div>
+</div>
+
+<!-- =================== PAGE 2 =================== -->
+<div class="page" id="p2">
+
+  <!-- small header tag, top left -->
+  <div class="corner-note" style="top: 0.5in; left: 0.6in; font-family: 'Permanent Marker', cursive; font-size: 34px; transform: rotate(-3deg); color: var(--ink);">more memories</div>
+  <div class="corner-note" style="top: 1.05in; left: 0.65in; font-size: 22px;">(we've been everywhere together)</div>
+
+  <!-- Top right small heart -->
+  <svg class="doodle" style="top: 0.55in; right: 0.6in; width: 80px; height: 60px; transform: rotate(-15deg);" viewBox="0 0 80 60" fill="none" stroke="#3a342c" stroke-width="2" stroke-linecap="round">
+    <path d="M5 30 Q 20 5, 40 30 T 75 30" />
+    <path d="M68 24 L 76 30 L 68 36" />
+  </svg>
+
+  <!-- Cabo boat, upper-left -->
+  <div class="polaroid" style="top: 1.65in; left: 0.55in; width: 2.55in; height: 3.1in; transform: rotate(-6deg); z-index: 5;">
+    <div class="photo-wrap"><img src="../photos/photo-04-cabo-boat.jpg" alt=""></div>
+    <div class="cap" style="font-size: 22px;">cabo on a boat with the crew</div>
+    <div class="tape blue" style="top: -12px; right: 0.4in; width: 95px; transform: rotate(10deg);"></div>
+  </div>
+
+  <!-- Zion narrows, upper-middle (overlapping cabo) -->
+  <div class="polaroid" style="top: 1.45in; left: 2.7in; width: 2.4in; height: 2.95in; transform: rotate(5deg); z-index: 6;">
+    <div class="photo-wrap"><img src="../photos/photo-07-zion-narrows.jpg" alt=""></div>
+    <div class="cap" style="font-size: 21px;">narrows hike, frozen feet</div>
+    <div class="tape mustard" style="top: -12px; left: 0.5in; width: 90px; transform: rotate(-9deg);"></div>
+  </div>
+
+  <!-- Sedona spires, upper-right -->
+  <div class="polaroid" style="top: 1.9in; right: 0.4in; width: 2.4in; height: 2.95in; transform: rotate(7deg); z-index: 4;">
+    <div class="photo-wrap"><img src="../photos/photo-05-sedona-spires.jpg" alt=""></div>
+    <div class="cap" style="font-size: 22px;">sedona red rocks</div>
+  </div>
+
+  <!-- Zion warriors (landscape) middle band -->
+  <div class="polaroid" style="top: 4.85in; left: 1.6in; width: 3.6in; height: 2.9in; transform: rotate(-3deg); z-index: 8;">
+    <div class="photo-wrap"><img src="../photos/photo-11-zion-warriors.jpg" alt=""></div>
+    <div class="cap" style="font-size: 22px;">warriors of the narrows ⚔</div>
+    <div class="tape pink" style="top: -14px; left: 0.7in; width: 120px; transform: rotate(-7deg);"></div>
+    <div class="tape mint" style="top: -12px; right: 0.6in; width: 100px; transform: rotate(8deg);"></div>
+  </div>
+
+  <!-- Sedona spiral, right side overlapping warriors -->
+  <div class="polaroid" style="top: 4.6in; right: 0.45in; width: 2.3in; height: 2.85in; transform: rotate(8deg); z-index: 9;">
+    <div class="photo-wrap"><img src="../photos/photo-10-sedona-spiral.jpg" alt=""></div>
+    <div class="cap" style="font-size: 21px;">sedona, take two</div>
+    <svg class="paperclip" style="top:-32px; left: 18px; transform: rotate(-12deg);" viewBox="0 0 38 86" fill="none" stroke="#9aa0a6" stroke-width="3" stroke-linecap="round">
+      <path d="M27 8 C 33 8, 33 18, 27 18 L 11 18 C 5 18, 5 28, 11 28 L 27 28 C 33 28, 33 38, 27 38 L 11 38 C 5 38, 5 48, 11 48 L 27 48 C 33 48, 33 58, 27 58 L 11 58 C 5 68, 5 68, 11 68 L 27 68" />
+    </svg>
+  </div>
+
+  <!-- Beach sunset pile, bottom left -->
+  <div class="polaroid" style="top: 7.55in; left: 0.5in; width: 2.4in; height: 2.95in; transform: rotate(-7deg); z-index: 7;">
+    <div class="photo-wrap"><img src="../photos/photo-03-beach-sunset-pile.jpg" alt=""></div>
+    <div class="cap" style="font-size: 22px;">golden hour pile-on</div>
+    <div class="tape mustard" style="top: -12px; left: 0.6in; width: 95px; transform: rotate(-5deg);"></div>
+  </div>
+
+  <!-- doodled heart connecting sedonas -->
+  <svg class="doodle" style="top: 3.95in; left: 4.6in; width: 110px; height: 70px; transform: rotate(8deg);" viewBox="0 0 110 70" fill="none" stroke="#c44a4a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 35 C 25 10, 50 25, 55 40 C 60 25, 85 10, 105 35" stroke-dasharray="4 3" />
+    <path d="M95 28 L 105 35 L 96 44" />
+  </svg>
+
+  <!-- Closing handwritten note bottom-right -->
+  <div class="closing-note">
+    more to come.<br>
+    here's to the next chapter —<br>
+    <span class="sig">your boys</span>
+  </div>
+
+  <!-- small doodled stars near closing note -->
+  <svg class="doodle" style="bottom: 1.55in; right: 3.4in; width: 30px; height: 30px; transform: rotate(15deg);" viewBox="0 0 30 30" fill="none" stroke="#3a342c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 3 L 18 12 L 27 13 L 20 19 L 22 28 L 15 23 L 8 28 L 10 19 L 3 13 L 12 12 Z" />
+  </svg>
+  <svg class="doodle" style="bottom: 2.05in; right: 2.9in; width: 22px; height: 22px; transform: rotate(-20deg);" viewBox="0 0 22 22" fill="none" stroke="#3a342c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11 2 L 13 8 L 20 9 L 15 14 L 16 21 L 11 17 L 6 21 L 7 14 L 2 9 L 9 8 Z" />
+  </svg>
+
+  <div class="page-num" style="right: 0.5in;">~ page two ~</div>
+  <div class="corner-note" style="bottom: 0.32in; left: 0.55in; font-size: 20px;">may 2026</div>
+</div>
+
+</body>
+</html>
