@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Brotherhood Films Presents — A Hand-Painted Memory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Caveat:wght@400;600&family=Sacramento&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     STUDIO GHIBLI — WATERCOLOR FILM POSTER
+     Variation 14 — wedding scrapbook intro spread
+     ============================================================ */
+
+  :root {
+    --cream:        #f5efde;
+    --cream-deep:   #ece3c8;
+    --sky:          #a8c8d8;
+    --sky-deep:     #6e9bb4;
+    --rose:         #e8aabb;
+    --forest:       #7a9b7e;
+    --forest-deep:  #4f6f56;
+    --sunset:       #e8a878;
+    --butter:       #f5d883;
+    --ink:          #3a2a1a;
+    --ink-soft:     #6a4f33;
+  }
+
+  @page { size: 8.5in 11in; margin: 0; }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #1d1812; }
+  body {
+    font-family: 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    margin: 0.6in auto;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,.45), 0 4px 12px rgba(0,0,0,.25);
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* Subtle paper grain via SVG noise overlay -- gives the cream a tactile feel */
+  .page::before {
+    content: "";
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: .22;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.23  0 0 0 0 0.16  0 0 0 0 0.10  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* Soft watercolor wash at edges -- the painted-paper feel */
+  .page::after {
+    content: "";
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 49;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% -5%, rgba(232,168,120,.18), transparent 70%),
+      radial-gradient(ellipse 40% 30% at 100% 100%, rgba(168,200,216,.20), transparent 70%),
+      radial-gradient(ellipse 50% 35% at 0% 70%, rgba(122,155,126,.16), transparent 70%);
+  }
+
+  /* ============================================================
+     PAGE 1 — THE POSTER
+     ============================================================ */
+  .poster {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 0.55in 0.55in 0.4in;
+    height: 100%;
+    position: relative;
+  }
+
+  .studio-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1px solid rgba(58,42,26,.25);
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+  }
+  .studio-bar .left { display: flex; align-items: center; gap: 10px; }
+  .studio-mark {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--sunset);
+    border-radius: 50%;
+    position: relative;
+    flex: none;
+  }
+  .studio-mark::after {
+    content: "";
+    position: absolute; inset: 4px;
+    background: var(--rose);
+    border-radius: 50%;
+    opacity: .85;
+  }
+  .studio-bar .right { font-variant-numeric: tabular-nums; }
+
+  /* HERO ART -- Ghibli Mt. Shasta painting, full-bleed within the poster frame */
+  .hero {
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--cream-deep);
+    box-shadow:
+      inset 0 0 0 1px rgba(58,42,26,.10),
+      0 8px 26px rgba(58,42,26,.10);
+  }
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    display: block;
+  }
+  /* Soft watercolor vignette to bleed the painting into paper */
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(245,239,222,.35) 0%, transparent 18%, transparent 70%, rgba(245,239,222,.55) 100%),
+      radial-gradient(ellipse 110% 80% at 50% 50%, transparent 55%, rgba(245,239,222,.40) 100%);
+  }
+
+  /* Soft dark wash behind title for legibility against light sky */
+  .hero .title-veil {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 55%;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(40,28,16,.10) 25%,
+      rgba(40,28,16,.42) 60%,
+      rgba(40,28,16,.62) 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* Title block sits OVER the hero, lower-left */
+  .title-block {
+    position: absolute;
+    left: 0.55in;
+    right: 0.55in;
+    bottom: 1.4in;
+    z-index: 3;
+    color: var(--cream);
+    text-shadow: 0 2px 18px rgba(28,18,10,.85), 0 1px 3px rgba(28,18,10,.95);
+  }
+  .title-eyebrow {
+    font-family: 'Shippori Mincho', 'Cormorant Garamond', serif;
+    font-size: 10pt;
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    opacity: .92;
+  }
+  .title-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 78pt;
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .title-main .amp {
+    font-family: 'Sacramento', cursive;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64pt;
+    color: var(--butter);
+    margin: 0 6px;
+    vertical-align: -6px;
+  }
+  .title-tag {
+    margin-top: 18px;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 13pt;
+    line-height: 1.4;
+    max-width: 5in;
+    color: #fbf5e3;
+    text-shadow: 0 1px 8px rgba(28,18,10,.7);
+  }
+
+  /* Credits block -- classic film credits at bottom of poster */
+  .credits {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(58,42,26,.25);
+    text-align: center;
+    color: var(--ink);
+  }
+  .credits .billing {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 7.5pt;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .credits .stars {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 13pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .credits .stars .dot {
+    color: var(--sunset);
+    margin: 0 8px;
+    font-weight: 400;
+  }
+  .credits .roles {
+    margin-top: 8px;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 9.5pt;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+  .credits .roles .wink {
+    color: var(--forest-deep);
+  }
+  .credits .footrule {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 7pt;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .credits .footrule .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(58,42,26,.35), transparent);
+    max-width: 120px;
+  }
+
+  /* Hand-painted accent: a soft sun in the upper corner of the poster */
+  .sun-stamp {
+    position: absolute;
+    top: 1.1in;
+    right: 0.95in;
+    width: 0.7in;
+    height: 0.7in;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,216,131,.95) 0%, rgba(232,168,120,.6) 60%, rgba(232,168,120,0) 100%);
+    z-index: 4;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: .8;
+  }
+
+  /* Japanese vertical-stamp accent: title in Japanese vertical text, very small, like a printer's mark */
+  .jp-stamp {
+    position: absolute;
+    top: 0.85in;
+    left: 0.6in;
+    writing-mode: vertical-rl;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 8pt;
+    letter-spacing: 0.4em;
+    color: var(--forest-deep);
+    opacity: .55;
+    z-index: 4;
+  }
+
+  /* ============================================================
+     PAGE 2 — STILLS FROM THE FILM
+     ============================================================ */
+  .stills {
+    padding: 0.45in 0.45in 0.4in;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+  }
+
+  .stills-head {
+    text-align: center;
+    position: relative;
+  }
+  .stills-head .reel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 8.5pt;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .stills-head .reel .line {
+    flex: 1; max-width: 1.4in; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(58,42,26,.35), transparent);
+  }
+  .stills-head h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 24pt;
+    line-height: 1.05;
+    margin: 6px 0 2px;
+    color: var(--ink);
+  }
+  .stills-head h2 .accent {
+    color: var(--sunset);
+    font-style: italic;
+  }
+  .stills-head .sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 11pt;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  /* Grid of stills -- pairs and stand-alones, 3 fixed-height rows */
+  .reel-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, 2.45in);
+    gap: 10px;
+    align-content: start;
+    min-height: 0;
+  }
+
+  .still {
+    position: relative;
+    background: var(--cream-deep);
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow:
+      inset 0 0 0 1px rgba(58,42,26,.10),
+      0 4px 14px rgba(58,42,26,.10);
+    display: flex;
+    flex-direction: column;
+  }
+  .still .art {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream-deep);
+  }
+  .still .art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .still .art::after {
+    content: "";
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 60%, rgba(245,239,222,.35) 100%);
+  }
+  .still .cap {
+    padding: 4px 8px 5px;
+    background: var(--cream);
+    border-top: 1px solid rgba(58,42,26,.15);
+    font-family: 'Caveat', cursive;
+    font-size: 12.5pt;
+    line-height: 1.05;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  .still .cap .num {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 6pt;
+    letter-spacing: 0.3em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    align-self: flex-end;
+  }
+
+  /* The reference / before-after pair card */
+  .pair {
+    grid-column: span 4;
+    grid-row: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    background: var(--cream);
+    border-radius: 2px;
+    padding: 8px 8px 6px;
+    box-shadow:
+      inset 0 0 0 1px rgba(58,42,26,.18),
+      0 4px 14px rgba(58,42,26,.08);
+  }
+  .pair .frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    background: var(--cream-deep);
+    box-shadow: inset 0 0 0 1px rgba(58,42,26,.12);
+  }
+  .pair .frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pair .frame .tag {
+    position: absolute;
+    top: 4px; left: 4px;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    background: rgba(245,239,222,.92);
+    color: var(--ink-soft);
+    padding: 2px 5px;
+    border-radius: 1px;
+  }
+  .pair .label {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 13pt;
+    color: var(--ink);
+    margin-top: 2px;
+  }
+  .pair .label small {
+    display: block;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 0;
+  }
+
+  /* Specific span placements -- arranged like a film storyboard.
+     12-col grid, 3 rows. Pair takes 4 cols, regular stills 3-4 cols. */
+  .pair       { grid-column: span 4; grid-row: span 1; }
+  .s-egypt    { grid-column: span 4; grid-row: span 1; }
+  .s-warriors { grid-column: span 4; grid-row: span 1; }
+
+  .s-beach    { grid-column: span 4; grid-row: span 1; }
+  .s-cabo     { grid-column: span 3; grid-row: span 1; }
+  .s-pile     { grid-column: span 5; grid-row: span 1; }
+
+  .s-sedona1  { grid-column: span 3; grid-row: span 1; }
+  .s-sedona2  { grid-column: span 3; grid-row: span 1; }
+  .s-times    { grid-column: span 3; grid-row: span 1; }
+  .s-dorm     { grid-column: span 3; grid-row: span 1; }
+
+  /* Adjust pair styling: tighter padding, smaller label */
+  .pair { padding: 6px 6px 4px; gap: 5px; grid-template-rows: 1fr auto; }
+  .pair .label { font-size: 11pt; line-height: 1.05; margin-top: 1px; }
+  .pair .label small { font-size: 5.5pt; letter-spacing: 0.25em; }
+
+  /* Bottom dedication */
+  .dedication {
+    text-align: center;
+    padding-top: 14px;
+    border-top: 1px solid rgba(58,42,26,.25);
+    position: relative;
+  }
+  .dedication .top {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 7.5pt;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .dedication .ded {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14pt;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .dedication .ded .name {
+    color: var(--sunset);
+    font-weight: 600;
+  }
+  .dedication .sig {
+    margin-top: 6px;
+    font-family: 'Sacramento', cursive;
+    font-size: 17pt;
+    color: var(--forest-deep);
+    line-height: 1;
+  }
+  .dedication .stamp-row {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .dedication .stamp {
+    border: 1px solid rgba(180, 90, 70, .7);
+    color: #a85a48;
+    padding: 3px 7px;
+    border-radius: 1px;
+    letter-spacing: 0.3em;
+    transform: rotate(-3deg);
+    background: rgba(232,168,120,.08);
+  }
+
+  /* Print fidelity */
+  @media print {
+    body { background: white; }
+    .page { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================================================================== -->
+<!-- PAGE 1 — THE GHIBLI POSTER                                          -->
+<!-- ================================================================== -->
+<section class="page">
+  <div class="poster">
+
+    <div class="studio-bar">
+      <div class="left">
+        <span class="studio-mark"></span>
+        <span>Brotherhood Films &middot; Presents</span>
+      </div>
+      <div class="right">A Hand-Painted Memory &middot; No.&nbsp;XIV</div>
+    </div>
+
+    <div class="hero">
+      <img src="stylized/photo-08-mt-shasta.jpg" alt="Mt. Shasta sunset, painted in Studio Ghibli watercolor style" />
+      <span class="title-veil"></span>
+
+      <span class="jp-stamp">兄弟の物語</span>
+      <span class="sun-stamp"></span>
+
+      <div class="title-block">
+        <div class="title-eyebrow">A Film By [GROOM]</div>
+        <h1 class="title-main">The Boys <span class="amp">&amp;</span> The Road<br/>That Brought Us Home</h1>
+        <div class="title-tag">
+          &ldquo;Some friendships move slowly, like clouds across a valley.<br/>
+          And some, like rivers, only ever find one way home.&rdquo;
+        </div>
+      </div>
+    </div>
+
+    <div class="credits">
+      <div class="billing">Brotherhood Films &middot; In Association with the Pacific Wind</div>
+      <div class="stars">
+        [NAME 1] <span class="dot">&middot;</span> [NAME 2] <span class="dot">&middot;</span> [NAME 3] <span class="dot">&middot;</span> [NAME 4]<br/>
+        [NAME 5] <span class="dot">&middot;</span> [NAME 6] <span class="dot">&middot;</span> [NAME 7] <span class="dot">&middot;</span> [NAME 8]
+      </div>
+      <div class="roles">
+        Directed &amp; Photographed by [GROOM] &nbsp;&middot;&nbsp; Story by All of Them &nbsp;&middot;&nbsp; Painted from Memory<br/>
+        <span class="wink">Original Score by Joe Hisaishi (Unauthorized, with love)</span>
+      </div>
+      <div class="footrule">
+        <span class="line"></span>
+        <span>Premiering on the Wedding Day of [GROOM] &amp; [BRIDE]</span>
+        <span class="line"></span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================================== -->
+<!-- PAGE 2 — STILLS FROM THE FILM                                       -->
+<!-- ================================================================== -->
+<section class="page">
+  <div class="stills">
+
+    <div class="stills-head">
+      <div class="reel">
+        <span class="line"></span>
+        <span>Reel II &middot; The Storyboard</span>
+        <span class="line"></span>
+      </div>
+      <h2>Stills From a World <span class="accent">Painted From Memory</span></h2>
+      <div class="sub">in roughly the order we remember them</div>
+    </div>
+
+    <div class="reel-grid">
+
+      <!-- Row 1 (4-4-4): Egypt | Zion pair (ref+paint) | Warriors -->
+      <figure class="still s-egypt">
+        <div class="art"><img src="stylized/photo-02-egypt-pyramid.jpg" alt="The boys at the Pyramids, painted" /></div>
+        <figcaption class="cap"><span>Giza, the year we said yes to everything</span><span class="num">SCN&nbsp;02</span></figcaption>
+      </figure>
+
+      <div class="pair pair-zion">
+        <div class="frame"><img src="../photos/photo-07-zion-narrows.jpg" alt="Zion Narrows reference photo" /><span class="tag">Ref</span></div>
+        <div class="frame"><img src="stylized/photo-07-zion-narrows.jpg" alt="Zion Narrows painted" /><span class="tag">Final</span></div>
+        <div class="label">Zion, knee-deep<small>The Narrows &middot; Scene 07</small></div>
+      </div>
+
+      <figure class="still s-warriors">
+        <div class="art"><img src="stylized/photo-11-zion-warriors.jpg" alt="The warriors at Zion, painted" /></div>
+        <figcaption class="cap"><span>and again, as warriors</span><span class="num">SCN&nbsp;11</span></figcaption>
+      </figure>
+
+      <!-- Row 2 (4-3-5): La Jolla | Cabo | Sunset pile -->
+      <figure class="still s-beach">
+        <div class="art"><img src="stylized/photo-01-beach-brown-tees.jpg" alt="The boys at the Pacific, painted" /></div>
+        <figcaption class="cap"><span>La Jolla, the brown tee summer</span><span class="num">SCN&nbsp;01</span></figcaption>
+      </figure>
+
+      <figure class="still s-cabo">
+        <div class="art"><img src="stylized/photo-04-cabo-boat.jpg" alt="Cabo boat, painted" /></div>
+        <figcaption class="cap"><span>Cabo, El Arco</span><span class="num">SCN&nbsp;04</span></figcaption>
+      </figure>
+
+      <figure class="still s-pile">
+        <div class="art"><img src="stylized/photo-03-beach-sunset-pile.jpg" alt="Beach pile at sunset, painted" /></div>
+        <figcaption class="cap"><span>a heap of us, as the sun let go</span><span class="num">SCN&nbsp;03</span></figcaption>
+      </figure>
+
+      <!-- Row 3 (3-3-3-3): Sedona spires | Sedona spiral | Times Square | Dorm -->
+      <figure class="still s-sedona1">
+        <div class="art"><img src="stylized/photo-05-sedona-spires.jpg" alt="Sedona spires painted" /></div>
+        <figcaption class="cap"><span>Sedona, red towers</span><span class="num">SCN&nbsp;05</span></figcaption>
+      </figure>
+
+      <figure class="still s-sedona2">
+        <div class="art"><img src="stylized/photo-10-sedona-spiral.jpg" alt="Sedona spiral painted" /></div>
+        <figcaption class="cap"><span>the spiral we left</span><span class="num">SCN&nbsp;10</span></figcaption>
+      </figure>
+
+      <figure class="still s-times">
+        <div class="art"><img src="stylized/photo-06-times-square.jpg" alt="Times Square painted" /></div>
+        <figcaption class="cap"><span>Times Square, late</span><span class="num">SCN&nbsp;06</span></figcaption>
+      </figure>
+
+      <figure class="still s-dorm">
+        <div class="art"><img src="stylized/photo-09-neon-dorm.jpg" alt="Dorm with neon, painted" /></div>
+        <figcaption class="cap"><span>before the world got loud</span><span class="num">SCN&nbsp;09</span></figcaption>
+      </figure>
+
+    </div>
+
+    <div class="dedication">
+      <div class="top">A Closing Card</div>
+      <div class="ded">
+        Painted for <span class="name">[GROOM]</span> &mdash; by the brothers,<br/>
+        on the occasion of his wedding to <span class="name">[BRIDE]</span>.
+      </div>
+      <div class="sig">&mdash; with all our years, all our weather &mdash;</div>
+      <div class="stamp-row">
+        <span>Fin.</span>
+        <span class="stamp">Hand-Painted &middot; 1 of 1</span>
+        <span>Brotherhood Films</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

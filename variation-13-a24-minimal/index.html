@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ensemble — A Wedding Original</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #2a2a2a; }
+  body { font-family: 'Inter', sans-serif; color: #0d0d0d; }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    margin: 0 auto;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ============== PAGE 1 — THE POSTER ============== */
+  .poster {
+    display: grid;
+    grid-template-rows: 0.62fr 0.38fr;
+  }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: #0d0d0d;
+  }
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 45%;
+    filter: contrast(1.04) saturate(0.92);
+    display: block;
+  }
+  /* very subtle film-grade vignette */
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 55%, transparent 55%, rgba(0,0,0,0.18) 100%);
+    pointer-events: none;
+  }
+
+  .below {
+    position: relative;
+    padding: 0.55in 0.7in 0.5in 0.7in;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+    gap: 0;
+  }
+
+  .title-block {
+    grid-column: 1 / -1;
+    align-self: start;
+    margin-top: 0.05in;
+  }
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 116pt;
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    color: #0d0d0d;
+  }
+  .title .amp {
+    color: #d4a056; /* single accent — warm ochre */
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 7.5pt;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    margin-top: 0.22in;
+    display: flex;
+    align-items: center;
+    gap: 0.18in;
+  }
+  .tagline .rule {
+    flex: 0 0 0.5in;
+    height: 1px;
+    background: #d4a056;
+  }
+
+  .credits {
+    position: absolute;
+    bottom: 0.5in;
+    left: 0.7in;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    line-height: 1.75;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    max-width: 4.6in;
+  }
+  .credits .lead {
+    font-weight: 600;
+  }
+  .credits .stars {
+    margin-top: 0.04in;
+    font-weight: 400;
+    color: #2a2a2a;
+  }
+  .credits .stars .br { display: block; padding-left: 0.55in; }
+  .credits .meta {
+    margin-top: 0.1in;
+    font-weight: 400;
+    color: #4a4a4a;
+  }
+  .credits .meta .dot { color: #d4a056; padding: 0 0.04in; }
+
+  .filmstamp {
+    position: absolute;
+    bottom: 0.5in;
+    right: 0.7in;
+    text-align: right;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    line-height: 1.7;
+  }
+  .filmstamp .big {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 11pt;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: #0d0d0d;
+  }
+
+  .topbar {
+    position: absolute;
+    top: 0.32in;
+    left: 0.7in;
+    right: 0.7in;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(245, 241, 234, 0.85);
+    z-index: 2;
+    mix-blend-mode: difference;
+  }
+
+  /* ============== PAGE 2 — ENSEMBLE / SELECTED STILLS ============== */
+  /* Strict grid system. Content width = 8.5 - 2*0.7 = 7.1in. */
+  .stills {
+    padding: 0.65in 0.7in 0.5in 0.7in;
+    display: flex;
+    flex-direction: column;
+    gap: 0.24in;
+    height: 11in;
+  }
+
+  .stills-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid #0d0d0d;
+    padding-bottom: 0.16in;
+  }
+  .stills-head .h-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+  }
+  .stills-head .h-title .ac { color: #d4a056; }
+  .stills-head .h-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #4a4a4a;
+  }
+
+  .synopsis {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11.5pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    max-width: 7.1in; /* match the full content width so it doesn't look orphaned */
+    text-align: justify;
+    hyphens: auto;
+  }
+  .synopsis .drop {
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 8.5pt;
+    color: #d4a056;
+    margin-right: 0.08in;
+  }
+
+  /* Press-kit contact sheet: 4 col × 3 row strict grid.
+     Cell width 1.7in, row height 2.1in (taller — slight portrait).
+     Grid width = 4*1.7 + 3*0.13 = 7.19in (just past content edges, intentional).
+     Row 1 = wide hero + 2 squares. Row 2 = 4 squares. Row 3 = 4 squares. */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1.7in);
+    grid-template-rows: 2.05in 2.05in 2.05in;
+    gap: 0.13in;
+    justify-content: center;
+    flex: 1 0 auto;
+  }
+
+  .frame {
+    position: relative;
+    overflow: hidden;
+    background: #0d0d0d;
+  }
+  .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.03) saturate(0.92);
+    display: block;
+  }
+  /* caption sits inside the image cell, bottom edge, with a strong dark scrim
+     that guarantees white-text legibility on any underlying photo. */
+  .frame .cap {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 0.45in 0.1in 0.08in 0.1in;
+    background: linear-gradient(to top,
+      rgba(0,0,0,0.88) 0%,
+      rgba(0,0,0,0.72) 30%,
+      rgba(0,0,0,0.35) 70%,
+      rgba(0,0,0,0.0) 100%);
+    font-family: 'Inter', sans-serif;
+    font-size: 6.2pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #f5f1ea;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    line-height: 1;
+  }
+  .frame .cap .num {
+    color: #d4a056;
+    font-weight: 600;
+  }
+  .frame .cap .loc {
+    color: #f5f1ea;
+    font-weight: 500;
+  }
+
+  /* 4 × 3 strict grid = 12 cells.
+     11 photos placed as: 1 wide (2 cells) + 10 singles = 12 ✓
+     Egypt opens as the wide statement frame, then a steady rhythm. */
+  .f01 { grid-column: 1 / span 2; grid-row: 1; } /* WIDE — Egypt pyramid */
+  .f02 { grid-column: 3; grid-row: 1; }
+  .f03 { grid-column: 4; grid-row: 1; }
+  .f04 { grid-column: 1; grid-row: 2; }
+  .f05 { grid-column: 2; grid-row: 2; }
+  .f06 { grid-column: 3; grid-row: 2; }
+  .f07 { grid-column: 4; grid-row: 2; }
+  .f08 { grid-column: 1; grid-row: 3; }
+  .f09 { grid-column: 2; grid-row: 3; }
+  .f10 { grid-column: 3; grid-row: 3; }
+  .f11 { grid-column: 4; grid-row: 3; }
+
+  .stills-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid #0d0d0d;
+    padding-top: 0.14in;
+    margin-top: auto;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+  }
+  .stills-foot .right { color: #4a4a4a; }
+  .stills-foot .dot { color: #d4a056; padding: 0 0.05in; }
+
+  @media screen {
+    body { padding: 24px 0; }
+    .page { box-shadow: 0 30px 80px rgba(0,0,0,0.45); margin-bottom: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== PAGE 1 — POSTER ============== -->
+<section class="page poster">
+
+  <div class="topbar">
+    <span>Reel No. 01</span>
+    <span>1.85 : 1</span>
+  </div>
+
+  <div class="hero">
+    <img src="../photos/photo-08-mt-shasta.jpg" alt="Mt. Shasta alpenglow">
+  </div>
+
+  <div class="below">
+
+    <div class="title-block">
+      <div class="tagline"><span class="rule"></span>An Original Production <span>·</span> A Decade In The Making</div>
+      <div class="title">Ensemble<span class="amp">.</span></div>
+    </div>
+
+    <div class="credits">
+      <div class="lead">A Film By [GROOM]</div>
+      <div class="stars">
+        Starring [NAME 1] &nbsp; [NAME 2] &nbsp; [NAME 3] &nbsp; [NAME 4]<br>
+        <span class="br">[NAME 5] &nbsp; [NAME 6] &nbsp; [NAME 7] &nbsp; [NAME 8]</span>
+      </div>
+      <div class="meta">
+        Music by the Group Chat <span class="dot">·</span> Edited by Memory<br>
+        A Wedding Original <span class="dot">·</span> [WEDDING DATE]
+      </div>
+    </div>
+
+    <div class="filmstamp">
+      <div class="big">in selected theaters</div>
+      <div>this summer</div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============== PAGE 2 — ENSEMBLE / SELECTED STILLS ============== -->
+<section class="page stills">
+
+  <header class="stills-head">
+    <div class="h-title">Ensemble<span class="ac"> · </span>Selected Stills</div>
+    <div class="h-meta">Press Kit <span style="color:#d4a056">/</span> Frames 01–10</div>
+  </header>
+
+  <p class="synopsis">
+    <span class="drop">Synopsis —</span> A film about the eight men who showed up. Composed across a decade, across continents, with no script and a single shared lens — patience. The work moves from a college dorm to the pyramids of Giza, from the floor of a canyon to the alpenglow of a mountain. On the occasion of [GROOM]&rsquo;s wedding, the ensemble offers eleven stills from a film still being made.
+  </p>
+
+  <div class="grid">
+
+    <!-- Row 1-2 left: hero double (Egypt). Row 1 right: 2 singles. -->
+    <figure class="frame f01">
+      <img src="../photos/photo-02-egypt-pyramid.jpg" alt="">
+      <figcaption class="cap"><span class="num">01</span><span class="loc">Giza, Egypt</span></figcaption>
+    </figure>
+
+    <figure class="frame f02">
+      <img src="../photos/photo-11-zion-warriors.jpg" alt="">
+      <figcaption class="cap"><span class="num">02</span><span class="loc">Zion, UT</span></figcaption>
+    </figure>
+
+    <figure class="frame f03">
+      <img src="../photos/photo-08-mt-shasta.jpg" alt="" style="object-position: center 35%;">
+      <figcaption class="cap"><span class="num">03</span><span class="loc">Mt. Shasta, CA</span></figcaption>
+    </figure>
+
+    <!-- Row 2 right: wide neon dorm spans 2 cols -->
+    <figure class="frame f04">
+      <img src="../photos/photo-09-neon-dorm.jpg" alt="">
+      <figcaption class="cap"><span class="num">04</span><span class="loc">The Dorm Years</span></figcaption>
+    </figure>
+
+    <!-- Row 3: 4 singles -->
+    <figure class="frame f05">
+      <img src="../photos/photo-03-beach-sunset-pile.jpg" alt="">
+      <figcaption class="cap"><span class="num">05</span><span class="loc">Pacific Coast, CA</span></figcaption>
+    </figure>
+
+    <figure class="frame f06">
+      <img src="../photos/photo-04-cabo-boat.jpg" alt="">
+      <figcaption class="cap"><span class="num">06</span><span class="loc">Cabo, MX</span></figcaption>
+    </figure>
+
+    <figure class="frame f07">
+      <img src="../photos/photo-05-sedona-spires.jpg" alt="">
+      <figcaption class="cap"><span class="num">07</span><span class="loc">Sedona, AZ</span></figcaption>
+    </figure>
+
+    <figure class="frame f08">
+      <img src="../photos/photo-06-times-square.jpg" alt="">
+      <figcaption class="cap"><span class="num">08</span><span class="loc">Times Square, NY</span></figcaption>
+    </figure>
+
+    <!-- Row 4: 4 singles -->
+    <figure class="frame f09">
+      <img src="../photos/photo-07-zion-narrows.jpg" alt="">
+      <figcaption class="cap"><span class="num">09</span><span class="loc">Zion Narrows, UT</span></figcaption>
+    </figure>
+
+    <figure class="frame f10">
+      <img src="../photos/photo-10-sedona-spiral.jpg" alt="">
+      <figcaption class="cap"><span class="num">10</span><span class="loc">Sedona, AZ</span></figcaption>
+    </figure>
+
+    <figure class="frame f11">
+      <img src="../photos/photo-01-beach-brown-tees.jpg" alt="">
+      <figcaption class="cap"><span class="num">11</span><span class="loc">La Jolla, CA</span></figcaption>
+    </figure>
+
+  </div>
+
+  <footer class="stills-foot">
+    <span>Pg. 02 / 02 <span class="dot">·</span> Press Kit <span class="dot">·</span> [WEDDING DATE]</span>
+    <span class="right">A Wedding Original <span class="dot">·</span> [GROOM] &amp; [BRIDE]</span>
+  </footer>
+
+</section>
+
+</body>
+</html>

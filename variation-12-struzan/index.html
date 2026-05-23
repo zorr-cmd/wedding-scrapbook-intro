@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>BROTHERS — An American Brotherhood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Bodoni+Moda:ital,wght@0,400;0,700;0,900;1,400&family=Oswald:wght@300;400;500;700&family=Barlow+Condensed:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #0f1220; }
+  body { font-family: 'Barlow Condensed', sans-serif; color: #f5efde; }
+
+  .page {
+    width: 8.5in; height: 11in; position: relative; overflow: hidden;
+    page-break-after: always; margin: 0 auto;
+    background: #1a1f3a;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ============ PAGE 1 — THE PAINTED POSTER ============ */
+  .poster {
+    background:
+      radial-gradient(ellipse at 50% 35%, rgba(200,168,90,0.22) 0%, rgba(26,31,58,0) 55%),
+      radial-gradient(ellipse at 50% 8%, rgba(201,88,36,0.30) 0%, rgba(26,31,58,0) 50%),
+      linear-gradient(180deg, #1a1f3a 0%, #0c0f22 100%);
+  }
+
+  /* Subtle grain / paper texture */
+  .poster::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,220,160,0.04) 0%, transparent 25%),
+      radial-gradient(circle at 80% 80%, rgba(255,200,120,0.04) 0%, transparent 25%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.85 0 0 0 0 0.65 0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay; opacity: 0.55;
+    z-index: 4;
+  }
+
+  /* Dramatic light rays */
+  .rays {
+    position: absolute; inset: 0; pointer-events: none; z-index: 1;
+    background:
+      conic-gradient(from 270deg at 50% 100%,
+        transparent 0deg,
+        rgba(255,210,140,0.05) 5deg,
+        transparent 12deg,
+        rgba(255,210,140,0.07) 18deg,
+        transparent 28deg,
+        rgba(255,210,140,0.04) 38deg,
+        transparent 50deg,
+        rgba(255,210,140,0.06) 60deg,
+        transparent 70deg,
+        rgba(255,210,140,0.05) 85deg,
+        transparent 95deg,
+        rgba(255,210,140,0.07) 110deg,
+        transparent 120deg,
+        rgba(255,210,140,0.04) 135deg,
+        transparent 145deg,
+        rgba(255,210,140,0.06) 160deg,
+        transparent 175deg,
+        rgba(255,210,140,0.05) 190deg,
+        transparent 360deg);
+    opacity: 0.7;
+  }
+
+  /* TITLE BLOCK */
+  .title-wrap {
+    position: absolute; left: 0; right: 0; top: 0.35in;
+    text-align: center; z-index: 6;
+  }
+  .presents {
+    font-family: 'Oswald', sans-serif; font-weight: 400;
+    font-size: 9pt; letter-spacing: 0.55em; color: #c8a85a;
+    text-transform: uppercase; margin-bottom: 6pt;
+    text-shadow: 0 0 12px rgba(200,168,90,0.4);
+  }
+  .title {
+    font-family: 'Cinzel', serif; font-weight: 900;
+    font-size: 64pt; letter-spacing: 0.04em; line-height: 0.95;
+    color: #f5efde;
+    text-shadow:
+      0 0 1px #fff,
+      0 0 18px rgba(255,220,140,0.55),
+      0 0 40px rgba(201,88,36,0.4),
+      0 4px 0 rgba(0,0,0,0.5);
+    background: linear-gradient(180deg, #fff7df 0%, #f5d878 40%, #c8a85a 65%, #8b5a2b 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 0 rgba(0,0,0,0.45)) drop-shadow(0 0 20px rgba(255,200,120,0.35));
+  }
+  .subtitle {
+    font-family: 'Bodoni Moda', serif; font-style: italic; font-weight: 400;
+    font-size: 11pt; letter-spacing: 0.18em; color: #e8c878;
+    margin-top: 8pt; text-transform: uppercase;
+  }
+
+  /* HERO PAINTING */
+  .hero {
+    position: absolute;
+    top: 1.55in; left: 0.45in; right: 0.45in;
+    height: 4.7in;
+    z-index: 3;
+    border: 1px solid rgba(200,168,90,0.4);
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,0.6),
+      0 0 60px rgba(0,0,0,0.7),
+      inset 0 0 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+  .hero img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: center 40%;
+    display: block;
+  }
+  /* Vignette over hero */
+  .hero::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.55) 100%),
+      linear-gradient(180deg, rgba(0,0,0,0.05) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.45) 100%);
+  }
+
+  /* TAGLINE */
+  .tagline {
+    position: absolute; left: 0; right: 0; top: 6.45in;
+    text-align: center; z-index: 6;
+    font-family: 'Bodoni Moda', serif; font-weight: 700; font-style: italic;
+    font-size: 13pt; letter-spacing: 0.08em;
+    color: #f5efde;
+    text-shadow: 0 0 14px rgba(255,200,120,0.5), 0 2px 4px rgba(0,0,0,0.7);
+    text-transform: uppercase;
+  }
+  .tagline .em {
+    color: #f5d878;
+    background: linear-gradient(180deg, #fff7df, #c8a85a);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* CAST COLLAGE - the painted character portraits */
+  .cast {
+    position: absolute; top: 7.05in; left: 0.45in; right: 0.45in;
+    height: 2.0in;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.08in;
+  }
+  .cast-card {
+    position: relative; overflow: hidden;
+    border: 1px solid rgba(200,168,90,0.35);
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,0,0,0.5);
+    background: #000;
+  }
+  .cast-card img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: contrast(1.02) saturate(1.05);
+  }
+  .cast-card::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(255,210,140,0.10) 0%, transparent 25%, transparent 70%, rgba(0,0,0,0.7) 100%),
+      radial-gradient(ellipse at 50% 40%, transparent 30%, rgba(0,0,0,0.45) 100%);
+  }
+  /* Position-specific image framing */
+  .cast-card.c1 img { object-position: center 30%; }
+  .cast-card.c2 img { object-position: center 35%; }
+  .cast-card.c3 img { object-position: center 25%; }
+  .cast-card.c4 img { object-position: center 45%; }
+  .cast-card.c5 img { object-position: center 35%; }
+  .cast-card.c6 img { object-position: center 40%; }
+
+  /* CREDITS BLOCK at the bottom */
+  .credits {
+    position: absolute; left: 0.45in; right: 0.45in; bottom: 0.5in;
+    z-index: 6;
+    border-top: 1px solid rgba(200,168,90,0.5);
+    padding-top: 0.14in;
+  }
+  .credits-grid {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 0.2in;
+    align-items: end;
+  }
+  .credit-line {
+    font-family: 'Oswald', sans-serif; font-weight: 300;
+    font-size: 7.5pt; letter-spacing: 0.32em; color: #d8c89a;
+    text-transform: uppercase; line-height: 1.6;
+  }
+  .credit-line strong {
+    font-weight: 700; color: #f5efde;
+    letter-spacing: 0.32em;
+  }
+  .credit-line .small {
+    font-size: 5.5pt; letter-spacing: 0.45em; color: #8a7a5a;
+    display: block; margin-bottom: 2pt;
+  }
+  .credit-center {
+    text-align: center;
+    font-family: 'Cinzel', serif; font-weight: 700;
+    font-size: 12pt; letter-spacing: 0.25em;
+    color: #c8a85a;
+    text-shadow: 0 0 10px rgba(200,168,90,0.4);
+  }
+  .credit-center .date {
+    display: block; font-family: 'Oswald', sans-serif; font-weight: 300;
+    font-size: 6.5pt; letter-spacing: 0.5em; color: #8a7a5a; margin-top: 4pt;
+  }
+  .credit-right { text-align: right; }
+
+  /* 70mm BADGE */
+  .badge-70mm {
+    position: absolute; top: 0.4in; right: 0.4in;
+    z-index: 7;
+    width: 0.85in; height: 0.85in;
+    border-radius: 50%;
+    border: 1.5px solid #c8a85a;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: radial-gradient(circle, rgba(20,15,10,0.85) 0%, rgba(0,0,0,0.9) 100%);
+    transform: rotate(-12deg);
+    box-shadow: 0 0 20px rgba(200,168,90,0.3), inset 0 0 15px rgba(200,168,90,0.15);
+  }
+  .badge-70mm .top {
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    font-size: 5.5pt; letter-spacing: 0.2em; color: #c8a85a;
+    text-transform: uppercase;
+  }
+  .badge-70mm .big {
+    font-family: 'Cinzel', serif; font-weight: 900;
+    font-size: 14pt; color: #f5d878; line-height: 1;
+    margin: 2pt 0;
+    text-shadow: 0 0 6px rgba(245,216,120,0.6);
+  }
+  .badge-70mm .bot {
+    font-family: 'Oswald', sans-serif; font-weight: 400;
+    font-size: 4.5pt; letter-spacing: 0.25em; color: #c8a85a;
+    text-transform: uppercase;
+  }
+
+  /* MPAA-style rating box */
+  .rating-box {
+    position: absolute; bottom: 0.18in; left: 0.45in;
+    z-index: 7;
+    border: 1px solid #c8a85a;
+    padding: 2pt 6pt 1pt 6pt;
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    font-size: 6pt; letter-spacing: 0.18em; color: #c8a85a;
+    text-transform: uppercase;
+    background: rgba(0,0,0,0.4);
+  }
+  .runtime {
+    position: absolute; bottom: 0.18in; right: 0.45in;
+    z-index: 7;
+    font-family: 'Oswald', sans-serif; font-weight: 400;
+    font-size: 6pt; letter-spacing: 0.32em; color: #8a7a5a;
+    text-transform: uppercase;
+  }
+
+  /* ============ PAGE 2 — FROM THE ARCHIVE ============ */
+  .archive {
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(200,168,90,0.10) 0%, transparent 65%),
+      linear-gradient(180deg, #1a1f3a 0%, #0c0f22 100%);
+    padding: 0.4in 0.4in 0.9in 0.4in;
+  }
+  .archive::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.85 0 0 0 0 0.65 0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay; opacity: 0.5;
+    z-index: 4;
+  }
+
+  .arch-header {
+    text-align: center; position: relative; z-index: 5;
+    margin-bottom: 0.12in;
+  }
+  .arch-overline {
+    font-family: 'Oswald', sans-serif; font-weight: 400;
+    font-size: 7.5pt; letter-spacing: 0.55em; color: #c8a85a;
+    text-transform: uppercase; margin-bottom: 6pt;
+  }
+  .arch-title {
+    font-family: 'Cinzel', serif; font-weight: 900;
+    font-size: 19pt; letter-spacing: 0.06em;
+    background: linear-gradient(180deg, #fff7df 0%, #f5d878 40%, #c8a85a 70%, #8b5a2b 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 14px rgba(255,200,120,0.3));
+  }
+  .arch-sub {
+    font-family: 'Bodoni Moda', serif; font-style: italic;
+    font-size: 9pt; letter-spacing: 0.14em; color: #d8c89a;
+    margin-top: 4pt; text-transform: uppercase;
+  }
+  .arch-divider {
+    width: 1.4in; height: 1px; margin: 8pt auto 0;
+    background: linear-gradient(90deg, transparent, #c8a85a, transparent);
+  }
+
+  .pairs-grid {
+    position: relative; z-index: 5;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.12in 0.12in;
+    margin-top: 0.08in;
+  }
+  .pair {
+    position: relative;
+    border: 1px solid rgba(200,168,90,0.3);
+    padding: 0.08in;
+    background: rgba(10,8,18,0.45);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.4), inset 0 0 20px rgba(0,0,0,0.35);
+  }
+  .pair-imgs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.05in;
+    margin-bottom: 5pt;
+  }
+  .pair-img {
+    aspect-ratio: 1.4 / 1; overflow: hidden; position: relative;
+    background: #000;
+  }
+  .pair-img img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .pair-img.ref img {
+    filter: sepia(0.45) saturate(0.85) brightness(0.92) contrast(1.05);
+  }
+  .pair-img::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    box-shadow: inset 0 0 12px rgba(0,0,0,0.65);
+  }
+  .pair-img .corner {
+    position: absolute; top: 3pt; left: 3pt;
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    font-size: 5pt; letter-spacing: 0.28em; color: #f5efde;
+    background: rgba(0,0,0,0.7); padding: 1pt 4pt;
+    text-transform: uppercase;
+    border: 0.5px solid rgba(200,168,90,0.5);
+  }
+  .pair-caption {
+    font-family: 'Oswald', sans-serif; font-weight: 400;
+    font-size: 6pt; letter-spacing: 0.28em; color: #c8a85a;
+    text-transform: uppercase; text-align: center;
+    border-top: 1px solid rgba(200,168,90,0.25);
+    padding-top: 4pt; margin-top: 2pt;
+  }
+  .pair-caption strong { color: #f5efde; font-weight: 700; }
+  .pair-caption .small {
+    display: block; color: #8a7a5a; font-size: 4.8pt;
+    letter-spacing: 0.35em; margin-top: 2pt;
+  }
+
+  /* Lobby card collection - bigger painted feature */
+  .feature-pair {
+    grid-column: span 3;
+    border: 1px solid rgba(200,168,90,0.4);
+    padding: 0.08in;
+    background: rgba(10,8,18,0.55);
+  }
+  .feature-pair .pair-imgs { grid-template-columns: 1.2fr 1fr; }
+  .feature-pair .pair-img { aspect-ratio: 22 / 9; }
+  .feature-pair .pair-img.painted img { object-position: center 28%; }
+  .feature-pair .pair-caption {
+    font-size: 7pt; letter-spacing: 0.35em; padding-top: 5pt;
+  }
+  .feature-pair .pair-caption .small { font-size: 5.5pt; }
+  /* Smaller variant for bottom feature */
+  .feature-pair.compact .pair-img { aspect-ratio: 16 / 7; }
+  .feature-pair.compact .pair-img.painted img { object-position: center 75%; }
+  .feature-pair.compact .pair-img.ref img { object-position: center 80%; }
+
+  .signoff {
+    position: absolute; left: 0.4in; right: 0.4in; bottom: 0.3in;
+    z-index: 6; text-align: center;
+    padding-top: 0.1in;
+    border-top: 1px solid rgba(200,168,90,0.4);
+    background: linear-gradient(180deg, rgba(12,15,34,0) 0%, #0c0f22 25%);
+    padding-bottom: 0;
+  }
+  .signoff-line {
+    font-family: 'Bodoni Moda', serif; font-style: italic;
+    font-size: 9pt; letter-spacing: 0.06em; color: #f5efde;
+    line-height: 1.4;
+  }
+  .signoff-line .em {
+    font-weight: 700; color: #f5d878;
+  }
+  .signoff-credit {
+    font-family: 'Oswald', sans-serif; font-weight: 400;
+    font-size: 6.5pt; letter-spacing: 0.45em; color: #8a7a5a;
+    text-transform: uppercase; margin-top: 6pt;
+  }
+  .signoff-credit strong { color: #c8a85a; font-weight: 700; }
+
+  .arch-badge {
+    position: absolute; top: 0.42in; left: 0.45in;
+    z-index: 7;
+    font-family: 'Oswald', sans-serif; font-weight: 400;
+    font-size: 6pt; letter-spacing: 0.4em; color: #8a7a5a;
+    text-transform: uppercase;
+    border-left: 2px solid #c8a85a; padding-left: 6pt;
+  }
+  .arch-badge strong { color: #c8a85a; }
+  .arch-folio {
+    position: absolute; top: 0.42in; right: 0.45in;
+    z-index: 7;
+    font-family: 'Oswald', sans-serif; font-weight: 400;
+    font-size: 6pt; letter-spacing: 0.4em; color: #8a7a5a;
+    text-transform: uppercase;
+    border-right: 2px solid #c8a85a; padding-right: 6pt;
+  }
+  .arch-folio strong { color: #c8a85a; }
+</style>
+</head>
+<body>
+
+<!-- =================== PAGE 1 — THE PAINTED POSTER =================== -->
+<section class="page poster">
+  <div class="rays"></div>
+
+  <div class="badge-70mm">
+    <div class="top">Presented In</div>
+    <div class="big">70<span style="font-size:7pt;">MM</span></div>
+    <div class="bot">Glorious</div>
+  </div>
+
+  <div class="title-wrap">
+    <div class="presents">An [GROOM] Film &nbsp;·&nbsp; In Association With The Boys</div>
+    <h1 class="title">BROTHERS</h1>
+    <div class="subtitle">— An American Brotherhood —</div>
+  </div>
+
+  <div class="hero">
+    <img src="stylized/photo-08-mt-shasta-painted.jpg" alt="Mt. Shasta — painted" />
+  </div>
+
+  <div class="tagline">
+    One Brotherhood. <span class="em">One Decade.</span> One Wedding.
+  </div>
+
+  <div class="cast">
+    <div class="cast-card c1"><img src="stylized/photo-02-egypt-pyramid-painted.jpg" alt="" /></div>
+    <div class="cast-card c2"><img src="stylized/photo-07-zion-narrows-painted.jpg" alt="" /></div>
+    <div class="cast-card c3"><img src="stylized/photo-11-zion-warriors-painted.jpg" alt="" /></div>
+    <div class="cast-card c4"><img src="stylized/photo-04-cabo-boat-painted.jpg" alt="" /></div>
+    <div class="cast-card c5"><img src="stylized/photo-09-neon-dorm-painted.jpg" alt="" /></div>
+    <div class="cast-card c6"><img src="stylized/photo-01-beach-brown-tees-painted.jpg" alt="" /></div>
+  </div>
+
+  <div class="credits">
+    <div class="credits-grid">
+      <div class="credit-line">
+        <span class="small">Starring</span>
+        <strong>[NAME 1]</strong> · <strong>[NAME 2]</strong> · <strong>[NAME 3]</strong><br>
+        <strong>[NAME 4]</strong> · <strong>[NAME 5]</strong> · <strong>[NAME 6]</strong>
+      </div>
+      <div class="credit-center">
+        COMING SOON
+        <span class="date">[WEDDING DATE]</span>
+      </div>
+      <div class="credit-line credit-right">
+        <span class="small">Featuring</span>
+        <strong>[NAME 7]</strong> &amp; <strong>[NAME 8]</strong><br>
+        Directed &amp; Lived By <strong>[GROOM]</strong><br>
+        For <strong>[BRIDE]</strong>, With Love
+      </div>
+    </div>
+  </div>
+
+  <div class="rating-box">Rated B · For Brotherhood</div>
+  <div class="runtime">Runtime · A Lifetime</div>
+</section>
+
+
+<!-- =================== PAGE 2 — FROM THE ARCHIVE =================== -->
+<section class="page archive">
+  <div class="arch-badge"><strong>REEL 02</strong> &nbsp;/&nbsp; Production Stills</div>
+  <div class="arch-folio">Folio <strong>II</strong> &nbsp;/&nbsp; II</div>
+
+  <div class="arch-header">
+    <div class="arch-overline">From the Filmmaker's Archive</div>
+    <h2 class="arch-title">BEHIND THE POSTER</h2>
+    <div class="arch-sub">— Reference Photographs &amp; Final Paintings —</div>
+    <div class="arch-divider"></div>
+  </div>
+
+  <div class="pairs-grid">
+
+    <!-- FEATURE PAIR — Mt. Shasta, the hero shot -->
+    <div class="feature-pair">
+      <div class="pair-imgs">
+        <div class="pair-img painted">
+          <span class="corner">Painting</span>
+          <img src="stylized/photo-08-mt-shasta-painted.jpg" alt="" />
+        </div>
+        <div class="pair-img ref">
+          <span class="corner">Ref · 01</span>
+          <img src="../photos/photo-08-mt-shasta.jpg" alt="" />
+        </div>
+      </div>
+      <div class="pair-caption">
+        <strong>The Throne at the End of the World</strong>
+        <span class="small">Mt. Shasta · California · Plate 01 of 11</span>
+      </div>
+    </div>
+
+    <!-- Row 2: Egypt, Cabo, Zion warriors -->
+    <div class="pair">
+      <div class="pair-imgs">
+        <div class="pair-img painted"><span class="corner">Paint</span><img src="stylized/photo-02-egypt-pyramid-painted.jpg" alt="" /></div>
+        <div class="pair-img ref"><span class="corner">Ref</span><img src="../photos/photo-02-egypt-pyramid.jpg" alt="" /></div>
+      </div>
+      <div class="pair-caption">
+        <strong>The Pyramid</strong>
+        <span class="small">Giza · Egypt · MMXXII</span>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="pair-imgs">
+        <div class="pair-img painted"><span class="corner">Paint</span><img src="stylized/photo-04-cabo-boat-painted.jpg" alt="" /></div>
+        <div class="pair-img ref"><span class="corner">Ref</span><img src="../photos/photo-04-cabo-boat.jpg" alt="" /></div>
+      </div>
+      <div class="pair-caption">
+        <strong>Land's End</strong>
+        <span class="small">Cabo San Lucas · Mexico</span>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="pair-imgs">
+        <div class="pair-img painted"><span class="corner">Paint</span><img src="stylized/photo-11-zion-warriors-painted.jpg" alt="" /></div>
+        <div class="pair-img ref"><span class="corner">Ref</span><img src="../photos/photo-11-zion-warriors.jpg" alt="" /></div>
+      </div>
+      <div class="pair-caption">
+        <strong>The Warriors</strong>
+        <span class="small">Zion Narrows · Utah</span>
+      </div>
+    </div>
+
+    <!-- Row 3: Zion hike, Sedona spires, Sedona spiral -->
+    <div class="pair">
+      <div class="pair-imgs">
+        <div class="pair-img painted"><span class="corner">Paint</span><img src="stylized/photo-07-zion-narrows-painted.jpg" alt="" /></div>
+        <div class="pair-img ref"><span class="corner">Ref</span><img src="../photos/photo-07-zion-narrows.jpg" alt="" /></div>
+      </div>
+      <div class="pair-caption">
+        <strong>The Narrows</strong>
+        <span class="small">Zion · Utah · Walking Staves</span>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="pair-imgs">
+        <div class="pair-img painted"><span class="corner">Paint</span><img src="stylized/photo-05-sedona-spires-painted.jpg" alt="" /></div>
+        <div class="pair-img ref"><span class="corner">Ref</span><img src="../photos/photo-05-sedona-spires.jpg" alt="" /></div>
+      </div>
+      <div class="pair-caption">
+        <strong>The Red Cathedrals</strong>
+        <span class="small">Sedona · Arizona</span>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="pair-imgs">
+        <div class="pair-img painted"><span class="corner">Paint</span><img src="stylized/photo-10-sedona-spiral-painted.jpg" alt="" /></div>
+        <div class="pair-img ref"><span class="corner">Ref</span><img src="../photos/photo-10-sedona-spiral.jpg" alt="" /></div>
+      </div>
+      <div class="pair-caption">
+        <strong>The Spiral</strong>
+        <span class="small">Sedona · Arizona · Stone Circle</span>
+      </div>
+    </div>
+
+    <!-- Row 4: Beach group, Beach pile, NYC -->
+    <div class="pair">
+      <div class="pair-imgs">
+        <div class="pair-img painted"><span class="corner">Paint</span><img src="stylized/photo-01-beach-brown-tees-painted.jpg" alt="" /></div>
+        <div class="pair-img ref"><span class="corner">Ref</span><img src="../photos/photo-01-beach-brown-tees.jpg" alt="" /></div>
+      </div>
+      <div class="pair-caption">
+        <strong>The Brown Tees</strong>
+        <span class="small">Pacific Coast · California</span>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="pair-imgs">
+        <div class="pair-img painted"><span class="corner">Paint</span><img src="stylized/photo-03-beach-sunset-pile-painted.jpg" alt="" /></div>
+        <div class="pair-img ref"><span class="corner">Ref</span><img src="../photos/photo-03-beach-sunset-pile.jpg" alt="" /></div>
+      </div>
+      <div class="pair-caption">
+        <strong>The Pile</strong>
+        <span class="small">Sunset · Golden Hour · California</span>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="pair-imgs">
+        <div class="pair-img painted"><span class="corner">Paint</span><img src="stylized/photo-06-times-square-painted.jpg" alt="" /></div>
+        <div class="pair-img ref"><span class="corner">Ref</span><img src="../photos/photo-06-times-square.jpg" alt="" /></div>
+      </div>
+      <div class="pair-caption">
+        <strong>The Big City</strong>
+        <span class="small">Times Square · NYC</span>
+      </div>
+    </div>
+
+    <!-- Row 5: NEON DORM as a wide feature (origin story) -->
+    <div class="feature-pair compact">
+      <div class="pair-imgs">
+        <div class="pair-img painted">
+          <span class="corner">Painting</span>
+          <img src="stylized/photo-09-neon-dorm-painted.jpg" alt="" />
+        </div>
+        <div class="pair-img ref">
+          <span class="corner">Ref · 11</span>
+          <img src="../photos/photo-09-neon-dorm.jpg" alt="" />
+        </div>
+      </div>
+      <div class="pair-caption">
+        <strong>Origin Story · The Dorm Years</strong>
+        <span class="small">Where The Brotherhood Began · Plate 11 of 11</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="signoff">
+    <div class="signoff-line">
+      All paintings inspired by <span class="em">the real thing.</span><br>
+      All memories inspired by <span class="em">[GROOM]</span>. Thank you for the adventure.
+    </div>
+    <div class="signoff-credit">
+      A <strong>[GROOM]</strong> Production · Painted by The Years · Distributed by The Boys · MMXXVI
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

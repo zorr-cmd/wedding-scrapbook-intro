@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>THE BROTHERS — A Grindhouse Double Feature</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bowlby+One&family=Anton&family=Black+Ops+One&family=Oswald:wght@400;600;700&family=Barlow+Condensed:ital,wght@0,400;0,600;0,800;1,800&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #f0e2c4;
+    --paper-dark: #e6d8b8;
+    --yellow: #fcd83d;
+    --yellow-dim: #e8c025;
+    --red: #a01e2a;
+    --red-dark: #7a151e;
+    --ink: #0a0a0a;
+  }
+
+  html, body {
+    background: #2a2520;
+    font-family: 'Barlow Condensed', 'Oswald', sans-serif;
+    color: var(--ink);
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto;
+    page-break-after: always;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* Paper grain + stains overlay across whole page */
+  .page::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(ellipse at 12% 8%, rgba(120,80,30,0.18) 0%, transparent 22%),
+      radial-gradient(ellipse at 88% 15%, rgba(80,40,10,0.14) 0%, transparent 18%),
+      radial-gradient(ellipse at 20% 92%, rgba(140,90,40,0.18) 0%, transparent 25%),
+      radial-gradient(ellipse at 78% 85%, rgba(60,30,10,0.13) 0%, transparent 22%),
+      radial-gradient(ellipse at 55% 50%, rgba(180,140,80,0.08) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 8;
+  }
+  /* Halftone over entire page, very subtle */
+  .page::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.22) 0.7px, transparent 1.3px);
+    background-size: 4px 4px;
+    mix-blend-mode: multiply;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 9;
+  }
+
+  /* =================== PAGE 1 — THE MAIN POSTER =================== */
+
+  .corner-tag {
+    position: absolute;
+    font-family: 'Courier Prime', monospace;
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    padding: 4px 8px;
+    text-transform: uppercase;
+    z-index: 12;
+  }
+  .corner-tag.red { background: var(--red); color: var(--paper); border-color: var(--ink); }
+  .corner-tag.yellow { background: var(--yellow); color: var(--ink); }
+
+  .tag-tl { top: 0.30in; left: 0.30in; transform: rotate(-3deg); }
+  .tag-tr { top: 0.30in; right: 0.30in; transform: rotate(2deg); }
+  .tag-bl-1 { bottom: 0.55in; left: 0.30in; transform: rotate(-2deg); }
+  .tag-bl-2 { bottom: 0.30in; left: 0.30in; transform: rotate(1deg); }
+  .tag-br-1 { bottom: 0.55in; right: 0.30in; transform: rotate(3deg); }
+  .tag-br-2 { bottom: 0.30in; right: 0.30in; transform: rotate(-1deg); }
+
+  .title-wrap {
+    position: absolute;
+    top: 0.55in;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 14;
+    padding: 0 0.4in;
+  }
+  .title-eyebrow {
+    font-family: 'Special Elite', 'Courier Prime', monospace;
+    font-size: 11pt;
+    letter-spacing: 0.35em;
+    color: var(--red);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .title-the {
+    display: inline-block;
+    font-family: 'Anton', sans-serif;
+    font-style: italic;
+    font-size: 38pt;
+    color: var(--red);
+    letter-spacing: 0.02em;
+    transform: skewX(-8deg) translateY(8px);
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.4);
+  }
+  .title-main {
+    font-family: 'Bowlby One', 'Bungee', sans-serif;
+    font-size: 96pt;
+    line-height: 0.88;
+    color: var(--yellow);
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    text-shadow:
+      3px 0 0 var(--ink),
+      -3px 0 0 var(--ink),
+      0 3px 0 var(--ink),
+      0 -3px 0 var(--ink),
+      3px 3px 0 var(--ink),
+      -3px -3px 0 var(--ink),
+      3px -3px 0 var(--ink),
+      -3px 3px 0 var(--ink),
+      10px 10px 0 var(--red-dark),
+      14px 14px 0 rgba(0,0,0,0.5);
+    margin-top: -4px;
+  }
+  .title-tagline {
+    font-family: 'Anton', sans-serif;
+    font-size: 18pt;
+    color: var(--red);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 14px;
+    line-height: 1.08;
+    text-shadow: 1.5px 1.5px 0 rgba(0,0,0,0.25);
+  }
+  .title-tagline .punch {
+    background: var(--ink);
+    color: var(--yellow);
+    padding: 0 8px;
+    display: inline-block;
+    transform: skewX(-6deg);
+  }
+
+  /* HERO IMAGE */
+  .hero {
+    position: absolute;
+    top: 3.45in;
+    left: 0.55in;
+    right: 0.55in;
+    height: 4.95in;
+    overflow: hidden;
+    z-index: 10;
+    border: 4px solid var(--ink);
+    box-shadow:
+      0 0 0 2px var(--paper),
+      0 0 0 5px var(--ink),
+      14px 14px 0 var(--red-dark);
+  }
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: grayscale(1) contrast(1.55) brightness(0.92);
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.55) 1.1px, transparent 1.7px);
+    background-size: 5px 5px;
+    mix-blend-mode: multiply;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  .hero-vignette {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, transparent 30%, transparent 60%, rgba(0,0,0,0.55) 100%),
+      radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.55) 100%);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .hero-stamp {
+    position: absolute;
+    bottom: 12px; right: 12px;
+    font-family: 'Bowlby One', sans-serif;
+    color: var(--yellow);
+    font-size: 22pt;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0 var(--ink), 4px 4px 0 var(--red-dark);
+    transform: rotate(-4deg);
+    z-index: 3;
+  }
+  .hero-side {
+    position: absolute;
+    top: 10px; left: 12px;
+    font-family: 'Special Elite', monospace;
+    color: var(--yellow);
+    font-size: 9pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 var(--ink);
+    z-index: 3;
+  }
+
+  /* SPLAT — blood-red burst with text */
+  .splat {
+    position: absolute;
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--yellow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Bowlby One', sans-serif;
+    text-transform: uppercase;
+    z-index: 13;
+    border: 3px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    transform: rotate(-12deg);
+  }
+  .splat.right { top: 3.05in; right: 0.20in; transform: rotate(8deg); }
+  .splat .small { font-size: 7.5pt; letter-spacing: 0.15em; font-family: 'Special Elite', monospace; }
+  .splat .big { font-size: 22pt; line-height: 0.95; }
+  .splat .tiny { font-size: 7pt; letter-spacing: 0.1em; font-family: 'Special Elite', monospace; margin-top: 2px; }
+
+  /* CREDIT BILLING BLOCK */
+  .billing {
+    position: absolute;
+    bottom: 0.85in;
+    left: 0.55in;
+    right: 0.55in;
+    z-index: 14;
+    text-align: center;
+  }
+  .billing .producer {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 10pt;
+    letter-spacing: 0.18em;
+    color: var(--ink);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .billing .producer .y { color: var(--red); }
+  .billing .stars {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 9.5pt;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    line-height: 1.15;
+  }
+  .billing .row {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 7.5pt;
+    letter-spacing: 0.15em;
+    color: var(--ink);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .billing .row .label { color: var(--red); font-weight: 800; }
+
+  .bottom-bar {
+    position: absolute;
+    bottom: 0.18in;
+    left: 0.40in;
+    right: 0.40in;
+    border-top: 3px solid var(--ink);
+    padding-top: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Special Elite', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 14;
+  }
+  .bottom-bar .center {
+    font-family: 'Bowlby One', sans-serif;
+    background: var(--ink);
+    color: var(--yellow);
+    padding: 4px 12px;
+    font-size: 11pt;
+    letter-spacing: 0.08em;
+    transform: rotate(-1.5deg);
+  }
+
+  /* =================== PAGE 2 — DOUBLE FEATURE =================== */
+
+  .double-banner {
+    position: absolute;
+    top: 0.35in;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 14;
+  }
+  .double-banner .ribbon {
+    display: inline-block;
+    background: var(--red);
+    color: var(--yellow);
+    font-family: 'Bowlby One', sans-serif;
+    font-size: 26pt;
+    padding: 6px 28px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transform: rotate(-1.5deg);
+    border: 3px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+  }
+  .double-banner .ribbon span { color: var(--paper); }
+  .double-banner .sub {
+    font-family: 'Special Elite', monospace;
+    font-size: 9.5pt;
+    letter-spacing: 0.28em;
+    color: var(--ink);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* Top mini-poster (Bachelor Party Prequel) */
+  .mini-poster {
+    position: absolute;
+    top: 1.20in;
+    left: 0.55in;
+    right: 0.55in;
+    height: 3.55in;
+    background: var(--ink);
+    border: 4px solid var(--ink);
+    z-index: 12;
+    box-shadow: 10px 10px 0 var(--red-dark);
+    overflow: hidden;
+    display: flex;
+  }
+  .mini-poster .img-wrap {
+    width: 58%;
+    position: relative;
+    overflow: hidden;
+    border-right: 3px solid var(--yellow);
+  }
+  .mini-poster .img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.5) brightness(0.95) sepia(0.3) saturate(1.6);
+  }
+  .mini-poster .img-wrap::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.55) 1px, transparent 1.6px);
+    background-size: 5px 5px;
+    mix-blend-mode: multiply;
+    opacity: 0.7;
+  }
+  .mini-poster .img-wrap .overlay-grad {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, transparent 50%, rgba(160,30,42,0.55) 100%);
+    z-index: 2;
+  }
+  .mini-poster .text-side {
+    width: 42%;
+    padding: 18px 18px 12px;
+    color: var(--paper);
+    background:
+      linear-gradient(180deg, var(--ink) 0%, #1a0e10 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .mini-poster .text-side::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(255,216,61,0.10) 0.6px, transparent 1.1px);
+    background-size: 3px 3px;
+    pointer-events: none;
+  }
+  .mini-eyebrow {
+    font-family: 'Special Elite', monospace;
+    font-size: 8.5pt;
+    color: var(--yellow);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .mini-title {
+    font-family: 'Bowlby One', sans-serif;
+    font-size: 30pt;
+    color: var(--yellow);
+    line-height: 0.9;
+    text-transform: uppercase;
+    text-shadow:
+      2px 0 0 var(--ink),
+      -2px 0 0 var(--ink),
+      0 2px 0 var(--ink),
+      0 -2px 0 var(--ink),
+      6px 6px 0 var(--red-dark);
+    margin-bottom: 8px;
+  }
+  .mini-title .small-line {
+    display: block;
+    font-family: 'Anton', sans-serif;
+    font-style: italic;
+    font-size: 14pt;
+    color: var(--red);
+    text-shadow: 1.5px 1.5px 0 var(--ink);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .mini-tagline {
+    font-family: 'Anton', sans-serif;
+    font-size: 11.5pt;
+    color: var(--paper);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.15;
+    margin-top: 10px;
+  }
+  .mini-tagline .hl { color: var(--yellow); }
+  .mini-rating {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Bowlby One', sans-serif;
+    font-size: 9pt;
+    padding: 4px 8px;
+    display: inline-block;
+    border: 2px solid var(--yellow);
+    align-self: flex-start;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .mini-credits {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 6.5pt;
+    color: var(--paper);
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    line-height: 1.3;
+    margin-top: auto;
+    border-top: 1px solid var(--yellow-dim);
+    padding-top: 6px;
+    opacity: 0.92;
+  }
+  .mini-credits .y { color: var(--yellow); }
+
+  /* COMING ATTRACTIONS section */
+  .coming {
+    position: absolute;
+    top: 5.05in;
+    left: 0.40in;
+    right: 0.40in;
+    bottom: 0.85in;
+    z-index: 12;
+  }
+  .coming-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .coming-header .label {
+    font-family: 'Bowlby One', sans-serif;
+    font-size: 22pt;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    text-shadow: 3px 3px 0 var(--yellow);
+  }
+  .coming-header .bar {
+    flex: 1;
+    height: 6px;
+    background:
+      repeating-linear-gradient(90deg,
+        var(--ink) 0 14px,
+        var(--yellow) 14px 24px,
+        var(--red) 24px 34px,
+        var(--yellow) 34px 44px);
+  }
+  .coming-header .sub {
+    font-family: 'Special Elite', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    text-transform: uppercase;
+  }
+
+  .reel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    height: calc(100% - 50px);
+  }
+  .reel-cell {
+    position: relative;
+    background: var(--ink);
+    border: 3px solid var(--ink);
+    overflow: hidden;
+    box-shadow: 4px 4px 0 var(--red-dark);
+  }
+  .reel-cell img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.5) brightness(0.9);
+  }
+  .reel-cell::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.55) 0.9px, transparent 1.4px);
+    background-size: 4px 4px;
+    mix-blend-mode: multiply;
+    opacity: 0.75;
+  }
+  .reel-cell .caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.92) 30%, transparent 100%);
+    padding: 18px 8px 6px;
+    font-family: 'Anton', sans-serif;
+    font-size: 7.5pt;
+    color: var(--yellow);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+    z-index: 2;
+  }
+  .reel-cell .caption .where {
+    color: var(--red);
+    font-family: 'Bowlby One', sans-serif;
+    font-size: 8.5pt;
+    display: block;
+    margin-bottom: 2px;
+    letter-spacing: 0.06em;
+    text-shadow: 1px 1px 0 var(--ink);
+  }
+  .reel-cell .corner {
+    position: absolute;
+    top: 5px; right: 5px;
+    background: var(--yellow);
+    color: var(--ink);
+    font-family: 'Bowlby One', sans-serif;
+    font-size: 8pt;
+    width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--ink);
+    z-index: 3;
+    transform: rotate(-6deg);
+  }
+
+  /* Distributor footer page 2 */
+  .distributor {
+    position: absolute;
+    bottom: 0.18in;
+    left: 0.40in;
+    right: 0.40in;
+    text-align: center;
+    z-index: 14;
+    border-top: 3px double var(--ink);
+    padding-top: 6px;
+  }
+  .distributor .line1 {
+    font-family: 'Bowlby One', sans-serif;
+    font-size: 11pt;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .distributor .line1 .red { color: var(--red); }
+  .distributor .line2 {
+    font-family: 'Special Elite', monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.18em;
+    color: var(--ink);
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+  .distributor .line3 {
+    font-family: 'Courier Prime', monospace;
+    font-size: 6.5pt;
+    letter-spacing: 0.16em;
+    color: var(--ink);
+    text-transform: uppercase;
+    margin-top: 2px;
+    opacity: 0.75;
+  }
+
+  /* Tape strips for collage feel */
+  .tape {
+    position: absolute;
+    background: rgba(240, 226, 180, 0.7);
+    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 15;
+    width: 90px; height: 22px;
+  }
+
+  /* Crooked star burst */
+  .starburst {
+    position: absolute;
+    width: 110px; height: 110px;
+    background: var(--yellow);
+    color: var(--red);
+    font-family: 'Bowlby One', sans-serif;
+    text-transform: uppercase;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    clip-path: polygon(
+      50% 0%, 61% 18%, 80% 12%, 78% 33%, 100% 38%,
+      83% 53%, 95% 72%, 73% 70%, 75% 92%, 55% 79%,
+      50% 100%, 45% 79%, 25% 92%, 27% 70%, 5% 72%,
+      17% 53%, 0% 38%, 22% 33%, 20% 12%, 39% 18%
+    );
+    z-index: 13;
+  }
+  .starburst .l1 { font-size: 8pt; letter-spacing: 0.1em; font-family: 'Special Elite', monospace; }
+  .starburst .l2 { font-size: 17pt; line-height: 0.9; }
+  .starburst .l3 { font-size: 7pt; letter-spacing: 0.08em; font-family: 'Special Elite', monospace; margin-top: 2px;}
+
+</style>
+</head>
+<body>
+
+<!-- ============================== PAGE 1 ============================== -->
+<div class="page" id="page1">
+
+  <!-- Corner B-movie badges -->
+  <div class="corner-tag tag-tl">FORMAT: 35MM SCOPE</div>
+  <div class="corner-tag yellow tag-tr">DOLBY STEREO</div>
+
+  <!-- Title block -->
+  <div class="title-wrap">
+    <div class="title-eyebrow">★ ★ ★  A [GROOM] PRODUCTION  ★ ★ ★</div>
+    <div class="title-the">The</div>
+    <div class="title-main">Brothers</div>
+    <div class="title-tagline">
+      Eight Men. Eleven Adventures. <span class="punch">One Wedding.</span><br>
+      &mdash; No Prisoners. &mdash;
+    </div>
+  </div>
+
+  <!-- Red splat seal -->
+  <div class="splat right">
+    <div class="small">★ NOW ★</div>
+    <div class="big">SHOWING</div>
+    <div class="tiny">SUMMER MMXXVI</div>
+  </div>
+
+  <!-- HERO image -->
+  <div class="hero">
+    <div class="hero-side">REEL 01 ▸ ZION NARROWS ▸ TAKE 7</div>
+    <img src="../photos/photo-11-zion-warriors.jpg" alt="warriors">
+    <div class="hero-vignette"></div>
+    <div class="hero-stamp">TOTAL LEGENDS!</div>
+  </div>
+
+  <!-- Starburst lower-left -->
+  <div class="starburst" style="bottom: 1.95in; left: 0.20in; transform: rotate(-15deg);">
+    <div class="l1">★ RATED ★</div>
+    <div class="l2">B</div>
+    <div class="l3">FOR BROTHERHOOD</div>
+  </div>
+
+  <!-- BILLING BLOCK -->
+  <div class="billing">
+    <div class="producer">A <span class="y">[GROOM]</span> PRODUCTION &middot; "THE BROTHERS"</div>
+    <div class="stars">STARRING &nbsp; [NAME 1] &middot; [NAME 2] &middot; [NAME 3] &middot; [NAME 4]<br>
+      [NAME 5] &middot; [NAME 6] &middot; [NAME 7] &middot; [NAME 8]
+    </div>
+    <div class="row"><span class="label">MUSIC BY</span> TARANTINO MIXTAPE &nbsp;&middot;&nbsp; <span class="label">EDITED BY</span> THE GROUP CHAT</div>
+    <div class="row"><span class="label">CINEMATOGRAPHY</span> [GROOM] &nbsp;&middot;&nbsp; <span class="label">PRODUCED BY</span> TEN YEARS OF SHENANIGANS</div>
+    <div class="row"><span class="label">WARDROBE</span> MATCHING TEES &nbsp;&middot;&nbsp; <span class="label">CATERING</span> WHATEVER'S OPEN AT 3AM</div>
+    <div class="row">&mdash; A WEDDING PICTURES RELEASE &middot; COMING [WEDDING DATE] &mdash;</div>
+  </div>
+
+  <!-- Bottom badges -->
+  <div class="corner-tag tag-bl-1">★ GROOVY ★</div>
+  <div class="corner-tag red tag-bl-2">RIGHTEOUS!</div>
+  <div class="corner-tag yellow tag-br-1">FAR OUT</div>
+  <div class="corner-tag tag-br-2">DON'T MISS IT!</div>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar">
+    <span>NO. 015</span>
+    <span class="center">★ STARTS [WEDDING DATE] ★</span>
+    <span>VOL. 1</span>
+  </div>
+
+</div>
+
+<!-- ============================== PAGE 2 ============================== -->
+<div class="page" id="page2">
+
+  <!-- Top banner -->
+  <div class="double-banner">
+    <div class="ribbon">★ <span>DOUBLE</span> FEATURE ★</div>
+    <div class="sub">&mdash; KEEP THE PARTY GOING &mdash; ALSO PLAYING &mdash;</div>
+  </div>
+
+  <!-- Corner badges -->
+  <div class="corner-tag tag-tl" style="top:0.25in;">EXTRA REEL</div>
+  <div class="corner-tag red tag-tr" style="top:0.25in;">UNCUT VERSION</div>
+
+  <!-- MINI POSTER -->
+  <div class="mini-poster">
+    <div class="img-wrap">
+      <img src="../photos/photo-04-cabo-boat.jpg" alt="cabo">
+      <div class="overlay-grad"></div>
+    </div>
+    <div class="text-side">
+      <div>
+        <div class="mini-eyebrow">★ ALSO PLAYING ★</div>
+        <div class="mini-title">
+          <span class="small-line">The Bachelor Party</span>
+          The Prequel
+        </div>
+        <div class="mini-tagline">
+          Drinks <span class="hl">will</span> be thrown.<br>
+          Laughs <span class="hl">will</span> be had.<br>
+          <span class="hl">No animals</span> were harmed.
+        </div>
+        <div class="mini-rating">RATED H — FOR HEROIC</div>
+      </div>
+      <div class="mini-credits">
+        STARRING <span class="y">THE SAME BROTHERS</span> &middot; SHOT ON LOCATION IN CABO<br>
+        DIRECTED BY <span class="y">[GROOM]</span> &middot; SOUNDTRACK BY THE SEA<br>
+        &mdash; A WEDDING PICTURES JOINT &mdash;
+      </div>
+    </div>
+  </div>
+
+  <!-- COMING ATTRACTIONS -->
+  <div class="coming">
+    <div class="coming-header">
+      <div class="label">COMING ATTRACTIONS</div>
+      <div class="bar"></div>
+      <div class="sub">9 REELS</div>
+    </div>
+
+    <div class="reel">
+      <div class="reel-cell">
+        <div class="corner">1</div>
+        <img src="../photos/photo-02-egypt-pyramid.jpg" alt="egypt">
+        <div class="caption">
+          <span class="where">EGYPT</span>
+          They came to build a pyramid. So they built one.
+        </div>
+      </div>
+      <div class="reel-cell">
+        <div class="corner">2</div>
+        <img src="../photos/photo-07-zion-narrows.jpg" alt="zion">
+        <div class="caption">
+          <span class="where">ZION</span>
+          Knee-deep. Soaking wet. Smiling.
+        </div>
+      </div>
+      <div class="reel-cell">
+        <div class="corner">3</div>
+        <img src="../photos/photo-06-times-square.jpg" alt="times sq">
+        <div class="caption">
+          <span class="where">TIMES SQ</span>
+          3 AM. Neon. No regrets.
+        </div>
+      </div>
+      <div class="reel-cell">
+        <div class="corner">4</div>
+        <img src="../photos/photo-08-mt-shasta.jpg" alt="shasta">
+        <div class="caption">
+          <span class="where">SHASTA</span>
+          The sun set. They did not look away.
+        </div>
+      </div>
+      <div class="reel-cell">
+        <div class="corner">5</div>
+        <img src="../photos/photo-05-sedona-spires.jpg" alt="sedona">
+        <div class="caption">
+          <span class="where">SEDONA</span>
+          Red rock. Bold hearts.
+        </div>
+      </div>
+      <div class="reel-cell">
+        <div class="corner">6</div>
+        <img src="../photos/photo-10-sedona-spiral.jpg" alt="sedona spiral">
+        <div class="caption">
+          <span class="where">VORTEX</span>
+          They drew the circle. They lived inside it.
+        </div>
+      </div>
+      <div class="reel-cell">
+        <div class="corner">7</div>
+        <img src="../photos/photo-03-beach-sunset-pile.jpg" alt="pile">
+        <div class="caption">
+          <span class="where">PACIFIC</span>
+          A pile of dudes. A golden hour. Pure cinema.
+        </div>
+      </div>
+      <div class="reel-cell">
+        <div class="corner">8</div>
+        <img src="../photos/photo-01-beach-brown-tees.jpg" alt="brown tees">
+        <div class="caption">
+          <span class="where">LA JOLLA</span>
+          Seven men. One uniform. Zero chill.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bonus mini-reel: dorm shot tucked at top right corner of the mini poster as a "vintage cut" -->
+  <div style="position:absolute; top:0.82in; right:0.35in; width:1.1in; height:0.82in; z-index:16; transform: rotate(6deg); border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--yellow); overflow:hidden;">
+    <img src="../photos/photo-09-neon-dorm.jpg" alt="dorm" style="width:100%; height:100%; object-fit:cover; filter: grayscale(1) contrast(1.4) brightness(0.95);">
+    <div style="position:absolute; inset:0; background-image: radial-gradient(circle, rgba(0,0,0,0.5) 1px, transparent 1.5px); background-size:4px 4px; mix-blend-mode:multiply; opacity:0.7;"></div>
+    <div style="position:absolute; bottom:2px; left:3px; right:3px; font-family:'Special Elite', monospace; font-size:6pt; color:var(--yellow); letter-spacing:0.1em; text-transform:uppercase; text-shadow: 1px 1px 0 var(--ink);">ORIGIN STORY</div>
+  </div>
+
+  <!-- Distributor footer -->
+  <div class="distributor">
+    <div class="line1">A <span class="red">WEDDING PICTURES</span> RELEASE &nbsp;★&nbsp; STARTS [WEDDING DATE] &nbsp;★&nbsp; CHECK YOUR LOCAL CHAPEL FOR SHOWTIMES</div>
+    <div class="line2">Please enjoy responsibly &middot; Shenanigans sold separately &middot; All cheers are non-refundable</div>
+    <div class="line3">© MMXXVI THE BROTHERHOOD &middot; NO COPIES MAY BE BOOTLEGGED &middot; UNLESS THEY'RE GOOD</div>
+  </div>
+
+</div>
+
+</body>
+</html>

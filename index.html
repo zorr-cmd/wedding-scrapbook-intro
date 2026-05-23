@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wedding Scrapbook Intro — 10 Variations</title>
-<meta property="og:title" content="Wedding Scrapbook Intro — 10 Variations">
-<meta property="og:description" content="Ten creative takes on a 2-page scrapbook intro spread — six film-themed for the filmmaker groom, four general styles.">
+<title>Wedding Scrapbook Intro — 15 Variations</title>
+<meta property="og:title" content="Wedding Scrapbook Intro — 15 Variations">
+<meta property="og:description" content="Fifteen creative takes on a 2-page scrapbook intro spread, including AI-stylized painted &amp; Ghibli movie posters.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@
     --muted: #9a9892;
     --accent: #d4a373;
     --accent-2: #e85a26;
+    --accent-3: #fcd83d;
     --border: #2a2a2e;
   }
   * { box-sizing: border-box; }
@@ -38,7 +39,7 @@
   }
   header.top p {
     color: var(--muted);
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto 24px;
     font-size: 15px;
     line-height: 1.55;
@@ -61,8 +62,23 @@
     transition: all .15s;
   }
   .toc a:hover { background: var(--panel-2); border-color: var(--accent); color: var(--accent); }
+  .toc a.poster { border-color: rgba(252, 216, 61, 0.4); }
+  .toc a.poster:hover { border-color: var(--accent-3); color: var(--accent-3); }
   .toc a.film { border-color: rgba(232, 90, 38, 0.4); }
   .toc a.film:hover { border-color: var(--accent-2); color: var(--accent-2); }
+  .badge-ai {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #fcd83d, #e85a26);
+    color: #1a0a05;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
 
   .section-divider {
     padding: 64px 40px 24px;
@@ -73,13 +89,14 @@
   .section-divider .label {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    color: var(--accent-2);
     font-size: 13px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     margin-bottom: 8px;
+    color: var(--accent-3);
   }
-  .section-divider.alt .label { color: var(--accent); }
+  .section-divider.s2 .label { color: var(--accent-2); }
+  .section-divider.s3 .label { color: var(--accent); }
   .section-divider h2 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
@@ -89,7 +106,7 @@
   }
   .section-divider p {
     color: var(--muted);
-    max-width: 680px;
+    max-width: 720px;
     margin: 0;
     font-size: 14px;
     line-height: 1.55;
@@ -118,12 +135,13 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
+  section.variation.poster .var-header .num { color: var(--accent-3); }
   section.variation.film .var-header .num { color: var(--accent-2); }
   .var-header h2 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     margin: 4px 0 8px;
-    font-size: clamp(28px, 3vw, 38px);
+    font-size: clamp(26px, 2.8vw, 36px);
     letter-spacing: -0.01em;
   }
   .var-header .tagline {
@@ -131,7 +149,7 @@
     margin: 0;
     font-size: 14px;
     line-height: 1.55;
-    max-width: 620px;
+    max-width: 640px;
   }
   .var-actions { display: flex; gap: 10px; flex-shrink: 0; }
   .btn {
@@ -150,6 +168,8 @@
   .btn:hover { background: var(--panel-2); border-color: var(--accent); color: var(--accent); }
   .btn.primary { background: var(--accent); color: #1a1306; border-color: var(--accent); }
   .btn.primary:hover { background: #e8b687; color: #1a1306; }
+  section.variation.poster .btn.primary { background: var(--accent-3); color: #1a1306; border-color: var(--accent-3); }
+  section.variation.poster .btn.primary:hover { background: #fce26d; color: #1a1306; }
   section.variation.film .btn.primary { background: var(--accent-2); color: #1a0a05; border-color: var(--accent-2); }
   section.variation.film .btn.primary:hover { background: #f47346; color: #1a0a05; }
 
@@ -205,15 +225,20 @@
 <body>
 
 <header class="top">
-  <h1>Wedding Scrapbook Intro — 10 Variations</h1>
-  <p>Ten distinct creative takes on a 2-page intro spread (8.5″ × 11″ each, US Letter). The first six are <strong style="color: var(--accent-2)">film-themed</strong> in honor of the groom — a Turkish working filmmaker. The last four are general design styles from the first round. Click any variation to open the live HTML in a new tab.</p>
+  <h1>Wedding Scrapbook Intro — 15 Variations</h1>
+  <p>Fifteen distinct creative takes on a 2-page intro spread (8.5″ × 11″ each, US Letter). Two variations (Drew Struzan painted &amp; Studio Ghibli watercolor) use <strong style="background: linear-gradient(90deg, #fcd83d, #e85a26); color: #1a0a05; padding: 2px 6px; border-radius: 3px;">nano-banana-pro</strong> to actually re-render the photos as paintings — see the source photo and its painted/Ghibli version side-by-side on page 2 of each. Click any variation to open the live HTML in a new tab.</p>
   <nav class="toc">
-    <a href="#v5" class="film">05 · Criterion Reel</a>
-    <a href="#v6" class="film">06 · Yeşilçam Poster</a>
-    <a href="#v7" class="film">07 · Director's Boards</a>
-    <a href="#v8" class="film">08 · VHS Archive</a>
-    <a href="#v9" class="film">09 · Festival Programme</a>
-    <a href="#v10" class="film">10 · Director's Notebook</a>
+    <a href="#v11" class="poster">11 · Saul Bass</a>
+    <a href="#v12" class="poster">12 · Drew Struzan (AI)</a>
+    <a href="#v13" class="poster">13 · A24 Minimal</a>
+    <a href="#v14" class="poster">14 · Studio Ghibli (AI)</a>
+    <a href="#v15" class="poster">15 · Grindhouse</a>
+    <a href="#v5" class="film">05 · Criterion</a>
+    <a href="#v7" class="film">07 · Storyboard</a>
+    <a href="#v8" class="film">08 · VHS</a>
+    <a href="#v9" class="film">09 · Festival</a>
+    <a href="#v10" class="film">10 · Notebook</a>
+    <a href="#v6" class="film">06 · Yeşilçam</a>
     <a href="#v1">01 · Passport</a>
     <a href="#v2">02 · Polaroid</a>
     <a href="#v3">03 · Editorial</a>
@@ -221,10 +246,135 @@
   </nav>
 </header>
 
+<!-- ============ SERIES ONE: MOVIE POSTERS (NEWEST) ============ -->
+
 <div class="section-divider">
-  <div class="label">Series One · Six Variations</div>
-  <h2>For the Filmmaker</h2>
-  <p>Six variations built around cinema, photography, and the working process of filmmaking — in honor of the groom's craft and his Turkish heritage.</p>
+  <div class="label">Series One · Movie Posters</div>
+  <h2>Five Posters, Five Eras</h2>
+  <p>Five movie-poster variations spanning the 1960s through the 2010s — Saul Bass, Drew Struzan, A24 minimal, Studio Ghibli, and 70s grindhouse. Two use nano-banana-pro to re-render the photos as actual paintings (Struzan-style airbrush and Ghibli-style watercolor).</p>
+</div>
+
+<section class="variation poster" id="v11">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Poster · Variation 11</div>
+      <h2>THE BAND — Saul Bass Modernist Poster</h2>
+      <p class="tagline">A 1960s Saul Bass-inspired poster. 2-tone Zion warriors hero photo set inside a hand-cut black geometric frame over a giant crimson disc (a Vertigo nod), with the title "THE BAND" rendered with the inverted-letter trick Bass loved. Page 2 is the title sequence — all 11 photos in 2-tone with ACT labels and an abstract Bass-style silhouette breaking the grid.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-11-saul-bass/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · The Poster</div>
+      <img src="screenshots/variation-11-page1.jpg" alt="Variation 11 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · Title Sequence (FIN.)</div>
+      <img src="screenshots/variation-11-page2.jpg" alt="Variation 11 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="variation poster" id="v12">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Poster · Variation 12 <span class="badge-ai">Nano-Banana-Pro</span></div>
+      <h2>BROTHERS — Drew Struzan Painted Poster</h2>
+      <p class="tagline">A Drew Struzan 80s blockbuster poster (Indiana Jones / Star Wars / The Goonies energy). Page 1 hero is a fully painted Mt. Shasta scene with the boys, plus six painted cast portraits below — all 11 photos were re-rendered as actual airbrushed paintings via nano-banana-pro. Page 2 is the archive: every painting paired with its source photograph (REF / PAINTING).</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-12-struzan/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · Painted Poster</div>
+      <img src="screenshots/variation-12-page1.jpg" alt="Variation 12 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · Behind the Poster (Pairs)</div>
+      <img src="screenshots/variation-12-page2.jpg" alt="Variation 12 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="variation poster" id="v13">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Poster · Variation 13</div>
+      <h2>Ensemble. — A24 Minimal Indie Poster</h2>
+      <p class="tagline">An A24-style minimal poster. One bold hero photo (Mt. Shasta alpenglow, full-bleed top 60%), one quiet title ("Ensemble." in huge Cormorant Garamond italic with an ochre period), one tiny credits block, lots of museum-cream whitespace. Page 2 is a clean press-kit grid of all 11 stills with a justified italic synopsis. The discipline is restraint.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-13-a24-minimal/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · Cover</div>
+      <img src="screenshots/variation-13-page1.jpg" alt="Variation 13 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · Selected Stills</div>
+      <img src="screenshots/variation-13-page2.jpg" alt="Variation 13 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="variation poster" id="v14">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Poster · Variation 14 <span class="badge-ai">Nano-Banana-Pro</span></div>
+      <h2>The Boys &amp; The Road That Brought Us Home — Studio Ghibli Watercolor</h2>
+      <p class="tagline">A Studio Ghibli watercolor film poster. All 11 photos were re-rendered as Miyazaki-style watercolor paintings via nano-banana-pro. Page 1 is the full poster — hand-painted Mt. Shasta scene with the boys rendered as Ghibli characters, soft pastel palette, hand-lettered serif title, and a credit to Joe Hisaishi (unauthorized, with love). Page 2 is the storyboard with a REF/FINAL pair showing one transformation.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-14-ghibli/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · Ghibli Poster</div>
+      <img src="screenshots/variation-14-page1.jpg" alt="Variation 14 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · Painted From Memory</div>
+      <img src="screenshots/variation-14-page2.jpg" alt="Variation 14 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="variation poster" id="v15">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Poster · Variation 15</div>
+      <h2>THE BROTHERS — 70s Grindhouse / Tarantino Tribute</h2>
+      <p class="tagline">A loud distressed grindhouse exploitation poster in the Tarantino Kill Bill / Pulp Fiction tradition. Bowlby One yellow title with red drop shadow, halftone-overlaid B&amp;W Zion warriors hero, "EIGHT MEN. ELEVEN ADVENTURES. ONE WEDDING. NO PRISONERS." Page 2 is the DOUBLE FEATURE with a "Bachelor Party: The Prequel" mini-poster plus a Coming Attractions contact sheet of distressed thumbnails with B-movie taglines.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-15-grindhouse/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · The Poster</div>
+      <img src="screenshots/variation-15-page1.jpg" alt="Variation 15 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · Double Feature</div>
+      <img src="screenshots/variation-15-page2.jpg" alt="Variation 15 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERIES TWO: EARLIER FILM SERIES ============ -->
+
+<div class="section-divider s2">
+  <div class="label">Series Two · Film &amp; Cinema (Earlier)</div>
+  <h2>Film Process &amp; Artifacts</h2>
+  <p>Six earlier film-themed variations — the Criterion poster you liked, plus the storyboard, VHS archive, festival programme, director's notebook, and a Yeşilçam Turkish cinema poster.</p>
 </div>
 
 <section class="variation film" id="v5">
@@ -250,35 +400,12 @@
   </div>
 </section>
 
-<section class="variation film" id="v6">
-  <div class="var-header">
-    <div class="left">
-      <div class="num">Film · Variation 06</div>
-      <h2>KARDEŞLER — Vintage Yeşilçam Cinema Poster</h2>
-      <p class="tagline">A hand-painted 1960s-70s Turkish cinema poster in honor of the groom's heritage. Bold flat colors (burnt orange, ochre, crimson, teal), ornate Ottoman borders, painted cast portraits, melodramatic Turkish title typography. Page 2 ("SAHNELER") presents the remaining photos as bilingual lobby cards.</p>
-    </div>
-    <div class="var-actions">
-      <a class="btn primary" href="variation-6-turkish-poster/index.html" target="_blank">Open HTML ↗</a>
-    </div>
-  </div>
-  <div class="pages">
-    <div class="page-card">
-      <div class="label">Page 1 · The Poster</div>
-      <img src="screenshots/variation-6-page1.jpg" alt="Variation 6 Page 1" loading="lazy">
-    </div>
-    <div class="page-card">
-      <div class="label">Page 2 · SAHNELER (Scenes)</div>
-      <img src="screenshots/variation-6-page2.jpg" alt="Variation 6 Page 2" loading="lazy">
-    </div>
-  </div>
-</section>
-
 <section class="variation film" id="v7">
   <div class="var-header">
     <div class="left">
       <div class="num">Film · Variation 07</div>
       <h2>Brothers. A Shot List. — Director's Storyboard Binder</h2>
-      <p class="tagline">A pre-production binder rendered on ruled storyboard paper with punched holes. Page 1: full shot list spreadsheet (SC#, SH#, EXT/INT, LENS, NOTES) and hero storyboard panels with scene slugs and camera direction. Page 2: remaining boards, plus inline-SVG lens diagram, 3-point lighting plan, and a wedding-day call sheet. Director's-red pencil for FINAL CUT marks.</p>
+      <p class="tagline">A pre-production binder rendered on ruled storyboard paper with punched holes. Page 1: full shot list spreadsheet and hero storyboard panels with scene slugs and camera direction. Page 2: remaining boards, plus inline-SVG lens diagram, 3-point lighting plan, and a wedding-day call sheet.</p>
     </div>
     <div class="var-actions">
       <a class="btn primary" href="variation-7-storyboard/index.html" target="_blank">Open HTML ↗</a>
@@ -301,7 +428,7 @@
     <div class="left">
       <div class="num">Film · Variation 08</div>
       <h2>The Home Video Archive — VHS Tape Library</h2>
-      <p class="tagline">A 1990s VHS home video archive. Page 1: chyron title, transport controls (▶ PAUSE ⏪), shelf of Sharpie-labeled tape spines, and a CRT TV "now playing" with scan lines, burnt-in timestamp, and REC indicator. Page 2: tape index of all stills as mini-CRT frames with tracking errors and a closing chyron in Turkish (Şerefe / İyi yolculuklar).</p>
+      <p class="tagline">A 1990s VHS home video archive. Page 1: chyron title, transport controls, shelf of Sharpie-labeled tape spines, and a CRT TV "now playing" with scan lines and burnt-in timestamp. Page 2: tape index of all stills as mini-CRT frames with tracking errors.</p>
     </div>
     <div class="var-actions">
       <a class="btn primary" href="variation-8-vhs/index.html" target="_blank">Open HTML ↗</a>
@@ -324,7 +451,7 @@
     <div class="left">
       <div class="num">Film · Variation 09</div>
       <h2>The Cinema of [GROOM] — Festival Programme</h2>
-      <p class="tagline">A premium international film festival programme. Page 1: full-bleed hero, "Cinema of [GROOM]" in Bodoni serif, a 2-column Programmer's Note essay with drop cap, festival sidebar (Jury, Homage, Founded), and sponsor footer. Page 2: 11 films presented as catalogue entries with monospace metadata, italic synopses, and laurel award badges. Pretentious-in-a-good-way.</p>
+      <p class="tagline">A premium international film festival programme. Page 1: full-bleed hero, "Cinema of [GROOM]" in Bodoni serif, a 2-column Programmer's Note essay with drop cap, festival sidebar, and sponsor footer. Page 2: 11 films presented as catalogue entries with monospace metadata, italic synopses, and laurel award badges.</p>
     </div>
     <div class="var-actions">
       <a class="btn primary" href="variation-9-film-festival/index.html" target="_blank">Open HTML ↗</a>
@@ -347,7 +474,7 @@
     <div class="left">
       <div class="num">Film · Variation 10</div>
       <h2>Project: Brothers — Director's Notebook</h2>
-      <p class="tagline">The most intimate variation. An open black Moleskine — ruled paper, binding shadow, dog-eared corner, coffee rings. Photos taped in as polaroid test shots with hand-scrawled lens notes, exposure logs, lens diagrams, blocking notes. Page 2 includes a yellow-legal-pad CALL SHEET with "NO BAD TAKES PERMITTED" and a postscript ending in Şerefe.</p>
+      <p class="tagline">The most intimate variation. An open black Moleskine — ruled paper, binding shadow, dog-eared corner. Photos taped in as polaroid test shots with hand-scrawled lens notes, exposure logs, lens diagrams, blocking notes. Page 2 includes a yellow-legal-pad CALL SHEET with "NO BAD TAKES PERMITTED".</p>
     </div>
     <div class="var-actions">
       <a class="btn primary" href="variation-10-directors-notebook/index.html" target="_blank">Open HTML ↗</a>
@@ -365,10 +492,35 @@
   </div>
 </section>
 
-<div class="section-divider alt">
-  <div class="label">Series Two · Four Variations</div>
-  <h2>Other Styles</h2>
-  <p>Four variations from the first round, kept here for reference. Not film-themed, but might still inspire.</p>
+<section class="variation film" id="v6">
+  <div class="var-header">
+    <div class="left">
+      <div class="num">Film · Variation 06</div>
+      <h2>KARDEŞLER — Yeşilçam Cinema Poster</h2>
+      <p class="tagline">A hand-painted 1960s-70s Turkish cinema poster (Yeşilçam era). Note: this one leans heavy on the heritage angle — leaving it here for reference but the Series One posters above are probably the better picks.</p>
+    </div>
+    <div class="var-actions">
+      <a class="btn primary" href="variation-6-turkish-poster/index.html" target="_blank">Open HTML ↗</a>
+    </div>
+  </div>
+  <div class="pages">
+    <div class="page-card">
+      <div class="label">Page 1 · The Poster</div>
+      <img src="screenshots/variation-6-page1.jpg" alt="Variation 6 Page 1" loading="lazy">
+    </div>
+    <div class="page-card">
+      <div class="label">Page 2 · SAHNELER (Scenes)</div>
+      <img src="screenshots/variation-6-page2.jpg" alt="Variation 6 Page 2" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERIES THREE: OTHER STYLES (NON-FILM) ============ -->
+
+<div class="section-divider s3">
+  <div class="label">Series Three · Other Styles</div>
+  <h2>General Design Variations</h2>
+  <p>Four variations from the original first round — not film-themed, but might still inspire a totally different direction.</p>
 </div>
 
 <section class="variation" id="v1">
@@ -388,7 +540,7 @@
       <img src="screenshots/variation-1-page1.jpg" alt="Variation 1 Page 1" loading="lazy">
     </div>
     <div class="page-card">
-      <div class="label">Page 2 · Field Notes & Stamps</div>
+      <div class="label">Page 2 · Field Notes &amp; Stamps</div>
       <img src="screenshots/variation-1-page2.jpg" alt="Variation 1 Page 2" loading="lazy">
     </div>
   </div>
@@ -422,7 +574,7 @@
     <div class="left">
       <div class="num">Variation 03</div>
       <h2>Brothers — A Magazine Editorial</h2>
-      <p class="tagline">A premium independent magazine. Crisp serif typography (Playfair Display + Inter), generous whitespace, full-bleed hero photo on the cover, asymmetric editorial grid on the spread.</p>
+      <p class="tagline">A premium independent magazine. Crisp serif typography, generous whitespace, full-bleed hero photo on the cover, asymmetric editorial grid on the spread.</p>
     </div>
     <div class="var-actions">
       <a class="btn primary" href="variation-3-editorial/index.html" target="_blank">Open HTML ↗</a>
@@ -445,7 +597,7 @@
     <div class="left">
       <div class="num">Variation 04</div>
       <h2>The Atlas of Brotherhood — Cartographer's Journey</h2>
-      <p class="tagline">A vintage explorer's chart with photos pinned to real lat/long coordinates: Giza, Cabo, Zion, Sedona, NYC, Mt. Shasta, La Jolla. Dashed travel routes, compass rose. Page 2 is a numbered field log.</p>
+      <p class="tagline">A vintage explorer's chart with photos pinned to real lat/long coordinates. Dashed travel routes, compass rose. Page 2 is a numbered field log.</p>
     </div>
     <div class="var-actions">
       <a class="btn primary" href="variation-4-map-journey/index.html" target="_blank">Open HTML ↗</a>
@@ -464,7 +616,7 @@
 </section>
 
 <footer>
-  <p>Ten creative variations of a wedding scrapbook intro spread, each 2 pages at 8.5″ × 11″.</p>
+  <p>Fifteen creative variations of a wedding scrapbook intro spread, each 2 pages at 8.5″ × 11″.</p>
   <p>To print: open any variation, ⌘P → Save as PDF or print at 100% scale (no fit-to-page).</p>
 </footer>
 
