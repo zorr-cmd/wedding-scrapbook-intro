@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>A Letter — Zach to Nepal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #ddd6cb; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: #0d0d0d;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    margin: 0 auto;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ---------------- TOP META BAR ---------------- */
+  .meta-bar {
+    position: absolute;
+    top: 0.42in;
+    left: 0.6in;
+    right: 0.6in;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+  }
+  .meta-bar .dot {
+    display: inline-block;
+    width: 4px; height: 4px;
+    background: #d4a056;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin: 0 0.55em 2px;
+  }
+  .meta-bar .right { color: #6a6258; letter-spacing: 0.28em; }
+
+  /* horizontal rule under meta */
+  .meta-rule {
+    position: absolute;
+    top: 0.62in;
+    left: 0.6in;
+    right: 0.6in;
+    border-top: 0.5pt solid #0d0d0d;
+  }
+
+  /* ---------------- TWO-COLUMN HERO BLOCK ---------------- */
+  .hero {
+    position: absolute;
+    top: 0.85in;
+    left: 0.6in;
+    right: 0.6in;
+    height: 6.45in;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.32in;
+  }
+
+  .hero-photo {
+    position: relative;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.03) saturate(0.92);
+    display: block;
+  }
+  .hero-photo .scrim {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 0.18in 0.18in 0.14in;
+    background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0));
+    color: #f5f1ea;
+    font-family: 'Inter', sans-serif;
+    font-size: 7.2pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .hero-photo .scrim .frame-no {
+    color: #d4a056;
+    letter-spacing: 0.26em;
+  }
+
+  /* letter column */
+  .letter {
+    position: relative;
+    padding-top: 0.05in;
+    display: flex;
+    flex-direction: column;
+  }
+  .letter .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.6pt;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #6a6258;
+    margin-bottom: 0.18in;
+  }
+  .letter .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 44pt;
+    line-height: 0.95;
+    color: #0d0d0d;
+    margin-bottom: 0.04in;
+  }
+  .letter .title .accent { color: #d4a056; }
+  .letter .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13pt;
+    color: #4a4238;
+    margin-bottom: 0.22in;
+  }
+  .letter .salutation {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 13.5pt;
+    color: #0d0d0d;
+    margin-bottom: 0.12in;
+  }
+  .letter .body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11.2pt;
+    line-height: 1.45;
+    color: #1a1a1a;
+    text-align: justify;
+    hyphens: auto;
+  }
+  .letter .body p { margin-bottom: 0.13in; }
+  .letter .body p:last-child { margin-bottom: 0; }
+
+  /* turn marker — bottom right of letter on page 1, bottom left on page 2 */
+  .turn {
+    margin-top: auto;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #6a6258;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding-top: 0.22in;
+  }
+  .turn .line {
+    flex: 1;
+    height: 0;
+    border-top: 0.5pt solid #0d0d0d;
+  }
+
+  /* PAGE 1 — letter on RIGHT, turn marker right-aligned */
+  .page-1 .letter .turn { justify-content: flex-end; }
+  .page-1 .letter .turn .line { order: -1; }
+
+  /* PAGE 2 — letter on LEFT, turn marker left-aligned */
+  .page-2 .letter .turn { justify-content: flex-start; }
+
+  /* ---------------- BOTTOM PHOTO STRIP ---------------- */
+  .strip {
+    position: absolute;
+    bottom: 0.85in;
+    left: 0.6in;
+    right: 0.6in;
+    height: 2.2in;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.18in;
+  }
+  .strip-cell {
+    position: relative;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .strip-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.03) saturate(0.92);
+    display: block;
+  }
+  .strip-cell .scrim {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 0.16in 0.12in 0.1in;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+    color: #f5f1ea;
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .strip-cell .scrim .num {
+    color: #d4a056;
+    letter-spacing: 0.26em;
+    margin-right: 0.45em;
+  }
+
+  /* ---------------- FOOTER ---------------- */
+  .footer {
+    position: absolute;
+    bottom: 0.36in;
+    left: 0.6in;
+    right: 0.6in;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.8pt;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #6a6258;
+  }
+  .footer .pn {
+    color: #0d0d0d;
+    letter-spacing: 0.3em;
+  }
+  .footer .pn .accent { color: #d4a056; }
+
+  /* page 2 mirror: swap hero columns */
+  .page-2 .hero { direction: rtl; }
+  .page-2 .hero > * { direction: ltr; }
+
+  /* page 2 mirror: footer flips */
+  .page-2 .footer { flex-direction: row-reverse; }
+
+  /* page 2 mirror: meta bar flips */
+  .page-2 .meta-bar { flex-direction: row-reverse; }
+
+  /* page 2: title aligned right (mirror) */
+  .page-2 .letter { text-align: right; }
+  .page-2 .letter .body { text-align: justify; }
+  .page-2 .letter .salutation,
+  .page-2 .letter .eyebrow,
+  .page-2 .letter .title,
+  .page-2 .letter .subtitle { text-align: right; }
+
+  /* signature on page 2 */
+  .signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22pt;
+    color: #0d0d0d;
+    margin-top: 0.18in;
+    text-align: right;
+  }
+  .signature .em { color: #d4a056; }
+</style>
+</head>
+<body>
+
+<!-- ============================== PAGE 1 ============================== -->
+<section class="page page-1">
+
+  <div class="meta-bar">
+    <div>A Letter <span class="dot"></span> I &nbsp;&middot;&nbsp; To Nepal</div>
+    <div class="right">From the desk of Z. — MMXXVI</div>
+  </div>
+  <div class="meta-rule"></div>
+
+  <div class="hero">
+    <!-- LEFT: hero photo -->
+    <figure class="hero-photo">
+      <img src="../photos/IMG_0049.jpg" alt="Three on a couch" />
+      <div class="scrim">
+        <span>The Living Room, Late Hour</span>
+        <span class="frame-no">N° 01</span>
+      </div>
+    </figure>
+
+    <!-- RIGHT: letter -->
+    <div class="letter">
+      <div class="eyebrow">Folio I &nbsp;/&nbsp; Recto</div>
+      <div class="title">Dear<br/>Nepal<span class="accent">.</span></div>
+      <div class="subtitle">A letter, in two pages, with photographs.</div>
+
+      <div class="salutation">My dear friend,</div>
+
+      <div class="body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</p>
+      </div>
+
+      <div class="turn">
+        <span class="line"></span>
+        <span>Continued overleaf</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- bottom strip: 4 photos -->
+  <div class="strip">
+    <figure class="strip-cell">
+      <img src="../photos/IMG_5069.jpg" alt="Disneyland" />
+      <div class="scrim"><span class="num">02</span>Golden Hour, the Park</div>
+    </figure>
+    <figure class="strip-cell">
+      <img src="../photos/IMG_5734.jpg" alt="Pier carry" />
+      <div class="scrim"><span class="num">03</span>San Diego Pier</div>
+    </figure>
+    <figure class="strip-cell">
+      <img src="../photos/IMG_5499.jpg" alt="Golf" />
+      <div class="scrim"><span class="num">04</span>The Wedding Polos</div>
+    </figure>
+    <figure class="strip-cell">
+      <img src="../photos/IMG_9423.jpg" alt="Smash Bros" />
+      <div class="scrim"><span class="num">05</span>Dorm, Final Round</div>
+    </figure>
+  </div>
+
+  <div class="footer">
+    <div>Zach &nbsp;<span style="color:#d4a056">·</span>&nbsp; A Letter for Nepal</div>
+    <div class="pn">i<span class="accent"> / </span>ii</div>
+  </div>
+
+</section>
+
+<!-- ============================== PAGE 2 ============================== -->
+<section class="page page-2">
+
+  <div class="meta-bar">
+    <div>A Letter <span class="dot"></span> II &nbsp;&middot;&nbsp; To Nepal</div>
+    <div class="right">From the desk of Z. — MMXXVI</div>
+  </div>
+  <div class="meta-rule"></div>
+
+  <div class="hero">
+    <!-- mirrored: hero photo appears on RIGHT (because direction: rtl flips grid order) -->
+    <figure class="hero-photo">
+      <img src="../photos/73844CFF.jpg" alt="Central Park" />
+      <div class="scrim">
+        <span>Central Park, November</span>
+        <span class="frame-no">N° 06</span>
+      </div>
+    </figure>
+
+    <!-- letter -->
+    <div class="letter">
+      <div class="eyebrow">Folio II &nbsp;/&nbsp; Verso</div>
+      <div class="title"><span class="accent">—</span> Zach.</div>
+      <div class="subtitle">The second half &mdash; with love.</div>
+
+      <div class="salutation">to continue —</div>
+
+      <div class="body">
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+      </div>
+
+      <div class="signature">Yours, ever<span class="em">,</span><br/>Zach</div>
+
+      <div class="turn">
+        <span>End of letter</span>
+        <span class="line"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- bottom strip: 4 more photos, arrangement mirrored -->
+  <div class="strip">
+    <figure class="strip-cell">
+      <img src="../photos/IMG_0021.jpg" alt="Chinatown" />
+      <div class="scrim"><span class="num">07</span>Chinatown, After Midnight</div>
+    </figure>
+    <figure class="strip-cell">
+      <img src="../photos/IMG_8966.jpg" alt="Lake" />
+      <div class="scrim"><span class="num">08</span>The Swimming Hole</div>
+    </figure>
+    <figure class="strip-cell">
+      <img src="../photos/IMG_5845.jpg" alt="Nerf" />
+      <div class="scrim"><span class="num">09</span>The Arsenal, Dormitory</div>
+    </figure>
+    <figure class="strip-cell">
+      <img src="../photos/IMG_4450.jpg" alt="Nap" />
+      <div class="scrim"><span class="num">10</span>An Afternoon, Asleep</div>
+    </figure>
+  </div>
+
+  <div class="footer">
+    <div>Zach &nbsp;<span style="color:#d4a056">·</span>&nbsp; A Letter for Nepal</div>
+    <div class="pn">ii<span class="accent"> / </span>ii</div>
+  </div>
+
+</section>
+
+</body>
+</html>

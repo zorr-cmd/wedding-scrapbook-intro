@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A Letter from Zach — for Nepal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #2a2724;
+    font-family: 'Inter', sans-serif;
+    color: #0d0d0d;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0.6in 0.55in 0.55in 0.55in;
+  }
+
+  /* ---------- HEADER ---------- */
+  .header {
+    text-align: center;
+    margin-bottom: 0.18in;
+  }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 7.5pt;
+    font-weight: 500;
+    letter-spacing: 0.42em;
+    color: #3a3530;
+    text-transform: uppercase;
+    margin-bottom: 0.13in;
+  }
+  .eyebrow .dot {
+    color: #d4a056;
+    margin: 0 0.5em;
+  }
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 28pt;
+    line-height: 1.05;
+    color: #0d0d0d;
+    letter-spacing: -0.005em;
+  }
+  .title .period {
+    color: #d4a056;
+  }
+  .subtitle {
+    margin-top: 0.08in;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 10.5pt;
+    color: #4a443e;
+  }
+
+  /* ---------- MAIN LAYOUT GRID ----------
+     three columns: left photos | letter | right photos
+     letter column ~3.7in wide
+  */
+  .body {
+    display: grid;
+    grid-template-columns: 1.55in 1fr 1.55in;
+    column-gap: 0.18in;
+    margin-top: 0.05in;
+  }
+
+  /* ---------- PHOTO COLUMN ---------- */
+  .photo-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.16in;
+  }
+  .photo-col.left { align-items: flex-end; }
+  .photo-col.right { align-items: flex-start; }
+
+  .plate { display: block; }
+  .plate img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.03) saturate(0.92);
+  }
+  .plate .frame {
+    background: #fff;
+    padding: 0;
+    /* photo proportions handled per .plate sizing */
+  }
+  .plate .cap {
+    margin-top: 0.06in;
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: #3a3530;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .plate .cap .accent {
+    color: #d4a056;
+  }
+
+  /* portrait plate sizes — 1.45in wide */
+  .p-portrait { width: 1.45in; }
+  .p-portrait .frame { width: 1.45in; height: 1.93in; }
+
+  /* landscape plate sizes — 1.6in wide */
+  .p-landscape { width: 1.6in; }
+  .p-landscape .frame { width: 1.6in; height: 1.07in; }
+
+  /* ---------- LETTER (center) ---------- */
+  .letter-col {
+    padding: 0 0.05in;
+  }
+  .letter-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    color: #3a3530;
+    text-transform: uppercase;
+    padding-bottom: 0.07in;
+    border-bottom: 0.5pt solid #1a1a1a;
+    margin-bottom: 0.22in;
+  }
+  .letter-meta .dot { color: #d4a056; }
+
+  .salutation {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 17pt;
+    line-height: 1.1;
+    color: #0d0d0d;
+    margin-bottom: 0.18in;
+  }
+
+  .letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11pt;
+    line-height: 1.62;
+    color: #0d0d0d;
+    text-align: left;
+  }
+  .letter p + p {
+    margin-top: 0.13in;
+    text-indent: 0.2in;
+  }
+  .letter .drop {
+    font-style: italic;
+    font-weight: 600;
+    font-size: 32pt;
+    line-height: 0.85;
+    float: left;
+    margin: 0.05in 0.08in 0 0;
+    color: #0d0d0d;
+  }
+
+  .signoff {
+    margin-top: 0.22in;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 13pt;
+    color: #0d0d0d;
+  }
+  .signoff .em { color: #d4a056; }
+
+  /* ---------- BOTTOM LANDSCAPE STRIP (4 photos) ---------- */
+  .bottom-strip {
+    position: absolute;
+    bottom: 0.82in;
+    left: 0.4in;
+    right: 0.4in;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.1in;
+  }
+  .bottom-strip .p-landscape { width: 1.85in; }
+  .bottom-strip .p-landscape .frame { width: 1.85in; height: 1.23in; }
+
+  /* ---------- BOTTOM META ---------- */
+  .colophon {
+    position: absolute;
+    bottom: 0.42in;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 0.42em;
+    color: #3a3530;
+    text-transform: uppercase;
+  }
+  .colophon .dot { color: #d4a056; margin: 0 0.55em; }
+
+  /* small ornamental rule under footer strip */
+  .ornament {
+    margin-top: 0.14in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.08in;
+  }
+  .ornament .rule {
+    width: 0.5in;
+    height: 0.5pt;
+    background: #0d0d0d;
+  }
+  .ornament .bead {
+    width: 4pt;
+    height: 4pt;
+    border-radius: 50%;
+    background: #d4a056;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <div class="eyebrow">A Letter <span class="dot">·</span> From Zach <span class="dot">·</span> For Nepal</div>
+    <div class="title">On Friendship<span class="period">.</span></div>
+    <div class="subtitle">An essay, in pictures and prose, for the occasion of a wedding.</div>
+  </div>
+
+  <!-- ===== BODY ===== -->
+  <div class="body">
+
+    <!-- ----- LEFT COLUMN ----- -->
+    <div class="photo-col left">
+
+      <div class="plate p-portrait">
+        <div class="frame"><img src="../photos/IMG_0049.jpg" alt=""></div>
+        <div class="cap">The Apartment <span class="accent">·</span> 2020</div>
+      </div>
+
+      <div class="plate p-portrait">
+        <div class="frame"><img src="../photos/IMG_4450.jpg" alt=""></div>
+        <div class="cap">Quiet Hours <span class="accent">·</span> Sunday</div>
+      </div>
+
+      <div class="plate p-portrait">
+        <div class="frame"><img src="../photos/IMG_5734.jpg" alt=""></div>
+        <div class="cap">San Diego Pier <span class="accent">·</span> Cargo</div>
+      </div>
+
+    </div>
+
+    <!-- ----- LETTER COLUMN ----- -->
+    <div class="letter-col">
+
+      <div class="letter-meta">
+        <span>No. 01</span>
+        <span>Zach <span class="dot">·</span> to Nepal</span>
+        <span>June 2026</span>
+      </div>
+
+      <div class="salutation">Dear Nepal,</div>
+
+      <div class="letter">
+        <p><span class="drop">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+      </div>
+
+      <div class="signoff">— Zach<span class="em">.</span></div>
+
+      <div class="ornament">
+        <div class="rule"></div>
+        <div class="bead"></div>
+        <div class="rule"></div>
+      </div>
+
+    </div>
+
+    <!-- ----- RIGHT COLUMN ----- -->
+    <div class="photo-col right">
+
+      <div class="plate p-portrait">
+        <div class="frame"><img src="../photos/IMG_5069.jpg" alt=""></div>
+        <div class="cap">Disneyland <span class="accent">·</span> 2019</div>
+      </div>
+
+      <div class="plate p-portrait">
+        <div class="frame"><img src="../photos/IMG_5499.jpg" alt=""></div>
+        <div class="cap">Polos <span class="accent">·</span> The Wedding</div>
+      </div>
+
+      <div class="plate p-portrait">
+        <div class="frame"><img src="../photos/IMG_0021.jpg" alt=""></div>
+        <div class="cap">Chinatown <span class="accent">·</span> Late</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ===== UNDER-BODY LANDSCAPE STRIP — all 4 landscapes ===== -->
+  <div class="bottom-strip">
+    <div class="plate p-landscape">
+      <div class="frame"><img src="../photos/IMG_5845.jpg" alt=""></div>
+      <div class="cap">The Arsenal <span class="accent">·</span> Dorm Floor</div>
+    </div>
+    <div class="plate p-landscape">
+      <div class="frame"><img src="../photos/IMG_9423.jpg" alt=""></div>
+      <div class="cap">Smash Night <span class="accent">·</span> Sophomore Year</div>
+    </div>
+    <div class="plate p-landscape">
+      <div class="frame"><img src="../photos/IMG_8966.jpg" alt=""></div>
+      <div class="cap">The Swimming Hole <span class="accent">·</span> 2018</div>
+    </div>
+    <div class="plate p-landscape">
+      <div class="frame"><img src="../photos/73844CFF.jpg" alt=""></div>
+      <div class="cap">Central Park <span class="accent">·</span> November</div>
+    </div>
+  </div>
+
+  <div class="colophon">
+    For Nepal <span class="dot">·</span> June 2026 <span class="dot">·</span> Zach
+  </div>
+
+</div>
+
+</body>
+</html>

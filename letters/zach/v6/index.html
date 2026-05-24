@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A Letter from Zach — for Nepal · Diptych</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #2a2724;
+    font-family: 'Inter', sans-serif;
+    color: #0d0d0d;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* =====================================================
+     DIPTYCH — two equal halves split vertically.
+     LEFT  4.0in  = letter
+     RULE  ~0.04in (centered thin divider)
+     RIGHT 4.0in  = photo grid
+     Outer page padding: 0.5in top/bottom, 0.45in left/right
+     ===================================================== */
+
+  .diptych {
+    position: absolute;
+    inset: 0.5in 0.45in 0.5in 0.45in;     /* top right bottom left */
+    display: grid;
+    grid-template-columns: 1fr 0.5pt 1fr;
+    column-gap: 0.32in;
+    align-items: stretch;
+  }
+
+  .divider {
+    background: #0d0d0d;
+    width: 0.5pt;
+    align-self: stretch;
+  }
+
+  /* ----------------------------------------------------
+     LEFT HALF — THE LETTER
+     ---------------------------------------------------- */
+  .letter-half {
+    display: flex;
+    flex-direction: column;
+    padding-right: 0.1in;
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 0.42em;
+    color: #3a3530;
+    text-transform: uppercase;
+  }
+  .eyebrow .dot { color: #d4a056; margin: 0 0.45em; }
+
+  .top-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.09in;
+    border-bottom: 0.5pt solid #1a1a1a;
+    margin-bottom: 0.45in;
+  }
+  .top-meta .roman {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 10pt;
+    color: #4a443e;
+    letter-spacing: 0.05em;
+  }
+
+  .title-block {
+    margin-bottom: 0.4in;
+  }
+  .title-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 0.36em;
+    color: #3a3530;
+    text-transform: uppercase;
+    margin-bottom: 0.16in;
+  }
+  .title-eyebrow .dot { color: #d4a056; margin: 0 0.4em; }
+
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 38pt;
+    line-height: 0.98;
+    color: #0d0d0d;
+    letter-spacing: -0.008em;
+  }
+  .title .period { color: #d4a056; }
+  .subtitle {
+    margin-top: 0.14in;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11pt;
+    line-height: 1.35;
+    color: #4a443e;
+    max-width: 3.1in;
+  }
+
+  .salutation {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 15pt;
+    line-height: 1.1;
+    color: #0d0d0d;
+    margin-bottom: 0.18in;
+  }
+
+  .letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11pt;
+    line-height: 1.62;
+    color: #0d0d0d;
+    text-align: left;
+    max-width: 3.25in;
+  }
+  .letter p + p {
+    margin-top: 0.13in;
+    text-indent: 0.22in;
+  }
+
+  .signoff {
+    margin-top: 0.32in;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 14pt;
+    color: #0d0d0d;
+  }
+  .signoff .em { color: #d4a056; }
+
+  .dedication {
+    margin-top: auto;
+    padding-top: 0.3in;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.8pt;
+    font-weight: 500;
+    letter-spacing: 0.38em;
+    color: #3a3530;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+  .dedication .dot { color: #d4a056; margin: 0 0.45em; }
+  .dedication .small-rule {
+    width: 0.6in;
+    height: 0.5pt;
+    background: #0d0d0d;
+    margin-bottom: 0.1in;
+  }
+
+  /* ----------------------------------------------------
+     RIGHT HALF — PHOTO GRID
+     Grid is 3 columns wide. Portraits = 1 col. Landscapes = span 2 cols.
+     ---------------------------------------------------- */
+  .photo-half {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0.1in;
+  }
+
+  .photo-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 0.09in;
+    border-bottom: 0.5pt solid #1a1a1a;
+    margin-bottom: 0.18in;
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 0.38em;
+    color: #3a3530;
+    text-transform: uppercase;
+  }
+  .photo-meta .dot { color: #d4a056; margin: 0 0.4em; }
+  .photo-meta .count {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 11pt;
+    color: #4a443e;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* 6-col fine grid.
+     portrait  = span 2 cols  (~1.24in wide × 1.65in tall, 3:4)
+     landscape = span 3 cols  (~1.87in wide × 1.25in tall, 3:2)
+     Rows are auto. */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: auto;
+    column-gap: 0.13in;
+    row-gap: 0.16in;
+  }
+
+  .plate { display: block; }
+  .plate .frame {
+    background: #fff;
+    overflow: hidden;
+    width: 100%;
+  }
+  .plate img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.03) saturate(0.92);
+  }
+  .p-portrait { grid-column: span 2; }
+  .p-portrait .frame { aspect-ratio: 3 / 4; }
+  .p-landscape { grid-column: span 3; }
+  .p-landscape .frame { aspect-ratio: 3 / 2; }
+  /* last-row portrait paired with wide label */
+  .p-portrait.wide-pair { grid-column: span 2; }
+  .grid-label.wide-pair { grid-column: span 4; }
+
+  .plate .cap {
+    margin-top: 0.05in;
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: #3a3530;
+    text-transform: uppercase;
+    line-height: 1.25;
+    display: flex;
+    align-items: baseline;
+    gap: 0.05in;
+  }
+  .plate .cap .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 8.5pt;
+    color: #d4a056;
+    letter-spacing: 0;
+  }
+  .plate .cap .label { flex: 1; }
+
+  /* row-1 third cell — a small caption-tile (no photo) */
+  .grid-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 0.05in;
+  }
+  .grid-label .gl-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.4pt;
+    font-weight: 500;
+    letter-spacing: 0.36em;
+    color: #3a3530;
+    text-transform: uppercase;
+    margin-bottom: 0.06in;
+  }
+  .grid-label .gl-eyebrow .dot { color: #d4a056; }
+  .grid-label .gl-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 14pt;
+    line-height: 1.05;
+    color: #0d0d0d;
+  }
+  .grid-label .gl-title .period { color: #d4a056; }
+
+  /* ----------------------------------------------------
+     FOOTER — full-bleed across both halves at bottom of page
+     ---------------------------------------------------- */
+  .footer {
+    position: absolute;
+    bottom: 0.22in;
+    left: 0.45in;
+    right: 0.45in;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    font-weight: 500;
+    letter-spacing: 0.38em;
+    color: #3a3530;
+    text-transform: uppercase;
+    padding-top: 0.08in;
+    border-top: 0.5pt solid #1a1a1a;
+  }
+  .footer .dot { color: #d4a056; margin: 0 0.45em; }
+  .footer .center {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 9.5pt;
+    color: #4a443e;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="diptych">
+
+    <!-- ================= LEFT HALF — LETTER ================= -->
+    <div class="letter-half">
+
+      <div class="top-meta">
+        <span class="eyebrow">Folio I <span class="dot">·</span> Recto</span>
+        <span class="roman">№ VI</span>
+      </div>
+
+      <div class="title-block">
+        <div class="title-eyebrow">A Letter <span class="dot">·</span> From Zach <span class="dot">·</span> MMXXVI</div>
+        <div class="title">On Friendship<span class="period">.</span></div>
+        <div class="subtitle">A quiet diptych — half of the page, given over to words; the other, to the years that produced them.</div>
+      </div>
+
+      <div class="salutation">Dear Nepal,</div>
+
+      <div class="letter">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      </div>
+
+      <div class="signoff">— Zach<span class="em">.</span></div>
+
+      <div class="dedication">
+        <div class="small-rule"></div>
+        For Nepal &amp; Anjali <span class="dot">·</span> On the occasion of their wedding <span class="dot">·</span> June MMXXVI
+      </div>
+
+    </div>
+
+    <!-- ================= DIVIDER ================= -->
+    <div class="divider"></div>
+
+    <!-- ================= RIGHT HALF — PHOTO GRID ================= -->
+    <div class="photo-half">
+
+      <div class="photo-meta">
+        <span>Plates <span class="dot">·</span> I – X</span>
+        <span class="count">ten frames.</span>
+      </div>
+
+      <div class="photo-grid">
+
+        <!-- Row 1: P P P  (3 portraits, 6 cols total) -->
+        <div class="plate p-portrait">
+          <div class="frame"><img src="../photos/IMG_0049.jpg" alt=""></div>
+          <div class="cap"><span class="num">01</span><span class="label">The Apartment</span></div>
+        </div>
+        <div class="plate p-portrait">
+          <div class="frame"><img src="../photos/IMG_5499.jpg" alt=""></div>
+          <div class="cap"><span class="num">02</span><span class="label">The Wedding</span></div>
+        </div>
+        <div class="plate p-portrait">
+          <div class="frame"><img src="../photos/IMG_9423.jpg" alt=""></div>
+          <div class="cap"><span class="num">03</span><span class="label">Smash Night</span></div>
+        </div>
+
+        <!-- Row 2: L L  (2 landscapes, 6 cols total) -->
+        <div class="plate p-landscape">
+          <div class="frame"><img src="../photos/IMG_5845.jpg" alt=""></div>
+          <div class="cap"><span class="num">04</span><span class="label">The Arsenal · Dorm Floor</span></div>
+        </div>
+        <div class="plate p-landscape">
+          <div class="frame"><img src="../photos/IMG_4450.jpg" alt=""></div>
+          <div class="cap"><span class="num">05</span><span class="label">Quiet Hours · Sunday</span></div>
+        </div>
+
+        <!-- Row 3: L L -->
+        <div class="plate p-landscape">
+          <div class="frame"><img src="../photos/IMG_5069.jpg" alt=""></div>
+          <div class="cap"><span class="num">06</span><span class="label">Disneyland · 2019</span></div>
+        </div>
+        <div class="plate p-landscape">
+          <div class="frame"><img src="../photos/IMG_5734.jpg" alt=""></div>
+          <div class="cap"><span class="num">07</span><span class="label">San Diego · Cargo</span></div>
+        </div>
+
+        <!-- Row 4: L L -->
+        <div class="plate p-landscape">
+          <div class="frame"><img src="../photos/IMG_8966.jpg" alt=""></div>
+          <div class="cap"><span class="num">08</span><span class="label">The Swimming Hole · 2018</span></div>
+        </div>
+        <div class="plate p-landscape">
+          <div class="frame"><img src="../photos/73844CFF.jpg" alt=""></div>
+          <div class="cap"><span class="num">09</span><span class="label">Central Park · November</span></div>
+        </div>
+
+        <!-- Row 5: P  +  wide label block -->
+        <div class="plate p-portrait wide-pair">
+          <div class="frame"><img src="../photos/IMG_0021.jpg" alt=""></div>
+          <div class="cap"><span class="num">10</span><span class="label">Chinatown · Late</span></div>
+        </div>
+        <div class="grid-label wide-pair">
+          <div class="gl-eyebrow">Plates I – X <span class="dot">·</span> in order of memory</div>
+          <div class="gl-title">Ten frames<span class="period">.</span></div>
+          <div style="margin-top:0.1in;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:9.5pt;color:#4a443e;line-height:1.4;max-width:2.4in;">
+            One decade, give or take. The apartments changed. The people, somehow, did not.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <div class="footer">
+    <span>Zach <span class="dot">·</span> to Nepal</span>
+    <span class="center">a diptych in cream &amp; ochre</span>
+    <span>Folio I <span class="dot">·</span> of one</span>
+  </div>
+
+</div>
+
+</body>
+</html>

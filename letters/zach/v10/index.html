@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>A Letter, in Frames — Zach to Nepal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f5f1ea;
+    --ink: #0d0d0d;
+    --ink-soft: #1a1a1a;
+    --ink-mute: #4a4a4a;
+    --ochre: #d4a056;
+    --rule: #2a2a2a;
+  }
+
+  html, body { background: #d8d3cb; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    margin: 0 auto;
+    padding: 0.45in 0.55in 0.38in 0.55in;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ----------- HEADER (page 1) ----------- */
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 9pt;
+    border-bottom: 0.5pt solid var(--rule);
+  }
+  .mast-left .eyebrow,
+  .mast-right .eyebrow {
+    font-size: 6.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .mast-left .sub {
+    font-size: 6.5pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 3pt;
+  }
+  .mast-right {
+    text-align: right;
+  }
+  .mast-right .sub {
+    font-size: 6.5pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 3pt;
+  }
+  .dot { color: var(--ochre); }
+
+  /* ----------- TITLE BLOCK (page 1) ----------- */
+  .title-block {
+    padding: 8pt 0 6pt;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24pt;
+  }
+  .title-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 25pt;
+    line-height: 0.98;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .title-main .accent { color: var(--ochre); }
+  .title-meta {
+    text-align: right;
+    font-size: 6.5pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    line-height: 1.7;
+    padding-bottom: 6pt;
+  }
+  .title-meta .lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 9pt;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: var(--ink);
+    margin-top: 4pt;
+    display: block;
+    max-width: 2.1in;
+    line-height: 1.4;
+  }
+  .title-rule {
+    border-top: 0.5pt solid var(--rule);
+    margin-bottom: 6pt;
+  }
+
+  /* ----------- PLATES GRID ----------- */
+  .plates {
+    flex: 0 1 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12pt;
+  }
+
+  .plate {
+    display: grid;
+    gap: 16pt;
+    align-items: center;
+  }
+
+  .plate.layout-pl { /* photo left, caption right */
+    grid-template-columns: auto 1fr;
+  }
+  .plate.layout-pr { /* photo right, caption left */
+    grid-template-columns: 1fr auto;
+  }
+  .plate.layout-pl .caption { order: 2; }
+  .plate.layout-pr .caption { order: 1; }
+  .plate.layout-pl .frame   { order: 1; }
+  .plate.layout-pr .frame   { order: 2; }
+
+  /* Photo frame */
+  .frame {
+    position: relative;
+    background: #fff;
+    padding: 4pt;
+    border: 0.5pt solid var(--ink);
+    box-shadow: 0 0 0 0.25pt rgba(0,0,0,0.05);
+  }
+  .frame img {
+    display: block;
+    filter: contrast(1.03) saturate(0.92) brightness(1.04);
+    object-fit: cover;
+  }
+
+  /* Portrait photo size */
+  .frame.portrait { width: 1.2in; }
+  .frame.portrait img { width: 100%; height: 1.55in; }
+
+  /* Landscape photo size */
+  .frame.landscape { width: 2.0in; }
+  .frame.landscape img { width: 100%; height: 1.33in; }
+
+  /* Caption block */
+  .caption {
+    position: relative;
+    padding-top: 2pt;
+  }
+  .caption .plate-label {
+    display: flex;
+    align-items: center;
+    gap: 8pt;
+    margin-bottom: 7pt;
+  }
+  .caption .plate-label .num {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.8pt;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .caption .plate-label .hairline {
+    flex: 1;
+    height: 0.5pt;
+    background: var(--rule);
+  }
+  .caption .plate-label .loc {
+    font-size: 6.2pt;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 400;
+  }
+  .caption .body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 10.5pt;
+    line-height: 1.38;
+    color: var(--ink);
+  }
+  .caption .body .drop {
+    color: var(--ochre);
+    font-weight: 500;
+  }
+
+  /* ----------- PAGE 2 HEADER ----------- */
+  .runhead {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 10pt;
+    border-bottom: 0.5pt solid var(--rule);
+    margin-bottom: 16pt;
+  }
+  .runhead .title-sm {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14pt;
+    color: var(--ink);
+  }
+  .runhead .meta {
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  /* ----------- SIGN OFF ----------- */
+  .signoff {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13pt;
+    color: var(--ink);
+    margin-top: 4pt;
+    line-height: 1.35;
+    text-align: right;
+    padding-right: 4pt;
+  }
+  .signoff .name {
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .signoff .em-rule {
+    color: var(--ochre);
+    margin-right: 4pt;
+  }
+
+  /* ----------- FOOTER ----------- */
+  .footer {
+    margin-top: 10pt;
+    padding-top: 8pt;
+    border-top: 0.5pt solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-shrink: 0;
+  }
+  .footer .left,
+  .footer .right {
+    font-size: 6.5pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 400;
+  }
+  .footer .center {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 8.5pt;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .footer .center .dot { color: var(--ochre); }
+
+  /* tighter plate spacing on page 1 because of title block */
+  .page1 .plates { gap: 0pt; }
+  .page2 .plates { gap: 6pt; }
+
+  .plate { gap: 14pt; }
+  .page1 .plate { padding: 0pt 0; }
+  .page1 .caption .body { font-size: 9.5pt; line-height: 1.36; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- PAGE 1                                                       -->
+<!-- ============================================================ -->
+<section class="page page1">
+
+  <header class="masthead">
+    <div class="mast-left">
+      <div class="eyebrow">Letters &nbsp;<span class="dot">·</span>&nbsp; Vol. I &nbsp;<span class="dot">·</span>&nbsp; No. 04</div>
+      <div class="sub">A Wedding Scrapbook for Nepal Arslan</div>
+    </div>
+    <div class="mast-right">
+      <div class="eyebrow">From the Desk of Zach</div>
+      <div class="sub">Folio One &nbsp;<span class="dot">·</span>&nbsp; June MMXXVI</div>
+    </div>
+  </header>
+
+  <div class="title-block">
+    <div class="title-main">
+      A Letter,<br>in <span class="accent">Frames.</span>
+    </div>
+    <div class="title-meta">
+      Ten Plates<br>
+      One Friendship
+      <span class="lede">Dear Nepal — what follows is not a letter, exactly, but a sequence; read it the way you'd walk a small gallery.</span>
+    </div>
+  </div>
+
+  <div class="title-rule"></div>
+
+  <div class="plates">
+
+    <!-- PLATE I — couch (portrait) -->
+    <div class="plate layout-pl">
+      <div class="frame portrait">
+        <img src="../photos/IMG_0049.jpg" alt="Three on a couch under warm light." />
+      </div>
+      <div class="caption">
+        <div class="plate-label">
+          <span class="num">Plate I</span>
+          <span class="hairline"></span>
+          <span class="loc">Interior, Evening</span>
+        </div>
+        <p class="body"><span class="drop">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </div>
+
+    <!-- PLATE II — napping (portrait) -->
+    <div class="plate layout-pr">
+      <div class="caption">
+        <div class="plate-label">
+          <span class="loc">Sunday, 11:00 a.m.</span>
+          <span class="hairline"></span>
+          <span class="num">Plate II</span>
+        </div>
+        <p class="body">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure.</p>
+      </div>
+      <div class="frame portrait">
+        <img src="../photos/IMG_4450.jpg" alt="Two friends napping in a blue bed." />
+      </div>
+    </div>
+
+    <!-- PLATE III — Disneyland (portrait) -->
+    <div class="plate layout-pl">
+      <div class="frame portrait">
+        <img src="../photos/IMG_5069.jpg" alt="Three at the park at golden hour." />
+      </div>
+      <div class="caption">
+        <div class="plate-label">
+          <span class="num">Plate III</span>
+          <span class="hairline"></span>
+          <span class="loc">Golden Hour</span>
+        </div>
+        <p class="body">Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident.</p>
+      </div>
+    </div>
+
+    <!-- PLATE IV — pier carry (portrait) -->
+    <div class="plate layout-pr">
+      <div class="caption">
+        <div class="plate-label">
+          <span class="loc">San Diego Pier</span>
+          <span class="hairline"></span>
+          <span class="num">Plate IV</span>
+        </div>
+        <p class="body">Sunt in culpa qui officia deserunt mollit anim id est laborum, et magnam aliquam quaerat voluptatem nihil molestiae consequatur.</p>
+      </div>
+      <div class="frame portrait">
+        <img src="../photos/IMG_5734.jpg" alt="Two friends carrying a third horizontally on a pier." />
+      </div>
+    </div>
+
+    <!-- PLATE V — golf polos (portrait) -->
+    <div class="plate layout-pl">
+      <div class="frame portrait">
+        <img src="../photos/IMG_5499.jpg" alt="Three in polos on a golf course." />
+      </div>
+      <div class="caption">
+        <div class="plate-label">
+          <span class="num">Plate V</span>
+          <span class="hairline"></span>
+          <span class="loc">A Wedding, Earlier</span>
+        </div>
+        <p class="body">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="left">Plates I–V</div>
+    <div class="center">Continued overleaf &nbsp;<span class="dot">·</span>&nbsp; <em>see Plate VI</em></div>
+    <div class="right">Page One of Two</div>
+  </div>
+
+</section>
+
+
+<!-- ============================================================ -->
+<!-- PAGE 2                                                       -->
+<!-- ============================================================ -->
+<section class="page page2">
+
+  <header class="runhead">
+    <div class="title-sm">A Letter, in Frames. <span class="dot" style="color:var(--ochre)">·</span> <span style="font-size:8.5pt; letter-spacing:0.04em;">cont.</span></div>
+    <div class="meta">Plates VI – X &nbsp;<span class="dot">·</span>&nbsp; From Zach to Nepal</div>
+  </header>
+
+  <div class="plates">
+
+    <!-- PLATE VI — nerf chaos (landscape) -->
+    <div class="plate layout-pl">
+      <div class="frame landscape">
+        <img src="../photos/IMG_5845.jpg" alt="Two friends with a massive Nerf gun collection on the floor." />
+      </div>
+      <div class="caption">
+        <div class="plate-label">
+          <span class="num">Plate VI</span>
+          <span class="hairline"></span>
+          <span class="loc">Dorm Floor, Spring</span>
+        </div>
+        <p class="body">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione.</p>
+      </div>
+    </div>
+
+    <!-- PLATE VII — smash bros (landscape) -->
+    <div class="plate layout-pr">
+      <div class="caption">
+        <div class="plate-label">
+          <span class="loc">Smash Night</span>
+          <span class="hairline"></span>
+          <span class="num">Plate VII</span>
+        </div>
+        <p class="body">Voluptatem sequi nesciunt, neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit, sed quia non.</p>
+      </div>
+      <div class="frame landscape">
+        <img src="../photos/IMG_9423.jpg" alt="Five or six friends playing Smash Bros." />
+      </div>
+    </div>
+
+    <!-- PLATE VIII — lake selfie (landscape) -->
+    <div class="plate layout-pl">
+      <div class="frame landscape">
+        <img src="../photos/IMG_8966.jpg" alt="Group at a lake swimming hole, selfie." />
+      </div>
+      <div class="caption">
+        <div class="plate-label">
+          <span class="num">Plate VIII</span>
+          <span class="hairline"></span>
+          <span class="loc">A Lake, A Selfie</span>
+        </div>
+        <p class="body">Numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem, ut enim ad minima veniam quis nostrum.</p>
+      </div>
+    </div>
+
+    <!-- PLATE IX — Chinatown floor (portrait) -->
+    <div class="plate layout-pr">
+      <div class="caption">
+        <div class="plate-label">
+          <span class="loc">Chinatown, 1 a.m.</span>
+          <span class="hairline"></span>
+          <span class="num">Plate IX</span>
+        </div>
+        <p class="body">Exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur quis autem vel eum iure reprehenderit, qui in.</p>
+      </div>
+      <div class="frame portrait">
+        <img src="../photos/IMG_0021.jpg" alt="Three friends in Chinatown at night, one lying on the ground laughing." />
+      </div>
+    </div>
+
+    <!-- PLATE X — Central Park (landscape) — last caption resolves into sign-off -->
+    <div class="plate layout-pl">
+      <div class="frame landscape">
+        <img src="../photos/73844CFF.jpg" alt="Two friends and a woman in a park in fall foliage." />
+      </div>
+      <div class="caption">
+        <div class="plate-label">
+          <span class="num">Plate X</span>
+          <span class="hairline"></span>
+          <span class="loc">Central Park, Autumn</span>
+        </div>
+        <p class="body">Ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur — and so, brother,</p>
+        <p class="signoff"><span class="em-rule">—</span><span class="name">Zach</span></p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="left">Plates VI–X</div>
+    <div class="center">For Nepal &nbsp;<span class="dot">·</span>&nbsp; on the eve of his wedding to Daria &nbsp;<span class="dot">·</span>&nbsp; vi · vi · mmxxvi</div>
+    <div class="right">Page Two of Two</div>
+  </div>
+
+</section>
+
+</body>
+</html>

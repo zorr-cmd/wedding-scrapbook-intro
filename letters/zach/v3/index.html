@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A Letter From Zach — A Wedding Original</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #2a2a2a; }
+  body { font-family: 'Inter', sans-serif; color: #0d0d0d; }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    margin: 0 auto;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ============== PAGE 1 — THE LETTER POSTER ============== */
+  .poster {
+    display: grid;
+    grid-template-rows: 0.52fr 0.48fr;
+  }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: #0d0d0d;
+  }
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 62%;
+    filter: contrast(1.04) saturate(0.94);
+    display: block;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 55%, transparent 55%, rgba(0,0,0,0.18) 100%);
+    pointer-events: none;
+  }
+
+  .topbar {
+    position: absolute;
+    top: 0.32in;
+    left: 0.7in;
+    right: 0.7in;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(245, 241, 234, 0.85);
+    z-index: 2;
+    mix-blend-mode: difference;
+  }
+
+  .below {
+    position: relative;
+    padding: 0.45in 0.7in 1.1in 0.7in;
+  }
+
+  .title-block {
+    margin-top: 0.02in;
+  }
+  .tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 7.5pt;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    display: flex;
+    align-items: center;
+    gap: 0.18in;
+  }
+  .tagline .rule {
+    flex: 0 0 0.5in;
+    height: 1px;
+    background: #d4a056;
+  }
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 56pt;
+    line-height: 0.96;
+    letter-spacing: -0.02em;
+    color: #0d0d0d;
+    margin-top: 0.16in;
+  }
+  .title .amp {
+    color: #d4a056;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11pt;
+    line-height: 1.48;
+    color: #1a1a1a;
+    max-width: 5.7in;
+    margin-top: 0.26in;
+    text-align: justify;
+    hyphens: auto;
+  }
+  .letter .sal {
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 8.5pt;
+    color: #d4a056;
+    margin-right: 0.08in;
+  }
+  .letter p { margin-bottom: 0.12in; }
+  .letter .sig {
+    font-style: italic;
+    font-weight: 500;
+    font-size: 13pt;
+    color: #0d0d0d;
+    margin-top: 0.12in;
+    letter-spacing: 0.01em;
+  }
+  .letter .sig .dash { color: #d4a056; margin-right: 0.04in; }
+
+  .credits {
+    position: absolute;
+    bottom: 0.5in;
+    left: 0.7in;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    line-height: 1.75;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    max-width: 4.6in;
+  }
+  .credits .lead { font-weight: 600; }
+  .credits .meta {
+    margin-top: 0.06in;
+    font-weight: 400;
+    color: #4a4a4a;
+  }
+  .credits .meta .dot { color: #d4a056; padding: 0 0.04in; }
+
+  .filmstamp {
+    position: absolute;
+    bottom: 0.5in;
+    right: 0.7in;
+    text-align: right;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    line-height: 1.7;
+  }
+  .filmstamp .big {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 11pt;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: #0d0d0d;
+  }
+
+  /* ============== PAGE 2 — SELECTED STILLS ============== */
+  .stills {
+    padding: 0.6in 0.7in 0.5in 0.7in;
+    display: flex;
+    flex-direction: column;
+    gap: 0.22in;
+    height: 11in;
+  }
+
+  .stills-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid #0d0d0d;
+    padding-bottom: 0.16in;
+  }
+  .stills-head .h-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+  }
+  .stills-head .h-title .ac { color: #d4a056; }
+  .stills-head .h-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #4a4a4a;
+  }
+
+  .synopsis {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    max-width: 7.1in;
+    text-align: justify;
+    hyphens: auto;
+  }
+  .synopsis .drop {
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 8.5pt;
+    color: #d4a056;
+    margin-right: 0.08in;
+  }
+
+  /* 9 photos in 4-col grid = 12 cells; use 1 wide (2 cells) + 1 wide (2 cells) + 8 singles = 12. */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1.7in);
+    grid-template-rows: 2.45in 2.45in 2.45in;
+    gap: 0.14in;
+    justify-content: center;
+    flex: 1 0 auto;
+  }
+
+  .frame {
+    position: relative;
+    overflow: hidden;
+    background: #0d0d0d;
+  }
+  .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.03) saturate(0.92);
+    display: block;
+  }
+  .frame .cap {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 0.5in 0.1in 0.09in 0.1in;
+    background: linear-gradient(to top,
+      rgba(0,0,0,0.94) 0%,
+      rgba(0,0,0,0.82) 30%,
+      rgba(0,0,0,0.4) 70%,
+      rgba(0,0,0,0.0) 100%);
+    font-family: 'Inter', sans-serif;
+    font-size: 6.2pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #f5f1ea;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    line-height: 1;
+  }
+  .frame .cap .num {
+    color: #d4a056;
+    font-weight: 600;
+  }
+  .frame .cap .loc {
+    color: #f5f1ea;
+    font-weight: 500;
+  }
+
+  /* 9-frame layout in 12-cell grid: 2 wide landscapes + 7 singles = 11 cells; pad with 1 single = 12.
+     Actually 9 photos: place 2 of them wide (each spans 2 cols), and 7 singles fills the rest:
+     wide×2 (4 cells) + singles×8 = 12. But that's 10 photos. We have exactly 9. So:
+     wide×2 (4 cells) + singles×7 = 11 cells -> 1 empty cell. Not ideal.
+     Better: wide×3 (6 cells) + singles×6 = 12 ✓ — make all 3 landscape photos wide. */
+
+  .f01 { grid-column: 1 / span 2; grid-row: 1; } /* WIDE landscape — Nerf */
+  .f02 { grid-column: 3; grid-row: 1; }
+  .f03 { grid-column: 4; grid-row: 1; }
+  .f04 { grid-column: 1; grid-row: 2; }
+  .f05 { grid-column: 2; grid-row: 2; }
+  .f06 { grid-column: 3 / span 2; grid-row: 2; } /* WIDE landscape — Smash */
+  .f07 { grid-column: 1 / span 2; grid-row: 3; } /* WIDE landscape — Lake */
+  .f08 { grid-column: 3; grid-row: 3; }
+  .f09 { grid-column: 4; grid-row: 3; }
+
+  .stills-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid #0d0d0d;
+    padding-top: 0.14in;
+    margin-top: auto;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+  }
+  .stills-foot .right { color: #4a4a4a; }
+  .stills-foot .dot { color: #d4a056; padding: 0 0.05in; }
+
+  @media screen {
+    body { padding: 24px 0; }
+    .page { box-shadow: 0 30px 80px rgba(0,0,0,0.45); margin-bottom: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== PAGE 1 — LETTER POSTER ============== -->
+<section class="page poster">
+
+  <div class="topbar">
+    <span>Reel No. 01</span>
+    <span>1.85 : 1</span>
+  </div>
+
+  <div class="hero">
+    <img src="../photos/IMG_0049.jpg" alt="">
+  </div>
+
+  <div class="below">
+
+    <div class="title-block">
+      <div class="tagline"><span class="rule"></span>An Original Production</div>
+      <div class="title">A Letter<span class="amp">.</span></div>
+    </div>
+
+    <div class="letter">
+      <p><span class="sal">Dear Nepal —</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      <div class="sig"><span class="dash">—</span> Zach</div>
+    </div>
+
+    <div class="credits">
+      <div class="lead">A Letter From Zach Orr</div>
+      <div class="meta">
+        For Nepal Arslan <span class="dot">·</span> June 6, 2026<br>
+        A Wedding Original <span class="dot">·</span> Nepal &amp; Daria
+      </div>
+    </div>
+
+    <div class="filmstamp">
+      <div class="big">in selected scrapbooks</div>
+      <div>page 01 of 02</div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============== PAGE 2 — SELECTED STILLS ============== -->
+<section class="page stills">
+
+  <header class="stills-head">
+    <div class="h-title">From Zach<span class="ac"> · </span>Selected Stills</div>
+    <div class="h-meta">Press Kit <span style="color:#d4a056">/</span> Frames 02–10</div>
+  </header>
+
+  <p class="synopsis">
+    <span class="drop">Synopsis —</span> Nine frames from a decade in motion: dorm floors and Disneyland golden hour, San Diego piers and Chinatown sidewalks, a lake in summer and a couch in winter. On the occasion of Nepal Arslan&rsquo;s wedding, these are the frames that survived the cut.
+  </p>
+
+  <div class="grid">
+
+    <!-- Row 1: wide Nerf (landscape) + 2 portraits -->
+    <figure class="frame f01">
+      <img src="../photos/IMG_5845.jpg" alt="">
+      <figcaption class="cap"><span class="num">02</span><span class="loc">Dorm Floor</span></figcaption>
+    </figure>
+
+    <figure class="frame f02">
+      <img src="../photos/IMG_4450.jpg" alt="">
+      <figcaption class="cap"><span class="num">03</span><span class="loc">Blue Hour</span></figcaption>
+    </figure>
+
+    <figure class="frame f03">
+      <img src="../photos/IMG_5069.jpg" alt="">
+      <figcaption class="cap"><span class="num">04</span><span class="loc">Golden Hour</span></figcaption>
+    </figure>
+
+    <!-- Row 2: 2 portraits + wide Smash (landscape) -->
+    <figure class="frame f04">
+      <img src="../photos/IMG_5734.jpg" alt="">
+      <figcaption class="cap"><span class="num">05</span><span class="loc">San Diego, CA</span></figcaption>
+    </figure>
+
+    <figure class="frame f05">
+      <img src="../photos/IMG_5499.jpg" alt="">
+      <figcaption class="cap"><span class="num">06</span><span class="loc">The Fairway</span></figcaption>
+    </figure>
+
+    <figure class="frame f06">
+      <img src="../photos/IMG_9423.jpg" alt="">
+      <figcaption class="cap"><span class="num">07</span><span class="loc">Smash Bros., Dorm</span></figcaption>
+    </figure>
+
+    <!-- Row 3: wide Lake (landscape) + 1 portrait + 1 landscape Central Park -->
+    <figure class="frame f07">
+      <img src="../photos/IMG_8966.jpg" alt="">
+      <figcaption class="cap"><span class="num">08</span><span class="loc">The Lake</span></figcaption>
+    </figure>
+
+    <figure class="frame f08">
+      <img src="../photos/IMG_0021.jpg" alt="">
+      <figcaption class="cap"><span class="num">09</span><span class="loc">Chinatown, Night</span></figcaption>
+    </figure>
+
+    <figure class="frame f09">
+      <img src="../photos/73844CFF.jpg" alt="">
+      <figcaption class="cap"><span class="num">10</span><span class="loc">Central Park, NY</span></figcaption>
+    </figure>
+
+  </div>
+
+  <footer class="stills-foot">
+    <span>Pg. 02 / 02 <span class="dot">·</span> Press Kit <span class="dot">·</span> June 6, 2026</span>
+    <span class="right">A Wedding Original <span class="dot">·</span> Nepal Arslan &amp; Daria</span>
+  </footer>
+
+</section>
+
+</body>
+</html>

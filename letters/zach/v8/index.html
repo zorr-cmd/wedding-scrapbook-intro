@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A Letter — Zach to Nepal — V8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #e8e3d8; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: #0d0d0d;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    margin: 0 auto;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ============== PAGE 1 — THE LETTER ============== */
+  .p1 {
+    padding: 1.5in 1.2in 1.5in 1.2in;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    text-align: center;
+    padding-bottom: 0.18in;
+    border-bottom: 0.4pt solid #0d0d0d;
+    margin-bottom: 0.55in;
+  }
+
+  .eyebrow .dot {
+    color: #d4a056;
+    margin: 0 0.5em;
+    font-weight: 700;
+  }
+
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 56pt;
+    line-height: 1.05;
+    color: #0d0d0d;
+    text-align: center;
+    margin-bottom: 0.45in;
+    letter-spacing: -0.005em;
+  }
+
+  .title .accent { color: #d4a056; }
+
+  .title-rule {
+    width: 0.6in;
+    height: 0.4pt;
+    background: #d4a056;
+    margin: 0 auto 0.55in auto;
+  }
+
+  .letter-block {
+    max-width: 5in;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .letter-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13pt;
+    line-height: 1.72;
+    color: #0d0d0d;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .letter-body p {
+    margin-bottom: 0.85em;
+    text-indent: 0;
+  }
+
+  .letter-body p + p { text-indent: 1.6em; }
+
+  .drop-cap {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 64pt;
+    line-height: 0.85;
+    color: #d4a056;
+    float: left;
+    padding: 0.08em 0.1em 0 0;
+    margin-top: 0.04em;
+  }
+
+  .signoff {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 15pt;
+    color: #0d0d0d;
+    margin-top: 0.5em;
+    text-align: left;
+  }
+
+  .signoff .em {
+    color: #d4a056;
+    margin-right: 0.25em;
+  }
+
+  /* fill space, push footer down */
+  .spacer { flex: 1; }
+
+  .p1-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 0.18in;
+    border-top: 0.4pt solid #0d0d0d;
+  }
+
+  .p1-footer .pageno,
+  .p1-footer .meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.8pt;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+  }
+
+  .p1-footer .pageno .cur { color: #d4a056; }
+
+  /* ============== PAGE 2 — THE PHOTOGRAPHS ============== */
+  .p2 {
+    padding: 0.55in 0.55in 0.5in 0.55in;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .p2-header {
+    text-align: center;
+    padding-bottom: 0.16in;
+    border-bottom: 0.4pt solid #0d0d0d;
+    margin-bottom: 0.22in;
+  }
+
+  .p2-header .label {
+    font-family: 'Inter', sans-serif;
+    font-size: 7.2pt;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+  }
+
+  .p2-header .label .dot {
+    color: #d4a056;
+    margin: 0 0.5em;
+    font-weight: 700;
+  }
+
+  .p2-header .sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11pt;
+    color: #0d0d0d;
+    margin-top: 0.08in;
+  }
+
+  /* The grid */
+  .grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 2.4in 1.6in 2.4in 1.6in;
+    gap: 0.11in;
+  }
+
+  /* 6 portraits + 4 landscapes = 10 photos
+     Plan using a 6-col grid, each cell = 1/6 of width.
+     Portrait = 2 cols × 2 rows tall (~2.4in × 3.2in)
+     Landscape = 3 cols × 2 rows tall (~3.6in × 3.2in)
+     Hero landscape = 4 cols × 2 rows tall (~4.83in × 3.2in)
+
+     Rows 1-2 (top): P P L     -> portrait(2c) + portrait(2c) + landscape(3c)? = 7 cols. Adjust.
+     Better: use 12-col grid.
+  */
+
+  /* Row 1 (2.4in tall): P P P    → 3 portraits, each 2c×1r
+     Row 2 (1.6in tall): L L      → 2 landscapes, each 3c×1r
+     Row 3 (2.4in tall): P P P    → 3 portraits
+     Row 4 (1.6in tall): L L      → 2 landscapes  */
+
+  /* Row 1-2: portrait(3) + portrait(3) + landscape(6)  = 12  height 2 rows = ~2.9in */
+  /* Row 3-4: landscape(6) + portrait(3) + portrait(3) = 12 */
+  /* Row 5-6: portrait(3) + landscape(4 wide hero) + portrait(3) + landscape(... ) -> need 4 landscapes total
+     We have landscapes: 6,7,8,10 (4)
+     Portraits: 1,2,3,4,5,9 (6)
+
+     Try strict alternation:
+     Row 1-2: P1(3c×2r) | P2(3c×2r) | L7(6c×2r)   ✓ 12
+     Row 3-4: L6(6c×2r) | P3(3c×2r) | P4(3c×2r)   ✓ 12
+     Row 5-6: P5(3c×2r) | L8(6c×2r) | P9(3c×2r)   ✓ 12
+     Row 7-8: L10(12c×2r hero finale) — full width landscape  ✓
+  */
+
+  .ph { position: relative; overflow: hidden; }
+  .ph img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: contrast(1.03) saturate(0.92);
+  }
+
+  .ph .cap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.18in 0.14in 0.1in 0.14in;
+    background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0) 100%);
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #f5f1ea;
+  }
+
+  .ph .cap .num {
+    color: #d4a056;
+    margin-right: 0.5em;
+    font-weight: 700;
+  }
+
+  /* placements: 6-col grid */
+  /* Row 1: portraits (2c each) */
+  .c1 { grid-column: 1 / span 2; grid-row: 1; }
+  .c2 { grid-column: 3 / span 2; grid-row: 1; }
+  .c3 { grid-column: 5 / span 2; grid-row: 1; }
+
+  /* Row 2: landscapes (3c each) */
+  .c4 { grid-column: 1 / span 3; grid-row: 2; }
+  .c5 { grid-column: 4 / span 3; grid-row: 2; }
+
+  /* Row 3: portraits (2c each) */
+  .c6 { grid-column: 1 / span 2; grid-row: 3; }
+  .c7 { grid-column: 3 / span 2; grid-row: 3; }
+  .c8 { grid-column: 5 / span 2; grid-row: 3; }
+
+  /* Row 4: landscapes (3c each) */
+  .c9  { grid-column: 1 / span 3; grid-row: 4; }
+  .c10 { grid-column: 4 / span 3; grid-row: 4; }
+
+  .p2-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 0.16in;
+    margin-top: 0.18in;
+    border-top: 0.4pt solid #0d0d0d;
+  }
+
+  .p2-footer .pageno,
+  .p2-footer .meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.8pt;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+  }
+
+  .p2-footer .pageno .cur { color: #d4a056; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<div class="page p1">
+  <div class="eyebrow">A Letter<span class="dot">·</span>From Zach<span class="dot">·</span>MMXXVI</div>
+
+  <div class="title">On Knowing You<span class="accent">.</span></div>
+  <div class="title-rule"></div>
+
+  <div class="letter-block">
+    <div class="letter-body">
+      <p>
+        <span class="drop-cap">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      </p>
+      <p>
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+      </p>
+      <div class="signoff"><span class="em">—</span>Zach</div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="p1-footer">
+    <div class="meta">For Nepal Arslan<span style="color:#d4a056;margin:0 0.5em;font-weight:700">·</span>June 6, 2026</div>
+    <div class="pageno"><span class="cur">i</span> &nbsp;/&nbsp; ii</div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 ============ -->
+<div class="page p2">
+  <div class="p2-header">
+    <div class="label">Photographs<span class="dot">·</span>MMXVII—MMXXVI<span class="dot">·</span>Zach &amp; Nepal</div>
+    <div class="sub">ten frames from the company kept</div>
+  </div>
+
+  <div class="grid">
+    <!-- Row 1: P P P -->
+    <div class="ph c1">
+      <img src="../photos/IMG_0049.jpg" alt="">
+      <div class="cap"><span class="num">01</span>The Couch</div>
+    </div>
+    <div class="ph c2">
+      <img src="../photos/IMG_4450.jpg" alt="">
+      <div class="cap"><span class="num">02</span>Blue Hour</div>
+    </div>
+    <div class="ph c3">
+      <img src="../photos/IMG_5069.jpg" alt="">
+      <div class="cap"><span class="num">03</span>Golden Hour</div>
+    </div>
+
+    <!-- Row 2: L L -->
+    <div class="ph c4">
+      <img src="../photos/IMG_9423.jpg" alt="">
+      <div class="cap"><span class="num">04</span>The Dorm</div>
+    </div>
+    <div class="ph c5">
+      <img src="../photos/IMG_5845.jpg" alt="">
+      <div class="cap"><span class="num">05</span>Nerf Arsenal</div>
+    </div>
+
+    <!-- Row 3: P P P -->
+    <div class="ph c6">
+      <img src="../photos/IMG_5734.jpg" alt="">
+      <div class="cap"><span class="num">06</span>The Pier</div>
+    </div>
+    <div class="ph c7">
+      <img src="../photos/IMG_5499.jpg" alt="">
+      <div class="cap"><span class="num">07</span>The Greens</div>
+    </div>
+    <div class="ph c8">
+      <img src="../photos/IMG_0021.jpg" alt="">
+      <div class="cap"><span class="num">08</span>Chinatown</div>
+    </div>
+
+    <!-- Row 4: L L -->
+    <div class="ph c9">
+      <img src="../photos/IMG_8966.jpg" alt="">
+      <div class="cap"><span class="num">09</span>The Lake</div>
+    </div>
+    <div class="ph c10">
+      <img src="../photos/73844CFF.jpg" alt="">
+      <div class="cap"><span class="num">10</span>Central Park, Autumn</div>
+    </div>
+  </div>
+
+  <div class="p2-footer">
+    <div class="meta">For Nepal &amp; Daria<span style="color:#d4a056;margin:0 0.5em;font-weight:700">·</span>June 6, 2026</div>
+    <div class="pageno"><span class="cur">ii</span> &nbsp;/&nbsp; ii</div>
+  </div>
+</div>
+
+</body>
+</html>

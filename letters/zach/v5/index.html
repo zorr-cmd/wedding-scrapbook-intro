@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dear Nepal — A Letter from Zach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #2a2a2a; }
+  body { font-family: 'Inter', sans-serif; color: #0d0d0d; -webkit-font-smoothing: antialiased; }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: auto 4.75in 1fr 1.18in 0.42in;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ============== TOPBAR ============== */
+  .topbar {
+    padding: 0.32in 0.7in 0.18in 0.7in;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    z-index: 3;
+    position: relative;
+  }
+  .topbar .left, .topbar .right { display: flex; gap: 0.22in; align-items: center; }
+  .topbar .dot { color: #d4a056; }
+  .topbar .center {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 9.5pt;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: #0d0d0d;
+  }
+
+  /* ============== HERO (cinematic single frame) ============== */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: #0d0d0d;
+    margin: 0 0.7in;
+  }
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 38%;
+    filter: contrast(1.03) saturate(0.92);
+    display: block;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 55%, transparent 55%, rgba(0,0,0,0.22) 100%);
+    pointer-events: none;
+  }
+  /* hero overlay metadata — corners only, no center to avoid faces */
+  .hero-meta {
+    position: absolute;
+    left: 0.18in;
+    bottom: 0.12in;
+    right: 0.18in;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: 'Inter', sans-serif;
+    font-size: 6pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(245, 241, 234, 0.88);
+    z-index: 2;
+  }
+  .hero-meta-top {
+    position: absolute;
+    top: 0.12in;
+    right: 0.18in;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 10pt;
+    letter-spacing: 0.02em;
+    color: rgba(245, 241, 234, 0.92);
+    z-index: 2;
+  }
+
+  /* ============== LETTER COVER BLOCK ============== */
+  .letter {
+    padding: 0.28in 0.7in 0.16in 0.7in;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    gap: 0.16in;
+  }
+  .eyebrow .rule {
+    width: 0.5in;
+    height: 1px;
+    background: #d4a056;
+  }
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 40pt;
+    line-height: 0.95;
+    letter-spacing: -0.018em;
+    color: #0d0d0d;
+    margin-top: 0.1in;
+  }
+  .title .period { color: #d4a056; }
+
+  .body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 10.5pt;
+    line-height: 1.42;
+    color: #1a1a1a;
+    width: 5.0in;
+    text-align: justify;
+    margin-top: 0.16in;
+  }
+  .body p + p { margin-top: 0.07in; text-indent: 0.18in; }
+  .body p:first-child::first-letter {
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .signoff {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 12pt;
+    color: #0d0d0d;
+    margin-top: 0.11in;
+    align-self: flex-end;
+    margin-right: 1.05in;
+  }
+  .signoff .dash { color: #d4a056; margin-right: 0.04in; }
+
+  /* ============== FILMSTRIP (9 thumbnails) ============== */
+  .filmstrip-wrap {
+    padding: 0.1in 0.7in 0.14in 0.7in;
+    display: flex;
+    flex-direction: column;
+    gap: 0.08in;
+  }
+  .strip-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    border-top: 1px solid #0d0d0d;
+    padding-top: 0.08in;
+  }
+  .strip-head .ac { color: #d4a056; }
+  .filmstrip {
+    display: flex;
+    gap: 0.06in;
+    height: 0.92in;
+  }
+  .frame {
+    position: relative;
+    background: #0d0d0d;
+    height: 100%;
+    overflow: hidden;
+    flex: 1 1 0;
+  }
+  .frame.land { flex: 1.5 1 0; }
+  .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.03) saturate(0.92);
+    display: block;
+  }
+  .frame .num {
+    position: absolute;
+    top: 0.03in;
+    left: 0.04in;
+    font-family: 'Inter', sans-serif;
+    font-size: 6pt;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: rgba(245, 241, 234, 0.92);
+    text-shadow: 0 0 4px rgba(0,0,0,0.6);
+  }
+
+  /* ============== FOOTER ============== */
+  .footer {
+    padding: 0.12in 0.7in 0.32in 0.7in;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+  }
+  .footer .dot { color: #d4a056; padding: 0 0.05in; }
+  .footer .page-no {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 9.5pt;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: #0d0d0d;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="left"><span>REEL NO. 05</span><span class="dot">·</span><span>1.85 : 1</span></div>
+    <div class="center">A Letter from Zach</div>
+    <div class="right"><span>35MM</span><span class="dot">·</span><span>SINGLE FRAME</span></div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="../photos/IMG_0049.jpg" alt="Three guys on a couch, warm interior">
+    <div class="hero-meta-top">no. 01 / 10</div>
+    <div class="hero-meta">
+      <span>INT. APARTMENT — NIGHT</span>
+      <span>SHOT ON FILM</span>
+    </div>
+  </div>
+
+  <!-- LETTER -->
+  <div class="letter">
+    <div class="eyebrow"><span class="rule"></span><span>A Letter · From Zach</span><span class="rule"></span></div>
+    <div class="title">Dear Nepal<span class="period">.</span></div>
+    <div class="body">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>
+    <div class="signoff"><span class="dash">—</span>Zach</div>
+  </div>
+
+  <!-- FILMSTRIP (remaining 9) -->
+  <div class="filmstrip-wrap">
+    <div class="strip-head">
+      <span>Selected Stills <span class="ac">·</span> Nos. 02 – 10</span>
+      <span>Ensemble</span>
+    </div>
+    <div class="filmstrip">
+      <div class="frame"><span class="num">02</span><img src="../photos/IMG_4450.jpg" alt=""></div>
+      <div class="frame"><span class="num">03</span><img src="../photos/IMG_5069.jpg" alt=""></div>
+      <div class="frame"><span class="num">04</span><img src="../photos/IMG_5734.jpg" alt=""></div>
+      <div class="frame"><span class="num">05</span><img src="../photos/IMG_5499.jpg" alt=""></div>
+      <div class="frame land"><span class="num">06</span><img src="../photos/IMG_5845.jpg" alt=""></div>
+      <div class="frame land"><span class="num">07</span><img src="../photos/IMG_9423.jpg" alt=""></div>
+      <div class="frame land"><span class="num">08</span><img src="../photos/IMG_8966.jpg" alt=""></div>
+      <div class="frame"><span class="num">09</span><img src="../photos/IMG_0021.jpg" alt=""></div>
+      <div class="frame land"><span class="num">10</span><img src="../photos/73844CFF.jpg" alt=""></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>For Nepal <span class="dot">·</span> June 6, 2026</span>
+    <span class="page-no">v. 05</span>
+    <span>The Turkish Tank <span class="dot">·</span> Companion</span>
+  </div>
+
+</div>
+</body>
+</html>

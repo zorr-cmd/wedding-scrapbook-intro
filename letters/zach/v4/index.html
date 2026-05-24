@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>A Letter From Zach — Magazine Feature</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #2a2a2a;
+    font-family: 'Inter', sans-serif;
+    color: #0d0d0d;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    margin: 0 auto;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ---------- shared editorial atoms ---------- */
+  .smallcap {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: #0d0d0d;
+  }
+  .rule {
+    border: none;
+    border-top: 0.5px solid #0d0d0d;
+    width: 100%;
+  }
+  .rule-thin {
+    border: none;
+    border-top: 0.5px solid #0d0d0d;
+    opacity: 0.5;
+  }
+  .ochre { color: #d4a056; }
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.03) saturate(0.92);
+  }
+  figure { position: relative; }
+  figure .frame {
+    border: 0.5px solid #0d0d0d;
+    overflow: hidden;
+  }
+  figcaption {
+    margin-top: 0.06in;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 7.2pt;
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    color: #1a1a1a;
+  }
+  figcaption .plate {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 6.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: #0d0d0d;
+    margin-right: 0.05in;
+  }
+
+  /* ===================================================================
+     PAGE 1 — opening editorial spread
+     =================================================================== */
+  .p1 {
+    padding: 0.6in 0.7in 0.5in 0.7in;
+    display: flex;
+    flex-direction: column;
+  }
+  /* masthead */
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #0d0d0d;
+    padding-bottom: 0.12in;
+    border-bottom: 0.5px solid #0d0d0d;
+  }
+  .masthead .left { letter-spacing: 0.3em; }
+  .masthead .center { letter-spacing: 0.45em; }
+  .masthead .right { letter-spacing: 0.3em; }
+
+  /* hero title block */
+  .hero {
+    padding-top: 0.42in;
+    padding-bottom: 0.22in;
+    text-align: center;
+  }
+  .kicker {
+    font-size: 7pt;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 0.18in;
+  }
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 56pt;
+    line-height: 0.98;
+    color: #0d0d0d;
+    letter-spacing: -0.005em;
+  }
+  .title .dot { color: #d4a056; font-style: normal; }
+  .subtitle {
+    margin-top: 0.2in;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13pt;
+    color: #2a2a2a;
+    line-height: 1.4;
+  }
+  .deck {
+    margin-top: 0.18in;
+    font-size: 7pt;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #0d0d0d;
+  }
+  .hero .deck .ochre { letter-spacing: 0; }
+
+  .hero-divider {
+    width: 0.6in;
+    border: none;
+    border-top: 0.5px solid #d4a056;
+    margin: 0.2in auto 0 auto;
+  }
+
+  /* salutation + body */
+  .salutation {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 16pt;
+    color: #0d0d0d;
+    margin-top: 0.32in;
+    margin-bottom: 0.12in;
+  }
+
+  .columns {
+    column-count: 2;
+    column-gap: 0.32in;
+    column-rule: 0.5px solid rgba(13,13,13,0.18);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #0d0d0d;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+  .columns p { text-indent: 1.2em; margin-bottom: 0.06in; }
+  .columns p:first-of-type { text-indent: 0; }
+  .dropcap {
+    float: left;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 44pt;
+    line-height: 0.82;
+    padding-right: 0.07in;
+    padding-top: 0.04in;
+    color: #0d0d0d;
+  }
+  .dropcap-accent { color: #d4a056; }
+
+  /* inset photo plate inside the column flow */
+  .inset-plate {
+    width: 100%;
+    margin-top: 0.14in;
+    margin-bottom: 0.06in;
+    break-inside: avoid;
+  }
+  .inset-plate .frame {
+    width: 100%;
+    height: 1.55in;
+  }
+
+  /* large mid-page plate */
+  .midplate {
+    margin-top: 0.22in;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .midplate .frame {
+    width: 100%;
+    height: 2.1in;
+  }
+  .midplate .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 0.07in;
+  }
+  .midplate .meta figcaption { margin-top: 0; max-width: 4.2in; }
+  .midplate .meta .stamp {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.2pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #1a1a1a;
+    text-align: right;
+  }
+
+  /* footer */
+  .p1-footer {
+    margin-top: auto;
+    padding-top: 0.12in;
+    border-top: 0.5px solid #0d0d0d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 6.2pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #0d0d0d;
+  }
+  .p1-footer .folio { letter-spacing: 0.45em; }
+
+  /* ===================================================================
+     PAGE 2 — continuation + plates photo essay
+     =================================================================== */
+  .p2 {
+    padding: 0.5in 0.7in 0.5in 0.7in;
+    display: flex;
+    flex-direction: column;
+  }
+  .p2-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 0.1in;
+    border-bottom: 0.5px solid #0d0d0d;
+    font-size: 6.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .p2-header .continued {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 9pt;
+    color: #2a2a2a;
+  }
+
+  .conclusion {
+    margin-top: 0.22in;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #0d0d0d;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    max-width: 5.6in;
+  }
+  .conclusion p { margin-bottom: 0.06in; text-indent: 1.2em; }
+  .conclusion p:first-of-type { text-indent: 0; }
+
+  .signoff {
+    margin-top: 0.16in;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 15pt;
+    color: #0d0d0d;
+  }
+
+  /* plates section header */
+  .plates-header {
+    margin-top: 0.3in;
+    display: flex;
+    align-items: baseline;
+    gap: 0.14in;
+  }
+  .plates-header .label {
+    font-size: 7pt;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #0d0d0d;
+    white-space: nowrap;
+  }
+  .plates-header .sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 10pt;
+    color: #2a2a2a;
+  }
+  .plates-header .line {
+    flex: 1;
+    height: 0.5px;
+    background: #0d0d0d;
+    opacity: 0.55;
+    transform: translateY(-3px);
+  }
+
+  /* plates grid — varied sizes, asymmetric, magazine-like */
+  .plates {
+    margin-top: 0.14in;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 0.72in;
+    gap: 0.13in 0.15in;
+  }
+  .plates figure { display: flex; flex-direction: column; }
+  .plates figure .frame { flex: 1; }
+  .plates figcaption {
+    margin-top: 0.04in;
+    font-size: 7pt;
+    line-height: 1.28;
+  }
+  .plates figcaption .plate { font-size: 6.2pt; letter-spacing: 0.22em; }
+
+  /* asymmetric placements — 4 rows × 2-row-tall figures = ~6.6in of grid */
+  .plate-2  { grid-column: span 7; grid-row: span 2; }   /* lake landscape */
+  .plate-3  { grid-column: span 5; grid-row: span 2; }   /* bed portrait */
+  .plate-4  { grid-column: span 4; grid-row: span 2; }   /* disney portrait */
+  .plate-5  { grid-column: span 4; grid-row: span 2; }   /* pier portrait */
+  .plate-6  { grid-column: span 4; grid-row: span 2; }   /* golf portrait */
+  .plate-7  { grid-column: span 7; grid-row: span 2; }   /* nerf landscape */
+  .plate-8  { grid-column: span 5; grid-row: span 2; }   /* chinatown portrait */
+  .plate-9  { grid-column: span 12; grid-row: span 2; }  /* central park landscape — full width */
+
+  /* dedication */
+  .dedication {
+    margin-top: auto;
+    padding-top: 0.14in;
+    border-top: 0.5px solid #d4a056;
+    text-align: center;
+  }
+  .dedication .text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 10.5pt;
+    color: #1a1a1a;
+    line-height: 1.4;
+  }
+  .dedication .folio {
+    margin-top: 0.1in;
+    font-size: 6.2pt;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #0d0d0d;
+  }
+</style>
+</head>
+<body>
+
+<!-- =================================================================
+     PAGE 1
+     ================================================================= -->
+<section class="page p1">
+
+  <div class="masthead">
+    <span class="left">The Wedding Scrapbook</span>
+    <span class="center">Vol. I &nbsp;·&nbsp; The Ensemble</span>
+    <span class="right">N&deg; 04 / Zach</span>
+  </div>
+
+  <header class="hero">
+    <div class="kicker">An Ensemble-Member Essay</div>
+    <h1 class="title">On Knowing Nepal<span class="dot">.</span></h1>
+    <div class="subtitle">A short feature, in two pages, on a long friendship.</div>
+    <div class="deck">Words &amp; Plates by Zach &nbsp;<span class="ochre">·</span>&nbsp; MMXXVI</div>
+    <hr class="hero-divider" />
+  </header>
+
+  <div class="salutation">Dear Nepal,</div>
+
+  <div class="columns">
+    <p>
+      <span class="dropcap">L<span class="dropcap-accent">.</span></span>orem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    </p>
+
+    <figure class="inset-plate">
+      <div class="frame">
+        <img src="../photos/IMG_0049.jpg" alt="Three friends on a couch beneath a gallery wall." />
+      </div>
+      <figcaption>
+        <span class="plate">Plate I.</span>An interior, with friends. Los Angeles, MMXXIII.
+      </figcaption>
+    </figure>
+
+    <p>
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+    </p>
+    <p>
+      Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam.
+    </p>
+  </div>
+
+  <figure class="midplate">
+    <div class="frame">
+      <img src="../photos/IMG_9423.jpg" alt="A dorm room of friends gathered around a television playing Smash Bros." />
+    </div>
+    <div class="meta">
+      <figcaption>
+        <span class="plate">Plate II.</span><em>Untitled, Smash Bros. night.</em> A near-complete inventory of persons who would later assemble at a wedding. MMXVII.
+      </figcaption>
+      <div class="stamp">35mm &nbsp;·&nbsp; Interior &nbsp;·&nbsp; Tungsten</div>
+    </div>
+  </figure>
+
+  <div class="p1-footer">
+    <span class="left">A Letter From Zach &nbsp;·&nbsp; For Nepal Arslan</span>
+    <span class="folio">Page 01 of 02</span>
+  </div>
+
+</section>
+
+
+<!-- =================================================================
+     PAGE 2 — continuation + photo essay
+     ================================================================= -->
+<section class="page p2">
+
+  <div class="p2-header">
+    <span class="left">A Letter From Zach &nbsp;·&nbsp; Continued</span>
+    <span class="continued"><em>On Knowing Nepal, cont.</em></span>
+    <span class="right">II</span>
+  </div>
+
+  <div class="conclusion">
+    <p>
+      Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
+    </p>
+  </div>
+
+  <div class="signoff">— Zach</div>
+
+  <!-- PLATES SECTION -->
+  <div class="plates-header">
+    <span class="label">The Plates</span>
+    <span class="sub"><em>a brief photo essay, in eight frames</em></span>
+    <span class="line"></span>
+    <span class="label">III &nbsp;–&nbsp; X</span>
+  </div>
+
+  <div class="plates">
+
+    <!-- big landscape: lake -->
+    <figure class="plate-2">
+      <div class="frame">
+        <img src="../photos/IMG_8966.jpg" alt="A group at a lake, selfie in the foreground." />
+      </div>
+      <figcaption>
+        <span class="plate">Plate III.</span><em>Untitled, the swimming hole.</em> Foreground, the author; background, the others.
+      </figcaption>
+    </figure>
+
+    <!-- bed portrait -->
+    <figure class="plate-3">
+      <div class="frame">
+        <img src="../photos/IMG_4450.jpg" alt="Two friends napping in a blue bed." />
+      </div>
+      <figcaption>
+        <span class="plate">Plate IV.</span><em>A study in stillness.</em> Bedroom, afternoon light.
+      </figcaption>
+    </figure>
+
+    <!-- disney portrait -->
+    <figure class="plate-4">
+      <div class="frame">
+        <img src="../photos/IMG_5069.jpg" alt="Three friends at a theme park at golden hour." />
+      </div>
+      <figcaption>
+        <span class="plate">Plate V.</span><em>Three figures at dusk.</em> Anaheim, golden hour.
+      </figcaption>
+    </figure>
+
+    <!-- pier portrait -->
+    <figure class="plate-5">
+      <div class="frame">
+        <img src="../photos/IMG_5734.jpg" alt="Two friends carrying a third horizontally on a San Diego pier." />
+      </div>
+      <figcaption>
+        <span class="plate">Plate VI.</span><em>Tableau vivant.</em> A pier, San Diego.
+      </figcaption>
+    </figure>
+
+    <!-- golf portrait -->
+    <figure class="plate-6">
+      <div class="frame">
+        <img src="../photos/IMG_5499.jpg" alt="Three friends in polos at a golf course." />
+      </div>
+      <figcaption>
+        <span class="plate">Plate VII.</span><em>The polos.</em> A wedding, of someone else, in Southern California.
+      </figcaption>
+    </figure>
+
+    <!-- nerf landscape -->
+    <figure class="plate-7">
+      <div class="frame">
+        <img src="../photos/IMG_5845.jpg" alt="Two friends on the floor with a massive Nerf gun collection." />
+      </div>
+      <figcaption>
+        <span class="plate">Plate VIII.</span><em>An inventory of arms.</em> Dormitory floor, after midnight.
+      </figcaption>
+    </figure>
+
+    <!-- chinatown portrait -->
+    <figure class="plate-8">
+      <div class="frame">
+        <img src="../photos/IMG_0021.jpg" alt="Three friends in Chinatown at night, one lying on the ground." />
+      </div>
+      <figcaption>
+        <span class="plate">Plate IX.</span><em>Chinatown, late.</em> One subject reclines for reasons of his own.
+      </figcaption>
+    </figure>
+
+    <!-- central park landscape -->
+    <figure class="plate-9">
+      <div class="frame">
+        <img src="../photos/73844CFF.jpg" alt="Two men and a woman in a park with fall foliage." />
+      </div>
+      <figcaption>
+        <span class="plate">Plate X.</span><em>Three, under maples.</em> A park, autumn, somewhere east.
+      </figcaption>
+    </figure>
+
+  </div>
+
+  <div class="dedication">
+    <div class="text">For Nepal, on the eve of his wedding to Daria. <span class="ochre">·</span> June 6, 2026.</div>
+    <div class="folio">Page 02 of 02 &nbsp;·&nbsp; End.</div>
+  </div>
+
+</section>
+
+</body>
+</html>

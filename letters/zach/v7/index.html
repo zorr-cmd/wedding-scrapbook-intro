@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A Letter — Zach to Nepal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #e8e3da; }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    margin: 0 auto;
+    color: #0d0d0d;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ---------- TOP METADATA STRIP ---------- */
+  .top-strip {
+    position: absolute;
+    top: 0.42in;
+    left: 0.5in;
+    right: 0.5in;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.6pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #4a4a4a;
+    font-weight: 500;
+  }
+  .top-strip .center-dot {
+    color: #d4a056;
+    margin: 0 0.55em;
+  }
+  .top-strip .right { letter-spacing: 0.32em; }
+
+  .hairline-top {
+    position: absolute;
+    top: 0.62in;
+    left: 0.5in;
+    right: 0.5in;
+    height: 0.4pt;
+    background: #c9c2b4;
+  }
+
+  /* ---------- THREE-COLUMN GRID ---------- */
+  .grid {
+    position: absolute;
+    top: 0.85in;
+    left: 0.5in;
+    right: 0.5in;
+    bottom: 0.7in;
+    display: grid;
+    grid-template-columns: 1.85in 1fr 1.85in;
+    column-gap: 0.22in;
+  }
+
+  /* ---------- MARGIN COLUMNS ---------- */
+  .margin-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.18in;
+  }
+  .plate {
+    display: flex;
+    flex-direction: column;
+  }
+  .plate.flip {
+    flex-direction: column-reverse;
+  }
+  .plate img {
+    width: 100%;
+    display: block;
+    filter: contrast(1.03) saturate(0.92);
+  }
+  .plate .cap {
+    margin-top: 0.05in;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 7.4pt;
+    line-height: 1.3;
+    color: #2a2a2a;
+  }
+  .plate.flip .cap { margin-top: 0; margin-bottom: 0.05in; }
+  .plate .cap .fig {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 6.4pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #d4a056;
+    margin-right: 0.18em;
+  }
+  /* alignment variants */
+  .cap.right-align { text-align: right; }
+
+  /* Heights tuned so 5 plates per column fit in ~9.45in column with gaps */
+  .plate.tall img { height: 1.62in; object-fit: cover; }
+  .plate.wide img { height: 1.18in; object-fit: cover; }
+
+  /* ---------- CENTER LETTER COLUMN ---------- */
+  .letter-col {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 0.05in;
+  }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.6pt;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #4a4a4a;
+    text-align: center;
+    margin-top: 0.12in;
+  }
+  .eyebrow .dot { color: #d4a056; }
+  .eyebrow-rule {
+    width: 0.55in;
+    height: 0.4pt;
+    background: #0d0d0d;
+    margin: 0.11in auto 0.18in;
+  }
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 30pt;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: -0.005em;
+    margin-bottom: 0.02in;
+  }
+  .title .accent { color: #d4a056; }
+  .title-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.4pt;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: #4a4a4a;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 0.09in;
+  }
+  .ornament {
+    text-align: center;
+    color: #d4a056;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 11pt;
+    margin: 0.16in 0 0.18in;
+    letter-spacing: 0.3em;
+  }
+
+  .body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11.2pt;
+    line-height: 1.62;
+    color: #0d0d0d;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+  .body p { margin-bottom: 0.13in; text-indent: 0; }
+  .body p + p { text-indent: 1.1em; }
+  .body .dropcap {
+    float: left;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    color: #d4a056;
+    font-size: 54pt;
+    line-height: 0.85;
+    padding: 0.05in 0.07in 0 0;
+    margin-top: 0.04in;
+  }
+
+  .signoff {
+    margin-top: 0.18in;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 12pt;
+    text-align: right;
+    color: #0d0d0d;
+  }
+  .signoff .em { color: #d4a056; margin-right: 0.15em; }
+  .signoff-rule {
+    width: 0.7in;
+    height: 0.4pt;
+    background: #c9c2b4;
+    margin: 0.1in 0 0.08in auto;
+  }
+  .signoff-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.2pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #6a6a6a;
+    text-align: right;
+    font-weight: 500;
+  }
+
+  /* ---------- BOTTOM FOLIO ---------- */
+  .hairline-bottom {
+    position: absolute;
+    bottom: 0.58in;
+    left: 0.5in;
+    right: 0.5in;
+    height: 0.4pt;
+    background: #c9c2b4;
+  }
+  .folio {
+    position: absolute;
+    bottom: 0.32in;
+    left: 0.5in;
+    right: 0.5in;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.6pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #4a4a4a;
+    font-weight: 500;
+  }
+  .folio .center {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 9.5pt;
+    letter-spacing: 0.18em;
+    text-transform: none;
+    color: #0d0d0d;
+  }
+  .folio .center .dot { color: #d4a056; }
+  .folio .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 10pt;
+    letter-spacing: 0.1em;
+    text-transform: none;
+    color: #0d0d0d;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- top metadata -->
+  <div class="top-strip">
+    <div class="left">Plate Vol. I &nbsp;·&nbsp; Margin Folio</div>
+    <div class="center">A Letter <span class="center-dot">·</span> From Zach <span class="center-dot">·</span> MMXXVI</div>
+    <div class="right">Edition of One</div>
+  </div>
+  <div class="hairline-top"></div>
+
+  <div class="grid">
+
+    <!-- LEFT MARGIN: 5 plates -->
+    <div class="margin-col left-col">
+      <div class="plate tall">
+        <img src="../photos/IMG_0049.jpg" alt="">
+        <div class="cap"><span class="fig">Fig. 01</span>Three on the couch, gallery wall and lamplight; an interior, undated.</div>
+      </div>
+      <div class="plate tall">
+        <img src="../photos/IMG_4450.jpg" alt="">
+        <div class="cap"><span class="fig">Fig. 02</span>Sleep study, blue linen; midafternoon, no agenda.</div>
+      </div>
+      <div class="plate wide">
+        <img src="../photos/IMG_5845.jpg" alt="">
+        <div class="cap"><span class="fig">Fig. 03</span>Arsenal, inventoried on the carpet; dormitory, c. 2019.</div>
+      </div>
+      <div class="plate tall">
+        <img src="../photos/IMG_5069.jpg" alt="">
+        <div class="cap"><span class="fig">Fig. 04</span>Golden hour, three figures, the long walk home.</div>
+      </div>
+      <div class="plate wide">
+        <img src="../photos/IMG_9423.jpg" alt="">
+        <div class="cap"><span class="fig">Fig. 05</span>Controllers, couch, a friendly war.</div>
+      </div>
+    </div>
+
+    <!-- CENTER LETTER COLUMN -->
+    <div class="letter-col">
+      <div class="eyebrow">A Letter <span class="dot">·</span> Marginalia <span class="dot">·</span> No. VII</div>
+      <div class="eyebrow-rule"></div>
+
+      <div class="title">Dear Nepal<span class="accent">,</span></div>
+      <div class="title-sub">An Address &nbsp;·&nbsp; Set in the Margins</div>
+
+      <div class="ornament">· &nbsp; ❦ &nbsp; ·</div>
+
+      <div class="body">
+        <p><span class="dropcap">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+      </div>
+
+      <div class="signoff"><span class="em">—</span> Zach</div>
+      <div class="signoff-rule"></div>
+      <div class="signoff-meta">San Diego &nbsp;·&nbsp; Spring, MMXXVI</div>
+    </div>
+
+    <!-- RIGHT MARGIN: 5 plates -->
+    <div class="margin-col right-col">
+      <div class="plate tall">
+        <img src="../photos/IMG_5734.jpg" alt="">
+        <div class="cap"><span class="fig">Fig. 06</span>The pier, a horizontal carry; a study in trust.</div>
+      </div>
+      <div class="plate wide">
+        <img src="../photos/73844CFF.jpg" alt="">
+        <div class="cap"><span class="fig">Fig. 07</span>Three, fall foliage; an Eastern park, late afternoon.</div>
+      </div>
+      <div class="plate tall">
+        <img src="../photos/IMG_5499.jpg" alt="">
+        <div class="cap"><span class="fig">Fig. 08</span>Polos and pressed grass; the wedding circuit.</div>
+      </div>
+      <div class="plate wide">
+        <img src="../photos/IMG_8966.jpg" alt="">
+        <div class="cap"><span class="fig">Fig. 09</span>Lake, foreground selfie; the cool of the day.</div>
+      </div>
+      <div class="plate tall">
+        <img src="../photos/IMG_0021.jpg" alt="">
+        <div class="cap"><span class="fig">Fig. 10</span>Chinatown after midnight; the pavement was warm.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="hairline-bottom"></div>
+  <div class="folio">
+    <div class="left">Zach &nbsp;→&nbsp; Nepal</div>
+    <div class="center">For the Groom <span class="dot">·</span> With Affection</div>
+    <div class="num">i</div>
+  </div>
+
+</div>
+
+</body>
+</html>
