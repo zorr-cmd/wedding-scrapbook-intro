@@ -33,25 +33,11 @@
     letter-spacing: -0.02em;
   }
 
-  .section-label {
-    padding: 56px 40px 0;
-    max-width: 1900px;
-    margin: 0 auto;
-    border-top: 1px solid var(--border);
-  }
-  .section-label .label {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 14px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-
   section.variation {
     padding: 32px 40px 48px;
     max-width: 1900px;
     margin: 0 auto;
+    border-top: 1px solid var(--border);
   }
   .var-header {
     display: flex;
@@ -91,6 +77,12 @@
     cursor: pointer;
   }
   .btn:hover { background: #e8b687; }
+  .btn.secondary {
+    background: var(--panel);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .btn.secondary:hover { background: var(--panel-2); color: #e8b687; }
 
   .pages {
     display: grid;
@@ -107,19 +99,19 @@
   }
 
   footer {
-    padding: 56px 40px 48px;
+    padding: 48px 40px;
     text-align: center;
     color: var(--muted);
     font-size: 12px;
     border-top: 1px solid var(--border);
     margin-top: 32px;
   }
+  footer p { margin: 0 0 8px; }
 
   @media (max-width: 900px) {
     .pages { grid-template-columns: 1fr; }
     section.variation { padding: 24px 20px 40px; }
     header.top { padding: 40px 20px 24px; }
-    .section-label { padding: 40px 20px 0; }
   }
 </style>
 </head>
@@ -129,18 +121,14 @@
   <h1>Wedding Scrapbook Intro</h1>
 </header>
 
-<div class="section-label">
-  <div class="label">Favorites</div>
-</div>
-
 <section class="variation" id="v13">
   <div class="var-header">
     <div class="left">
-      <h2>The Turkish Tank. — A24 Minimal Indie Poster (personalized)</h2>
-      <p class="tagline">An A24-style minimal poster, personalized for Nepal Arslan &amp; Daria's wedding (June 6, 2026). Mt. Shasta alpenglow hero, quiet "The Turkish Tank." italic title with ochre accent period, full cast credits (Alex, Zach, Shubham, Dillan, Aryan, Arjun, Tejas, Kris), music by MI2D. Page 2 is the press-kit grid of 11 stills with the wedding-day synopsis.</p>
+      <h2>The Turkish Tank. — A24 Minimal Indie Poster</h2>
+      <p class="tagline">A24-style intro spread, personalized for Nepal Arslan &amp; Daria's wedding (June 6, 2026). Mt. Shasta alpenglow hero, "The Turkish Tank." italic title with ochre accent period, full cast credits (Alex, Zach, Shubham, Dillan, Aryan, Arjun, Tejas, Kris), music by MI2D. Page 2 is the press-kit grid of 11 stills with the wedding-day synopsis.</p>
     </div>
     <div class="var-actions">
-      <a class="btn" href="letters/zach/index.html" target="_blank" style="background:#2a2a2e;color:#d4a373;border-color:#d4a373;">Letter pages (Zach) ↗</a>
+      <a class="btn secondary" href="letters/zach/index.html" target="_blank">Letter pages (Zach) ↗</a>
       <a class="btn" href="variation-13-a24-minimal/index.html" target="_blank">Open ↗</a>
     </div>
   </div>
@@ -150,138 +138,8 @@
   </div>
 </section>
 
-<section class="variation" id="v14">
-  <div class="var-header">
-    <div class="left">
-      <h2>The Boys &amp; The Road That Brought Us Home — Studio Ghibli Watercolor</h2>
-      <p class="tagline">A Studio Ghibli watercolor film poster. All 11 photos were re-rendered as Miyazaki-style watercolor paintings via nano-banana-pro. Page 1 is the full poster — hand-painted Mt. Shasta scene with the boys rendered as Ghibli characters, soft pastel palette, hand-lettered serif title, and a credit to Joe Hisaishi (unauthorized, with love). Page 2 is the storyboard with a REF/FINAL pair showing one transformation.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="variation-14-ghibli/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages">
-    <div class="page-card"><img src="screenshots/variation-14-page1.jpg" alt="" loading="lazy"></div>
-    <div class="page-card"><img src="screenshots/variation-14-page2.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="variation" id="v5">
-  <div class="var-header">
-    <div class="left">
-      <h2>The Brothers — A Cinematic Reel</h2>
-      <p class="tagline">A Criterion-Collection title card and contact sheet. Page 1 is the movie poster (hero still, director credits, "Rated B for Brotherhood", runtime 10 years). Page 2 is three 35mm film strips (Kodak Portra, Kodak Gold, Ilford HP5) with sprocket holes and slate timestamps.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="variation-5-cinema/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages">
-    <div class="page-card"><img src="screenshots/variation-5-page1.jpg" alt="" loading="lazy"></div>
-    <div class="page-card"><img src="screenshots/variation-5-page2.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="variation" id="v8">
-  <div class="var-header">
-    <div class="left">
-      <h2>The Home Video Archive — VHS Tape Library</h2>
-      <p class="tagline">A 1990s VHS home video archive. Page 1: chyron title, transport controls, shelf of Sharpie-labeled tape spines, and a CRT TV "now playing" with scan lines and burnt-in timestamp. Page 2: tape index of all stills as mini-CRT frames with tracking errors.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="variation-8-vhs/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages">
-    <div class="page-card"><img src="screenshots/variation-8-page1.jpg" alt="" loading="lazy"></div>
-    <div class="page-card"><img src="screenshots/variation-8-page2.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="variation" id="v3">
-  <div class="var-header">
-    <div class="left">
-      <h2>Brothers — A Magazine Editorial</h2>
-      <p class="tagline">A premium independent magazine. Crisp serif typography, generous whitespace, full-bleed hero photo on the cover, asymmetric editorial grid on the spread.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="variation-3-editorial/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages">
-    <div class="page-card"><img src="screenshots/variation-3-page1.jpg" alt="" loading="lazy"></div>
-    <div class="page-card"><img src="screenshots/variation-3-page2.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<div class="section-label">
-  <div class="label">New Iterations</div>
-</div>
-
-<section class="variation" id="v30">
-  <div class="var-header">
-    <div class="left">
-      <h2>The Brothers — Aperture Photography Monograph</h2>
-      <p class="tagline">In the lineage of the magazine editorial — but more book than magazine. A premium photographer's monograph in the style of Aperture / Phaidon / MACK. Page 1 is the title page with an oversized Cormorant Garamond title, a hero plate, and a justified foreword by "The Editors" with a serif drop cap. Page 2 is the Index of Plates — a clean grid of all 11 photographs as numbered plates with italic small-caps captions, plus a tracked-out acknowledgements paragraph naming all eight subjects.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="variation-30-aperture/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages">
-    <div class="page-card"><img src="screenshots/variation-30-page1.jpg" alt="" loading="lazy"></div>
-    <div class="page-card"><img src="screenshots/variation-30-page2.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="variation" id="v31">
-  <div class="var-header">
-    <div class="left">
-      <h2>The Boys — A Watercolor Diary</h2>
-      <p class="tagline">In the lineage of the Ghibli watercolor — but a different painterly style: loose Western travel-journal watercolor (Maira Kalman / Wendy MacNaughton / Moleskine artist). A handwritten sketchbook spread on aged cream paper with foxed corners, ink ornaments, fountain-pen captions ("mt. shasta — october — the day we agreed to do this one more time"), and a hand-drawn route map. Note: nano-banana-pro quota was exhausted, so photos use a CSS painterly filter — less convincing than true AI-watercolor. Will improve if quota refreshes.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="variation-31-watercolor-sketch/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages">
-    <div class="page-card"><img src="screenshots/variation-31-page1.jpg" alt="" loading="lazy"></div>
-    <div class="page-card"><img src="screenshots/variation-31-page2.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="variation" id="v32">
-  <div class="var-header">
-    <div class="left">
-      <h2>The Brothers — Criterion Collection Booklet (Spine №1011)</h2>
-      <p class="tagline">In the lineage of the cinematic reel — but a different Criterion artifact: the printed essay booklet that comes inside a Criterion Blu-ray case. Page 1 is the booklet cover (Mt. Shasta plate, spine №1011, italic Garamond title, monospace credits) facing essay page 1 with a drop cap and footnote, written by [BRIDE]. Page 2 continues the essay across both leaves with three large in-flow photo plates, the author's note, a 4×2 grid of remaining plates IV-XI, and a bordered Technical Credits panel. Single orange Criterion accent.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="variation-32-criterion-booklet/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages">
-    <div class="page-card"><img src="screenshots/variation-32-page1.jpg" alt="" loading="lazy"></div>
-    <div class="page-card"><img src="screenshots/variation-32-page2.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="variation" id="v33">
-  <div class="var-header">
-    <div class="left">
-      <h2>For [GROOM] — A Mixtape (MMXVII–MMXXVI)</h2>
-      <p class="tagline">In the lineage of VHS analog nostalgia — but a different format: the cassette tape J-card and liner notes. Aged kraft paper, Sharpie-lettered tracklist ("Pyramids of Giza (Live)", "Mt. Shasta — Alpenglow Theme"), Mt. Shasta as the polaroid album cover, vertical tape-spine title, a handwritten liner-notes letter from "the boys" ending in "with love and slight envy", a hand-drawn cassette sketch, and a faded red "BE KIND · REWIND" stamp. A gift, not a designed product.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="variation-33-mixtape/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages">
-    <div class="page-card"><img src="screenshots/variation-33-page1.jpg" alt="" loading="lazy"></div>
-    <div class="page-card"><img src="screenshots/variation-33-page2.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="variation" id="v34">
-  <div class="var-header">
-    <div class="left">
-      <h2>The Brothers — Brotherhood Channel / Film of the Week</h2>
-      <p class="tagline">In the lineage of A24 minimal — but in a modern web/app aesthetic. A curated art-house film page in the spirit of Mubi or the Criterion Channel. Page 1 is the feature page (cinematic Mt. Shasta hero, refined Inter Black title, italic synopsis, clean credits stack, deep editorial-blue accent). Page 2 has a stills gallery, a "Related Films" row (Boyhood, The Trip, Past Lives, Magnolia as Curator's Pick), and a three-column reviews section anchored by quotes from "The Daily Brotherhood" and "[BRIDE]".</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="variation-34-mubi/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages">
-    <div class="page-card"><img src="screenshots/variation-34-page1.jpg" alt="" loading="lazy"></div>
-    <div class="page-card"><img src="screenshots/variation-34-page2.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
 <footer>
-  Print at 100% scale, 8.5″ × 11″ portrait. Other variations (29 total) remain accessible by direct URL but are hidden from this view.
+  <p>Print at 100% scale, 8.5″ × 11″ portrait.</p>
 </footer>
 
 </body>
