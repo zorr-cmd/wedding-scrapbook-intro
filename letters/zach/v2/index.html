@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Zach · For Nepal — Page 01</title>
+<title>A Letter · Zach to Nepal · June 6, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -207,7 +207,7 @@
   .cell {
     position: relative;
     overflow: hidden;
-    background: #e8e2d4;
+    background: #f5f1ea;
   }
   .cell img {
     width: 100%;
@@ -220,38 +220,8 @@
   .cell.c5 img { object-position: 50% 40%; }
   .cell.c1 img { object-position: center 60%; }
   .cell.c8 img { object-position: center 55%; }
-  .cap {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 0.18in 0.08in 0.06in 0.08in;
-    background: linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0));
-    color: #f5f1ea;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    font-family: 'Inter', sans-serif;
-    font-size: 6.2pt;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-  .cap .num {
-    color: #d4a056;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    margin-right: 0.06in;
-    flex-shrink: 0;
-  }
-  .cap .loc {
-    flex: 1;
-    text-align: right;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: #f5f1ea;
-  }
+  /* c2 (bed photo) — show both Zach + Nepal: switch to contain so full frame is visible */
+  .cell.c2 img { object-fit: contain; object-position: center; }
 
   /* placements */
   .c1 { grid-column: 1 / 2; grid-row: 1 / 3; }      /* P couch */
@@ -280,16 +250,16 @@
       <!-- LEFT: LETTER SIDEBAR -->
       <aside class="sidebar">
 
-        <div class="eyebrow">A Letter<span class="ochre">·</span>June MMXXVI</div>
+        <div class="eyebrow">A Letter<span class="ochre">·</span>June 6</div>
 
-        <h1 class="mini-title">Dear<br>Nepal<span class="accent">.</span></h1>
-        <div class="subtitle">a brief note, on the occasion</div>
+        <h1 class="mini-title">Nepal<span class="accent">.</span></h1>
 
         <div class="rule-thin"></div>
 
         <div class="letter-body">
-          <p><span class="drop">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+          <p>I can&rsquo;t believe this time has already come, but I&rsquo;m so happy that it has. I still remember exactly where I was that late night when you called with the big news (unfortunately, the answer was &ldquo;still at the office&rdquo;). All I could think about the rest of the night was how happy, proud, and excited I was for you, and that hasn&rsquo;t changed one bit.</p>
+          <p>There&rsquo;s an incredible number of things I admire about you. Your endless passion for anything you do (film, Nerf guns, Lego YouTube videos). Your incredible force of will, your ability to set eyes on an unclimbable mountain, say fuck it, and somehow climb it (case in point, a certain upcoming artistic production). But the thing I admire most is your curiosity and desire to learn, about the world around you, and about everyone in it. I&rsquo;ve never met anyone who can connect with people as quickly, genuinely, and deeply as you, and it&rsquo;s a trait that I admire so deeply. You are just such a good person, and you deserve the best that life has to offer; I&rsquo;m so glad you&rsquo;re getting what you deserve.</p>
+          <p>All this to say, you are one of my best friends. These last 10 years have been a wild ride. Here&rsquo;s to the next 50.</p>
         </div>
 
         <div class="signoff">
@@ -297,66 +267,20 @@
           <div class="sig">— Zach</div>
         </div>
 
-        <div class="sidebar-foot">
-          <div class="lbl">Index of Plates<span class="o">·</span>I–X</div>
-          <div class="plate-index">
-            <span class="pn">01</span><span>Couch</span>
-            <span class="pn">02</span><span>Off-Duty</span>
-            <span class="pn">03</span><span>Anaheim</span>
-            <span class="pn">04</span><span>The Arsenal</span>
-            <span class="pn">05</span><span>The Pier</span>
-            <span class="pn">06</span><span>Dorm, Final Stock</span>
-            <span class="pn">07</span><span>The Course</span>
-            <span class="pn">08</span><span>Boulders, Swim</span>
-            <span class="pn">09</span><span>Chinatown</span>
-            <span class="pn">10</span><span>Central Park, Fall</span>
-          </div>
-        </div>
-
       </aside>
 
-      <!-- RIGHT: PHOTO GRID -->
+      <!-- RIGHT: PHOTO GRID (no captions) -->
       <section class="grid">
-        <figure class="cell c1">
-          <img src="../photos/IMG_0049.jpg" alt="">
-          <figcaption class="cap"><span class="num">01</span><span class="loc">Couch</span></figcaption>
-        </figure>
-        <figure class="cell c2">
-          <img src="../photos/IMG_4450.jpg" alt="">
-          <figcaption class="cap"><span class="num">02</span><span class="loc">Off-Duty</span></figcaption>
-        </figure>
-        <figure class="cell c3">
-          <img src="../photos/IMG_5069.jpg" alt="">
-          <figcaption class="cap"><span class="num">03</span><span class="loc">Anaheim</span></figcaption>
-        </figure>
-        <figure class="cell c4">
-          <img src="../photos/IMG_5845.jpg" alt="">
-          <figcaption class="cap"><span class="num">04</span><span class="loc">The Arsenal</span></figcaption>
-        </figure>
-        <figure class="cell c5">
-          <img src="../photos/IMG_5734.jpg" alt="">
-          <figcaption class="cap"><span class="num">05</span><span class="loc">The Pier</span></figcaption>
-        </figure>
-        <figure class="cell c6">
-          <img src="../photos/IMG_9423.jpg" alt="">
-          <figcaption class="cap"><span class="num">06</span><span class="loc">Dorm, Final Stock</span></figcaption>
-        </figure>
-        <figure class="cell c7">
-          <img src="../photos/IMG_5499.jpg" alt="">
-          <figcaption class="cap"><span class="num">07</span><span class="loc">The Course</span></figcaption>
-        </figure>
-        <figure class="cell c8">
-          <img src="../photos/IMG_8966.jpg" alt="">
-          <figcaption class="cap"><span class="num">08</span><span class="loc">Boulders, Swim</span></figcaption>
-        </figure>
-        <figure class="cell c9">
-          <img src="../photos/IMG_0021.jpg" alt="">
-          <figcaption class="cap"><span class="num">09</span><span class="loc">Chinatown</span></figcaption>
-        </figure>
-        <figure class="cell c10">
-          <img src="../photos/73844CFF.jpg" alt="">
-          <figcaption class="cap"><span class="num">10</span><span class="loc">Central Park, Fall</span></figcaption>
-        </figure>
+        <figure class="cell c1"><img src="../photos/IMG_0049.jpg" alt=""></figure>
+        <figure class="cell c2"><img src="../photos/IMG_4450.jpg" alt=""></figure>
+        <figure class="cell c3"><img src="../photos/IMG_5069.jpg" alt=""></figure>
+        <figure class="cell c4"><img src="../photos/IMG_5845.jpg" alt=""></figure>
+        <figure class="cell c5"><img src="../photos/IMG_5734.jpg" alt=""></figure>
+        <figure class="cell c6"><img src="../photos/IMG_9423.jpg" alt=""></figure>
+        <figure class="cell c7"><img src="../photos/IMG_5499.jpg" alt=""></figure>
+        <figure class="cell c8"><img src="../photos/IMG_8966.jpg" alt=""></figure>
+        <figure class="cell c9"><img src="../photos/IMG_0021.jpg" alt=""></figure>
+        <figure class="cell c10"><img src="../photos/73844CFF.jpg" alt=""></figure>
       </section>
 
     </div>

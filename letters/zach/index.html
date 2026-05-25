@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Letter Pages — Zach → Nepal</title>
+<title>Letter Page — Zach → Nepal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -43,33 +43,12 @@
     margin: 0 0 8px;
     letter-spacing: -0.02em;
   }
-  header.top p {
-    color: var(--muted);
-    font-size: 13px;
-    margin: 0 auto;
-    max-width: 580px;
-    line-height: 1.55;
-  }
 
-  .section-label {
-    padding: 48px 40px 0;
+  section.variation {
+    padding: 32px 40px 48px;
     max-width: 1900px;
     margin: 0 auto;
     border-top: 1px solid var(--border);
-  }
-  .section-label .label {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 14px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-
-  section.variation {
-    padding: 28px 40px 40px;
-    max-width: 1900px;
-    margin: 0 auto;
   }
   .var-header {
     display: flex;
@@ -77,39 +56,29 @@
     align-items: flex-end;
     gap: 24px;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
   .var-header .left { flex: 1 1 480px; min-width: 0; }
-  .var-header .num {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 4px;
-  }
   .var-header h2 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-style: italic;
     margin: 0 0 8px;
-    font-size: clamp(22px, 2.2vw, 28px);
+    font-size: clamp(24px, 2.5vw, 32px);
     letter-spacing: -0.01em;
   }
   .var-header .tagline {
     color: var(--muted);
     margin: 0;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.55;
     max-width: 720px;
   }
   .var-actions { display: flex; gap: 10px; flex-shrink: 0; }
   .btn {
     display: inline-block;
-    padding: 9px 16px;
+    padding: 10px 18px;
     border-radius: 8px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     text-decoration: none;
     border: 1px solid var(--accent);
@@ -122,12 +91,10 @@
 
   .pages {
     display: grid;
-    gap: 18px;
-    align-items: start;
+    grid-template-columns: 1fr;
+    max-width: 800px;
+    margin: 0 auto;
   }
-  .pages.one  { grid-template-columns: 1fr; max-width: 720px; margin: 0 auto; }
-  .pages.two  { grid-template-columns: 1fr 1fr; }
-
   .page-card img {
     width: 100%;
     height: auto;
@@ -137,19 +104,17 @@
   }
 
   footer {
-    padding: 48px 40px 40px;
+    padding: 48px 40px;
     text-align: center;
     color: var(--muted);
     font-size: 12px;
     border-top: 1px solid var(--border);
-    margin-top: 24px;
+    margin-top: 32px;
   }
 
   @media (max-width: 900px) {
-    .pages.two { grid-template-columns: 1fr; }
-    section.variation { padding: 20px 20px 32px; }
+    section.variation { padding: 24px 20px 40px; }
     header.top { padding: 40px 20px 12px; }
-    .section-label { padding: 36px 20px 0; }
   }
 </style>
 </head>
@@ -157,165 +122,24 @@
 
 <header class="top">
   <div class="crumb"><a href="../../index.html">← Wedding Scrapbook Intro</a></div>
-  <h1>Letter Pages — Zach → Nepal</h1>
-  <p>Ten variations of Zach's personal letter page for Nepal's wedding scrapbook. All in the A24 minimal aesthetic. Lorem ipsum placeholder letter — to be replaced with actual prose.</p>
+  <h1>Letter Page — Zach → Nepal</h1>
 </header>
 
-<div class="section-label">
-  <div class="label">Single Page (5)</div>
-</div>
-
-<section class="variation">
+<section class="variation" id="v2">
   <div class="var-header">
     <div class="left">
-      <div class="num">Variation 01</div>
-      <h2>On Friendship — Essay with Marginalia</h2>
-      <p class="tagline">Centered title "On Friendship." with 3-column body: letter in the middle, photos as marginalia in left and right columns, with a 4-up landscape strip anchoring the bottom. Reads like a New Yorker column.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="v1/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages one">
-    <div class="page-card"><img src="screenshots/v1.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="variation">
-  <div class="var-header">
-    <div class="left">
-      <div class="num">Variation 02</div>
-      <h2>Photo Grid Centerpiece + Letter Sidebar</h2>
-      <p class="tagline">Vertical diptych — quiet ~2.5in letter sidebar on the left in italic Cormorant, photo grid on the right (3-col asymmetric, ~5in wide) with V13's scrim-caption treatment. Index of Plates appendix at the bottom of the sidebar.</p>
+      <h2>A Letter — Photo Grid Centerpiece</h2>
+      <p class="tagline">Vertical diptych in the A24 aesthetic. Quiet italic Cormorant letter sidebar on the left, 10-photo grid on the right. Single page, 8.5″ × 11″ portrait, printable at 100% scale.</p>
     </div>
     <div class="var-actions"><a class="btn" href="v2/index.html" target="_blank">Open ↗</a></div>
   </div>
-  <div class="pages one">
+  <div class="pages">
     <div class="page-card"><img src="screenshots/v2.jpg" alt="" loading="lazy"></div>
   </div>
 </section>
 
-<section class="variation">
-  <div class="var-header">
-    <div class="left">
-      <div class="num">Variation 05</div>
-      <h2>Cinematic Single Frame — Poster + Filmstrip</h2>
-      <p class="tagline">Hero couch photo dominates the top half like a film one-sheet (V13's vignette + grade), letter sits below as a cover-line block with italic "Dear Nepal." title, 9 remaining photos run along the bottom as a numbered filmstrip.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="v5/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages one">
-    <div class="page-card"><img src="screenshots/v5.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="variation">
-  <div class="var-header">
-    <div class="left">
-      <div class="num">Variation 06</div>
-      <h2>Quiet Diptych — Letter Left, Photo Grid Right</h2>
-      <p class="tagline">Vertical-axis diptych split by a hairline rule. Letter half holds eyebrow + "On Friendship." + 3-paragraph italic body + dedication. Photo half uses a 6-column fine grid handling the portrait/landscape mix with strategic spans.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="v6/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages one">
-    <div class="page-card"><img src="screenshots/v6.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="variation">
-  <div class="var-header">
-    <div class="left">
-      <div class="num">Variation 07</div>
-      <h2>Margin-Notes Book Page (Phaidon Style)</h2>
-      <p class="tagline">The most book-page-like variation. Letter as a single justified italic column down the center with a 54pt ochre drop cap. 5 photo plates stack in each outside margin with tracked ochre "FIG. 0X" labels + italic captions. Top and bottom hairline rules, book-style "i" folio.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="v7/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages one">
-    <div class="page-card"><img src="screenshots/v7.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<div class="section-label">
-  <div class="label">Two Pages (5)</div>
-</div>
-
-<section class="variation">
-  <div class="var-header">
-    <div class="left">
-      <div class="num">Variation 03</div>
-      <h2>Hero + Contact Sheet (V13 Adaptation)</h2>
-      <p class="tagline">The faithful 2-page V13 adaptation. Page 1 = cinematic poster with couch hero, "A Letter." italic title, 2-paragraph letter, full credits block. Page 2 = "FROM ZACH · SELECTED STILLS" in a 4×3 strict grid with landscape statement frames.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="v3/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages two">
-    <div class="page-card"><img src="screenshots/v3-p1.jpg" alt="" loading="lazy"></div>
-    <div class="page-card"><img src="screenshots/v3-p2.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="variation">
-  <div class="var-header">
-    <div class="left">
-      <div class="num">Variation 04</div>
-      <h2>On Knowing Nepal — Magazine Feature Spread</h2>
-      <p class="tagline">Editorial grammar — The Believer / The Gentlewoman energy. Page 1: confident "On Knowing Nepal." italic title, 2-column justified body with drop cap, Plate I inset + Plate II full-width midplate. Page 2: continuation + 8-plate asymmetric photo essay with italic captions.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="v4/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages two">
-    <div class="page-card"><img src="screenshots/v4-p1.jpg" alt="" loading="lazy"></div>
-    <div class="page-card"><img src="screenshots/v4-p2.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="variation">
-  <div class="var-header">
-    <div class="left">
-      <div class="num">Variation 08</div>
-      <h2>Letter Only / Photos Only — Radical Separation</h2>
-      <p class="tagline">The most disciplined. Page 1 is ALL letter (no photos) — 13pt italic Cormorant body with 64pt ochre drop cap, "On Knowing You." title, generous museum margins. Page 2 is ALL photos in a 6-col grid with alternating row heights handling the orientation mix.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="v8/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages two">
-    <div class="page-card"><img src="screenshots/v8-p1.jpg" alt="" loading="lazy"></div>
-    <div class="page-card"><img src="screenshots/v8-p2.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="variation">
-  <div class="var-header">
-    <div class="left">
-      <div class="num">Variation 09</div>
-      <h2>Mirror Spread — Vertical Spine, Hero Photos Outside</h2>
-      <p class="tagline">Two pages designed as a mirrored pair. Page 1: hero photo LEFT, "Dear Nepal." letter RIGHT. Page 2: letter LEFT, hero photo RIGHT. When facing each other in a printed book, hero photos sit on the outside edges and text columns meet in the middle. Footer page numbers also mirror.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="v9/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages two">
-    <div class="page-card"><img src="screenshots/v9-p1.jpg" alt="" loading="lazy"></div>
-    <div class="page-card"><img src="screenshots/v9-p2.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="variation">
-  <div class="var-header">
-    <div class="left">
-      <div class="num">Variation 10</div>
-      <h2>A Letter, in Frames — Photo Essay with Extended Captions</h2>
-      <p class="tagline">The most conceptual. The letter is BROKEN INTO 10 italic Cormorant caption-paragraphs, one per photo, each preceded by a tracked "PLATE I-X" label. Read top-to-bottom across both pages, the captions form the letter. The final caption resolves into a right-aligned "— Zach" signature.</p>
-    </div>
-    <div class="var-actions"><a class="btn" href="v10/index.html" target="_blank">Open ↗</a></div>
-  </div>
-  <div class="pages two">
-    <div class="page-card"><img src="screenshots/v10-p1.jpg" alt="" loading="lazy"></div>
-    <div class="page-card"><img src="screenshots/v10-p2.jpg" alt="" loading="lazy"></div>
-  </div>
-</section>
-
 <footer>
-  Print at 100% scale, 8.5″ × 11″ portrait. Lorem ipsum placeholder — swap with real letter prose.
+  Print at 100% scale, 8.5″ × 11″ portrait.
 </footer>
 
 </body>
