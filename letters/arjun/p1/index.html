@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>A Letter · Dillan to Nepal · Pg. 01 / 02</title>
+<title>A Letter · Arjun to Nepal · Pg. 01</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -27,7 +27,6 @@
     padding: 0.55in 0.55in 0.5in 0.55in;
   }
 
-  /* ===== TOP BAR ===== */
   .top {
     display: flex;
     justify-content: space-between;
@@ -43,10 +42,7 @@
     text-transform: uppercase;
     font-weight: 500;
   }
-  .top .brand .dot {
-    color: #d4a056;
-    margin: 0 0.5em;
-  }
+  .top .brand .dot { color: #d4a056; margin: 0 0.5em; }
   .top .pgmeta {
     font-family: 'Inter', sans-serif;
     font-size: 6.5pt;
@@ -56,24 +52,19 @@
     font-weight: 400;
   }
 
-  /* ===== MAIN GRID: letter sidebar | photo column ===== */
   .main {
     display: grid;
     grid-template-columns: 1fr 2.8in;
     gap: 0.32in;
-    height: 9.3in;
-    max-height: 9.3in;
-    overflow: hidden;
-    min-height: 0;
+    height: 9.65in;
   }
 
-  /* ===== LEFT — LETTER ===== */
   .sidebar {
     display: flex;
     flex-direction: column;
     height: 100%;
     position: relative;
-    padding-right: 0.18in;
+    padding-right: 0.16in;
     border-right: 0.5px solid rgba(13,13,13,0.18);
   }
   .eyebrow {
@@ -85,19 +76,16 @@
     color: #0d0d0d;
     margin-bottom: 0.18in;
   }
-  .eyebrow .ochre {
-    color: #d4a056;
-    margin: 0 0.45em;
-  }
+  .eyebrow .ochre { color: #d4a056; margin: 0 0.45em; }
   .mini-title {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 500;
-    font-size: 32pt;
+    font-size: 30pt;
     line-height: 0.95;
     letter-spacing: -0.005em;
     color: #0d0d0d;
-    margin-bottom: 0.06in;
+    margin-bottom: 0.04in;
   }
   .mini-title .accent { color: #d4a056; }
 
@@ -105,46 +93,37 @@
     height: 0.5px;
     background: #0d0d0d;
     width: 0.6in;
-    margin-bottom: 0.22in;
+    margin: 0.16in 0 0.18in 0;
   }
 
   .letter-body {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 400;
-    font-size: 10pt;
-    line-height: 1.45;
+    font-size: 10.5pt;
+    line-height: 1.5;
     color: #1a1a1a;
     text-align: left;
     hyphens: auto;
   }
   .letter-body p {
-    margin-bottom: 0.1in;
+    margin-bottom: 0.12in;
     text-indent: 0;
   }
   .letter-body p:last-of-type { margin-bottom: 0; }
 
-  .signoff {
-    margin-top: 0.32in;
-  }
-  .signoff .sig-rule {
-    width: 0.45in;
-    height: 0.5px;
-    background: #d4a056;
-    margin-bottom: 0.1in;
-  }
-  .signoff .sig {
+  .sig-cont {
+    margin-top: 0.18in;
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-weight: 500;
-    font-size: 14pt;
-    color: #0d0d0d;
-    letter-spacing: 0.01em;
+    font-size: 11pt;
+    color: #3a3a3a;
   }
+  .sig-cont .ochre { color: #d4a056; }
 
   .sidebar-foot {
     margin-top: auto;
-    padding-top: 0.2in;
+    padding-top: 0.18in;
     border-top: 0.5px solid rgba(13,13,13,0.18);
   }
   .sidebar-foot .lbl {
@@ -157,14 +136,12 @@
   }
   .sidebar-foot .lbl .o { color: #d4a056; margin: 0 0.45em; }
 
-  /* ===== RIGHT — 3 PORTRAIT PHOTOS STACKED ===== */
+  /* RIGHT — 2 photos stacked */
   .stack {
     display: grid;
-    grid-template-rows: repeat(3, minmax(0, 1fr));
+    grid-template-rows: 1fr 1fr;
     gap: 0.16in;
     height: 100%;
-    min-height: 0;
-    overflow: hidden;
   }
   .cell {
     position: relative;
@@ -178,9 +155,8 @@
     display: block;
     filter: contrast(1.03) saturate(0.92);
   }
-  .cell.c1 img { object-position: center 28%; }
-  .cell.c2 img { object-position: center 35%; }
-  .cell.c3 img { object-position: center 45%; }
+  .cell.c1 img { object-position: center 30%; }   /* formal portrait */
+  .cell.c2 img { object-position: center 50%; }   /* Maserati */
 
 </style>
 </head>
@@ -188,46 +164,38 @@
   <div class="page">
 
     <div class="top">
-      <div class="brand">DILLAN<span class="dot">·</span>FOR NEPAL<span class="dot">·</span>A LETTER</div>
+      <div class="brand">ARJUN<span class="dot">·</span>FOR NEPAL<span class="dot">·</span>A LETTER</div>
       <div class="pgmeta">Pg. 01 / 02</div>
     </div>
 
     <div class="main">
 
-      <!-- LEFT: LETTER -->
       <aside class="sidebar">
 
         <div class="eyebrow">A Letter<span class="ochre">·</span>June 6</div>
 
-        <h1 class="mini-title">Nepal<span class="accent">.</span></h1>
+        <h1 class="mini-title">Chapters<span class="accent">.</span></h1>
 
         <div class="rule-thin"></div>
 
         <div class="letter-body">
           <p>Nepal,</p>
-          <p>I am so grateful that life gave us the chance to grow closer over the years. You are the kind of friend who makes every room feel bigger and every moment worth showing up for. I have been endlessly lucky to call you my friend. And honestly, I cannot wait to keep adding to our list of adventures together (this scrapbook is just the beginning of the memories we have yet to make).</p>
-          <p>You have a rare gift: the ability to make the people around you feel truly seen. Ever since we met, you have been one of my biggest hype men, and I do not think I have ever properly told you how much that has meant to me. So consider this our turn to hype you up. This is our way of showing you the appreciation you have always deserved, and letting you know without a shadow of a doubt that we are all in your corner rooting for you, now and always.</p>
-          <p>I love your enthusiasm, I am inspired by your creativity, and I believe deeply that you are going to achieve great things in this life. The kind of greatness that does not surprise any of us one bit, because we have always known what you are capable of.</p>
-          <p>And speaking of the right people believing in you, I have no doubt that you will be an incredible husband to Daria. Seeing you find someone who complements you so well, someone to walk through life with as a true partner, makes me so genuinely happy. Not just happy for you, but happy that YOU are happy. That is everything.</p>
-          <p>Though this chapter brings a wonderful new beginning, know that our friendship only gets stronger from here. Huge congratulations, to both Nepal and Daria!</p>
+          <p>It&rsquo;s honestly crazy looking back at how long we&rsquo;ve known each other. From getting close senior year of high school to somehow still being in each other&rsquo;s lives all these years later through every SD BOYZ trip and questionable decision, you&rsquo;ve been part of some of my favorite chapters.</p>
+          <p>Some of my earliest memories with you are the classic high school ones: hitting the gym, going on late-night drives, and convincing ourselves that Highland Valley Road was a perfectly normal place to test the limits of physics. Looking back, it&rsquo;s probably a miracle we made it out of that era in one piece. But that was always the fun of being around you &mdash; even the simplest plan had a way of turning into a story.</p>
+          <p>Of course, I also have to give credit where it&rsquo;s due: nobody has ever trusted the American System quite like you. Somehow, against all odds, it keeps working.</p>
         </div>
 
-        <div class="signoff">
-          <div class="sig-rule"></div>
-          <div class="sig">With lots of love, Dillan</div>
-        </div>
+        <div class="sig-cont"><em>Continued overleaf <span class="ochre">&rarr;</span></em></div>
 
         <div class="sidebar-foot">
-          <div class="lbl">Dillan<span class="o">·</span>For Nepal<span class="o">·</span>Pg. 01</div>
+          <div class="lbl">Chapter One<span class="o">·</span>High School Years</div>
         </div>
 
       </aside>
 
-      <!-- RIGHT: 3 PORTRAIT PHOTOS STACKED -->
       <section class="stack">
-        <figure class="cell c1"><img src="../photos/img-35.jpg" alt=""></figure>
-        <figure class="cell c2"><img src="../photos/img-36.jpg" alt=""></figure>
-        <figure class="cell c3"><img src="../photos/img-37.jpg" alt=""></figure>
+        <figure class="cell c1"><img src="../photos/img-01.jpg" alt=""></figure>
+        <figure class="cell c2"><img src="../photos/img-02.jpg" alt=""></figure>
       </section>
 
     </div>

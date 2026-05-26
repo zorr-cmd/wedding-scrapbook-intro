@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>A Poem · Anukul to Nepal · Pg. 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #ecead9;
+    color: #0d0d0d;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0.55in 0.55in 0.5in 0.55in;
+  }
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 0.5px solid #0d0d0d;
+    padding-bottom: 0.08in;
+    margin-bottom: 0.2in;
+  }
+  .top .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .top .brand .dot { color: #d4a056; margin: 0 0.5em; }
+  .top .pgmeta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    font-weight: 400;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    text-align: center;
+    margin-bottom: 0.25in;
+  }
+  .header .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #0d0d0d;
+    margin-bottom: 0.06in;
+  }
+  .header .eyebrow .ochre { color: #d4a056; margin: 0 0.45em; }
+  .header .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 28pt;
+    line-height: 1;
+    letter-spacing: -0.005em;
+    color: #0d0d0d;
+  }
+  .header .title .accent { color: #d4a056; }
+  .header .rule {
+    width: 0.6in;
+    height: 0.5px;
+    background: #d4a056;
+    margin: 0.16in auto 0;
+  }
+
+  /* ===== MAIN GRID: poem left / photo column right ===== */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 2.1in;
+    gap: 0.4in;
+    height: 8.2in;
+  }
+
+  /* POEM column */
+  .poem {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11.5pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+  }
+  .stanza {
+    margin-bottom: 0.28in;
+    white-space: pre-line;  /* preserve line breaks */
+  }
+  .stanza:last-child { margin-bottom: 0; }
+
+  /* PHOTO column */
+  .plates {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35in;
+    justify-content: space-around;
+  }
+  .plate {
+    text-align: center;
+  }
+  .plate-frame {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #f5f1ea;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .plate-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: contrast(1.03) saturate(0.92);
+  }
+  .plate-cap {
+    margin-top: 0.07in;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 9pt;
+    color: #4a4a4a;
+    letter-spacing: 0.01em;
+  }
+
+  /* tune per-plate cropping */
+  .p-twoofus img { object-position: center 35%; }
+  .p-lens img    { object-position: center 50%; }
+  .p-catan img   { object-position: center 50%; }
+
+  /* page indicator */
+  .pgind {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 0.28in;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 10pt;
+    color: #4a4a4a;
+    letter-spacing: 0.4em;
+  }
+
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="top">
+      <div class="brand">ANUKUL<span class="dot">·</span>FOR NEPAL<span class="dot">·</span>A POEM</div>
+      <div class="pgmeta">Pg. 01 / 02</div>
+    </div>
+
+    <div class="header">
+      <div class="eyebrow">A Poem<span class="ochre">·</span>For Nepal's Wedding</div>
+      <div class="title">A Poem For Nepal&rsquo;s Wedding<span class="accent">.</span></div>
+      <div class="rule"></div>
+    </div>
+
+    <div class="main">
+
+      <!-- LEFT: poem stanzas 1-5 -->
+      <div class="poem">
+        <div class="stanza">Hey my remarkable friend Nepal,
+I hope this poem finds you well.
+Can&rsquo;t believe you are finally there
+Soon to be walking down the aisle as a pair.</div>
+
+        <div class="stanza">Went from late night tennis to big movie sets,
+You even made it down a few red carpets.
+I love that you chose to pursue your dream,
+Hopefully one day we&rsquo;ll see your work on the big screen.</div>
+
+        <div class="stanza">It&rsquo;s unbelievable to think how far you have come,
+Hard to imagine the days when we were dumb.
+Let&rsquo;s take a quick look and reminisce the past
+And remember the moments that were a blast.</div>
+
+        <div class="stanza">Driving down the highway for the beach joyrides,
+Cranking the music and watching the tides.
+Finding a place where we would stop and chill,
+Looking back, time felt as if it were still.</div>
+
+        <div class="stanza">More often than not we would play board games,
+Often we would play Catan or Codenames.
+Playing Catan with you was quite the delight
+But playing it out till the end would make the night.</div>
+      </div>
+
+      <!-- RIGHT: photo plates with captions -->
+      <div class="plates">
+        <figure class="plate p-twoofus">
+          <div class="plate-frame"><img src="../photos/img-01.jpg" alt=""></div>
+          <div class="plate-cap">the two of us</div>
+        </figure>
+        <figure class="plate p-lens">
+          <div class="plate-frame"><img src="../photos/img-02.jpg" alt=""></div>
+          <div class="plate-cap">behind the lens</div>
+        </figure>
+        <figure class="plate p-catan">
+          <div class="plate-frame"><img src="../photos/img-03.jpg" alt=""></div>
+          <div class="plate-cap">Catan &mdash; we never did finish</div>
+        </figure>
+      </div>
+
+    </div>
+
+    <div class="pgind">&mdash;&nbsp;1&nbsp;&mdash;</div>
+
+  </div>
+</body>
+</html>

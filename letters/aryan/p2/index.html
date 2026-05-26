@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Photos · Aryan to Nepal · Pg. 02</title>
+<title>A Letter · Aryan to Nepal · Pg. 02</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
     align-items: baseline;
     border-bottom: 0.5px solid #0d0d0d;
     padding-bottom: 0.08in;
-    margin-bottom: 0.32in;
+    margin-bottom: 0.22in;
   }
   .top .brand {
     font-family: 'Inter', sans-serif;
@@ -53,15 +53,9 @@
     font-weight: 400;
   }
 
-  /* ===== HEADER STRIP — title + meta ===== */
+  /* ===== HEADER ===== */
   .header {
-    display: grid;
-    grid-template-columns: 1fr 2.2in;
-    align-items: end;
-    column-gap: 0.4in;
-    margin-bottom: 0.32in;
-    padding-bottom: 0.22in;
-    border-bottom: 0.5px solid rgba(13,13,13,0.18);
+    margin-bottom: 0.15in;
   }
   .header .eyebrow {
     font-family: 'Inter', sans-serif;
@@ -70,44 +64,71 @@
     text-transform: uppercase;
     font-weight: 500;
     color: #0d0d0d;
-    margin-bottom: 0.12in;
+    margin-bottom: 0.06in;
   }
   .header .eyebrow .ochre { color: #d4a056; margin: 0 0.45em; }
   .header .title {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 500;
-    font-size: 36pt;
-    line-height: 0.95;
-    letter-spacing: -0.01em;
+    font-size: 22pt;
+    line-height: 1;
+    letter-spacing: -0.005em;
     color: #0d0d0d;
   }
   .header .title .accent { color: #d4a056; }
-  .header .meta {
+  .rule-thin {
+    height: 0.5px;
+    background: #0d0d0d;
+    width: 0.6in;
+    margin: 0.1in 0 0.14in 0;
+  }
+
+  /* ===== LETTER CONTINUATION ===== */
+  .letter-body {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 400;
-    font-size: 9.5pt;
-    line-height: 1.5;
-    color: #3a3a3a;
+    font-size: 10pt;
+    line-height: 1.45;
+    color: #1a1a1a;
+    text-align: left;
+    hyphens: auto;
+    max-width: 5.5in;
   }
-  .header .meta .dim {
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-size: 6pt;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: #4a4a4a;
-    display: block;
-    margin-bottom: 0.06in;
+  .letter-body p {
+    margin-bottom: 0.1in;
+  }
+  .letter-body p:last-of-type { margin-bottom: 0; }
+
+  .signoff {
+    margin-top: 0.16in;
+    margin-bottom: 0.22in;
+  }
+  .signoff .sig-rule {
+    width: 0.45in;
+    height: 0.5px;
+    background: #d4a056;
+    margin-bottom: 0.08in;
+  }
+  .signoff .sig {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 13pt;
+    color: #0d0d0d;
+    letter-spacing: 0.01em;
   }
 
-  /* ===== PHOTO ESSAY GRID — breathy / asymmetric ===== */
-  .essay {
+  /* ===== PHOTO GRID — bottom half, 4 plates ===== */
+  .grid {
     display: grid;
-    grid-template-columns: 2.2in 0.3in 2.5in 0.3in 1.7in;
-    grid-template-rows: 2.6in 0.3in 3.2in;
-    height: 7.0in;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2.0in 2.0in;
+    gap: 0.13in;
+    margin-top: 0.2in;
+    padding-top: 0.18in;
+    border-top: 0.5px solid rgba(13,13,13,0.18);
   }
   .cell {
     position: relative;
@@ -121,103 +142,45 @@
     display: block;
     filter: contrast(1.03) saturate(0.92);
   }
-  .cap {
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    padding: 0.18in 0.1in 0.08in 0.1in;
-    background: linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0));
-    color: #f5f1ea;
-    font-family: 'Inter', sans-serif;
-    font-size: 6.2pt;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-  .cap .num { color: #d4a056; font-weight: 600; }
+  .cell.p1 img { object-position: center 45%; }
+  .cell.p2 img { object-position: center 40%; }
+  .cell.p3 img { object-position: center 45%; }
+  .cell.p4 img { object-position: center 40%; }
 
-  /* Top row */
-  .p1 { grid-column: 1 / 2; grid-row: 1 / 2; }        /* 48 portrait tripod */
-  .p1 img { object-position: center 45%; }
-  .p2 { grid-column: 3 / 6; grid-row: 1 / 2; }        /* 49 landscape Egypt */
-  .p2 img { object-position: center 40%; }
-
-  /* Bottom row */
-  .p3 { grid-column: 1 / 4; grid-row: 3 / 4; }        /* 46 landscape beach coconuts */
-  .p3 img { object-position: center 45%; }
-  .p4 { grid-column: 5 / 6; grid-row: 3 / 4; }        /* 47 portrait gallery chair */
-  .p4 img { object-position: center 40%; }
-
-  /* Bottom strip — index + signature accent */
-  .foot {
-    margin-top: 0.32in;
-    padding-top: 0.18in;
-    border-top: 0.5px solid rgba(13,13,13,0.18);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    column-gap: 0.5in;
-  }
-  .foot .index {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 0.18in;
-  }
-  .foot .index .item {
-    font-family: 'Inter', sans-serif;
-    font-size: 6.2pt;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #1a1a1a;
-    line-height: 1.4;
-  }
-  .foot .index .pn {
-    color: #d4a056;
-    font-weight: 600;
-    margin-right: 0.4em;
-  }
-  .foot .stamp {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: 11pt;
-    color: #0d0d0d;
-    letter-spacing: 0.01em;
-    text-align: right;
-  }
-  .foot .stamp .ochre { color: #d4a056; }
 </style>
 </head>
 <body>
   <div class="page">
 
     <div class="top">
-      <div class="brand">ARYAN<span class="dot">·</span>FOR NEPAL<span class="dot">·</span>PHOTOS</div>
+      <div class="brand">ARYAN<span class="dot">·</span>FOR NEPAL<span class="dot">·</span>CONTINUED</div>
       <div class="pgmeta">Pg. 02 / 02</div>
     </div>
 
     <div class="header">
-      <div>
-        <div class="eyebrow">A Selection<span class="ochre">·</span>Four Frames</div>
-        <div class="title">A few frames<span class="accent">.</span></div>
-      </div>
-      <div class="meta">
-        <span class="dim">Sequence II</span>
-      </div>
+      <div class="eyebrow">Letter Continued<span class="ochre">·</span>Page Two</div>
+      <div class="title">For Daria<span class="accent">.</span></div>
+      <div class="rule-thin"></div>
     </div>
 
-    <section class="essay">
+    <div class="letter-body">
+      <p>I must say, Daria is one lucky girl!</p>
+      <p>It&rsquo;s been incredible seeing you grow as an individual and creative over the years. And I&rsquo;m so so so excited to see the life you two build together.</p>
+      <p>Every time you&rsquo;ve spoken of her, I can see your eyes light up. The joy you both share for creativity, spirituality, and experiencing the world together is genuinely contagious. You&rsquo;ve always been a person that pours everything they have into their relationships &amp; craft, so I&rsquo;m stoked to see what this next phase of life has in store for you.</p>
+      <p>It&rsquo;s been an absolute honor sharing life with you thus far, and the best part is that we&rsquo;re just getting started. The SD BOYZ is what it is because you&rsquo;re such a core piece. I&rsquo;m looking forward to having you drop some nuggets of marriage advice in the chat every now and then for the boys that follow.</p>
+    </div>
+
+    <div class="signoff">
+      <div class="sig-rule"></div>
+      <div class="sig">Love you &amp; congratulations,<br>Aryan Pareek</div>
+    </div>
+
+    <section class="grid">
       <figure class="cell p1"><img src="../photos/img-48.jpg" alt=""></figure>
       <figure class="cell p2"><img src="../photos/img-49.jpg" alt=""></figure>
       <figure class="cell p3"><img src="../photos/img-46.jpg" alt=""></figure>
       <figure class="cell p4"><img src="../photos/img-47.jpg" alt=""></figure>
     </section>
-
-    <div class="foot">
-      <div></div>
-      <div class="stamp">— Aryan<span class="ochre">.</span></div>
-    </div>
 
   </div>
 </body>

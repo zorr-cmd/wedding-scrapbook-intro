@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>A Poem · Anukul to Nepal · Pg. 02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #ecead9;
+    color: #0d0d0d;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0.55in 0.55in 0.5in 0.55in;
+  }
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 0.5px solid #0d0d0d;
+    padding-bottom: 0.08in;
+    margin-bottom: 0.22in;
+  }
+  .top .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .top .brand .dot { color: #d4a056; margin: 0 0.5em; }
+  .top .pgmeta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    font-weight: 400;
+  }
+
+  /* MAIN GRID: photo column LEFT (mirrored from p1) / poem RIGHT */
+  .main {
+    display: grid;
+    grid-template-columns: 2.1in 1fr;
+    gap: 0.4in;
+    height: 7.8in;
+    margin-bottom: 0.3in;
+  }
+
+  /* PHOTO column */
+  .plates {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45in;
+    justify-content: flex-start;
+    padding-top: 0.3in;
+  }
+  .plate { text-align: center; }
+  .plate-frame {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #f5f1ea;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .plate-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: contrast(1.03) saturate(0.92);
+  }
+  .plate-cap {
+    margin-top: 0.07in;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 9pt;
+    color: #4a4a4a;
+    letter-spacing: 0.01em;
+  }
+  .p-sdboys img { object-position: center 50%; }
+  .p-dressed img { object-position: center 30%; }
+
+  /* POEM column */
+  .poem {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11.5pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+  }
+  .stanza {
+    margin-bottom: 0.28in;
+    white-space: pre-line;
+  }
+
+  /* postscript + sigil block centered below the main grid */
+  .closing {
+    text-align: center;
+    padding-top: 0.18in;
+    border-top: 0.5px solid rgba(13,13,13,0.18);
+  }
+  .closing .rule {
+    width: 0.6in;
+    height: 0.5px;
+    background: #d4a056;
+    margin: 0.1in auto 0.16in;
+  }
+  .closing .postscript {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin-bottom: 0.18in;
+    white-space: pre-line;
+  }
+  .closing .sig {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 15pt;
+    color: #0d0d0d;
+    letter-spacing: 0.02em;
+  }
+  .closing .sig em { color: #4a4a4a; font-size: 10pt; display: block; margin-bottom: 0.06in; font-weight: 400; }
+
+  .pgind {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 0.28in;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 10pt;
+    color: #4a4a4a;
+    letter-spacing: 0.4em;
+  }
+
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="top">
+      <div class="brand">ANUKUL<span class="dot">·</span>FOR NEPAL<span class="dot">·</span>CONTINUED</div>
+      <div class="pgmeta">Pg. 02 / 02</div>
+    </div>
+
+    <div class="main">
+
+      <!-- LEFT: photo plates -->
+      <div class="plates">
+        <figure class="plate p-sdboys">
+          <div class="plate-frame"><img src="../photos/img-04.jpg" alt=""></div>
+          <div class="plate-cap">the sd boys</div>
+        </figure>
+        <figure class="plate p-dressed">
+          <div class="plate-frame"><img src="../photos/img-05.jpg" alt=""></div>
+          <div class="plate-cap">all dressed up</div>
+        </figure>
+      </div>
+
+      <!-- RIGHT: poem stanzas 6-8 -->
+      <div class="poem">
+        <div class="stanza">I miss the outdoor games competing and all,
+Whether it was basketball, tennis or pickleball.
+In all these games you were quite the show
+Earning you the nickname tank, rightfully so.</div>
+
+        <div class="stanza">I know we haven&rsquo;t seen each other in a while
+But I hope this poem brings you a smile.
+Despite us all being farther apart,
+You have a good place in all our hearts.</div>
+
+        <div class="stanza">Hard to believe soon you will be getting wed
+Cannot wait to see the path you have ahead.
+I wish for you and Daria to live your life with joys
+But hopefully you remember our time as the sd boys.</div>
+      </div>
+
+    </div>
+
+    <!-- Postscript + signoff centered -->
+    <div class="closing">
+      <div class="rule"></div>
+      <div class="postscript">The poem you just read took me some time
+For it was not AI that made it rhyme.
+Hope this poem gives you a chuckle&hellip;</div>
+      <div class="sig"><em>Yours truly,</em>Anukul</div>
+    </div>
+
+    <div class="pgind">&mdash;&nbsp;2&nbsp;&mdash;</div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>A Letter · Arjun to Nepal · Pg. 02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #ecead9;
+    color: #0d0d0d;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0.55in 0.55in 0.5in 0.55in;
+  }
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 0.5px solid #0d0d0d;
+    padding-bottom: 0.08in;
+    margin-bottom: 0.22in;
+  }
+  .top .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .top .brand .dot { color: #d4a056; margin: 0 0.5em; }
+  .top .pgmeta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    font-weight: 400;
+  }
+
+  .main {
+    display: grid;
+    grid-template-columns: 2.8in 1fr;
+    gap: 0.32in;
+    height: 9.65in;
+  }
+
+  /* LEFT — 2 photos stacked */
+  .stack {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.16in;
+    height: 100%;
+  }
+  .cell {
+    position: relative;
+    overflow: hidden;
+    background: #f5f1ea;
+  }
+  .cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: contrast(1.03) saturate(0.92);
+  }
+  .cell.c1 img { object-position: center 45%; }   /* NYC boat */
+  .cell.c2 img { object-position: center 35%; }   /* low-light selfie */
+
+  /* RIGHT — letter continuation + signoff */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    padding-left: 0.16in;
+    border-left: 0.5px solid rgba(13,13,13,0.18);
+  }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #0d0d0d;
+    margin-bottom: 0.18in;
+  }
+  .eyebrow .ochre { color: #d4a056; margin: 0 0.45em; }
+  .mini-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 26pt;
+    line-height: 0.95;
+    letter-spacing: -0.005em;
+    color: #0d0d0d;
+    margin-bottom: 0.04in;
+  }
+  .mini-title .accent { color: #d4a056; }
+
+  .rule-thin {
+    height: 0.5px;
+    background: #0d0d0d;
+    width: 0.6in;
+    margin: 0.16in 0 0.18in 0;
+  }
+
+  .letter-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    text-align: left;
+    hyphens: auto;
+  }
+  .letter-body p {
+    margin-bottom: 0.12in;
+    text-indent: 0;
+  }
+  .letter-body p:last-of-type { margin-bottom: 0; }
+
+  .signoff {
+    margin-top: 0.2in;
+  }
+  .signoff .sig-rule {
+    width: 0.45in;
+    height: 0.5px;
+    background: #d4a056;
+    margin-bottom: 0.08in;
+  }
+  .signoff .sig {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 13pt;
+    color: #0d0d0d;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+  }
+
+  .sidebar-foot {
+    margin-top: auto;
+    padding-top: 0.18in;
+    border-top: 0.5px solid rgba(13,13,13,0.18);
+  }
+  .sidebar-foot .lbl {
+    font-family: 'Inter', sans-serif;
+    font-size: 6pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #4a4a4a;
+  }
+  .sidebar-foot .lbl .o { color: #d4a056; margin: 0 0.45em; }
+
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="top">
+      <div class="brand">ARJUN<span class="dot">·</span>FOR NEPAL<span class="dot">·</span>CONTINUED</div>
+      <div class="pgmeta">Pg. 02 / 02</div>
+    </div>
+
+    <div class="main">
+
+      <section class="stack">
+        <figure class="cell c1"><img src="../photos/img-03.jpg" alt=""></figure>
+        <figure class="cell c2"><img src="../photos/img-04.jpg" alt=""></figure>
+      </section>
+
+      <aside class="sidebar">
+
+        <div class="eyebrow">Letter Continued<span class="ochre">·</span>Page Two</div>
+
+        <h1 class="mini-title">Onward<span class="accent">.</span></h1>
+
+        <div class="rule-thin"></div>
+
+        <div class="letter-body">
+          <p>And then life kept getting bigger. Visiting you in New York while you were at NYU felt like seeing you in your natural element: creative, ambitious, slightly chaotic, and somehow always making everyone feel like they belonged there. Even though life had taken us to different places by then, it felt like no time had passed &mdash; the friendship just picked right back up.</p>
+          <p>Turkey was another one I&rsquo;ll never forget. Staying with your grandparents, seeing where you came from, and having you show us around made that trip feel less like travel and more like being welcomed into a part of your life. You&rsquo;ve always been one of the most spontaneous, loyal, warm, and down-for-anything people I know. You have this way of making life feel more open-ended, like there&rsquo;s always another random adventure, another story, another reason to say yes.</p>
+          <p>Seeing you get married is surreal in the best way. I&rsquo;m proud of the person you&rsquo;ve become, and I&rsquo;m really happy you found Daria to build this next chapter with. I hope the two of you create a life full of adventure, laughter, love, and stories that are hopefully a little safer than Highland Valley Road.</p>
+        </div>
+
+        <div class="signoff">
+          <div class="sig-rule"></div>
+          <div class="sig">Love you brother,<br>Arjun</div>
+        </div>
+
+        <div class="sidebar-foot">
+          <div class="lbl">Chapter Two<span class="o">·</span>NYC &amp; Turkey</div>
+        </div>
+
+      </aside>
+
+    </div>
+
+  </div>
+</body>
+</html>
