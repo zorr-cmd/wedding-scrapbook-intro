@@ -50,6 +50,31 @@
     max-width: 620px;
     line-height: 1.55;
   }
+  header.top .top-cta { margin-top: 22px; }
+  .download-btn {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: #1a1306;
+    transition: all .15s;
+  }
+  .download-btn:hover { background: #e8b687; }
+  .download-btn .meta {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.75;
+  }
 
   .person {
     padding: 56px 40px 40px;
@@ -163,6 +188,9 @@
   <div class="crumb"><a href="../index.html">← Wedding Scrapbook</a></div>
   <h1>The Letter Pages</h1>
   <p>Personal pages from the 9 brothers to Nepal, in scrapbook order. All in A24 minimal aesthetic, 8.5″ × 11″ portrait, printable at 100% scale. Click any page to open the live HTML in a new tab.</p>
+  <div class="top-cta">
+    <a class="download-btn" href="../wedding-scrapbook.pdf" download>Download full PDF ↓ <span class="meta">19 pages · 7&nbsp;MB · intro + all letters</span></a>
+  </div>
 </header>
 
 <section class="person" id="alex">
