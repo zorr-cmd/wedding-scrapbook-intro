@@ -26,7 +26,7 @@
   /* ============== PAGE 1 — THE POSTER ============== */
   .poster {
     display: grid;
-    grid-template-rows: 0.62fr 0.38fr;
+    grid-template-rows: 0.55fr 0.45fr;   /* more room for title + credits */
   }
 
   .hero {
@@ -68,10 +68,11 @@
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 500;
-    font-size: 82pt;
-    line-height: 0.92;
-    letter-spacing: -0.025em;
+    font-size: 72pt;
+    line-height: 1.0;          /* less tight so descenders don't overlap next block */
+    letter-spacing: -0.02em;
     color: #0d0d0d;
+    margin-bottom: 0.3in;      /* explicit room before credits */
   }
   .title .amp {
     color: #d4a056; /* single accent — warm ochre */
