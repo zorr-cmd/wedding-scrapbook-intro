@@ -201,18 +201,25 @@
   }
   .closing .sig .accent { color: #d4a056; }
 
-  .pgind {
+  /* ===== STANDARDIZED PAGE FOOTER (matches other pages) ===== */
+  .page-foot {
     position: absolute;
-    left: 0; right: 0;
-    bottom: 0.32in;
-    text-align: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 11pt;
+    left: 0.55in; right: 0.55in;
+    bottom: 0.28in;
+    padding-top: 0.08in;
+    border-top: 0.5px solid rgba(13,13,13,0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Inter', sans-serif;
+    font-size: 6pt;
+    line-height: 1;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
     color: #4a4a4a;
-    letter-spacing: 0.4em;
+    font-weight: 500;
   }
-  .pgind .orn { color: #d4a056; margin: 0 0.7em; }
+  .page-foot .o { color: #d4a056; margin: 0 0.45em; }
 
 </style>
 </head>
@@ -279,7 +286,10 @@ Hope this poem gives you a chuckle&hellip;</div>
       <div class="sig">Anukul<span class="accent">.</span></div>
     </div>
 
-    <div class="pgind">&mdash;&nbsp;&nbsp;Page 2 of 2&nbsp;&nbsp;&mdash;</div>
+    <div class="page-foot">
+      <div>ANUKUL<span class="o">&middot;</span>For Nepal<span class="o">&middot;</span>Pg. 02 / 02</div>
+      <div>Continued</div>
+    </div>
 
   </div>
 </body>
