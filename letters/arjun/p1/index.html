@@ -54,9 +54,9 @@
 
   .main {
     display: grid;
-    grid-template-columns: 1fr 2.8in;
+    grid-template-columns: 3.2in 1fr;
     gap: 0.32in;
-    height: 9.65in;
+    height: 9.5in;
   }
 
   .sidebar {
@@ -136,12 +136,12 @@
   }
   .sidebar-foot .lbl .o { color: #d4a056; margin: 0 0.45em; }
 
-  /* RIGHT — 2 photos stacked */
+  /* RIGHT — 2 landscape photos stacked at proper aspect (~1.3-1.5:1) */
   .stack {
     display: grid;
-    grid-template-rows: 1fr 1fr;
-    gap: 0.16in;
-    height: 100%;
+    grid-template-rows: 2.85in 2.85in;
+    gap: 0.18in;
+    align-content: start;
   }
   .cell {
     position: relative;
@@ -155,8 +155,22 @@
     display: block;
     filter: contrast(1.03) saturate(0.92);
   }
-  .cell.c1 img { object-position: center 30%; }   /* formal portrait */
-  .cell.c2 img { object-position: center 50%; }   /* Maserati */
+  .cell.c1 img { object-position: center 50%; }   /* formal portrait (1.2 landscape) */
+  .cell.c2 img { object-position: center 60%; }   /* Maserati (1.28 landscape) — lower */
+  /* small italic caption below the photo stack */
+  .photo-foot {
+    margin-top: 0.3in;
+    padding-top: 0.18in;
+    border-top: 0.5px solid rgba(13,13,13,0.18);
+    font-family: 'Inter', sans-serif;
+    font-size: 6pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #4a4a4a;
+    font-weight: 500;
+    text-align: right;
+  }
+  .photo-foot .o { color: #d4a056; margin: 0 0.45em; }
 
 </style>
 </head>
@@ -193,9 +207,12 @@
 
       </aside>
 
-      <section class="stack">
-        <figure class="cell c1"><img src="../photos/img-01.jpg" alt=""></figure>
-        <figure class="cell c2"><img src="../photos/img-02.jpg" alt=""></figure>
+      <section>
+        <div class="stack">
+          <figure class="cell c1"><img src="../photos/img-01.jpg" alt=""></figure>
+          <figure class="cell c2"><img src="../photos/img-02.jpg" alt=""></figure>
+        </div>
+        <div class="photo-foot">Plates I &amp; II<span class="o">·</span>High School</div>
       </section>
 
     </div>

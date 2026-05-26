@@ -5,7 +5,7 @@
 <title>A Poem · Anukul to Nepal · Pg. 01</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   @page { size: 8.5in 11in; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,7 +33,7 @@
     align-items: baseline;
     border-bottom: 0.5px solid #0d0d0d;
     padding-bottom: 0.08in;
-    margin-bottom: 0.2in;
+    margin-bottom: 0.32in;
   }
   .top .brand {
     font-family: 'Inter', sans-serif;
@@ -52,66 +52,99 @@
     font-weight: 400;
   }
 
-  /* ===== HEADER ===== */
+  /* ===== HEADER (dramatic centered title) ===== */
   .header {
     text-align: center;
-    margin-bottom: 0.25in;
+    margin-bottom: 0.4in;
+  }
+  .header .ornament {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14pt;
+    color: #d4a056;
+    margin-bottom: 0.08in;
+    letter-spacing: 0.3em;
   }
   .header .eyebrow {
     font-family: 'Inter', sans-serif;
     font-size: 6.5pt;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.42em;
     text-transform: uppercase;
     font-weight: 500;
     color: #0d0d0d;
-    margin-bottom: 0.06in;
+    margin-bottom: 0.1in;
   }
   .header .eyebrow .ochre { color: #d4a056; margin: 0 0.45em; }
   .header .title {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 500;
-    font-size: 28pt;
+    font-size: 36pt;
     line-height: 1;
     letter-spacing: -0.005em;
     color: #0d0d0d;
+    margin-bottom: 0.1in;
   }
   .header .title .accent { color: #d4a056; }
+  .header .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 10pt;
+    color: #4a4a4a;
+    letter-spacing: 0.02em;
+    margin-top: 0.04in;
+  }
   .header .rule {
-    width: 0.6in;
+    width: 1.0in;
     height: 0.5px;
     background: #d4a056;
-    margin: 0.16in auto 0;
+    margin: 0.2in auto 0;
   }
 
-  /* ===== MAIN GRID: poem left / photo column right ===== */
+  /* ===== MAIN: 2-col layout — poem (left) + photos (right) ===== */
   .main {
     display: grid;
-    grid-template-columns: 1fr 2.1in;
-    gap: 0.4in;
-    height: 8.2in;
+    grid-template-columns: 1fr 1.85in;
+    column-gap: 0.45in;
+    height: 7.6in;
   }
 
   /* POEM column */
   .poem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .stanza {
+    display: grid;
+    grid-template-columns: 0.55in 1fr;
+    column-gap: 0.08in;
+  }
+  .stanza .roman {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 24pt;
+    color: #d4a056;
+    line-height: 1;
+    padding-top: 0.04in;
+    text-align: right;
+  }
+  .stanza .lines {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 400;
     font-size: 11.5pt;
-    line-height: 1.5;
+    line-height: 1.45;
     color: #1a1a1a;
+    white-space: pre-line;
   }
-  .stanza {
-    margin-bottom: 0.28in;
-    white-space: pre-line;  /* preserve line breaks */
-  }
-  .stanza:last-child { margin-bottom: 0; }
 
-  /* PHOTO column */
+  /* PHOTO PLATES column */
   .plates {
     display: flex;
     flex-direction: column;
-    gap: 0.35in;
+    gap: 0.32in;
+    align-self: stretch;
     justify-content: space-around;
   }
   .plate {
@@ -119,10 +152,16 @@
   }
   .plate-frame {
     width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1;
+    padding: 0.07in;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06);
     overflow: hidden;
-    background: #f5f1ea;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .plate-frame .inner {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
   .plate-frame img {
     width: 100%;
@@ -132,31 +171,32 @@
     filter: contrast(1.03) saturate(0.92);
   }
   .plate-cap {
-    margin-top: 0.07in;
+    margin-top: 0.1in;
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 9pt;
-    color: #4a4a4a;
-    letter-spacing: 0.01em;
+    font-size: 9.5pt;
+    color: #3a3a3a;
+    letter-spacing: 0.005em;
   }
 
-  /* tune per-plate cropping */
+  /* per-plate cropping */
   .p-twoofus img { object-position: center 35%; }
   .p-lens img    { object-position: center 50%; }
   .p-catan img   { object-position: center 50%; }
 
-  /* page indicator */
+  /* ===== Page indicator ===== */
   .pgind {
     position: absolute;
     left: 0; right: 0;
-    bottom: 0.28in;
+    bottom: 0.32in;
     text-align: center;
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 10pt;
+    font-size: 11pt;
     color: #4a4a4a;
     letter-spacing: 0.4em;
   }
+  .pgind .orn { color: #d4a056; margin: 0 0.7em; }
 
 </style>
 </head>
@@ -169,60 +209,79 @@
     </div>
 
     <div class="header">
+      <div class="ornament">&#10086;</div>
       <div class="eyebrow">A Poem<span class="ochre">·</span>For Nepal's Wedding</div>
-      <div class="title">A Poem For Nepal&rsquo;s Wedding<span class="accent">.</span></div>
+      <div class="title">In a Few Verses<span class="accent">.</span></div>
+      <div class="subtitle">Eight stanzas and a postscript, by Anukul</div>
       <div class="rule"></div>
     </div>
 
     <div class="main">
 
-      <!-- LEFT: poem stanzas 1-5 -->
+      <!-- LEFT: stanzas with roman numerals -->
       <div class="poem">
-        <div class="stanza">Hey my remarkable friend Nepal,
+
+        <div class="stanza">
+          <div class="roman">I.</div>
+          <div class="lines">Hey my remarkable friend Nepal,
 I hope this poem finds you well.
 Can&rsquo;t believe you are finally there
 Soon to be walking down the aisle as a pair.</div>
+        </div>
 
-        <div class="stanza">Went from late night tennis to big movie sets,
+        <div class="stanza">
+          <div class="roman">II.</div>
+          <div class="lines">Went from late night tennis to big movie sets,
 You even made it down a few red carpets.
 I love that you chose to pursue your dream,
 Hopefully one day we&rsquo;ll see your work on the big screen.</div>
+        </div>
 
-        <div class="stanza">It&rsquo;s unbelievable to think how far you have come,
+        <div class="stanza">
+          <div class="roman">III.</div>
+          <div class="lines">It&rsquo;s unbelievable to think how far you have come,
 Hard to imagine the days when we were dumb.
 Let&rsquo;s take a quick look and reminisce the past
 And remember the moments that were a blast.</div>
+        </div>
 
-        <div class="stanza">Driving down the highway for the beach joyrides,
+        <div class="stanza">
+          <div class="roman">IV.</div>
+          <div class="lines">Driving down the highway for the beach joyrides,
 Cranking the music and watching the tides.
 Finding a place where we would stop and chill,
 Looking back, time felt as if it were still.</div>
+        </div>
 
-        <div class="stanza">More often than not we would play board games,
+        <div class="stanza">
+          <div class="roman">V.</div>
+          <div class="lines">More often than not we would play board games,
 Often we would play Catan or Codenames.
 Playing Catan with you was quite the delight
 But playing it out till the end would make the night.</div>
+        </div>
+
       </div>
 
-      <!-- RIGHT: photo plates with captions -->
+      <!-- RIGHT: photo plates -->
       <div class="plates">
         <figure class="plate p-twoofus">
-          <div class="plate-frame"><img src="../photos/img-01.jpg" alt=""></div>
+          <div class="plate-frame"><div class="inner"><img src="../photos/img-01.jpg" alt=""></div></div>
           <div class="plate-cap">the two of us</div>
         </figure>
         <figure class="plate p-lens">
-          <div class="plate-frame"><img src="../photos/img-02.jpg" alt=""></div>
+          <div class="plate-frame"><div class="inner"><img src="../photos/img-02.jpg" alt=""></div></div>
           <div class="plate-cap">behind the lens</div>
         </figure>
         <figure class="plate p-catan">
-          <div class="plate-frame"><img src="../photos/img-03.jpg" alt=""></div>
+          <div class="plate-frame"><div class="inner"><img src="../photos/img-03.jpg" alt=""></div></div>
           <div class="plate-cap">Catan &mdash; we never did finish</div>
         </figure>
       </div>
 
     </div>
 
-    <div class="pgind">&mdash;&nbsp;1&nbsp;&mdash;</div>
+    <div class="pgind"><span class="orn">&#10086;</span>I<span class="orn">&#10086;</span></div>
 
   </div>
 </body>

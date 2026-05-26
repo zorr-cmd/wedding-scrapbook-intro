@@ -54,17 +54,17 @@
 
   .main {
     display: grid;
-    grid-template-columns: 2.8in 1fr;
+    grid-template-columns: 1fr 3.2in;
     gap: 0.32in;
-    height: 9.65in;
+    height: 9.5in;
   }
 
-  /* LEFT — 2 photos stacked */
+  /* LEFT — 2 landscape photos stacked at proper aspect */
   .stack {
     display: grid;
-    grid-template-rows: 1fr 1fr;
-    gap: 0.16in;
-    height: 100%;
+    grid-template-rows: 2.85in 2.85in;
+    gap: 0.18in;
+    align-content: start;
   }
   .cell {
     position: relative;
@@ -78,8 +78,21 @@
     display: block;
     filter: contrast(1.03) saturate(0.92);
   }
-  .cell.c1 img { object-position: center 45%; }   /* NYC boat */
-  .cell.c2 img { object-position: center 35%; }   /* low-light selfie */
+  .cell.c1 img { object-position: center 35%; }   /* NYC boat landscape */
+  .cell.c2 img { object-position: center 50%; }   /* low-light selfie landscape */
+  .photo-foot {
+    margin-top: 0.3in;
+    padding-top: 0.18in;
+    border-top: 0.5px solid rgba(13,13,13,0.18);
+    font-family: 'Inter', sans-serif;
+    font-size: 6pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #4a4a4a;
+    font-weight: 500;
+    text-align: left;
+  }
+  .photo-foot .o { color: #d4a056; margin: 0 0.45em; }
 
   /* RIGHT — letter continuation + signoff */
   .sidebar {
@@ -181,9 +194,12 @@
 
     <div class="main">
 
-      <section class="stack">
-        <figure class="cell c1"><img src="../photos/img-03.jpg" alt=""></figure>
-        <figure class="cell c2"><img src="../photos/img-04.jpg" alt=""></figure>
+      <section>
+        <div class="stack">
+          <figure class="cell c1"><img src="../photos/img-03.jpg" alt=""></figure>
+          <figure class="cell c2"><img src="../photos/img-04.jpg" alt=""></figure>
+        </div>
+        <div class="photo-foot">Plates III &amp; IV<span class="o">·</span>NYC &amp; Turkey</div>
       </section>
 
       <aside class="sidebar">
