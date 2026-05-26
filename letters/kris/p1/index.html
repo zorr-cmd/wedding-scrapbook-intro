@@ -57,10 +57,10 @@
   .main {
     display: grid;
     grid-template-columns: 3.4in 1fr;
-    grid-template-rows: 6.2in 0.3in 1fr;
+    grid-template-rows: 6.0in 1fr;
     column-gap: 0.3in;
-    row-gap: 0;
-    height: 9.65in;
+    row-gap: 0.25in;
+    height: 9.45in;
   }
 
   /* Hero photo (top-left, big Starbucks/coffee shot) */
@@ -75,7 +75,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 35%;
+    /* shift right and slightly down to push out the random shoulder on the left edge */
+    object-position: 65% 38%;
     display: block;
     filter: contrast(1.03) saturate(0.92);
   }
@@ -134,43 +135,18 @@
   .letter-body p { margin-bottom: 0.12in; text-indent: 0; }
   .letter-body p:last-of-type { margin-bottom: 0; }
 
-  /* Lower row: caption strip + 2 smaller photos */
-  .lower-meta {
-    grid-column: 1 / 3;
-    grid-row: 2 / 3;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 0.5px solid rgba(13,13,13,0.18);
-    border-bottom: 0.5px solid rgba(13,13,13,0.18);
-    padding: 0.06in 0;
-  }
-  .lower-meta .lbl {
-    font-family: 'Inter', sans-serif;
-    font-size: 6.4pt;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: #1a1a1a;
-  }
-  .lower-meta .lbl .o { color: #d4a056; margin: 0 0.45em; }
-  .lower-meta .pn {
-    font-family: 'Inter', sans-serif;
-    font-size: 6.4pt;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #4a4a4a;
-  }
-
+  /* Lower row: 2 photos (no meta strip — removed for cleaner A24 look) */
   .lower-grid {
     grid-column: 1 / 3;
-    grid-row: 3 / 4;
+    grid-row: 2 / 3;
     display: grid;
-    /* stool is narrow portrait (0.46:1); door is landscape (1.27:1).
+    /* stool is narrow portrait (after black-bar crop, ~0.56:1); door is landscape (1.27:1).
        Match cell aspects to source orientations so cropping is minimal. */
     grid-template-columns: 1.85in 1fr;
-    gap: 0.18in;
-    padding-top: 0.18in;
+    gap: 0.2in;
+    padding-top: 0;
+    border-top: 0.5px solid rgba(13,13,13,0.18);
+    padding-top: 0.22in;
   }
   .cell {
     position: relative;
@@ -185,8 +161,9 @@
     display: block;
     filter: contrast(1.03) saturate(0.92);
   }
-  .cell.door img { object-position: center 45%; }
-  .cell.stool img { object-position: center 45%; }
+  /* door: shift right to deemphasize the bureaucratic sign on the left, keep Nepal centered */
+  .cell.door img { object-position: 65% 50%; }
+  .cell.stool img { object-position: center 50%; }
 
 </style>
 </head>
@@ -221,13 +198,7 @@
         </div>
       </aside>
 
-      <!-- META STRIP -->
-      <div class="lower-meta">
-        <div class="lbl">Plates<span class="o">·</span>I &amp; II</div>
-        <div class="pn">Continued overleaf</div>
-      </div>
-
-      <!-- LOWER GRID: 2 smaller photos -->
+      <!-- LOWER GRID: 2 smaller photos (separated by thin rule, no meta strip) -->
       <div class="lower-grid">
         <figure class="cell stool"><img src="../photos/img-54.jpg" alt=""></figure>
         <figure class="cell door"><img src="../photos/img-53.jpg" alt=""></figure>
