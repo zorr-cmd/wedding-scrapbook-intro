@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Memories · Alex to Nepal · Page 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #ecead9;
+    color: #0d0d0d;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0.5in 0.5in 0.45in 0.5in;
+  }
+
+  /* ===== TOP BAR ===== */
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 0.5px solid #0d0d0d;
+    padding-bottom: 0.08in;
+    margin-bottom: 0.16in;
+  }
+  .top .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .top .brand .dot { color: #d4a056; margin: 0 0.5em; }
+  .top .pgmeta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    font-weight: 400;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 0.18in;
+  }
+  .header .lhs .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #0d0d0d;
+    margin-bottom: 0.05in;
+  }
+  .header .lhs .eyebrow .ochre { color: #d4a056; margin: 0 0.45em; }
+  .header .lhs .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22pt;
+    line-height: 1;
+    letter-spacing: -0.005em;
+    color: #0d0d0d;
+  }
+  .header .lhs .title .accent { color: #d4a056; }
+  .header .rhs {
+    text-align: right;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.2pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    font-weight: 500;
+    line-height: 1.7;
+  }
+  .header .rhs .o { color: #d4a056; margin: 0 0.45em; }
+
+  /* ===== GRID — 4 cols x 4 rows; last row two cells centered ===== */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 0.13in;
+    height: 9.05in;
+  }
+  .cell {
+    position: relative;
+    overflow: hidden;
+    background: #f5f1ea;
+    display: flex;
+    flex-direction: column;
+  }
+  .cell .img-wrap {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+  }
+  .cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: contrast(1.03) saturate(0.92);
+  }
+  .cap {
+    margin-top: 0.05in;
+    font-family: 'Inter', sans-serif;
+    font-size: 5.6pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #1a1a1a;
+    text-align: center;
+    line-height: 1.35;
+    min-height: 0.28in;
+  }
+  .cap .num {
+    color: #d4a056;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-right: 0.45em;
+  }
+
+  /* last row — 2 centered cells */
+  .cell.r4-l { grid-column: 2 / 3; grid-row: 4; }
+  .cell.r4-r { grid-column: 3 / 4; grid-row: 4; }
+
+  /* object-position tuning */
+  .c01 img { object-position: center 30%; }
+  .c02 img { object-position: center 50%; }
+  .c03 img { object-position: center 35%; }
+  .c04 img { object-position: center 45%; }
+  .c05 img { object-position: center 40%; }
+  .c06 img { object-position: center 30%; }
+  .c07 img { object-position: center 45%; }
+  .c08 img { object-position: center 30%; }
+  .c09 img { object-position: center 30%; }
+  .c10 img { object-position: center 50%; }
+  .c11 img { object-position: center 45%; }
+  .c12 img { object-position: center 40%; }
+  .c13 img { object-position: center 40%; }
+  .c14 img { object-position: center 50%; }
+
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="top">
+      <div class="brand">ALEX<span class="dot">·</span>FOR NEPAL<span class="dot">·</span>MEMORIES</div>
+      <div class="pgmeta">Pg. 02 / 03</div>
+    </div>
+
+    <div class="header">
+      <div class="lhs">
+        <div class="eyebrow">A Contact Sheet<span class="ochre">·</span>Fourteen Frames</div>
+        <div class="title">Moments<span class="accent">.</span></div>
+      </div>
+      <div class="rhs">
+        Selected By Alex<span class="o">·</span>2014&ndash;2026<br>
+        Pages 02<span class="o">·</span>03<span class="o">·</span>04
+      </div>
+    </div>
+
+    <section class="grid">
+      <!-- Row 1 -->
+      <figure class="cell c01">
+        <div class="img-wrap"><img src="../photos/img-12.jpg" alt=""></div>
+        <div class="cap"><span class="num">01</span>Shoutout Honors Humanities</div>
+      </figure>
+      <figure class="cell c02">
+        <div class="img-wrap"><img src="../photos/img-13.jpg" alt=""></div>
+        <div class="cap"><span class="num">02</span>Surfer Bros</div>
+      </figure>
+      <figure class="cell c03">
+        <div class="img-wrap"><img src="../photos/img-22.jpg" alt=""></div>
+        <div class="cap"><span class="num">03</span>Wiggle Wiggle</div>
+      </figure>
+      <figure class="cell c04">
+        <div class="img-wrap"><img src="../photos/img-23.jpg" alt=""></div>
+        <div class="cap"><span class="num">04</span>Cuddle Puddle With The Boys</div>
+      </figure>
+
+      <!-- Row 2 -->
+      <figure class="cell c05">
+        <div class="img-wrap"><img src="../photos/img-17.jpg" alt=""></div>
+        <div class="cap"><span class="num">05</span>Lots Of Love In This Moment</div>
+      </figure>
+      <figure class="cell c06">
+        <div class="img-wrap"><img src="../photos/img-15.jpg" alt=""></div>
+        <div class="cap"><span class="num">06</span>Thank You For Always Beliving In Me</div>
+      </figure>
+      <figure class="cell c07">
+        <div class="img-wrap"><img src="../photos/img-18.jpg" alt=""></div>
+        <div class="cap"><span class="num">07</span>God We&rsquo;re So Handsome</div>
+      </figure>
+      <figure class="cell c08">
+        <div class="img-wrap"><img src="../photos/img-25.jpg" alt=""></div>
+        <div class="cap"><span class="num">08</span>Love That Transcends Distance</div>
+      </figure>
+
+      <!-- Row 3 -->
+      <figure class="cell c09">
+        <div class="img-wrap"><img src="../photos/img-14.jpg" alt=""></div>
+        <div class="cap"><span class="num">09</span>Feelings That Words Can&rsquo;t Describe</div>
+      </figure>
+      <figure class="cell c10">
+        <div class="img-wrap"><img src="../photos/img-21.jpg" alt=""></div>
+        <div class="cap"><span class="num">10</span>Come Visit Me In LA Again</div>
+      </figure>
+      <figure class="cell c11">
+        <div class="img-wrap"><img src="../photos/img-16.jpg" alt=""></div>
+        <div class="cap"><span class="num">11</span>Thanks For The Pizzas!</div>
+      </figure>
+      <figure class="cell c12">
+        <div class="img-wrap"><img src="../photos/img-19.jpg" alt=""></div>
+        <div class="cap"><span class="num">12</span>Simple</div>
+      </figure>
+
+      <!-- Row 4 - two centered cells -->
+      <figure class="cell c13 r4-l">
+        <div class="img-wrap"><img src="../photos/img-24.jpg" alt=""></div>
+        <div class="cap"><span class="num">13</span>Let&rsquo;s Celebrate!</div>
+      </figure>
+      <figure class="cell c14 r4-r">
+        <div class="img-wrap"><img src="../photos/img-20.jpg" alt=""></div>
+        <div class="cap"><span class="num">14</span>&mdash;</div>
+      </figure>
+    </section>
+
+  </div>
+</body>
+</html>

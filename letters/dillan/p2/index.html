@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Memory Lane · Dillan to Nepal · Pg. 02 / 02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #ecead9;
+    color: #0d0d0d;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0.55in 0.55in 0.5in 0.55in;
+  }
+
+  /* ===== TOP BAR ===== */
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 0.5px solid #0d0d0d;
+    padding-bottom: 0.08in;
+    margin-bottom: 0.22in;
+  }
+  .top .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .top .brand .dot {
+    color: #d4a056;
+    margin: 0 0.5em;
+  }
+  .top .pgmeta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    font-weight: 400;
+  }
+
+  /* ===== MAIN GRID ===== */
+  .main {
+    display: grid;
+    grid-template-columns: 3.25in 1fr;
+    gap: 0.32in;
+    height: 9.3in;
+    max-height: 9.3in;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* ===== LEFT — MEMORIES LIST ===== */
+  .memories {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-right: 0.18in;
+    border-right: 0.5px solid rgba(13,13,13,0.18);
+  }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #0d0d0d;
+    margin-bottom: 0.18in;
+  }
+  .eyebrow .ochre {
+    color: #d4a056;
+    margin: 0 0.45em;
+  }
+  .mem-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 26pt;
+    line-height: 0.98;
+    letter-spacing: -0.005em;
+    color: #0d0d0d;
+    margin-bottom: 0.05in;
+  }
+  .mem-title .accent { color: #d4a056; }
+  .mem-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #4a4a4a;
+    font-weight: 500;
+    margin-bottom: 0.22in;
+  }
+  .rule-thin {
+    height: 0.5px;
+    background: #0d0d0d;
+    width: 0.6in;
+    margin-bottom: 0.24in;
+  }
+
+  .mem-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .mem {
+    display: grid;
+    grid-template-columns: 0.42in 1fr;
+    column-gap: 0.04in;
+    padding: 0.13in 0;
+    border-bottom: 0.5px solid rgba(212,160,86,0.45);
+  }
+  .mem:first-child { padding-top: 0; }
+  .mem:last-child { border-bottom: none; }
+  .mem .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 18pt;
+    color: #d4a056;
+    line-height: 1;
+    padding-top: 0.015in;
+  }
+  .mem .body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 10.8pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+  }
+  .mem .body .lead {
+    font-weight: 500;
+    color: #0d0d0d;
+    font-style: italic;
+  }
+
+  .memories-foot {
+    margin-top: auto;
+    padding-top: 0.18in;
+    border-top: 0.5px solid rgba(13,13,13,0.18);
+  }
+  .memories-foot .lbl {
+    font-family: 'Inter', sans-serif;
+    font-size: 6pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #4a4a4a;
+  }
+  .memories-foot .lbl .o { color: #d4a056; margin: 0 0.45em; }
+
+  /* ===== RIGHT — 2x2 PHOTO GRID ===== */
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.14in;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .cell {
+    position: relative;
+    overflow: hidden;
+    background: #f5f1ea;
+  }
+  .cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: contrast(1.03) saturate(0.92);
+  }
+  .cell.g1 img { object-position: center 38%; }   /* sedona portrait */
+  .cell.g2 img { object-position: center 50%; }   /* bumper cars landscape */
+  .cell.g3 img { object-position: center 50%; }   /* central park landscape */
+  .cell.g4 img { object-position: center 50%; }   /* cabo cruise landscape */
+
+  .cap {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 0.22in 0.1in 0.08in 0.1in;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+    color: #f5f1ea;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.2pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .cap .num { color: #d4a056; font-weight: 600; }
+  .cap .loc { color: #f5f1ea; }
+
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="top">
+      <div class="brand">DILLAN<span class="dot">·</span>FOR NEPAL<span class="dot">·</span>MEMORY LANE</div>
+      <div class="pgmeta">Pg. 02 / 02</div>
+    </div>
+
+    <div class="main">
+
+      <!-- LEFT: MEMORIES -->
+      <aside class="memories">
+
+        <div class="eyebrow">A Few Memories<span class="ochre">·</span>Out of Many</div>
+
+        <h1 class="mem-title">Going Down<br>Memory Lane<span class="accent">.</span></h1>
+
+        <div class="rule-thin"></div>
+
+        <div class="mem-list">
+
+          <div class="mem">
+            <div class="num">i.</div>
+            <div class="body"><span class="lead">Sedona.</span> Getting completely lost with no idea where we were, laughing it off, and taking advantage of the situation with a fire photoshoot.</div>
+          </div>
+
+          <div class="mem">
+            <div class="num">ii.</div>
+            <div class="body"><span class="lead">New York rooftop.</span> Agreeing on ditching out of Miss Monique mid-set to go have deep talks on your New York rooftop instead.</div>
+          </div>
+
+          <div class="mem">
+            <div class="num">iii.</div>
+            <div class="body"><span class="lead">Tour guide reversed.</span> Showing you around New York even though we were visiting you.</div>
+          </div>
+
+          <div class="mem">
+            <div class="num">iv.</div>
+            <div class="body"><span class="lead">Cabo cruise.</span> Not much explanation needed here.</div>
+          </div>
+
+        </div>
+
+        <div class="memories-foot">
+          <div class="lbl">Dillan<span class="o">·</span>For Nepal<span class="o">·</span>Pg. 02</div>
+        </div>
+
+      </aside>
+
+      <!-- RIGHT: 2x2 PHOTO GRID -->
+      <section class="grid">
+        <figure class="cell g1">
+          <img src="../photos/img-39.jpg" alt="">
+          <div class="cap"><span class="num">i.</span><span class="loc">Sedona</span></div>
+        </figure>
+        <figure class="cell g2">
+          <img src="../photos/img-38.jpg" alt="">
+          <div class="cap"><span class="num">ii.</span><span class="loc">New York</span></div>
+        </figure>
+        <figure class="cell g3">
+          <img src="../photos/img-41.jpg" alt="">
+          <div class="cap"><span class="num">iii.</span><span class="loc">Central Park</span></div>
+        </figure>
+        <figure class="cell g4">
+          <img src="../photos/img-40.jpg" alt="">
+          <div class="cap"><span class="num">iv.</span><span class="loc">Cabo</span></div>
+        </figure>
+      </section>
+
+    </div>
+
+  </div>
+</body>
+</html>

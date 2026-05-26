@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Photos · Aryan to Nepal · Pg. 02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #ecead9;
+    color: #0d0d0d;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0.55in 0.55in 0.5in 0.55in;
+  }
+
+  /* ===== TOP BAR ===== */
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 0.5px solid #0d0d0d;
+    padding-bottom: 0.08in;
+    margin-bottom: 0.32in;
+  }
+  .top .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .top .brand .dot { color: #d4a056; margin: 0 0.5em; }
+  .top .pgmeta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    font-weight: 400;
+  }
+
+  /* ===== HEADER STRIP — title + meta ===== */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 2.2in;
+    align-items: end;
+    column-gap: 0.4in;
+    margin-bottom: 0.32in;
+    padding-bottom: 0.22in;
+    border-bottom: 0.5px solid rgba(13,13,13,0.18);
+  }
+  .header .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #0d0d0d;
+    margin-bottom: 0.12in;
+  }
+  .header .eyebrow .ochre { color: #d4a056; margin: 0 0.45em; }
+  .header .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 36pt;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    color: #0d0d0d;
+  }
+  .header .title .accent { color: #d4a056; }
+  .header .meta {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 9.5pt;
+    line-height: 1.5;
+    color: #3a3a3a;
+  }
+  .header .meta .dim {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-size: 6pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #4a4a4a;
+    display: block;
+    margin-bottom: 0.06in;
+  }
+
+  /* ===== PHOTO ESSAY GRID — breathy / asymmetric ===== */
+  .essay {
+    display: grid;
+    grid-template-columns: 2.2in 0.3in 2.5in 0.3in 1.7in;
+    grid-template-rows: 2.6in 0.3in 3.2in;
+    height: 7.0in;
+  }
+  .cell {
+    position: relative;
+    overflow: hidden;
+    background: #f5f1ea;
+  }
+  .cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: contrast(1.03) saturate(0.92);
+  }
+  .cap {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 0.18in 0.1in 0.08in 0.1in;
+    background: linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0));
+    color: #f5f1ea;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.2pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .cap .num { color: #d4a056; font-weight: 600; }
+
+  /* Top row */
+  .p1 { grid-column: 1 / 2; grid-row: 1 / 2; }        /* 48 portrait tripod */
+  .p1 img { object-position: center 45%; }
+  .p2 { grid-column: 3 / 6; grid-row: 1 / 2; }        /* 49 landscape Egypt */
+  .p2 img { object-position: center 40%; }
+
+  /* Bottom row */
+  .p3 { grid-column: 1 / 4; grid-row: 3 / 4; }        /* 46 landscape beach coconuts */
+  .p3 img { object-position: center 45%; }
+  .p4 { grid-column: 5 / 6; grid-row: 3 / 4; }        /* 47 portrait gallery chair */
+  .p4 img { object-position: center 40%; }
+
+  /* Bottom strip — index + signature accent */
+  .foot {
+    margin-top: 0.32in;
+    padding-top: 0.18in;
+    border-top: 0.5px solid rgba(13,13,13,0.18);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    column-gap: 0.5in;
+  }
+  .foot .index {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 0.18in;
+  }
+  .foot .index .item {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.2pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    line-height: 1.4;
+  }
+  .foot .index .pn {
+    color: #d4a056;
+    font-weight: 600;
+    margin-right: 0.4em;
+  }
+  .foot .stamp {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 11pt;
+    color: #0d0d0d;
+    letter-spacing: 0.01em;
+    text-align: right;
+  }
+  .foot .stamp .ochre { color: #d4a056; }
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="top">
+      <div class="brand">ARYAN<span class="dot">·</span>FOR NEPAL<span class="dot">·</span>PHOTOS</div>
+      <div class="pgmeta">Pg. 02 / 02</div>
+    </div>
+
+    <div class="header">
+      <div>
+        <div class="eyebrow">Plates V — VIII<span class="ochre">·</span>A Selection</div>
+        <div class="title">A few frames<span class="accent">.</span></div>
+      </div>
+      <div class="meta">
+        <span class="dim">Sequence II</span>
+        Four moments — backyard rigs, ancient passages, sand and salt, and a room with one strange chair.
+      </div>
+    </div>
+
+    <section class="essay">
+      <figure class="cell p1">
+        <img src="../photos/img-48.jpg" alt="">
+        <div class="cap"><span class="num">V</span><span>Backyard · The Rig</span></div>
+      </figure>
+      <figure class="cell p2">
+        <img src="../photos/img-49.jpg" alt="">
+        <div class="cap"><span class="num">VI</span><span>Egypt · The Passage</span></div>
+      </figure>
+      <figure class="cell p3">
+        <img src="../photos/img-46.jpg" alt="">
+        <div class="cap"><span class="num">VII</span><span>Cabo · Coconuts</span></div>
+      </figure>
+      <figure class="cell p4">
+        <img src="../photos/img-47.jpg" alt="">
+        <div class="cap"><span class="num">VIII</span><span>Gallery · One Chair</span></div>
+      </figure>
+    </section>
+
+    <div class="foot">
+      <div class="index">
+        <div class="item"><span class="pn">V</span>Backyard</div>
+        <div class="item"><span class="pn">VI</span>Egypt</div>
+        <div class="item"><span class="pn">VII</span>Cabo</div>
+        <div class="item"><span class="pn">VIII</span>Gallery</div>
+      </div>
+      <div class="stamp">— Aryan<span class="ochre">.</span></div>
+    </div>
+
+  </div>
+</body>
+</html>

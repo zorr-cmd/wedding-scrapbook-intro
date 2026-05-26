@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>A Letter · Kris to Nepal · Page 1 of 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #ecead9;
+    color: #0d0d0d;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0.55in 0.55in 0.5in 0.55in;
+  }
+
+  /* ===== TOP BAR ===== */
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 0.5px solid #0d0d0d;
+    padding-bottom: 0.08in;
+    margin-bottom: 0.22in;
+  }
+  .top .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .top .brand .dot { color: #d4a056; margin: 0 0.5em; }
+  .top .pgmeta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    font-weight: 400;
+  }
+
+  /* ===== MAIN ===== */
+  .main {
+    display: grid;
+    grid-template-columns: 3.4in 1fr;
+    grid-template-rows: 5.4in 0.3in 1fr;
+    column-gap: 0.3in;
+    row-gap: 0;
+    height: 9.65in;
+  }
+
+  /* Hero photo (top-left, big Starbucks/coffee shot) */
+  .hero {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    position: relative;
+    overflow: hidden;
+    background: #f5f1ea;
+  }
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    display: block;
+    filter: contrast(1.03) saturate(0.92);
+  }
+
+  /* Letter column (right of hero) */
+  .letter-col {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0.05in;
+    border-left: 0.5px solid rgba(13,13,13,0.18);
+    padding-left: 0.18in;
+  }
+
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #0d0d0d;
+    margin-bottom: 0.14in;
+  }
+  .eyebrow .ochre { color: #d4a056; margin: 0 0.45em; }
+
+  .mini-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 27pt;
+    line-height: 0.95;
+    letter-spacing: -0.005em;
+    color: #0d0d0d;
+    margin-bottom: 0.04in;
+  }
+  .mini-title .accent { color: #d4a056; }
+
+  .rule-thin {
+    height: 0.5px;
+    background: #0d0d0d;
+    width: 0.6in;
+    margin: 0.14in 0 0.14in 0;
+  }
+
+  .letter-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 10.2pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    text-align: left;
+    hyphens: auto;
+  }
+  .letter-body p { margin-bottom: 0.12in; text-indent: 0; }
+  .letter-body p:last-of-type { margin-bottom: 0; }
+
+  /* Lower row: caption strip + 2 smaller photos */
+  .lower-meta {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0.5px solid rgba(13,13,13,0.18);
+    border-bottom: 0.5px solid rgba(13,13,13,0.18);
+    padding: 0.06in 0;
+  }
+  .lower-meta .lbl {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.4pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #1a1a1a;
+  }
+  .lower-meta .lbl .o { color: #d4a056; margin: 0 0.45em; }
+  .lower-meta .pn {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.4pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #4a4a4a;
+  }
+
+  .lower-grid {
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.18in;
+    padding-top: 0.18in;
+  }
+  .cell {
+    position: relative;
+    overflow: hidden;
+    background: #f5f1ea;
+  }
+  .cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 45%;
+    display: block;
+    filter: contrast(1.03) saturate(0.92);
+  }
+  .cell.door img { object-position: center 50%; }
+  .cell.stool img { object-position: center 35%; }
+
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="top">
+      <div class="brand">KRIS<span class="dot">·</span>FOR NEPAL<span class="dot">·</span>A LETTER</div>
+      <div class="pgmeta">Pg. 01 / 02</div>
+    </div>
+
+    <div class="main">
+
+      <!-- HERO: Starbucks/coffee portrait of Nepal -->
+      <figure class="hero">
+        <img src="../photos/img-52.jpg" alt="">
+      </figure>
+
+      <!-- LETTER -->
+      <aside class="letter-col">
+        <div class="eyebrow">A Letter<span class="ochre">·</span>From Kris</div>
+        <h1 class="mini-title">Nepal<span class="accent">,</span></h1>
+        <div class="rule-thin"></div>
+
+        <div class="letter-body">
+          <p>Found this absolute gem in the archives and couldn&rsquo;t think of a better way to kick off my section of &ldquo;Nepal moments&rdquo; than one of the ones that brought us the closest.</p>
+          <p>As 2 of the only seniors with a first-period off role, we really did a number on Starbucks and Coffee Bean.</p>
+          <p>Truly one of the best memories was ripping these early morning coffee runs and just chattin shit haha. What started as random mornings became the start of such a great friendship :)</p>
+          <p>You&rsquo;ve always been one of my most spontaneous and adventurous friends. Whether it was climbing canyons barefoot, randomly driving somewhere with no real plan, or sneaking into the RB film studio to make a ridiculous short film together, you were always down to turn an ordinary day into something unforgettable.</p>
+          <p>That&rsquo;s one of the things I&rsquo;ve always admired most about you, your ability to fully embrace life, chase experiences, and make every moment feel like a story worth remembering.</p>
+          <p>Still waiting for our Squid Games: The Sequel to finally drop lol.</p>
+        </div>
+      </aside>
+
+      <!-- META STRIP -->
+      <div class="lower-meta">
+        <div class="lbl">Plates<span class="o">·</span>I &amp; II</div>
+        <div class="pn">Continued overleaf</div>
+      </div>
+
+      <!-- LOWER GRID: 2 smaller photos -->
+      <div class="lower-grid">
+        <figure class="cell stool"><img src="../photos/img-54.jpg" alt=""></figure>
+        <figure class="cell door"><img src="../photos/img-53.jpg" alt=""></figure>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+</html>

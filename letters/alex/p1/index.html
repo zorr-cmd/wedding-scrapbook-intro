@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>A Letter · Alex to Nepal · Page 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #ecead9;
+    color: #0d0d0d;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0.55in 0.55in 0.5in 0.55in;
+  }
+
+  /* ===== TOP BAR ===== */
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 0.5px solid #0d0d0d;
+    padding-bottom: 0.08in;
+    margin-bottom: 0.22in;
+  }
+  .top .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .top .brand .dot { color: #d4a056; margin: 0 0.5em; }
+  .top .pgmeta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    font-weight: 400;
+  }
+
+  /* ===== MAIN GRID: letter sidebar | hero photo ===== */
+  .main {
+    display: grid;
+    grid-template-columns: 3.4in 1fr;
+    gap: 0.4in;
+    height: 9.65in;
+  }
+
+  /* ===== LEFT — LETTER SIDEBAR ===== */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    padding-right: 0.18in;
+    border-right: 0.5px solid rgba(13,13,13,0.18);
+  }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #0d0d0d;
+    margin-bottom: 0.18in;
+  }
+  .eyebrow .ochre { color: #d4a056; margin: 0 0.45em; }
+  .mini-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 27pt;
+    line-height: 0.95;
+    letter-spacing: -0.005em;
+    color: #0d0d0d;
+    margin-bottom: 0.04in;
+  }
+  .mini-title .accent { color: #d4a056; }
+
+  .rule-thin {
+    height: 0.5px;
+    background: #0d0d0d;
+    width: 0.6in;
+    margin-bottom: 0.18in;
+    margin-top: 0.06in;
+  }
+
+  .letter-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 10.2pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    text-align: left;
+    hyphens: auto;
+  }
+  .letter-body p {
+    margin-bottom: 0.14in;
+    text-indent: 0;
+  }
+  .letter-body p:last-of-type { margin-bottom: 0; }
+
+  .closing {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 10.5pt;
+    line-height: 1.4;
+    color: #1a1a1a;
+    margin-top: 0.22in;
+  }
+
+  .signoff {
+    margin-top: 0.14in;
+  }
+  .signoff .sig-rule {
+    width: 0.45in;
+    height: 0.5px;
+    background: #d4a056;
+    margin-bottom: 0.1in;
+  }
+  .signoff .sig {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 14pt;
+    color: #0d0d0d;
+    letter-spacing: 0.01em;
+  }
+
+  .sidebar-foot {
+    margin-top: auto;
+    padding-top: 0.18in;
+    border-top: 0.5px solid rgba(13,13,13,0.18);
+  }
+  .sidebar-foot .lbl {
+    font-family: 'Inter', sans-serif;
+    font-size: 6pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #4a4a4a;
+  }
+  .sidebar-foot .lbl .o { color: #d4a056; margin: 0 0.45em; }
+
+  /* ===== RIGHT — HERO PHOTO ===== */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .hero .cell {
+    position: relative;
+    overflow: hidden;
+    background: #f5f1ea;
+    flex: 1;
+  }
+  .hero .cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    display: block;
+    filter: contrast(1.03) saturate(0.92);
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 0.14in;
+    padding-top: 0.08in;
+    border-top: 0.5px solid rgba(13,13,13,0.35);
+  }
+  .hero-meta .plate {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.2pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #1a1a1a;
+  }
+  .hero-meta .plate .pn { color: #d4a056; font-weight: 600; margin-right: 0.45em; }
+  .hero-meta .cap {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 10pt;
+    color: #1a1a1a;
+    text-align: right;
+  }
+
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="top">
+      <div class="brand">ALEX<span class="dot">·</span>FOR NEPAL<span class="dot">·</span>A LETTER</div>
+      <div class="pgmeta">Pg. 01 / 03</div>
+    </div>
+
+    <div class="main">
+
+      <!-- LEFT: LETTER SIDEBAR -->
+      <aside class="sidebar">
+
+        <div class="eyebrow">A Letter<span class="ochre">·</span>From Alex</div>
+
+        <h1 class="mini-title">Nepal<span class="accent">.</span></h1>
+
+        <div class="rule-thin"></div>
+
+        <div class="letter-body">
+          <p>Whether you&rsquo;re reading this in 2026 or in 2036, I want you to know that I miss you. It&rsquo;s been a while &mdash; give me a call and let&rsquo;s catch up!</p>
+          <p>I also want you to know how nostalgic making this scrapbook made me. I hope when you go through this, you feel that same sense of awe reflecting on how amazing our lives are and how many special moments we&rsquo;ve been blessed to share with each other.</p>
+          <p>I wanted to include the epic and meaningful memories, but I made sure to also include the random, simple selfies. Because honestly, that&rsquo;s what the majority of life is. We don&rsquo;t need grand adventures to enjoy our time together. Because with you, life and time just flows naturally. And that&rsquo;s why I love you.</p>
+          <p>Life is long, and I know that there are countless more memories, grand and simple, for us to share together.</p>
+        </div>
+
+        <div class="closing">Love you with all my heart, brother</div>
+
+        <div class="signoff">
+          <div class="sig-rule"></div>
+          <div class="sig">Alex :)</div>
+        </div>
+
+        <div class="sidebar-foot">
+          <div class="lbl">Three Pages<span class="o">·</span>One Of Three</div>
+        </div>
+
+      </aside>
+
+      <!-- RIGHT: HERO PHOTO -->
+      <section class="hero">
+        <figure class="cell"><img src="../photos/img-11.jpg" alt=""></figure>
+        <div class="hero-meta">
+          <div class="plate"><span class="pn">01</span>The Brothers</div>
+          <div class="cap">Light through the window &mdash; some moments speak for themselves.</div>
+        </div>
+      </section>
+
+    </div>
+
+  </div>
+</body>
+</html>

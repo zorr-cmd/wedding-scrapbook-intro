@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>A Letter · Dillan to Nepal · Pg. 01 / 02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #ecead9;
+    color: #0d0d0d;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0.55in 0.55in 0.5in 0.55in;
+  }
+
+  /* ===== TOP BAR ===== */
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 0.5px solid #0d0d0d;
+    padding-bottom: 0.08in;
+    margin-bottom: 0.22in;
+  }
+  .top .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .top .brand .dot {
+    color: #d4a056;
+    margin: 0 0.5em;
+  }
+  .top .pgmeta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    font-weight: 400;
+  }
+
+  /* ===== MAIN GRID: letter sidebar | photo column ===== */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 2.8in;
+    gap: 0.32in;
+    height: 9.3in;
+    max-height: 9.3in;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* ===== LEFT — LETTER ===== */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    padding-right: 0.18in;
+    border-right: 0.5px solid rgba(13,13,13,0.18);
+  }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #0d0d0d;
+    margin-bottom: 0.18in;
+  }
+  .eyebrow .ochre {
+    color: #d4a056;
+    margin: 0 0.45em;
+  }
+  .mini-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 32pt;
+    line-height: 0.95;
+    letter-spacing: -0.005em;
+    color: #0d0d0d;
+    margin-bottom: 0.06in;
+  }
+  .mini-title .accent { color: #d4a056; }
+
+  .rule-thin {
+    height: 0.5px;
+    background: #0d0d0d;
+    width: 0.6in;
+    margin-bottom: 0.22in;
+  }
+
+  .letter-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11.2pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    text-align: left;
+    hyphens: auto;
+  }
+  .letter-body p {
+    margin-bottom: 0.16in;
+    text-indent: 0;
+  }
+  .letter-body p:last-of-type { margin-bottom: 0; }
+
+  .signoff {
+    margin-top: 0.32in;
+  }
+  .signoff .sig-rule {
+    width: 0.45in;
+    height: 0.5px;
+    background: #d4a056;
+    margin-bottom: 0.1in;
+  }
+  .signoff .sig {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 14pt;
+    color: #0d0d0d;
+    letter-spacing: 0.01em;
+  }
+
+  .sidebar-foot {
+    margin-top: auto;
+    padding-top: 0.2in;
+    border-top: 0.5px solid rgba(13,13,13,0.18);
+  }
+  .sidebar-foot .lbl {
+    font-family: 'Inter', sans-serif;
+    font-size: 6pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #4a4a4a;
+  }
+  .sidebar-foot .lbl .o { color: #d4a056; margin: 0 0.45em; }
+
+  /* ===== RIGHT — 3 PORTRAIT PHOTOS STACKED ===== */
+  .stack {
+    display: grid;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 0.16in;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .cell {
+    position: relative;
+    overflow: hidden;
+    background: #f5f1ea;
+  }
+  .cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: contrast(1.03) saturate(0.92);
+  }
+  .cell.c1 img { object-position: center 28%; }
+  .cell.c2 img { object-position: center 35%; }
+  .cell.c3 img { object-position: center 45%; }
+
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="top">
+      <div class="brand">DILLAN<span class="dot">·</span>FOR NEPAL<span class="dot">·</span>A LETTER</div>
+      <div class="pgmeta">Pg. 01 / 02</div>
+    </div>
+
+    <div class="main">
+
+      <!-- LEFT: LETTER -->
+      <aside class="sidebar">
+
+        <div class="eyebrow">A Letter<span class="ochre">·</span>June 6</div>
+
+        <h1 class="mini-title">Nepal<span class="accent">.</span></h1>
+
+        <div class="rule-thin"></div>
+
+        <div class="letter-body">
+          <p>I am so grateful that life gave us the chance to grow closer over the years. You are the kind of friend who makes every room feel bigger and every moment worth showing up for. I have been endlessly lucky to call you my friend.</p>
+          <p>You have a rare gift: the ability to make the people around you feel truly seen. Your enthusiasm is contagious, your creativity is inspiring, and your belief in the people you love has meant more than you know.</p>
+          <p>Though this chapter brings a wonderful new beginning, nothing changes between us. I will always have your back, just as I know you will always have mine. The boys and I will always be in your corner, cheering the loudest.</p>
+        </div>
+
+        <div class="signoff">
+          <div class="sig-rule"></div>
+          <div class="sig">— Dillan</div>
+        </div>
+
+        <div class="sidebar-foot">
+          <div class="lbl">Dillan<span class="o">·</span>For Nepal<span class="o">·</span>Pg. 01</div>
+        </div>
+
+      </aside>
+
+      <!-- RIGHT: 3 PORTRAIT PHOTOS STACKED -->
+      <section class="stack">
+        <figure class="cell c1"><img src="../photos/img-35.jpg" alt=""></figure>
+        <figure class="cell c2"><img src="../photos/img-36.jpg" alt=""></figure>
+        <figure class="cell c3"><img src="../photos/img-37.jpg" alt=""></figure>
+      </section>
+
+    </div>
+
+  </div>
+</body>
+</html>
