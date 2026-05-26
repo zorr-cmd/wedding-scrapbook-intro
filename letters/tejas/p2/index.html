@@ -129,10 +129,19 @@
   .c2 img { object-position: center 50%; }   /* chai — table center */
   .c3 img { object-position: center 40%; }   /* golden hour — keep faces */
   .c4 img { object-position: center 35%; }   /* boys abroad — keep faces */
-  .c5 img { object-position: center 35%; }   /* nepal + cat — keep nepal */
   .c6 img { object-position: center 50%; }   /* round table */
   .c7 img { object-position: center 40%; }   /* nepal in car — face */
   .c8 img { object-position: center 50%; }   /* airport selfie */
+
+  /* c5 = Nepal + cat (PORTRAIT source 0.75 in landscape cell).
+     Switch to contain so the full portrait shows un-cropped,
+     centered in the landscape cell with cream side-letterbox. */
+  .cell.c5 img {
+    object-fit: contain;
+    object-position: center;
+  }
+  /* hide the bottom scrim on c5 since it would sit over cream not photo */
+  .cell.c5::after { display: none; }
 
   /* tiny plate labels in corner — sits on top of the scrim */
   .plate {

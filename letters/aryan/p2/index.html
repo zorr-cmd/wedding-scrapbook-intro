@@ -123,9 +123,10 @@
   /* ===== PHOTO GRID — bottom half, 4 plates ===== */
   .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 2.0in 2.0in;
-    gap: 0.13in;
+    /* Col 1 narrow for portraits (img-47, img-48); col 2 wide for landscapes (img-46, img-49) */
+    grid-template-columns: 1.85in 1fr;
+    grid-template-rows: 2.5in 2.5in;
+    gap: 0.14in;
     margin-top: 0.2in;
     padding-top: 0.18in;
     border-top: 0.5px solid rgba(13,13,13,0.18);
@@ -142,10 +143,18 @@
     display: block;
     filter: contrast(1.03) saturate(0.92);
   }
+  /* p1 = img-48 (portrait Backyard rig) → col 1 row 1 */
+  .cell.p1 { grid-column: 1 / 2; grid-row: 1 / 2; }
   .cell.p1 img { object-position: center 45%; }
+  /* p2 = img-49 (landscape Egypt) → col 2 row 1 */
+  .cell.p2 { grid-column: 2 / 3; grid-row: 1 / 2; }
   .cell.p2 img { object-position: center 40%; }
+  /* p3 = img-46 (landscape Cabo) → col 2 row 2 */
+  .cell.p3 { grid-column: 2 / 3; grid-row: 2 / 3; }
   .cell.p3 img { object-position: center 45%; }
-  .cell.p4 img { object-position: center 40%; }
+  /* p4 = img-47 (portrait Gallery chair) → col 1 row 2 */
+  .cell.p4 { grid-column: 1 / 2; grid-row: 2 / 3; }
+  .cell.p4 img { object-position: center 50%; }
 
 
   /* ===== STANDARDIZED PAGE FOOTER ===== */
