@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>A Letter · Tejas to Nepal · June 6, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #ecead9;
+    color: #0d0d0d;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: #f5f1ea;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0.55in 0.55in 0.5in 0.55in;
+  }
+
+  /* ===== TOP BAR ===== */
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 0.5px solid #0d0d0d;
+    padding-bottom: 0.08in;
+    margin-bottom: 0.22in;
+  }
+  .top .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .top .brand .dot { color: #d4a056; margin: 0 0.5em; }
+  .top .pgmeta {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    font-weight: 400;
+  }
+
+  /* ===== MAIN GRID: letter sidebar | photo ===== */
+  .main {
+    display: grid;
+    grid-template-columns: 3.05in 1fr;
+    gap: 0.32in;
+    height: 9.65in;
+  }
+
+  /* ===== LEFT — LETTER SIDEBAR ===== */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    padding-right: 0.14in;
+    border-right: 0.5px solid rgba(13,13,13,0.18);
+  }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #0d0d0d;
+    margin-bottom: 0.18in;
+  }
+  .eyebrow .ochre { color: #d4a056; margin: 0 0.45em; }
+  .mini-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 30pt;
+    line-height: 0.95;
+    letter-spacing: -0.005em;
+    color: #0d0d0d;
+    margin-bottom: 0.04in;
+  }
+  .mini-title .accent { color: #d4a056; }
+  .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 11pt;
+    color: #3a3a3a;
+    margin-bottom: 0.22in;
+    letter-spacing: 0.01em;
+  }
+
+  .rule-thin {
+    height: 0.5px;
+    background: #0d0d0d;
+    width: 0.6in;
+    margin-bottom: 0.18in;
+  }
+
+  .letter-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 10pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    text-align: left;
+    hyphens: auto;
+  }
+  .letter-body p {
+    margin-bottom: 0.11in;
+    text-indent: 0;
+  }
+  .letter-body p:last-of-type { margin-bottom: 0; }
+  .letter-body em { font-style: normal; }
+
+  .signoff {
+    margin-top: 0.18in;
+  }
+  .signoff .sig-rule {
+    width: 0.45in;
+    height: 0.5px;
+    background: #d4a056;
+    margin-bottom: 0.1in;
+  }
+  .signoff .sig {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 14pt;
+    color: #0d0d0d;
+    letter-spacing: 0.01em;
+  }
+
+  .sidebar-foot {
+    margin-top: auto;
+    padding-top: 0.18in;
+    border-top: 0.5px solid rgba(13,13,13,0.18);
+  }
+  .sidebar-foot .lbl {
+    font-family: 'Inter', sans-serif;
+    font-size: 6pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #4a4a4a;
+  }
+  .sidebar-foot .lbl .o { color: #d4a056; margin: 0 0.45em; }
+
+  /* ===== RIGHT — HERO PHOTO ===== */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: #f5f1ea;
+    height: 100%;
+  }
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 28%;
+    display: block;
+    filter: contrast(1.03) saturate(0.92);
+  }
+  .hero .caption {
+    position: absolute;
+    left: 0.16in;
+    bottom: 0.14in;
+    font-family: 'Inter', sans-serif;
+    font-size: 6.2pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #f5f1ea;
+    text-shadow: 0 0 8px rgba(0,0,0,0.55);
+  }
+  .hero .caption .o { color: #d4a056; margin: 0 0.45em; }
+
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="top">
+      <div class="brand">TEJAS<span class="dot">·</span>FOR NEPAL<span class="dot">·</span>A LETTER</div>
+      <div class="pgmeta">Pg. 01 / 02</div>
+    </div>
+
+    <div class="main">
+
+      <!-- LEFT: LETTER SIDEBAR -->
+      <aside class="sidebar">
+
+        <div class="eyebrow">A Letter<span class="ochre">·</span>June 6</div>
+
+        <h1 class="mini-title">Family<span class="accent">.</span></h1>
+
+        <div class="rule-thin"></div>
+
+        <div class="letter-body">
+          <p>Nepal,</p>
+          <p>I still remember when I first met you, finding out you lived in my neighborhood and thinking you had the coolest name I&rsquo;d ever heard.</p>
+          <p>It&rsquo;s been incredible watching the person you&rsquo;ve become. You&rsquo;re always willing to help others, eager to share what you love, and fearless when it comes to chasing new experiences. I&rsquo;ve always admired your curiosity, open-mindedness, and the way you genuinely believe in the people around you. No one hypes up their friends quite like you do, and it makes us feel unstoppable.</p>
+          <p>You have a remarkable presence and a genuine love for the people and things that matter to you. Getting to know you over the years has been one of the great joys of my life, and I&rsquo;m so excited to call you family.</p>
+          <p>Congratulations on this next chapter with Daria. I can&rsquo;t wait to see all the adventures ahead, the films you&rsquo;ll create, the students&rsquo; lives you will change, and the impact you&rsquo;ll continue to have on everyone around you. Keep shooting for the stars while staying grounded in the values that make you who you are.</p>
+          <p>Wishing you both a lifetime of happiness, love, and unforgettable memories. And when <em>Bear Boy</em> finally hits the big screen, I&rsquo;ll be right there with the SD boys and Daria celebrating louder than anyone.</p>
+        </div>
+
+        <div class="signoff">
+          <div class="sig-rule"></div>
+          <div class="sig">— Tejas</div>
+        </div>
+
+        <div class="sidebar-foot">
+          <div class="lbl">From The SD Boys<span class="o">·</span>2026</div>
+        </div>
+
+      </aside>
+
+      <!-- RIGHT: HERO PHOTO -->
+      <section class="hero">
+        <img src="../photos/img-07.jpg" alt="Graduation day with Tejas and Nepal">
+        <div class="caption">Graduation Day<span class="o">·</span>Tejas &amp; Nepal</div>
+      </section>
+
+    </div>
+
+  </div>
+</body>
+</html>
