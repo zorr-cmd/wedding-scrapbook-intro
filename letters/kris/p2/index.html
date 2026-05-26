@@ -76,7 +76,9 @@
     display: block;
     filter: contrast(1.03) saturate(0.92);
   }
-  .tp-night img { object-position: center 60%; }
+  /* tp-night source is portrait (1012x1800); landscape cell crops 59% vertically.
+     Bias way toward the top so heads stay in frame. */
+  .tp-night img { object-position: center 12%; }
   .tp-friends img { object-position: center 50%; }
 
   /* Middle: closing letter + signoff */
