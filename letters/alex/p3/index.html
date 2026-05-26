@@ -24,7 +24,7 @@
     position: relative;
     overflow: hidden;
     margin: 0 auto;
-    padding: 0.55in 0.55in 0.5in 0.55in;
+    padding: 0.5in 0.5in 0.45in 0.5in;
   }
 
   /* ===== TOP BAR ===== */
@@ -34,7 +34,7 @@
     align-items: baseline;
     border-bottom: 0.5px solid #0d0d0d;
     padding-bottom: 0.08in;
-    margin-bottom: 0.22in;
+    margin-bottom: 0.16in;
   }
   .top .brand {
     font-family: 'Inter', sans-serif;
@@ -53,50 +53,52 @@
     font-weight: 400;
   }
 
-  /* ===== Editorial header strip ===== */
-  .strip {
+  /* ===== HEADER ===== */
+  .header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 0.2in;
+    align-items: flex-end;
+    margin-bottom: 0.18in;
   }
-  .strip .eyebrow {
+  .header .lhs .eyebrow {
     font-family: 'Inter', sans-serif;
     font-size: 6.5pt;
     letter-spacing: 0.32em;
     text-transform: uppercase;
     font-weight: 500;
     color: #0d0d0d;
+    margin-bottom: 0.05in;
   }
-  .strip .eyebrow .ochre { color: #d4a056; margin: 0 0.45em; }
-  .strip .title {
+  .header .lhs .eyebrow .ochre { color: #d4a056; margin: 0 0.45em; }
+  .header .lhs .title {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 500;
-    font-size: 18pt;
+    font-size: 22pt;
     line-height: 1;
     letter-spacing: -0.005em;
     color: #0d0d0d;
   }
-  .strip .title .accent { color: #d4a056; }
-  .strip .meta {
+  .header .lhs .title .accent { color: #d4a056; }
+  .header .rhs {
+    text-align: right;
     font-family: 'Inter', sans-serif;
-    font-size: 6pt;
+    font-size: 6.2pt;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: #1a1a1a;
     font-weight: 500;
-    text-align: right;
+    line-height: 1.7;
   }
-  .strip .meta .o { color: #d4a056; margin: 0 0.45em; }
+  .header .rhs .o { color: #d4a056; margin: 0 0.45em; }
 
-  /* ===== GRID: 2 cols x 2 rows, with top-right photo spanning two rows ===== */
+  /* ===== GRID — 3 cols x 5 rows, no captions, tight contact-sheet gap ===== */
   .grid {
     display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 0.18in;
-    height: 9.05in;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0.11in;
+    height: 8.95in;
   }
   .cell {
     position: relative;
@@ -111,37 +113,29 @@
     filter: contrast(1.03) saturate(0.92);
   }
 
-  .c1 { grid-column: 1 / 2; grid-row: 1 / 2; }
-  .c2 { grid-column: 2 / 3; grid-row: 1 / 3; }
-  .c3 { grid-column: 1 / 2; grid-row: 2 / 3; }
+  /* object-position tuning per cell — center most, lift faces where needed */
+  .c01 img { object-position: center 50%; }
+  .c02 img { object-position: center 40%; }
+  .c03 img { object-position: center 45%; }
+  .c04 img { object-position: center 50%; }
+  .c05 img { object-position: center 45%; }
+  .c06 img { object-position: center 40%; }
+  .c07 img { object-position: center 25%; }   /* lift to keep both faces visible */
+  .c08 img { object-position: center 50%; }
+  .c09 img { object-position: center 45%; }
+  .c10 img { object-position: center 50%; }
+  .c11 img { object-position: center 35%; }   /* close-up — bias upward to keep eyes */
+  .c12 img { object-position: center 50%; }
+  .c13 img { object-position: center 50%; }
+  .c14 img { object-position: center 40%; }
+  .c15 img { object-position: center 50%; }
 
-  .c1 img { object-position: center 40%; }
-  .c2 img { object-position: center 40%; }
-  .c3 img { object-position: center 30%; }
-
-  /* tiny plate labels in corner */
-  .plate {
-    position: absolute;
-    left: 0.1in;
-    bottom: 0.08in;
-    font-family: 'Inter', sans-serif;
-    font-size: 5.8pt;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: #f5f1ea;
-    text-shadow: 0 0 6px rgba(0,0,0,0.45);
-  }
-  .plate .pn {
-    color: #d4a056;
-    margin-right: 0.4em;
-  }
-
-  /* footer rule */
+  /* ===== FOOTER ===== */
   .foot {
-    margin-top: 0.2in;
-    padding-top: 0.08in;
-    border-top: 0.5px solid rgba(13,13,13,0.18);
+    position: absolute;
+    left: 0.5in;
+    right: 0.5in;
+    bottom: 0.22in;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -153,6 +147,15 @@
     font-weight: 500;
   }
   .foot .o { color: #d4a056; margin: 0 0.45em; }
+  .foot .fin {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 9pt;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: #1a1a1a;
+  }
 
 </style>
 </head>
@@ -164,30 +167,47 @@
       <div class="pgmeta">Pg. 03 / 03</div>
     </div>
 
-    <div class="strip">
-      <div class="eyebrow">Closing Plates<span class="ochre">·</span>No Captions</div>
-      <div class="title">Three<span class="accent">.</span></div>
-      <div class="meta">End Of Set<span class="o">·</span>Pg. 03 / 03</div>
+    <div class="header">
+      <div class="lhs">
+        <div class="eyebrow">A Memory Wall<span class="ochre">·</span>Fifteen Frames</div>
+        <div class="title">Always<span class="accent">.</span></div>
+      </div>
+      <div class="rhs">
+        Selected By Alex<span class="o">·</span>2014&ndash;2026<br>
+        End Of Set<span class="o">·</span>Pg. 03 / 03
+      </div>
     </div>
 
     <section class="grid">
-      <figure class="cell c1">
-        <img src="../photos/img-28.jpg" alt="">
-        <div class="plate"><span class="pn">15</span>Disneyland</div>
-      </figure>
-      <figure class="cell c2">
-        <img src="../photos/img-27.jpg" alt="">
-        <div class="plate"><span class="pn">16</span>Chinatown At Night</div>
-      </figure>
-      <figure class="cell c3">
-        <img src="../photos/img-29.jpg" alt="">
-        <div class="plate"><span class="pn">17</span>Mirror Selfie</div>
-      </figure>
+      <!-- Row 1 -->
+      <figure class="cell c01"><img src="../photos/img-26-01.jpg" alt=""></figure>
+      <figure class="cell c02"><img src="../photos/img-26-02.jpg" alt=""></figure>
+      <figure class="cell c03"><img src="../photos/img-26-03.jpg" alt=""></figure>
+
+      <!-- Row 2 -->
+      <figure class="cell c04"><img src="../photos/img-26-04.jpg" alt=""></figure>
+      <figure class="cell c05"><img src="../photos/img-26-05.jpg" alt=""></figure>
+      <figure class="cell c06"><img src="../photos/img-26-06.jpg" alt=""></figure>
+
+      <!-- Row 3 -->
+      <figure class="cell c07"><img src="../photos/img-26-07.jpg" alt=""></figure>
+      <figure class="cell c08"><img src="../photos/img-26-08.jpg" alt=""></figure>
+      <figure class="cell c09"><img src="../photos/img-26-09.jpg" alt=""></figure>
+
+      <!-- Row 4 -->
+      <figure class="cell c10"><img src="../photos/img-26-10.jpg" alt=""></figure>
+      <figure class="cell c11"><img src="../photos/img-26-11.jpg" alt=""></figure>
+      <figure class="cell c12"><img src="../photos/img-26-12.jpg" alt=""></figure>
+
+      <!-- Row 5 -->
+      <figure class="cell c13"><img src="../photos/img-26-13.jpg" alt=""></figure>
+      <figure class="cell c14"><img src="../photos/img-26-14.jpg" alt=""></figure>
+      <figure class="cell c15"><img src="../photos/img-26-15.jpg" alt=""></figure>
     </section>
 
     <div class="foot">
       <div>Alex<span class="o">·</span>For Nepal<span class="o">·</span>Three Pages, One Brotherhood</div>
-      <div>Fin.</div>
+      <div class="fin"><em>Fifteen frames, one Alex.</em></div>
     </div>
 
   </div>
