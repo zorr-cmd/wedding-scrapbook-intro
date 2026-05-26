@@ -115,7 +115,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 500;
-    font-size: 13pt;
+    font-size: 14pt;
     color: #0d0d0d;
     letter-spacing: 0.01em;
   }
@@ -146,6 +146,27 @@
   .cell.p2 img { object-position: center 40%; }
   .cell.p3 img { object-position: center 45%; }
   .cell.p4 img { object-position: center 40%; }
+
+
+  /* ===== STANDARDIZED PAGE FOOTER ===== */
+  .page-foot {
+    position: absolute;
+    left: 0.55in; right: 0.55in;
+    bottom: 0.28in;
+    padding-top: 0.08in;
+    border-top: 0.5px solid rgba(13,13,13,0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Inter', sans-serif;
+    font-size: 6pt;
+    line-height: 1;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #4a4a4a;
+    font-weight: 500;
+  }
+  .page-foot .o { color: #d4a056; margin: 0 0.45em; }
 
 </style>
 </head>
@@ -181,6 +202,12 @@
       <figure class="cell p3"><img src="../photos/img-46.jpg" alt=""></figure>
       <figure class="cell p4"><img src="../photos/img-47.jpg" alt=""></figure>
     </section>
+
+
+    <div class="page-foot">
+      <div>ARYAN<span class="o">&middot;</span>For Nepal<span class="o">&middot;</span>Pg. 02 / 02</div>
+      <div>Continued</div>
+    </div>
 
   </div>
 </body>
